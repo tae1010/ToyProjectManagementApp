@@ -7,21 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		937CC55928002F1400F18553 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 937CC55828002F1400F18553 /* Main.storyboard */; };
+		937CC55B2800304400F18553 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937CC55A2800304400F18553 /* LoginViewController.swift */; };
+		937CC55D2800377600F18553 /* EnterEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937CC55C2800377600F18553 /* EnterEmailViewController.swift */; };
+		9380D24A27FF1196000DC92E /* SecondTabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9380D24927FF1195000DC92E /* SecondTabbarViewController.swift */; };
+		9380D24C27FF13D9000DC92E /* MainTabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9380D24B27FF13D9000DC92E /* MainTabbarViewController.swift */; };
 		93DEFA8627FAFF1600827C79 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DEFA8527FAFF1600827C79 /* AppDelegate.swift */; };
 		93DEFA8827FAFF1600827C79 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DEFA8727FAFF1600827C79 /* SceneDelegate.swift */; };
-		93DEFA8A27FAFF1600827C79 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DEFA8927FAFF1600827C79 /* ViewController.swift */; };
-		93DEFA8D27FAFF1600827C79 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93DEFA8B27FAFF1600827C79 /* Main.storyboard */; };
 		93DEFA9027FAFF1600827C79 /* CooperationApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 93DEFA8E27FAFF1600827C79 /* CooperationApp.xcdatamodeld */; };
 		93DEFA9227FAFF1700827C79 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 93DEFA9127FAFF1700827C79 /* Assets.xcassets */; };
 		93DEFA9527FAFF1700827C79 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93DEFA9327FAFF1700827C79 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		937CC55828002F1400F18553 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		937CC55A2800304400F18553 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		937CC55C2800377600F18553 /* EnterEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterEmailViewController.swift; sourceTree = "<group>"; };
+		9380D24927FF1195000DC92E /* SecondTabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondTabbarViewController.swift; sourceTree = "<group>"; };
+		9380D24B27FF13D9000DC92E /* MainTabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabbarViewController.swift; sourceTree = "<group>"; };
 		93DEFA8227FAFF1600827C79 /* CooperationApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CooperationApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		93DEFA8527FAFF1600827C79 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		93DEFA8727FAFF1600827C79 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		93DEFA8927FAFF1600827C79 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		93DEFA8C27FAFF1600827C79 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		93DEFA8F27FAFF1600827C79 /* CooperationApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CooperationApp.xcdatamodel; sourceTree = "<group>"; };
 		93DEFA9127FAFF1700827C79 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		93DEFA9427FAFF1700827C79 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -60,12 +66,15 @@
 			children = (
 				93DEFA8527FAFF1600827C79 /* AppDelegate.swift */,
 				93DEFA8727FAFF1600827C79 /* SceneDelegate.swift */,
-				93DEFA8927FAFF1600827C79 /* ViewController.swift */,
-				93DEFA8B27FAFF1600827C79 /* Main.storyboard */,
 				93DEFA9127FAFF1700827C79 /* Assets.xcassets */,
 				93DEFA9327FAFF1700827C79 /* LaunchScreen.storyboard */,
 				93DEFA9627FAFF1700827C79 /* Info.plist */,
 				93DEFA8E27FAFF1600827C79 /* CooperationApp.xcdatamodeld */,
+				9380D24B27FF13D9000DC92E /* MainTabbarViewController.swift */,
+				9380D24927FF1195000DC92E /* SecondTabbarViewController.swift */,
+				937CC55828002F1400F18553 /* Main.storyboard */,
+				937CC55A2800304400F18553 /* LoginViewController.swift */,
+				937CC55C2800377600F18553 /* EnterEmailViewController.swift */,
 			);
 			path = CooperationApp;
 			sourceTree = "<group>";
@@ -128,9 +137,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				937CC55928002F1400F18553 /* Main.storyboard in Resources */,
 				93DEFA9527FAFF1700827C79 /* LaunchScreen.storyboard in Resources */,
 				93DEFA9227FAFF1700827C79 /* Assets.xcassets in Resources */,
-				93DEFA8D27FAFF1600827C79 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,9 +150,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				93DEFA8A27FAFF1600827C79 /* ViewController.swift in Sources */,
+				937CC55B2800304400F18553 /* LoginViewController.swift in Sources */,
 				93DEFA8627FAFF1600827C79 /* AppDelegate.swift in Sources */,
 				93DEFA8827FAFF1600827C79 /* SceneDelegate.swift in Sources */,
+				9380D24C27FF13D9000DC92E /* MainTabbarViewController.swift in Sources */,
+				937CC55D2800377600F18553 /* EnterEmailViewController.swift in Sources */,
+				9380D24A27FF1196000DC92E /* SecondTabbarViewController.swift in Sources */,
 				93DEFA9027FAFF1600827C79 /* CooperationApp.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -151,14 +163,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		93DEFA8B27FAFF1600827C79 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				93DEFA8C27FAFF1600827C79 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		93DEFA9327FAFF1700827C79 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -296,7 +300,6 @@
 				INFOPLIST_FILE = CooperationApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -324,7 +327,6 @@
 				INFOPLIST_FILE = CooperationApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
