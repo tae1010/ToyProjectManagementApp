@@ -192,7 +192,7 @@
                                 </state>
                                 <connections>
                                     <action selector="nextButtonTapped:" destination="Kg4-n1-feu" eventType="touchUpInside" id="syk-n7-TjO"/>
-                                    <segue destination="nbL-Mq-rke" kind="show" id="dXF-wd-M9W"/>
+                                    <segue destination="QZa-Cn-xOg" kind="show" id="voF-Wy-HbX"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -219,7 +219,7 @@
             </objects>
             <point key="canvasLocation" x="1329" y="37"/>
         </scene>
-        <!--Main Tabbar View Controller-->
+        <!--Item-->
         <scene sceneID="qFh-wn-izr">
             <objects>
                 <viewController id="nbL-Mq-rke" customClass="MainTabbarViewController" customModule="CooperationApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -254,6 +254,7 @@
                             <constraint firstItem="YUW-RL-AV4" firstAttribute="centerX" secondItem="mBh-wh-JFA" secondAttribute="centerX" id="ZOv-oa-Rq6"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="CrF-EA-S80"/>
                     <navigationItem key="navigationItem" id="x1l-TW-2yi"/>
                     <connections>
                         <outlet property="welcomeLabel" destination="KmS-w6-D7p" id="JbQ-w3-pfv"/>
@@ -261,13 +262,51 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CfZ-LX-oHf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2132" y="37"/>
+            <point key="canvasLocation" x="1674" y="858"/>
+        </scene>
+        <!--Item 2-->
+        <scene sceneID="hdV-FV-eYH">
+            <objects>
+                <viewController id="2SE-Y1-NfJ" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="nP6-ce-zdy">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="pRj-hd-ngu"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item 2" id="LJp-IY-7vB"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hwu-o7-zXd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2577" y="858"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="Vk3-Xo-CxF">
+            <objects>
+                <tabBarController id="QZa-Cn-xOg" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="cuh-kS-DSj"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="q4h-Ld-sB0">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="2SE-Y1-NfJ" kind="relationship" relationship="viewControllers" id="kIh-fD-Zxl"/>
+                        <segue destination="nbL-Mq-rke" kind="relationship" relationship="viewControllers" id="5OG-bq-PTA"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1cG-Tq-jHf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2159" y="37"/>
         </scene>
     </scenes>
     <resources>
         <image name="logo_apple" width="33.333332061767578" height="33.333332061767578"/>
         <image name="logo_google" width="33.333332061767578" height="33.333332061767578"/>
         <image name="pencil" catalog="system" width="128" height="113"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
