@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class MainTabbarViewController: UIViewController {
 
@@ -23,11 +24,28 @@ class MainTabbarViewController: UIViewController {
         
         //네비게이션바를 숨김
         navigationController?.navigationBar.isHidden = true
+        
+        //email에 유저 email값을 넣고 만약에 값이 없다면 고객이라는 값을 넣는다
+        let email = Auth.auth().currentUser?.email ?? "고객"
+        self.welcomeLabel.text = """
+        환영합니다.
+        \(email)님
+        """
+        
     }
 
     @IBAction func logoutButtonTapped(_ sender: UIButton) {
+        //로그아웃후 처음 로그인 화면으로 돌아가기
+        let firebaseAuth = Auth.auth()
         
-        self.navigationController?.popToRootViewController(animated: true)
+        do {
+            try firebaseAuth.signOut()
+            self.navigationController?.popToRootViewController(animated: true)
+        } catch let sighOutError as NSError {
+            print("Error signout \(sighOutError.localizedDescription)")
+        }
+        
+       
     }
     
 }

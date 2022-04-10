@@ -44,13 +44,36 @@ class EnterEmailViewController: UIViewController {
         Auth.auth().createUser(withEmail: email, password: password) { [weak self] authResult, error in
             guard let self = self else { return }
             
+            if let error = error {
+                let code = (error as NSError).code
+                switch code {
+                case 17007: //이미 가입한 계정일때
+                    //로그인하기
+                    self.errorMessageLabel.text = error.localizedDescription
+                default:
+                    self.errorMessageLabel.text = error.localizedDescription
+                }
+            } else {
+                self.showMainViewController()
+            }
+        }
+    }
+    
+    private func loginUser(withEmail email: String, password: String) {
+        Auth.auth().signIn(withEmail: email, password: password) { [weak self] _, error in
+            guard let self = self else { return }
             
+            if let error = error {
+                self.errorMessageLabel.text = error.localizedDescription
+            } else {
+                self.showMainViewController()
+            }
         }
     }
     
     private func showMainViewController() {
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        let mainTabbarViewController = storyboard.instantiateViewController(withIdentifier: "MainTabberViewController")
+        let mainTabbarViewController = storyboard.instantiateViewController(withIdentifier: "MainTabbarViewController")
         mainTabbarViewController.modalPresentationStyle = .fullScreen
         navigationController?.show(mainTabbarViewController, sender: nil)
     }
