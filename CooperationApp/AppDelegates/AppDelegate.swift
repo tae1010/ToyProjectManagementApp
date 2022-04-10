@@ -8,16 +8,26 @@
 import UIKit
 import CoreData
 import Firebase
+import GoogleSignIn
+import GoogleUtilities
 
 @main
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, GIDS {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         //Firebase초기화
         FirebaseApp.configure()
+        
+        GIDSignIn.sharedInstance.client = FirebaseApp.app()?.options.clientID
+        GIDSignIn.sharedInstance()?.delegate = self
 
         return true
+    }
+    
+    //구글에 인증프로세스가 끝날때 앱이 수신하는 url을 처리하는 역할
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+        return GIDSignIn.sharedInstance.handle(url)
     }
     
 
