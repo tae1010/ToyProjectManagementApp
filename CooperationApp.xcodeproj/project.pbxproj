@@ -58,8 +58,44 @@
 				A5311CEE6F1050F23A02B091 /* Pods-CooperationApp.debug.xcconfig */,
 				B4A1AF8A17CFCEBC490BF037 /* Pods-CooperationApp.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		9301D3052803504A0010191F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				93DEFA9327FAFF1700827C79 /* LaunchScreen.storyboard */,
+				937CC55828002F1400F18553 /* Main.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		9301D306280350C60010191F /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				9380D24B27FF13D9000DC92E /* MainTabbarViewController.swift */,
+				9380D24927FF1195000DC92E /* SecondTabbarViewController.swift */,
+				937CC55A2800304400F18553 /* LoginViewController.swift */,
+				937CC55C2800377600F18553 /* EnterEmailViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		9301D307280351200010191F /* AppDelegates */ = {
+			isa = PBXGroup;
+			children = (
+				93DEFA8527FAFF1600827C79 /* AppDelegate.swift */,
+				93DEFA8727FAFF1600827C79 /* SceneDelegate.swift */,
+			);
+			path = AppDelegates;
+			sourceTree = "<group>";
+		};
+		9301D3082803513E0010191F /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				93DEFA9127FAFF1700827C79 /* Assets.xcassets */,
+			);
+			path = Assets;
 			sourceTree = "<group>";
 		};
 		93DEFA7927FAFF1500827C79 = {
@@ -83,18 +119,13 @@
 		93DEFA8427FAFF1600827C79 /* CooperationApp */ = {
 			isa = PBXGroup;
 			children = (
+				9301D3082803513E0010191F /* Assets */,
+				9301D307280351200010191F /* AppDelegates */,
+				9301D306280350C60010191F /* ViewControllers */,
+				9301D3052803504A0010191F /* Views */,
 				93285BED2801887C00396083 /* GoogleService-Info.plist */,
-				93DEFA8527FAFF1600827C79 /* AppDelegate.swift */,
-				93DEFA8727FAFF1600827C79 /* SceneDelegate.swift */,
-				93DEFA9127FAFF1700827C79 /* Assets.xcassets */,
-				93DEFA9327FAFF1700827C79 /* LaunchScreen.storyboard */,
 				93DEFA9627FAFF1700827C79 /* Info.plist */,
 				93DEFA8E27FAFF1600827C79 /* CooperationApp.xcdatamodeld */,
-				9380D24B27FF13D9000DC92E /* MainTabbarViewController.swift */,
-				9380D24927FF1195000DC92E /* SecondTabbarViewController.swift */,
-				937CC55828002F1400F18553 /* Main.storyboard */,
-				937CC55A2800304400F18553 /* LoginViewController.swift */,
-				937CC55C2800377600F18553 /* EnterEmailViewController.swift */,
 			);
 			path = CooperationApp;
 			sourceTree = "<group>";
