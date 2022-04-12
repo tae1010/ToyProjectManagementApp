@@ -11,6 +11,8 @@ import FirebaseAuth
 class MainTabbarViewController: UIViewController {
 
     @IBOutlet weak var welcomeLabel: UILabel!
+    @IBOutlet weak var resetPasswordButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -32,6 +34,9 @@ class MainTabbarViewController: UIViewController {
         \(email)님
         """
         
+        let isEmailSignin = Auth.auth().currentUser?.providerData[0].providerID == "password"
+        resetPasswordButton.isHidden = !isEmailSignin
+        
     }
 
     @IBAction func logoutButtonTapped(_ sender: UIButton) {
@@ -47,5 +52,11 @@ class MainTabbarViewController: UIViewController {
         
        
     }
+    
+    @IBAction func resetPasswordButtonTap(_ sender: UIButton) {
+        let email = Auth.auth().currentUser?.email ?? ""
+        Auth.auth().sendPasswordReset(withEmail: email, completion: nil)
+    }
+    
     
 }

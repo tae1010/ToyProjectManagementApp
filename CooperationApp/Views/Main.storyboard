@@ -243,19 +243,32 @@
                                     <action selector="logoutButtonTapped:" destination="nbL-Mq-rke" eventType="touchUpInside" id="kcU-lM-hXs"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0S4-At-Z2J">
+                                <rect key="frame" x="157" y="537" width="100.5" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="비밀번호 변경">
+                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="resetPasswordButtonTap:" destination="nbL-Mq-rke" eventType="touchUpInside" id="Mtm-e0-NzQ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Hcq-kl-fPa"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="0S4-At-Z2J" firstAttribute="centerX" secondItem="mBh-wh-JFA" secondAttribute="centerX" id="4kF-Su-UFl"/>
                             <constraint firstItem="KmS-w6-D7p" firstAttribute="centerY" secondItem="mBh-wh-JFA" secondAttribute="centerY" id="LSM-Rh-chq"/>
                             <constraint firstItem="KmS-w6-D7p" firstAttribute="centerX" secondItem="mBh-wh-JFA" secondAttribute="centerX" id="Lto-Dd-13o"/>
                             <constraint firstItem="YUW-RL-AV4" firstAttribute="top" secondItem="KmS-w6-D7p" secondAttribute="bottom" constant="20" id="OkD-Ps-5d8"/>
                             <constraint firstItem="YUW-RL-AV4" firstAttribute="centerX" secondItem="mBh-wh-JFA" secondAttribute="centerX" id="ZOv-oa-Rq6"/>
+                            <constraint firstItem="0S4-At-Z2J" firstAttribute="top" secondItem="YUW-RL-AV4" secondAttribute="bottom" constant="20" id="ySw-VI-RIp"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="CrF-EA-S80"/>
                     <navigationItem key="navigationItem" id="x1l-TW-2yi"/>
                     <connections>
+                        <outlet property="resetPasswordButton" destination="0S4-At-Z2J" id="Jiz-jo-07P"/>
                         <outlet property="welcomeLabel" destination="KmS-w6-D7p" id="JbQ-w3-pfv"/>
                     </connections>
                 </viewController>

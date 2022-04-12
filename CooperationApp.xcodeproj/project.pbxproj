@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0096026F0BFB4796A8BF5424 /* Pods_CooperationApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0FB3D49C10786D1206783F4 /* Pods_CooperationApp.framework */; };
+		930B2BDF28056CBD00CCB0EE /* Pods_CooperationApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0FB3D49C10786D1206783F4 /* Pods_CooperationApp.framework */; };
 		93285BEE2801887C00396083 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 93285BED2801887C00396083 /* GoogleService-Info.plist */; };
 		937CC55928002F1400F18553 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 937CC55828002F1400F18553 /* Main.storyboard */; };
 		937CC55B2800304400F18553 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937CC55A2800304400F18553 /* LoginViewController.swift */; };
@@ -45,7 +45,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0096026F0BFB4796A8BF5424 /* Pods_CooperationApp.framework in Frameworks */,
+				930B2BDF28056CBD00CCB0EE /* Pods_CooperationApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -150,6 +150,7 @@
 				93DEFA7F27FAFF1600827C79 /* Frameworks */,
 				93DEFA8027FAFF1600827C79 /* Resources */,
 				F82BE88C426999667606CDAC /* [CP] Embed Pods Frameworks */,
+				526B9AAD38A9530D6588F127 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -208,6 +209,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		526B9AAD38A9530D6588F127 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CooperationApp/Pods-CooperationApp-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CooperationApp/Pods-CooperationApp-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CooperationApp/Pods-CooperationApp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		5368219C207F4A025DF30B8B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -314,6 +332,8 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				EXCLUDED_ARCHS = arm64;
+				"EXCLUDED_ARCHS[sdk=*]" = arm64;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -374,6 +394,8 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				EXCLUDED_ARCHS = arm64;
+				"EXCLUDED_ARCHS[sdk=*]" = arm64;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
