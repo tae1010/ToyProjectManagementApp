@@ -9,11 +9,15 @@
 /* Begin PBXBuildFile section */
 		930B2BDF28056CBD00CCB0EE /* Pods_CooperationApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0FB3D49C10786D1206783F4 /* Pods_CooperationApp.framework */; };
 		93285BEE2801887C00396083 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 93285BED2801887C00396083 /* GoogleService-Info.plist */; };
+		93568B6A2805F14900A1B4B8 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93568B692805F14900A1B4B8 /* SignInViewController.swift */; };
+		935CBC862806A1C300759A24 /* MainTabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935CBC852806A1C300759A24 /* MainTabbarViewController.swift */; };
+		935CBC882806AD7900759A24 /* ProjectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935CBC872806AD7900759A24 /* ProjectCell.swift */; };
+		935CBC8E2806AE5100759A24 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935CBC8D2806AE5100759A24 /* Project.swift */; };
 		937CC55928002F1400F18553 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 937CC55828002F1400F18553 /* Main.storyboard */; };
 		937CC55B2800304400F18553 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937CC55A2800304400F18553 /* LoginViewController.swift */; };
-		937CC55D2800377600F18553 /* EnterEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937CC55C2800377600F18553 /* EnterEmailViewController.swift */; };
+		937CC55D2800377600F18553 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937CC55C2800377600F18553 /* SignUpViewController.swift */; };
 		9380D24A27FF1196000DC92E /* SecondTabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9380D24927FF1195000DC92E /* SecondTabbarViewController.swift */; };
-		9380D24C27FF13D9000DC92E /* MainTabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9380D24B27FF13D9000DC92E /* MainTabbarViewController.swift */; };
+		9380D24C27FF13D9000DC92E /* ThirdTabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9380D24B27FF13D9000DC92E /* ThirdTabbarViewController.swift */; };
 		93DEFA8627FAFF1600827C79 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DEFA8527FAFF1600827C79 /* AppDelegate.swift */; };
 		93DEFA8827FAFF1600827C79 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DEFA8727FAFF1600827C79 /* SceneDelegate.swift */; };
 		93DEFA9027FAFF1600827C79 /* CooperationApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 93DEFA8E27FAFF1600827C79 /* CooperationApp.xcdatamodeld */; };
@@ -23,11 +27,15 @@
 
 /* Begin PBXFileReference section */
 		93285BED2801887C00396083 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		93568B692805F14900A1B4B8 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		935CBC852806A1C300759A24 /* MainTabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabbarViewController.swift; sourceTree = "<group>"; };
+		935CBC872806AD7900759A24 /* ProjectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCell.swift; sourceTree = "<group>"; };
+		935CBC8D2806AE5100759A24 /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
 		937CC55828002F1400F18553 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		937CC55A2800304400F18553 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		937CC55C2800377600F18553 /* EnterEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterEmailViewController.swift; sourceTree = "<group>"; };
+		937CC55C2800377600F18553 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		9380D24927FF1195000DC92E /* SecondTabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondTabbarViewController.swift; sourceTree = "<group>"; };
-		9380D24B27FF13D9000DC92E /* MainTabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabbarViewController.swift; sourceTree = "<group>"; };
+		9380D24B27FF13D9000DC92E /* ThirdTabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdTabbarViewController.swift; sourceTree = "<group>"; };
 		93DEFA8227FAFF1600827C79 /* CooperationApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CooperationApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		93DEFA8527FAFF1600827C79 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		93DEFA8727FAFF1600827C79 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -73,10 +81,10 @@
 		9301D306280350C60010191F /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				9380D24B27FF13D9000DC92E /* MainTabbarViewController.swift */,
-				9380D24927FF1195000DC92E /* SecondTabbarViewController.swift */,
-				937CC55A2800304400F18553 /* LoginViewController.swift */,
-				937CC55C2800377600F18553 /* EnterEmailViewController.swift */,
+				935CBC8F2806B05F00759A24 /* User */,
+				935CBC892806AD8D00759A24 /* Main */,
+				935CBC8A2806AD9D00759A24 /* Second */,
+				935CBC8B2806ADA900759A24 /* Third */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -96,6 +104,49 @@
 				93DEFA9127FAFF1700827C79 /* Assets.xcassets */,
 			);
 			path = Assets;
+			sourceTree = "<group>";
+		};
+		935CBC892806AD8D00759A24 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				935CBC852806A1C300759A24 /* MainTabbarViewController.swift */,
+				935CBC872806AD7900759A24 /* ProjectCell.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		935CBC8A2806AD9D00759A24 /* Second */ = {
+			isa = PBXGroup;
+			children = (
+				9380D24927FF1195000DC92E /* SecondTabbarViewController.swift */,
+			);
+			path = Second;
+			sourceTree = "<group>";
+		};
+		935CBC8B2806ADA900759A24 /* Third */ = {
+			isa = PBXGroup;
+			children = (
+				9380D24B27FF13D9000DC92E /* ThirdTabbarViewController.swift */,
+			);
+			path = Third;
+			sourceTree = "<group>";
+		};
+		935CBC8C2806AE3B00759A24 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				935CBC8D2806AE5100759A24 /* Project.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		935CBC8F2806B05F00759A24 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				937CC55A2800304400F18553 /* LoginViewController.swift */,
+				937CC55C2800377600F18553 /* SignUpViewController.swift */,
+				93568B692805F14900A1B4B8 /* SignInViewController.swift */,
+			);
+			path = User;
 			sourceTree = "<group>";
 		};
 		93DEFA7927FAFF1500827C79 = {
@@ -119,6 +170,7 @@
 		93DEFA8427FAFF1600827C79 /* CooperationApp */ = {
 			isa = PBXGroup;
 			children = (
+				935CBC8C2806AE3B00759A24 /* Model */,
 				9301D3082803513E0010191F /* Assets */,
 				9301D307280351200010191F /* AppDelegates */,
 				9301D306280350C60010191F /* ViewControllers */,
@@ -274,9 +326,13 @@
 			files = (
 				937CC55B2800304400F18553 /* LoginViewController.swift in Sources */,
 				93DEFA8627FAFF1600827C79 /* AppDelegate.swift in Sources */,
+				935CBC862806A1C300759A24 /* MainTabbarViewController.swift in Sources */,
+				935CBC882806AD7900759A24 /* ProjectCell.swift in Sources */,
 				93DEFA8827FAFF1600827C79 /* SceneDelegate.swift in Sources */,
-				9380D24C27FF13D9000DC92E /* MainTabbarViewController.swift in Sources */,
-				937CC55D2800377600F18553 /* EnterEmailViewController.swift in Sources */,
+				9380D24C27FF13D9000DC92E /* ThirdTabbarViewController.swift in Sources */,
+				93568B6A2805F14900A1B4B8 /* SignInViewController.swift in Sources */,
+				935CBC8E2806AE5100759A24 /* Project.swift in Sources */,
+				937CC55D2800377600F18553 /* SignUpViewController.swift in Sources */,
 				9380D24A27FF1196000DC92E /* SecondTabbarViewController.swift in Sources */,
 				93DEFA9027FAFF1600827C79 /* CooperationApp.xcdatamodeld in Sources */,
 			);

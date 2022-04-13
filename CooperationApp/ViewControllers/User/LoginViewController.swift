@@ -9,7 +9,7 @@ import UIKit
 import GoogleSignIn
 
 class LoginViewController: UIViewController {
-    @IBOutlet weak var emailLoginButton: UIButton!
+    @IBOutlet weak var signInLoginButton: UIButton!
     @IBOutlet weak var googleLoginButton: GIDSignInButton!
     @IBOutlet weak var appleLoginButton: UIButton!
     
@@ -27,9 +27,9 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        [emailLoginButton, googleLoginButton, appleLoginButton].forEach {
+        [signInLoginButton, googleLoginButton, appleLoginButton].forEach {
             $0?.layer.borderWidth = 1
-            $0?.layer.borderColor = UIColor.white.cgColor
+            $0?.layer.borderColor = UIColor.black.cgColor
             $0?.layer.cornerRadius = 30
         }
     }
@@ -43,4 +43,6 @@ class LoginViewController: UIViewController {
     @IBAction func appleLogingButtonTapped(_ sender: UIButton) {
         //Firebase 인증
     }
+    
+    
 }

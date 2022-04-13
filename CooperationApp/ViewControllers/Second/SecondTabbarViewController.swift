@@ -10,7 +10,7 @@ import UIKit
 class SecondTabbarViewController: UIViewController {
 
     override func viewDidLoad() {
-
+        super.viewDidLoad()
     }
 
 }

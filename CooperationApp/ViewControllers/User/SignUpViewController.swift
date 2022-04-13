@@ -8,7 +8,7 @@
 import UIKit
 import FirebaseAuth
 
-class EnterEmailViewController: UIViewController {
+class SignUpViewController: UIViewController {
     
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -17,7 +17,6 @@ class EnterEmailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.nextButton.layer.cornerRadius = 30
         self.nextButton.isEnabled = false
         
@@ -73,13 +72,13 @@ class EnterEmailViewController: UIViewController {
     
     private func showMainViewController() {
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        let mainTabbarViewController = storyboard.instantiateViewController(withIdentifier: "MainTabbarViewController")
+        let mainTabbarViewController = storyboard.instantiateViewController(withIdentifier: "MainTabbar")
         mainTabbarViewController.modalPresentationStyle = .fullScreen
         navigationController?.show(mainTabbarViewController, sender: nil)
     }
 }
 
-extension EnterEmailViewController: UITextFieldDelegate {
+extension SignUpViewController: UITextFieldDelegate {
     
     //이메일 비밀번호 입력이 끝나고 리턴버튼이 눌리면 키보드가 내려가는 메서드
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

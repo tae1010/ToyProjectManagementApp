@@ -8,15 +8,13 @@
 import UIKit
 import FirebaseAuth
 
-class MainTabbarViewController: UIViewController {
+class ThirdTabbarViewController: UIViewController {
 
     @IBOutlet weak var welcomeLabel: UILabel!
     @IBOutlet weak var resetPasswordButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
         //pop제스처를 막아줌
         navigationController?.interactivePopGestureRecognizer?.isEnabled = false
     }
@@ -49,8 +47,6 @@ class MainTabbarViewController: UIViewController {
         } catch let sighOutError as NSError {
             print("Error signout \(sighOutError.localizedDescription)")
         }
-        
-       
     }
     
     @IBAction func resetPasswordButtonTap(_ sender: UIButton) {

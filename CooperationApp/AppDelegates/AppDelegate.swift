@@ -26,15 +26,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
         
         Auth.auth().signIn(with: credential) { _, _ in
-            self.showMAinViewController()
+            self.showMainViewController()
         }
-        
-        
     }
     
-    private func showMAinViewController() {
+    private func showMainViewController() {
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        let mainViewController = storyboard.instantiateViewController(withIdentifier: "MainTabbarViewController")
+        let mainViewController = storyboard.instantiateViewController(withIdentifier: "MainTabbar")
         mainViewController.modalPresentationStyle = .fullScreen
         UIApplication.shared.windows.first?.rootViewController?.show(mainViewController, sender: nil)
     }
@@ -43,6 +41,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         
         //Firebase초기화
         FirebaseApp.configure()
+        
+        //네비게이션 text color 바꿔주기
+        var navigationBarAppearace = UINavigationBar.appearance()
+        navigationBarAppearace.tintColor = UIColor.systemMint
+        navigationBarAppearace.barTintColor = UIColor.systemMint
         
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
         GIDSignIn.sharedInstance().delegate = self
