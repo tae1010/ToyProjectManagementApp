@@ -202,6 +202,9 @@
                                 <state key="normal" title="로그인하기">
                                     <color key="titleColor" systemColor="systemMintColor"/>
                                 </state>
+                                <connections>
+                                    <action selector="signInButtonTap:" destination="PS6-9G-RM8" eventType="touchUpInside" id="PUj-qV-nvU"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="USe-F5-O8f"/>
@@ -214,6 +217,10 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="7Ea-ih-I0V"/>
+                    <connections>
+                        <outlet property="emailTextFiled" destination="gHs-LU-5wh" id="xVt-Lu-kpp"/>
+                        <outlet property="passwordTextField" destination="l12-Sb-K7L" id="hf2-8Z-J6h"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e9m-u7-lHD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -384,7 +391,7 @@
         <!--Item-->
         <scene sceneID="ueE-Gr-mSl">
             <objects>
-                <viewController storyboardIdentifier="MainTabbarViewController" id="UAM-km-w7Y" customClass="MainTabbarViewcontroller" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainTabbarViewController" id="UAM-km-w7Y" customClass="MainTabbarViewController" customModule="CooperationApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cRq-fE-HnP">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

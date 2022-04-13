@@ -6,9 +6,13 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuth
 
 class SignInViewController: UIViewController {
 
+    @IBOutlet weak var emailTextFiled: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -22,15 +26,32 @@ class SignInViewController: UIViewController {
         navigationController?.navigationBar.isHidden = false
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    @IBAction func signInButtonTap(_ sender: UIButton) {
+        self.login()
     }
-    */
+    
+    private func login(){
+        
+        guard let email = self.emailTextFiled.text else { return }
+        guard let password = self.passwordTextField.text else { return }
 
+        Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
+            if user != nil{
+                print("login success")
+                self.showMainViewController()
+            }
+            else {
+                print("login fail")
+                
+            }
+        }
+    }
+    
+    private func showMainViewController() {
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let mainTabbarViewController = storyboard.instantiateViewController(withIdentifier: "MainTabbar")
+        mainTabbarViewController.modalPresentationStyle = .fullScreen
+        navigationController?.show(mainTabbarViewController, sender: nil)
+    }
 }
