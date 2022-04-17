@@ -6,13 +6,24 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseDatabase
+
+var projectList = [Project]()
 
 class MainTabbarViewController: UIViewController {
+    
+    var ref: DatabaseReference!
 
+    @IBOutlet weak var projectCollectionView: UICollectionView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+        self.configureView()
+        
+        ref = Database.database().reference()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -20,5 +31,79 @@ class MainTabbarViewController: UIViewController {
         
         navigationController?.navigationBar.isHidden = true
     }
+    
+    @IBAction func addProjectButtonTap(_ sender: UIButton) {
+        
+        
+        let alert = UIAlertController(title: "프로젝트명", message: nil, preferredStyle: UIAlertController.Style.alert)
+        
+        let okAction = UIAlertAction(title: "만들기", style: .default, handler: { [weak self] _ in
+            guard let title = alert.textFields?[0].text else { return }
+            var emails = [String]()
+            let email = Auth.auth().currentUser?.email ?? "고객"
+            emails.append(email)
+            let project = Project(user: emails, projectTitle: title, important: false)
+            projectList.append(project)
+            self?.projectCollectionView.reloadData()
+        })
+        
+        let cancelAction = UIAlertAction(title: "취소하기", style: .default, handler: nil)
+        
+        alert.addTextField(configurationHandler: { textfield in
+            textfield.placeholder = "프로젝트명을 입력해주세요."
+        })
+        
+        alert.addAction(okAction)
+        alert.addAction(cancelAction)
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    
+    private func configureView() {
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+        
+        self.projectCollectionView.collectionViewLayout = UICollectionViewFlowLayout()
+        self.projectCollectionView.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        self.projectCollectionView.delegate = self
+        self.projectCollectionView.dataSource = self
+    }
+    
+//    private func saveProjectList() {
+//        let project = self.projectList.map {
+//            [
+//                "user": $0.user,
+//                "projectTitle": $0.projectTitle,
+//                "important": $0.important,
+//            ]
+//        }
+//    }
 
+}
+
+extension MainTabbarViewController: UICollectionViewDelegate {
+    
+}
+
+extension MainTabbarViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return projectList.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProjectCell", for: indexPath) as? ProjectCell else { return UICollectionViewCell() }
+        
+        let project = projectList[indexPath.row]
+        cell.projectTitleLabel.text = project.projectTitle
+        cell.userLabel.text = project.user.first
+        return cell
+    }
+    
+    
+}
+
+extension MainTabbarViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: (UIScreen.main.bounds.width / 2) - 20, height: 200)
+    }
 }

@@ -400,35 +400,48 @@
                                 <rect key="frame" x="0.0" y="106" width="414" height="707"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="jhv-Qh-fW1">
-                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="itemSize" width="180" height="200"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="p7o-Mb-uWI">
-                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ProjectCell" id="p7o-Mb-uWI" customClass="ProjectCell" customModule="CooperationApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="180" height="200"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="HgU-cl-r3j" customClass="ProjectCell" customModule="CooperationApp" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="180" height="200"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eVv-ZC-13t">
-                                                    <rect key="frame" x="43" y="32" width="42" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="project Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eVv-ZC-13t">
+                                                    <rect key="frame" x="12" y="12" width="156" height="143.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6GL-QB-gqe">
-                                                    <rect key="frame" x="43" y="99" width="42" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6GL-QB-gqe">
+                                                    <rect key="frame" x="12" y="167.5" width="156" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="eVv-ZC-13t" secondAttribute="trailing" constant="12" id="06P-yY-olv"/>
+                                                <constraint firstAttribute="trailing" secondItem="6GL-QB-gqe" secondAttribute="trailing" constant="12" id="2IK-h2-Z57"/>
+                                                <constraint firstItem="6GL-QB-gqe" firstAttribute="top" secondItem="eVv-ZC-13t" secondAttribute="bottom" constant="12" id="6uQ-pa-v0W"/>
+                                                <constraint firstAttribute="bottom" secondItem="6GL-QB-gqe" secondAttribute="bottom" constant="12" id="7SC-2r-avu"/>
+                                                <constraint firstItem="eVv-ZC-13t" firstAttribute="top" secondItem="HgU-cl-r3j" secondAttribute="top" constant="12" id="eIL-Zg-puN"/>
+                                                <constraint firstItem="6GL-QB-gqe" firstAttribute="leading" secondItem="HgU-cl-r3j" secondAttribute="leading" constant="12" id="gZ5-Ud-U2h"/>
+                                                <constraint firstItem="eVv-ZC-13t" firstAttribute="leading" secondItem="HgU-cl-r3j" secondAttribute="leading" constant="12" id="qb0-18-X8T"/>
+                                                <constraint firstItem="6GL-QB-gqe" firstAttribute="top" secondItem="eVv-ZC-13t" secondAttribute="bottom" constant="12" id="yC9-Ia-eyj"/>
+                                            </constraints>
                                         </collectionViewCellContentView>
+                                        <size key="customSize" width="180" height="200"/>
+                                        <connections>
+                                            <outlet property="projectTitleLabel" destination="eVv-ZC-13t" id="s5N-Ff-zsI"/>
+                                            <outlet property="userLabel" destination="6GL-QB-gqe" id="u3m-YZ-UZx"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
@@ -439,19 +452,32 @@
                                     <constraint firstAttribute="height" constant="50" id="tu2-Dg-KsH"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hLH-5K-JDZ">
+                                <rect key="frame" x="357" y="56" width="45" height="31"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <buttonConfiguration key="configuration" style="plain"/>
+                                <connections>
+                                    <action selector="addProjectButtonTap:" destination="UAM-km-w7Y" eventType="touchUpInside" id="7In-Z2-Ygv"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="0rg-By-3Cb"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="jEn-Ky-Ar7" firstAttribute="leading" secondItem="0rg-By-3Cb" secondAttribute="leading" constant="12" id="0N5-rR-kSj"/>
                             <constraint firstItem="dyl-vv-GWe" firstAttribute="top" secondItem="jEn-Ky-Ar7" secondAttribute="bottom" id="6bj-WP-O0n"/>
+                            <constraint firstItem="hLH-5K-JDZ" firstAttribute="top" secondItem="0rg-By-3Cb" secondAttribute="top" constant="12" id="HVg-yv-len"/>
                             <constraint firstItem="dyl-vv-GWe" firstAttribute="leading" secondItem="0rg-By-3Cb" secondAttribute="leading" id="IC9-Fs-CuS"/>
                             <constraint firstItem="dyl-vv-GWe" firstAttribute="bottom" secondItem="0rg-By-3Cb" secondAttribute="bottom" id="QdL-bz-Kvg"/>
                             <constraint firstItem="dyl-vv-GWe" firstAttribute="trailing" secondItem="0rg-By-3Cb" secondAttribute="trailing" id="R7v-73-kgb"/>
+                            <constraint firstItem="0rg-By-3Cb" firstAttribute="trailing" secondItem="hLH-5K-JDZ" secondAttribute="trailing" constant="12" id="R8m-ND-eA4"/>
                             <constraint firstItem="jEn-Ky-Ar7" firstAttribute="top" secondItem="0rg-By-3Cb" secondAttribute="top" constant="12" id="gJc-k0-dpt"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="Nwg-c4-cJg"/>
+                    <connections>
+                        <outlet property="projectCollectionView" destination="dyl-vv-GWe" id="cyB-B6-Kl6"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rDq-Tg-Gtb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
