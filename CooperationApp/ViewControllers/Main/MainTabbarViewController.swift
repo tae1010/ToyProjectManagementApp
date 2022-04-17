@@ -32,9 +32,10 @@ class MainTabbarViewController: UIViewController {
         navigationController?.navigationBar.isHidden = true
     }
     
+    //프로젝트 collection 추가
     @IBAction func addProjectButtonTap(_ sender: UIButton) {
         
-        
+        //alert창 생성 textfield, ok/cancel 버튼
         let alert = UIAlertController(title: "프로젝트명", message: nil, preferredStyle: UIAlertController.Style.alert)
         
         let okAction = UIAlertAction(title: "만들기", style: .default, handler: { [weak self] _ in
@@ -60,6 +61,7 @@ class MainTabbarViewController: UIViewController {
     }
     
     
+    //네비게이션뷰 숨기기, 컬렉션뷰 사이즈 생성
     private func configureView() {
         self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
         
@@ -68,17 +70,6 @@ class MainTabbarViewController: UIViewController {
         self.projectCollectionView.delegate = self
         self.projectCollectionView.dataSource = self
     }
-    
-//    private func saveProjectList() {
-//        let project = self.projectList.map {
-//            [
-//                "user": $0.user,
-//                "projectTitle": $0.projectTitle,
-//                "important": $0.important,
-//            ]
-//        }
-//    }
-
 }
 
 extension MainTabbarViewController: UICollectionViewDelegate {
@@ -98,12 +89,10 @@ extension MainTabbarViewController: UICollectionViewDataSource {
         cell.userLabel.text = project.user.first
         return cell
     }
-    
-    
 }
 
 extension MainTabbarViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: (UIScreen.main.bounds.width / 2) - 20, height: 200)
+        return CGSize(width: (UIScreen.main.bounds.width / 2) - 20, height: 140)
     }
 }
