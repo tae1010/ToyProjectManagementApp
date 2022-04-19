@@ -12,9 +12,9 @@ import FirebaseDatabase
 var projectList = [Project]()
 
 class MainTabbarViewController: UIViewController {
-    
+    let sqlite = SQlite.shared
     var ref: DatabaseReference!
-
+    
     @IBOutlet weak var projectCollectionView: UICollectionView!
     
     
@@ -34,7 +34,7 @@ class MainTabbarViewController: UIViewController {
     
     //프로젝트 collection 추가
     @IBAction func addProjectButtonTap(_ sender: UIButton) {
-        
+        self.sqlite.createTable()
         //alert창 생성 textfield, ok/cancel 버튼
         let alert = UIAlertController(title: "프로젝트명", message: nil, preferredStyle: UIAlertController.Style.alert)
         

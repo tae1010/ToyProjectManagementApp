@@ -397,7 +397,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="dyl-vv-GWe">
-                                <rect key="frame" x="0.0" y="106" width="414" height="707"/>
+                                <rect key="frame" x="0.0" y="116" width="414" height="697"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="jhv-Qh-fW1">
                                     <size key="itemSize" width="180" height="200"/>
@@ -472,7 +472,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="jEn-Ky-Ar7" firstAttribute="leading" secondItem="0rg-By-3Cb" secondAttribute="leading" constant="12" id="0N5-rR-kSj"/>
-                            <constraint firstItem="dyl-vv-GWe" firstAttribute="top" secondItem="jEn-Ky-Ar7" secondAttribute="bottom" id="6bj-WP-O0n"/>
+                            <constraint firstItem="dyl-vv-GWe" firstAttribute="top" secondItem="jEn-Ky-Ar7" secondAttribute="bottom" constant="10" id="6bj-WP-O0n"/>
                             <constraint firstItem="hLH-5K-JDZ" firstAttribute="top" secondItem="0rg-By-3Cb" secondAttribute="top" constant="12" id="HVg-yv-len"/>
                             <constraint firstItem="dyl-vv-GWe" firstAttribute="leading" secondItem="0rg-By-3Cb" secondAttribute="leading" id="IC9-Fs-CuS"/>
                             <constraint firstItem="dyl-vv-GWe" firstAttribute="bottom" secondItem="0rg-By-3Cb" secondAttribute="bottom" id="QdL-bz-Kvg"/>
