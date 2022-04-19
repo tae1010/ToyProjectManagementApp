@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		930B2BDF28056CBD00CCB0EE /* Pods_CooperationApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0FB3D49C10786D1206783F4 /* Pods_CooperationApp.framework */; };
 		93285BEE2801887C00396083 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 93285BED2801887C00396083 /* GoogleService-Info.plist */; };
-		932EA503280EA55F001AC470 /* SQlite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932EA502280EA55F001AC470 /* SQlite.swift */; };
+		932EA506280EDA96001AC470 /* FirebaseDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932EA505280EDA96001AC470 /* FirebaseDB.swift */; };
 		93568B6A2805F14900A1B4B8 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93568B692805F14900A1B4B8 /* SignInViewController.swift */; };
 		935CBC862806A1C300759A24 /* MainTabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935CBC852806A1C300759A24 /* MainTabbarViewController.swift */; };
 		935CBC882806AD7900759A24 /* ProjectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935CBC872806AD7900759A24 /* ProjectCell.swift */; };
@@ -28,7 +28,7 @@
 
 /* Begin PBXFileReference section */
 		93285BED2801887C00396083 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		932EA502280EA55F001AC470 /* SQlite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQlite.swift; sourceTree = "<group>"; };
+		932EA505280EDA96001AC470 /* FirebaseDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDB.swift; sourceTree = "<group>"; };
 		93568B692805F14900A1B4B8 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		935CBC852806A1C300759A24 /* MainTabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabbarViewController.swift; sourceTree = "<group>"; };
 		935CBC872806AD7900759A24 /* ProjectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCell.swift; sourceTree = "<group>"; };
@@ -108,12 +108,12 @@
 			path = Assets;
 			sourceTree = "<group>";
 		};
-		932EA501280EA3E9001AC470 /* SQLite */ = {
+		932EA504280EDA71001AC470 /* FirebaseDatabase */ = {
 			isa = PBXGroup;
 			children = (
-				932EA502280EA55F001AC470 /* SQlite.swift */,
+				932EA505280EDA96001AC470 /* FirebaseDB.swift */,
 			);
-			path = SQLite;
+			path = FirebaseDatabase;
 			sourceTree = "<group>";
 		};
 		935CBC892806AD8D00759A24 /* Main */ = {
@@ -180,7 +180,7 @@
 		93DEFA8427FAFF1600827C79 /* CooperationApp */ = {
 			isa = PBXGroup;
 			children = (
-				932EA501280EA3E9001AC470 /* SQLite */,
+				932EA504280EDA71001AC470 /* FirebaseDatabase */,
 				935CBC8C2806AE3B00759A24 /* Model */,
 				9301D3082803513E0010191F /* Assets */,
 				9301D307280351200010191F /* AppDelegates */,
@@ -341,10 +341,10 @@
 				935CBC882806AD7900759A24 /* ProjectCell.swift in Sources */,
 				93DEFA8827FAFF1600827C79 /* SceneDelegate.swift in Sources */,
 				9380D24C27FF13D9000DC92E /* ThirdTabbarViewController.swift in Sources */,
+				932EA506280EDA96001AC470 /* FirebaseDB.swift in Sources */,
 				93568B6A2805F14900A1B4B8 /* SignInViewController.swift in Sources */,
 				935CBC8E2806AE5100759A24 /* Project.swift in Sources */,
 				937CC55D2800377600F18553 /* SignUpViewController.swift in Sources */,
-				932EA503280EA55F001AC470 /* SQlite.swift in Sources */,
 				9380D24A27FF1196000DC92E /* SecondTabbarViewController.swift in Sources */,
 				93DEFA9027FAFF1600827C79 /* CooperationApp.xcdatamodeld in Sources */,
 			);
