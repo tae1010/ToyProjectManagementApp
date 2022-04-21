@@ -12,8 +12,9 @@ import FirebaseDatabase
 var projectList = [Project]()
 
 class MainTabbarViewController: UIViewController {
-    let sqlite = SQlite.shared
-    var ref: DatabaseReference!
+    
+    let parentDB = "https://cooperationapp-4acb9-default-rtdb.firebaseio.com/"
+    var ref: DatabaseReference! = Database.database().reference()
     
     @IBOutlet weak var projectCollectionView: UICollectionView!
     
@@ -38,13 +39,24 @@ class MainTabbarViewController: UIViewController {
         let alert = UIAlertController(title: "프로젝트명", message: nil, preferredStyle: UIAlertController.Style.alert)
         
         let okAction = UIAlertAction(title: "만들기", style: .default, handler: { [weak self] _ in
-            guard let title = alert.textFields?[0].text else { return }
+            guard let self = self,
+                  let title = alert.textFields?[0].text else { return }
+            let id = UUID().uuidString
             var emails = [String]()
-            let email = Auth.auth().currentUser?.email ?? "고객"
+            let email = self.emailToString(Auth.auth().currentUser?.email ?? "고객")
             emails.append(email)
-            let project = Project(user: emails, projectTitle: title, important: false)
+            let project = Project(id: id, user: emails, projectTitle: title, important: false)
             projectList.append(project)
-            self?.projectCollectionView.reloadData()
+            
+            self.ref.child(email).setValue(["user": emails])
+            self.ref.child(email).updateChildValues(["important": false])
+            self.ref.child(email).updateChildValues(["projectTitle": title])
+            self.ref.child(email).updateChildValues(["id": id])
+            
+            self.projectCollectionView.reloadData()
+            
+            
+            
         })
         
         let cancelAction = UIAlertAction(title: "취소하기", style: .default, handler: nil)
@@ -59,6 +71,11 @@ class MainTabbarViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
+    //db는 @를 저장할 수 없기때문에 이메일에 들어간 @를 #으로 변환시켜주는 함수
+    private func emailToString(_ email: String) -> String {
+        let emailToString = email.replacingOccurrences(of: ".", with: ",")
+        return emailToString
+    }
     
     //네비게이션뷰 숨기기, 컬렉션뷰 사이즈 생성
     private func configureView() {
@@ -93,5 +110,37 @@ extension MainTabbarViewController: UICollectionViewDataSource {
 extension MainTabbarViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: (UIScreen.main.bounds.width / 2) - 20, height: 140)
+    }
+}
+
+extension String {
+    // [정규식 수행 실시 : 사용 방법 : let changeData = strData.matchString(_string: strData)]
+    func matchString (_string : String) -> String { // 문자열 변경 실시
+        let strArr = Array(_string) // 문자열 한글자씩 확인을 위해 배열에 담는다
+        
+        let pattern = "^[ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z0-9]$" // 정규식 : 한글, 영어, 숫자만 허용 (공백, 특수문자 제거)
+        //let pattern = "^[ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z0-9\\s]$" // 정규식 : 한글, 영어, 숫자, 공백만 허용 (특수문자 제거)
+        
+        // 문자열 길이가 한개 이상인 경우만 패턴 검사 수행
+        var resultString = ""
+        if strArr.count > 0 {
+            if let regex = try? NSRegularExpression(pattern: pattern, options: .caseInsensitive) {
+                var index = 0
+                while index < strArr.count { // string 문자 하나 마다 개별 정규식 체크
+                    let checkString = regex.matches(in: String(strArr[index]), options: [], range: NSRange(location: 0, length: 1))
+                    if checkString.count == 0 {
+                        index += 1 // 정규식 패턴 외의 문자가 포함된 경우
+                    }
+                    else { // 정규식 포함 패턴의 문자
+                        resultString += String(strArr[index]) // 리턴 문자열에 추가
+                        index += 1
+                    }
+                }
+            }
+            return resultString
+        }
+        else {
+            return _string // 원본 문자 다시 리턴
+        }
     }
 }
