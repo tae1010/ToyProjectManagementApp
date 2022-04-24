@@ -17,20 +17,41 @@ class MainTabbarViewController: UIViewController {
     var ref: DatabaseReference! = Database.database().reference()
     
     @IBOutlet weak var projectCollectionView: UICollectionView!
-    
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configureView()
-        
-        ref = Database.database().reference()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         navigationController?.navigationBar.isHidden = true
+        
+        let email = self.emailToString(Auth.auth().currentUser?.email ?? "고객")
+        
+        ref.child(email).observeSingleEvent(of: .value, with: { [ weak self ] snapshot in
+          // Get user value
+            guard let self = self else { return }
+            let value = snapshot.value as? NSDictionary
+            
+            let id = value?["id"] as? String ?? ""
+            let important = value?["important"] as? Bool ?? false
+            let projectTitle = value?["projectTitle"] as? String ?? ""
+            var emails = [String]()
+            
+            emails.append(email)
+            let project = Project(id: id, user: emails, projectTitle: projectTitle, important: important)
+            projectList.append(project)
+            
+            self.projectCollectionView.reloadData()
+          // ...
+        }) { error in
+          print(error.localizedDescription)
+        }
+        
+        
+        
     }
     
     //프로젝트 collection 추가
@@ -48,15 +69,13 @@ class MainTabbarViewController: UIViewController {
             let project = Project(id: id, user: emails, projectTitle: title, important: false)
             projectList.append(project)
             
+            //firebase에 데이터 입력
             self.ref.child(email).setValue(["user": emails])
             self.ref.child(email).updateChildValues(["important": false])
             self.ref.child(email).updateChildValues(["projectTitle": title])
             self.ref.child(email).updateChildValues(["id": id])
             
             self.projectCollectionView.reloadData()
-            
-            
-            
         })
         
         let cancelAction = UIAlertAction(title: "취소하기", style: .default, handler: nil)
