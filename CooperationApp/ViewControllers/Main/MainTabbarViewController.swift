@@ -28,6 +28,11 @@ class MainTabbarViewController: UIViewController {
         
         navigationController?.navigationBar.isHidden = true
         
+        self.readDB()
+
+    }
+    
+    private func readDB() {
         let email = self.emailToString(Auth.auth().currentUser?.email ?? "고객")
         
         ref.child(email).observeSingleEvent(of: .value, with: { [ weak self ] snapshot in
@@ -49,9 +54,6 @@ class MainTabbarViewController: UIViewController {
         }) { error in
           print(error.localizedDescription)
         }
-        
-        
-        
     }
     
     //프로젝트 collection 추가
@@ -70,7 +72,7 @@ class MainTabbarViewController: UIViewController {
             projectList.append(project)
             
             //firebase에 데이터 입력
-            self.ref.child(email).setValue(["user": emails])
+            self.ref.child(email).updateChildValues(["user": emails])
             self.ref.child(email).updateChildValues(["important": false])
             self.ref.child(email).updateChildValues(["projectTitle": title])
             self.ref.child(email).updateChildValues(["id": id])
