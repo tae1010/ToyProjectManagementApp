@@ -8,7 +8,7 @@
 import Foundation
 
 struct Project {
-    var id: String
+    var id: String //uuidstring
     var user: [String]
     var projectTitle: String
     var important: Bool
