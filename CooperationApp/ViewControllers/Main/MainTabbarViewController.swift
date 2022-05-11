@@ -49,7 +49,7 @@ class MainTabbarViewController: UIViewController {
             self.ref.child("\(email)/\(id)").updateChildValues(["important": false])
             self.ref.child("\(email)/\(id)").updateChildValues(["projectTitle": title])
             self.ref.child("\(email)/\(id)").updateChildValues(["user": emails])
-            self.ref.child("\(email)/\(id)").updateChildValues(["currentTime": self.koreanDate()])
+            self.ref.child("\(email)/\(id)").updateChildValues(["currentTime": self.koreanDate()!])
             
             DispatchQueue.main.async {
                 self.projectCollectionView.reloadData()
@@ -73,6 +73,7 @@ class MainTabbarViewController: UIViewController {
 
 extension MainTabbarViewController {
     
+    //현재 시간을 int값으로 반환시켜주는 함수
     private func koreanDate() -> Int!{
         let current = Date()
         
@@ -82,7 +83,6 @@ extension MainTabbarViewController {
         formatter.timeZone = TimeZone(abbreviation: "KST")
         //형태 변환
         formatter.dateFormat = "yyyyMMddHHmmss"
-        
         
         return Int(formatter.string(from: current))
     }
@@ -105,10 +105,9 @@ extension MainTabbarViewController {
                 let pro = Project(id: id, user: users as! [String], projectTitle: projectTitle as! String, important: important as! Bool, currentTime: currentTime as! Int)
                 projectList.append(pro)
                 
-                
             }
             //날짜 순서대로 정렬
-            projectList = projectList.sorted(by: {$0.currentTime < $1.currentTime})
+            projectList = projectList.sorted(by: {$0.currentTime > $1.currentTime})
             DispatchQueue.main.async {
                 self.projectCollectionView.reloadData()
             }
@@ -136,7 +135,17 @@ extension MainTabbarViewController {
 }
 
 extension MainTabbarViewController: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        guard let projectView = self.storyboard?.instantiateViewController(identifier: "ProjectViewController") as? ProjectViewController else { return }
+        projectView.index = indexPath.row
+        
+        guard let projectTabbarViewController = self.storyboard?.instantiateViewController(withIdentifier: "ProjectTabbarViewController") else { return }
+        
+        projectTabbarViewController.modalPresentationStyle = .fullScreen
+
+        self.present(projectTabbarViewController, animated: true, completion: nil)
+    }
 }
 
 extension MainTabbarViewController: UICollectionViewDataSource {
