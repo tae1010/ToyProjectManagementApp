@@ -28,22 +28,28 @@ class MainTabbarViewController: UIViewController {
         super.viewWillAppear(animated)
         
         navigationController?.navigationBar.isHidden = true
-        
-        
-
     }
     
+    //db값을 읽어서 projectList에 db값을 넣어준 뒤 collectionview 업데이트
     private func readDB() {
         let email = self.emailToString(Auth.auth().currentUser?.email ?? "고객")
         
         ref.child(email).observeSingleEvent(of: .value, with: { snapshot in
           // Get user value
-            guard let value = snapshot.value as? NSDictionary else {return}
+            guard let value = snapshot.value as? Dictionary<String, Any> else {return}
             for (key,val) in value {
                 let id = key
-                let val = val as? NSDictionary
-                Project(id: key, val)
-                print()
+                guard let val = val as? Dictionary<String, Any> else { return }
+                guard let projectTitle = val["projectTitle"] else { return }
+                guard let important = val["important"] else { return }
+                guard let users = val["user"] else { return }
+                
+                let pro = Project(id: id , user: users as! [String], projectTitle: projectTitle as! String , important: important as! Bool)
+                projectList.append(pro)
+                
+                DispatchQueue.main.async {
+                    self.projectCollectionView.reloadData()
+                }
             }
             
 
