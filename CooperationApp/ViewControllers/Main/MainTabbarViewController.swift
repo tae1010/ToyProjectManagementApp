@@ -30,64 +30,6 @@ class MainTabbarViewController: UIViewController {
         navigationController?.navigationBar.isHidden = true
     }
     
-    //db값을 읽어서 projectList에 db값을 넣어준 뒤 collectionview 업데이트
-    private func readDB() {
-        let email = self.emailToString(Auth.auth().currentUser?.email ?? "고객")
-        
-        ref.child(email).observeSingleEvent(of: .value, with: { snapshot in
-          // Get user value
-            guard let value = snapshot.value as? Dictionary<String, Any> else {return}
-            for (key,val) in value {
-                let id = key
-                guard let val = val as? Dictionary<String, Any> else { return }
-                guard let projectTitle = val["projectTitle"] else { return }
-                guard let important = val["important"] else { return }
-                guard let users = val["user"] else { return }
-                
-                let pro = Project(id: id , user: users as! [String], projectTitle: projectTitle as! String , important: important as! Bool)
-                projectList.append(pro)
-                
-                DispatchQueue.main.async {
-                    self.projectCollectionView.reloadData()
-                }
-            }
-            
-
-          // ...
-        }) { error in
-          print(error.localizedDescription)
-        }
-    }
-            
-            
-            
-//            for child in snapshot.children {
-//                // Get user value
-//                let snap = child as! DataSnapshot
-//                let id = snap.key
-//                for key in snap.key {
-//                    print(key.important)
-//                }
-                
-
-//                let id = value?["id"] as? String ?? ""
-//                let important = value?["important"] as? Bool ?? false
-//                let projectTitle = value?["projectTitle"] as? String ?? ""
-//                var emails = [String]()
-//
-//                emails.append(email)
-//                let project = Project(id: id, user: emails, projectTitle: projectTitle, important: important)
-//                projectList.append(project)
-//                print(projectList)
-            //}
-//        }) { error in
-//            print(error.localizedDescription)
-//        }
-//    }
-    
-    
-    
-    
     //프로젝트 collection 추가
     @IBAction func addProjectButtonTap(_ sender: UIButton) {
         //alert창 생성 textfield, ok/cancel 버튼
@@ -100,13 +42,14 @@ class MainTabbarViewController: UIViewController {
             var emails = [String]()
             let email = self.emailToString(Auth.auth().currentUser?.email ?? "고객")
             emails.append(email)
-            let project = Project(id: id, user: emails, projectTitle: title, important: false)
+            let project = Project(id: id, user: emails, projectTitle: title, important: false, currentTime: self.koreanDate())
             projectList.append(project)
             
             //firebase에 데이터 입력
             self.ref.child("\(email)/\(id)").updateChildValues(["important": false])
             self.ref.child("\(email)/\(id)").updateChildValues(["projectTitle": title])
             self.ref.child("\(email)/\(id)").updateChildValues(["user": emails])
+            self.ref.child("\(email)/\(id)").updateChildValues(["currentTime": self.koreanDate()])
             
             DispatchQueue.main.async {
                 self.projectCollectionView.reloadData()
@@ -126,13 +69,62 @@ class MainTabbarViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
+}
+
+extension MainTabbarViewController {
+    
+    private func koreanDate() -> Int!{
+        let current = Date()
+        
+        let formatter = DateFormatter()
+        //한국 시간으로 표시
+        formatter.locale = Locale(identifier: "ko_kr")
+        formatter.timeZone = TimeZone(abbreviation: "KST")
+        //형태 변환
+        formatter.dateFormat = "yyyyMMddHHmmss"
+        
+        
+        return Int(formatter.string(from: current))
+    }
+    
+    //db값을 읽어서 projectList에 db값을 넣어준 뒤 collectionview 업데이트 해주는 함수
+    private func readDB() {
+        let email = self.emailToString(Auth.auth().currentUser?.email ?? "고객")
+        
+        ref.child(email).observeSingleEvent(of: .value, with: { snapshot in
+          // Get user value
+            guard let value = snapshot.value as? Dictionary<String, Any> else {return}
+            for (key,val) in value {
+                let id = key
+                guard let val = val as? Dictionary<String, Any> else { return }
+                guard let projectTitle = val["projectTitle"] else { return }
+                guard let important = val["important"] else { return }
+                guard let users = val["user"] else { return }
+                guard let currentTime = val["currentTime"] else { return }
+                
+                let pro = Project(id: id, user: users as! [String], projectTitle: projectTitle as! String, important: important as! Bool, currentTime: currentTime as! Int)
+                projectList.append(pro)
+                
+                
+            }
+            //날짜 순서대로 정렬
+            projectList = projectList.sorted(by: {$0.currentTime < $1.currentTime})
+            DispatchQueue.main.async {
+                self.projectCollectionView.reloadData()
+            }
+            
+        }) { error in
+          print(error.localizedDescription)
+        }
+    }
+    
     //db는 .을 저장할 수 없기때문에 이메일에 들어간 .를 ,으로 변환시켜주는 함수
     private func emailToString(_ email: String) -> String {
         let emailToString = email.replacingOccurrences(of: ".", with: ",")
         return emailToString
     }
     
-    //네비게이션뷰 숨기기, 컬렉션뷰 사이즈 생성
+    //네비게이션뷰 숨기기, 컬렉션뷰 사이즈 생성해주는 함수
     private func configureView() {
         self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
         

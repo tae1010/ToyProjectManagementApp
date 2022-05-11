@@ -12,4 +12,5 @@ struct Project {
     var user: [String]
     var projectTitle: String
     var important: Bool
+    var currentTime: Int
 }
