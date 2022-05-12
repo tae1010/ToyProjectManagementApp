@@ -226,14 +226,15 @@
             </objects>
             <point key="canvasLocation" x="611.59420289855075" y="833.70535714285711"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Project Tabbar View Controller-->
         <scene sceneID="XOx-oY-5N9">
             <objects>
-                <tabBarController storyboardIdentifier="ProjectTabbarViewController" id="yHQ-I7-Eh0" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="ProjectTabbarViewController" id="yHQ-I7-Eh0" customClass="ProjectTabbarViewController" customModule="CooperationApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ENJ-OZ-5GS">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <rect key="contentStretch" x="0.0" y="0.0" width="1" height="0.10000000000000001"/>
                     </tabBar>
                     <connections>
                         <segue destination="uGr-Vo-KL4" kind="relationship" relationship="viewControllers" id="0gX-Jl-uvn"/>
@@ -243,7 +244,7 @@
             </objects>
             <point key="canvasLocation" x="1658" y="1638"/>
         </scene>
-        <!--Item-->
+        <!--Project View Controller-->
         <scene sceneID="51i-zm-IKK">
             <objects>
                 <viewController storyboardIdentifier="ProjectViewController" id="uGr-Vo-KL4" customClass="ProjectViewController" customModule="CooperationApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -251,28 +252,42 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="project" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ocg-Rh-edt">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="project" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ocg-Rh-edt">
                                 <rect key="frame" x="180" y="437.5" width="54" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1cc-XY-07i">
+                                <rect key="frame" x="10" y="54" width="37" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="chevron.backward" catalog="system">
+                                    <color key="baseForegroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="backButton:" destination="uGr-Vo-KL4" eventType="touchUpInside" id="cGt-qA-E6J"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="aby-OK-1pS"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Ocg-Rh-edt" firstAttribute="centerX" secondItem="oww-Oj-uH2" secondAttribute="centerX" id="Y95-QD-R00"/>
-                            <constraint firstItem="Ocg-Rh-edt" firstAttribute="centerY" secondItem="oww-Oj-uH2" secondAttribute="centerY" id="ivd-Vi-vz8"/>
+                            <constraint firstItem="1cc-XY-07i" firstAttribute="top" secondItem="aby-OK-1pS" secondAttribute="top" constant="10" id="dH1-wy-tYd"/>
+                            <constraint firstItem="1cc-XY-07i" firstAttribute="leading" secondItem="aby-OK-1pS" secondAttribute="leading" constant="10" id="h5f-IA-T9J"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="CFg-eb-oyI"/>
+                    <tabBarItem key="tabBarItem" title="" id="CFg-eb-oyI">
+                        <color key="badgeColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="-5" vertical="1"/>
+                    </tabBarItem>
                     <connections>
                         <outlet property="pratice" destination="Ocg-Rh-edt" id="EaL-lv-8y9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JaU-81-kOj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="612" y="2387"/>
+            <point key="canvasLocation" x="1658" y="2376"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="pu0-cO-cwD">
@@ -362,7 +377,7 @@
             </objects>
             <point key="canvasLocation" x="1451" y="37"/>
         </scene>
-        <!--Item-->
+        <!--Third Tabbar View Controller-->
         <scene sceneID="qFh-wn-izr">
             <objects>
                 <viewController storyboardIdentifier="ThirdTabbarViewController" id="nbL-Mq-rke" customClass="ThirdTabbarViewController" customModule="CooperationApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -409,7 +424,7 @@
                             <constraint firstItem="0S4-At-Z2J" firstAttribute="top" secondItem="YUW-RL-AV4" secondAttribute="bottom" constant="20" id="ySw-VI-RIp"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="CrF-EA-S80"/>
+                    <tabBarItem key="tabBarItem" title="" image="person" catalog="system" selectedImage="person.fill" id="CrF-EA-S80"/>
                     <navigationItem key="navigationItem" id="x1l-TW-2yi"/>
                     <connections>
                         <outlet property="resetPasswordButton" destination="0S4-At-Z2J" id="NXe-r7-qZC"/>
@@ -420,7 +435,7 @@
             </objects>
             <point key="canvasLocation" x="3561" y="858"/>
         </scene>
-        <!--Item 2-->
+        <!--Second Tabbar View Controller-->
         <scene sceneID="hdV-FV-eYH">
             <objects>
                 <viewController storyboardIdentifier="SecondTabbarViewController" id="2SE-Y1-NfJ" customClass="SecondTabbarViewController" customModule="CooperationApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -430,13 +445,13 @@
                         <viewLayoutGuide key="safeArea" id="pRj-hd-ngu"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="LJp-IY-7vB"/>
+                    <tabBarItem key="tabBarItem" title="" image="message" catalog="system" selectedImage="message.fill" id="LJp-IY-7vB"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hwu-o7-zXd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2577" y="858"/>
         </scene>
-        <!--Item-->
+        <!--Main Tabbar View Controller-->
         <scene sceneID="ueE-Gr-mSl">
             <objects>
                 <viewController storyboardIdentifier="MainTabbarViewController" id="UAM-km-w7Y" customClass="MainTabbarViewController" customModule="CooperationApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -529,7 +544,7 @@
                             <constraint firstItem="jEn-Ky-Ar7" firstAttribute="top" secondItem="0rg-By-3Cb" secondAttribute="top" constant="12" id="gJc-k0-dpt"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="Nwg-c4-cJg"/>
+                    <tabBarItem key="tabBarItem" tag="2" title="" image="square.grid.2x2" selectedImage="square.grid.2x2.fill" catalog="system" id="Nwg-c4-cJg"/>
                     <connections>
                         <outlet property="projectCollectionView" destination="dyl-vv-GWe" id="cyB-B6-Kl6"/>
                     </connections>
@@ -547,6 +562,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" red="0.64705882349999999" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="selectedImageTintColor" red="0.64705882349999999" green="0.64705882349999999" blue="0.64705882349999999" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="UAM-km-w7Y" kind="relationship" relationship="viewControllers" id="NCS-70-0xJ"/>
@@ -560,9 +577,16 @@
         </scene>
     </scenes>
     <resources>
+        <image name="chevron.backward" catalog="system" width="96" height="128"/>
         <image name="google.png" width="18" height="18"/>
         <image name="logo" width="570" height="252"/>
         <image name="logo_google" width="33.333332061767578" height="33.333332061767578"/>
+        <image name="message" catalog="system" width="128" height="113"/>
+        <image name="message.fill" catalog="system" width="128" height="113"/>
+        <image name="person" catalog="system" width="128" height="117"/>
+        <image name="person.fill" catalog="system" width="128" height="120"/>
+        <image name="square.grid.2x2" width="128" height="128"/>
+        <image name="square.grid.2x2.fill" catalog="system" width="128" height="114"/>
         <image name="star" catalog="system" width="128" height="116"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

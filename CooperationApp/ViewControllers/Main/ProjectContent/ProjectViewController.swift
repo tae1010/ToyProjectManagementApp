@@ -19,4 +19,7 @@ class ProjectViewController: UIViewController {
         pratice.text = string
     }
     
+    @IBAction func backButton(_ sender: UIButton) {
+        dismiss(animated: false)
+    }
 }

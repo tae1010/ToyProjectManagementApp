@@ -137,14 +137,10 @@ extension MainTabbarViewController {
 extension MainTabbarViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        guard let projectView = self.storyboard?.instantiateViewController(identifier: "ProjectViewController") as? ProjectViewController else { return }
-        projectView.index = indexPath.row
-        
-        guard let projectTabbarViewController = self.storyboard?.instantiateViewController(withIdentifier: "ProjectTabbarViewController") else { return }
-        
+        guard let projectTabbarViewController = self.storyboard?.instantiateViewController(withIdentifier: "ProjectTabbarViewController") as? ProjectTabbarViewController else { return }
+        print(projectList[indexPath.row].id)
         projectTabbarViewController.modalPresentationStyle = .fullScreen
-
-        self.present(projectTabbarViewController, animated: true, completion: nil)
+        self.present(projectTabbarViewController, animated: false, completion: nil)
     }
 }
 

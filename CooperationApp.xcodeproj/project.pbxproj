@@ -201,8 +201,8 @@
 		93F8E4BF282BB8F400F888F0 /* ProjectContent */ = {
 			isa = PBXGroup;
 			children = (
-				93F8E4C0282BBE8800F888F0 /* ProjectViewController.swift */,
 				93DA8F80282BD70100217360 /* ProjectTabbarViewController.swift */,
+				93F8E4C0282BBE8800F888F0 /* ProjectViewController.swift */,
 			);
 			path = ProjectContent;
 			sourceTree = "<group>";
