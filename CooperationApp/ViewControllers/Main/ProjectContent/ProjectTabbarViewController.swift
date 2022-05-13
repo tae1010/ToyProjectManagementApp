@@ -17,9 +17,4 @@ class ProjectTabbarViewController: UITabBarController {
         
         // Do any additional setup after loading the view.
     }
-    
-    private func transdata() {
-        guard let projectViewController = self.storyboard?.instantiateViewController(withIdentifier: "ProjectViewController") as? ProjectViewController else { return }
-        
-    }
 }
