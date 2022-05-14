@@ -21,6 +21,7 @@ class ProjectViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     override func viewWillAppear(_ animated: Bool) {
+        self.readDB()
         self.tableView.reloadData()
     }
     
@@ -31,7 +32,7 @@ class ProjectViewController: UIViewController {
         self.tableView.dataSource = self
         let tableViewNib = UINib(nibName: "ProjectContentCell", bundle: nil)
         self.tableView.register(tableViewNib, forCellReuseIdentifier: "ProjectContentCell")
-        self.readDB()
+        
         
     }
     
@@ -46,7 +47,6 @@ class ProjectViewController: UIViewController {
         let registerButton = UIAlertAction(title: "추가", style: .default, handler: { [weak self] _ in
             guard let self = self else { return }
             guard let content = alert.textFields?[0].text else { return }
-            
             self.contents.append(content)
             let pc = ProjectContent(id: self.id, count: self.count, contentTitle: "제목", content: self.contents)
             self.projectContent.append(pc)
@@ -90,11 +90,13 @@ extension ProjectViewController {
                 self.contents.append(con)
             }
             print(self.contents)
-          });
             
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+            
+          });
+        
     }
 }
 
