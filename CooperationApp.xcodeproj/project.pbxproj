@@ -19,7 +19,9 @@
 		937CC55D2800377600F18553 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937CC55C2800377600F18553 /* SignUpViewController.swift */; };
 		9380D24A27FF1196000DC92E /* SecondTabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9380D24927FF1195000DC92E /* SecondTabbarViewController.swift */; };
 		9380D24C27FF13D9000DC92E /* ThirdTabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9380D24B27FF13D9000DC92E /* ThirdTabbarViewController.swift */; };
-		93DA8F81282BD70100217360 /* ProjectTabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DA8F80282BD70100217360 /* ProjectTabbarViewController.swift */; };
+		93DA8F83282FB0CD00217360 /* ProjectContentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93DA8F82282FB0CD00217360 /* ProjectContentCell.xib */; };
+		93DA8F86282FB16900217360 /* ProjectContentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DA8F85282FB16900217360 /* ProjectContentTableViewCell.swift */; };
+		93DA8F88282FC1A200217360 /* ProjectContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DA8F87282FC1A200217360 /* ProjectContent.swift */; };
 		93DEFA8627FAFF1600827C79 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DEFA8527FAFF1600827C79 /* AppDelegate.swift */; };
 		93DEFA8827FAFF1600827C79 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DEFA8727FAFF1600827C79 /* SceneDelegate.swift */; };
 		93DEFA9027FAFF1600827C79 /* CooperationApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 93DEFA8E27FAFF1600827C79 /* CooperationApp.xcdatamodeld */; };
@@ -40,7 +42,9 @@
 		937CC55C2800377600F18553 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		9380D24927FF1195000DC92E /* SecondTabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondTabbarViewController.swift; sourceTree = "<group>"; };
 		9380D24B27FF13D9000DC92E /* ThirdTabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdTabbarViewController.swift; sourceTree = "<group>"; };
-		93DA8F80282BD70100217360 /* ProjectTabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectTabbarViewController.swift; sourceTree = "<group>"; };
+		93DA8F82282FB0CD00217360 /* ProjectContentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProjectContentCell.xib; sourceTree = "<group>"; };
+		93DA8F85282FB16900217360 /* ProjectContentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectContentTableViewCell.swift; sourceTree = "<group>"; };
+		93DA8F87282FC1A200217360 /* ProjectContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectContent.swift; sourceTree = "<group>"; };
 		93DEFA8227FAFF1600827C79 /* CooperationApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CooperationApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		93DEFA8527FAFF1600827C79 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		93DEFA8727FAFF1600827C79 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -78,8 +82,9 @@
 		9301D3052803504A0010191F /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				93DEFA9327FAFF1700827C79 /* LaunchScreen.storyboard */,
 				937CC55828002F1400F18553 /* Main.storyboard */,
+				93DEFA9327FAFF1700827C79 /* LaunchScreen.storyboard */,
+				93DA8F84282FB0FB00217360 /* Cell */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -150,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				935CBC8D2806AE5100759A24 /* Project.swift */,
+				93DA8F87282FC1A200217360 /* ProjectContent.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -162,6 +168,14 @@
 				93568B692805F14900A1B4B8 /* SignInViewController.swift */,
 			);
 			path = User;
+			sourceTree = "<group>";
+		};
+		93DA8F84282FB0FB00217360 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				93DA8F82282FB0CD00217360 /* ProjectContentCell.xib */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		93DEFA7927FAFF1500827C79 = {
@@ -201,8 +215,8 @@
 		93F8E4BF282BB8F400F888F0 /* ProjectContent */ = {
 			isa = PBXGroup;
 			children = (
-				93DA8F80282BD70100217360 /* ProjectTabbarViewController.swift */,
 				93F8E4C0282BBE8800F888F0 /* ProjectViewController.swift */,
+				93DA8F85282FB16900217360 /* ProjectContentTableViewCell.swift */,
 			);
 			path = ProjectContent;
 			sourceTree = "<group>";
@@ -276,6 +290,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93DA8F83282FB0CD00217360 /* ProjectContentCell.xib in Resources */,
 				937CC55928002F1400F18553 /* Main.storyboard in Resources */,
 				93285BEE2801887C00396083 /* GoogleService-Info.plist in Resources */,
 				93DEFA9527FAFF1700827C79 /* LaunchScreen.storyboard in Resources */,
@@ -350,11 +365,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				937CC55B2800304400F18553 /* LoginViewController.swift in Sources */,
+				93DA8F86282FB16900217360 /* ProjectContentTableViewCell.swift in Sources */,
 				93DEFA8627FAFF1600827C79 /* AppDelegate.swift in Sources */,
-				93DA8F81282BD70100217360 /* ProjectTabbarViewController.swift in Sources */,
 				935CBC862806A1C300759A24 /* MainTabbarViewController.swift in Sources */,
 				93F8E4C1282BBE8800F888F0 /* ProjectViewController.swift in Sources */,
 				935CBC882806AD7900759A24 /* ProjectCell.swift in Sources */,
+				93DA8F88282FC1A200217360 /* ProjectContent.swift in Sources */,
 				93DEFA8827FAFF1600827C79 /* SceneDelegate.swift in Sources */,
 				9380D24C27FF13D9000DC92E /* ThirdTabbarViewController.swift in Sources */,
 				932EA506280EDA96001AC470 /* FirebaseDB.swift in Sources */,

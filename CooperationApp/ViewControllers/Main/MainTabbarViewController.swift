@@ -13,7 +13,6 @@ var projectList = [Project]()
 
 class MainTabbarViewController: UIViewController {
     
-    let parentDB = "https://cooperationapp-4acb9-default-rtdb.firebaseio.com/"
     var ref: DatabaseReference! = Database.database().reference()
     
     @IBOutlet weak var projectCollectionView: UICollectionView!
@@ -137,10 +136,10 @@ extension MainTabbarViewController {
 extension MainTabbarViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        guard let projectTabbarViewController = self.storyboard?.instantiateViewController(withIdentifier: "ProjectTabbarViewController") as? ProjectTabbarViewController else { return }
-        print(projectList[indexPath.row].id)
-        projectTabbarViewController.modalPresentationStyle = .fullScreen
-        self.present(projectTabbarViewController, animated: false, completion: nil)
+        guard let projectViewController = self.storyboard?.instantiateViewController(withIdentifier: "ProjectViewController") as? ProjectViewController else { return }
+        projectViewController.id = projectList[indexPath.row].id
+        projectViewController.modalPresentationStyle = .fullScreen
+        self.present(projectViewController, animated: false, completion: nil)
     }
 }
 
