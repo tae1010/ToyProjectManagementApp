@@ -235,7 +235,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Gbn-w3-LKI">
-                                <rect key="frame" x="0.0" y="104" width="414" height="758"/>
+                                <rect key="frame" x="0.0" y="104" width="414" height="727"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="uAh-9b-GDY">
@@ -268,6 +268,31 @@
                                     <action selector="addTableView:" destination="Kxy-rI-Dt4" eventType="touchUpInside" id="Vn4-PX-Ctr"/>
                                 </connections>
                             </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="113" translatesAutoresizingMaskIntoConstraints="NO" id="Utg-mR-brP">
+                                <rect key="frame" x="0.0" y="831" width="414" height="31"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zvZ-c3-DV6">
+                                        <rect key="frame" x="0.0" y="0.0" width="150.5" height="31"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="arrowshape.turn.up.left.fill" catalog="system">
+                                            <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="moveLeft:" destination="Kxy-rI-Dt4" eventType="touchUpInside" id="sQu-MY-Fga"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M6U-8V-9tY">
+                                        <rect key="frame" x="263.5" y="0.0" width="150.5" height="31"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="arrowshape.turn.up.right.fill" catalog="system" title="">
+                                            <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="moveRight:" destination="Kxy-rI-Dt4" eventType="touchUpInside" id="q1S-UJ-2g0"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="r4T-PV-xgh"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -275,11 +300,14 @@
                             <constraint firstItem="r4T-PV-xgh" firstAttribute="trailing" secondItem="aq2-E4-0er" secondAttribute="trailing" constant="10" id="22X-KO-sOD"/>
                             <constraint firstItem="r4T-PV-xgh" firstAttribute="trailing" secondItem="Gbn-w3-LKI" secondAttribute="trailing" id="DUP-Ym-kHL"/>
                             <constraint firstItem="pfl-R7-I51" firstAttribute="top" secondItem="r4T-PV-xgh" secondAttribute="top" constant="10" id="Gk7-6z-9c7"/>
+                            <constraint firstItem="Utg-mR-brP" firstAttribute="leading" secondItem="r4T-PV-xgh" secondAttribute="leading" id="Jd7-Vb-YU3"/>
                             <constraint firstItem="aq2-E4-0er" firstAttribute="top" secondItem="r4T-PV-xgh" secondAttribute="top" constant="10" id="LMI-qH-3FV"/>
                             <constraint firstItem="Gbn-w3-LKI" firstAttribute="top" secondItem="r4T-PV-xgh" secondAttribute="top" constant="60" id="Pye-fz-Evb"/>
                             <constraint firstItem="Gbn-w3-LKI" firstAttribute="leading" secondItem="r4T-PV-xgh" secondAttribute="leading" id="bth-xU-raJ"/>
                             <constraint firstItem="pfl-R7-I51" firstAttribute="leading" secondItem="r4T-PV-xgh" secondAttribute="leading" constant="10" id="dQq-EN-arH"/>
-                            <constraint firstItem="r4T-PV-xgh" firstAttribute="bottom" secondItem="Gbn-w3-LKI" secondAttribute="bottom" id="ftj-Oo-S5z"/>
+                            <constraint firstItem="Utg-mR-brP" firstAttribute="bottom" secondItem="r4T-PV-xgh" secondAttribute="bottom" id="tTJ-A3-64E"/>
+                            <constraint firstItem="r4T-PV-xgh" firstAttribute="trailing" secondItem="Utg-mR-brP" secondAttribute="trailing" id="y8c-WE-KEv"/>
+                            <constraint firstItem="Utg-mR-brP" firstAttribute="top" secondItem="Gbn-w3-LKI" secondAttribute="bottom" id="yRR-HS-kKW"/>
                         </constraints>
                     </view>
                     <connections>
@@ -288,7 +316,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JLC-Md-5nE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3183" y="1718"/>
+            <point key="canvasLocation" x="3182.608695652174" y="1717.6339285714284"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="pu0-cO-cwD">
@@ -545,7 +573,7 @@
                             <constraint firstItem="jEn-Ky-Ar7" firstAttribute="top" secondItem="0rg-By-3Cb" secondAttribute="top" constant="12" id="gJc-k0-dpt"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" tag="2" title="" image="square.grid.2x2" selectedImage="square.grid.2x2.fill" catalog="system" id="Nwg-c4-cJg"/>
+                    <tabBarItem key="tabBarItem" tag="2" title="" image="square.grid.2x2" catalog="system" selectedImage="square.grid.2x2.fill" id="Nwg-c4-cJg"/>
                     <connections>
                         <outlet property="projectCollectionView" destination="dyl-vv-GWe" id="cyB-B6-Kl6"/>
                     </connections>
@@ -578,6 +606,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="arrowshape.turn.up.left.fill" catalog="system" width="128" height="106"/>
+        <image name="arrowshape.turn.up.right.fill" catalog="system" width="128" height="106"/>
         <image name="chevron.backward" catalog="system" width="96" height="128"/>
         <image name="google.png" width="18" height="18"/>
         <image name="logo" width="570" height="252"/>
@@ -587,7 +617,7 @@
         <image name="person" catalog="system" width="128" height="117"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="plus" catalog="system" width="128" height="113"/>
-        <image name="square.grid.2x2" width="128" height="128"/>
+        <image name="square.grid.2x2" catalog="system" width="128" height="114"/>
         <image name="square.grid.2x2.fill" catalog="system" width="128" height="114"/>
         <image name="star" catalog="system" width="128" height="116"/>
         <systemColor name="systemBackgroundColor">

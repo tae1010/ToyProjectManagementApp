@@ -12,15 +12,16 @@ import FirebaseDatabase
 class ProjectViewController: UIViewController {
     
     var projectContent = [ProjectContent]()
-    var contents = [String]()
     
     var ref: DatabaseReference! = Database.database().reference()
     var id: String = ""
-    var count: Int = 0
+    var currentCount: Int = 0 //현재 페이지
+    var maxCount: Int = 0 // 늘린 페이지 갯수
     
     @IBOutlet weak var tableView: UITableView!
     
     override func viewWillAppear(_ animated: Bool) {
+        print(id)
         self.readDB()
         self.tableView.reloadData()
     }
@@ -32,8 +33,6 @@ class ProjectViewController: UIViewController {
         self.tableView.dataSource = self
         let tableViewNib = UINib(nibName: "ProjectContentCell", bundle: nil)
         self.tableView.register(tableViewNib, forCellReuseIdentifier: "ProjectContentCell")
-        
-        
     }
     
     @IBAction func backButton(_ sender: UIButton) {
@@ -47,13 +46,13 @@ class ProjectViewController: UIViewController {
         let registerButton = UIAlertAction(title: "추가", style: .default, handler: { [weak self] _ in
             guard let self = self else { return }
             guard let content = alert.textFields?[0].text else { return }
-            self.contents.append(content)
-            let pc = ProjectContent(id: self.id, count: self.count, contentTitle: "제목", content: self.contents)
-            self.projectContent.append(pc)
-            self.ref.child("\(email)/\(self.id)").updateChildValues(["contents": self.contents])
-            print(self.contents)
+            //self.contents[self.currentCount].append(content)
+            //let pc = ProjectContent(id: self.id, contentTitle: "제목", content: content)
+            //self.projectContent.append(pc)
+            //self.ref.child("\(email)/\(self.id)/content").updateChildValues(["contents\(String(self.currentCount))": self.contents])
+            //print(self.contents)
             
-            self.tableView.reloadData()
+            //self.tableView.reloadData()
         })
         
         //alert 취소버튼
@@ -68,6 +67,19 @@ class ProjectViewController: UIViewController {
         
         self.present(alert, animated: true, completion: nil)
     }
+    
+    @IBAction func moveLeft(_ sender: UIButton) {
+        if currentCount > 0 {
+            self.currentCount -= 1
+        }
+    }
+    
+    @IBAction func moveRight(_ sender: UIButton) {
+        if maxCount >= currentCount {
+            self.currentCount += 1
+        }
+    }
+    
 }
 
 extension ProjectViewController {
@@ -80,23 +92,19 @@ extension ProjectViewController {
     private func readDB() {
         let email = self.emailToString(Auth.auth().currentUser?.email ?? "고객")
         
-        ref.child("\(email)/\(id)/contents").getData(completion:  { error, snapshot in
-            guard error == nil else {
-              print(error!.localizedDescription)
-              return;
-            }
-            guard let content = snapshot.value as? [String] else { return }
-            for con in content {
-                self.contents.append(con)
-            }
-            print(self.contents)
+        ref.child(email).child(id).child("content").observeSingleEvent(of: .value, with: { snapshot in
             
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
+            guard let value = snapshot.value as? [Dictionary<String, [String]>] else {return}
+            for content in value {
+                guard let count = value.firstIndex(of: content) else { return }
+                print(count)
+                let pc = ProjectContent(id: self.id, count: count, content: content)
+                print(pc)
             }
             
-          });
-        
+        }) { error in
+          print(error.localizedDescription)
+        }
     }
 }
 
@@ -106,14 +114,16 @@ extension ProjectViewController: UITableViewDelegate {
 
 extension ProjectViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.contents.count
+        return self.projectContent.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProjectContentCell", for: indexPath) as! ProjectContentTableViewCell
         
-        cell.content.text = contents[indexPath.row]
+        //cell.content.text = projectContent.content
+        cell.leftInset = 20
+        cell.rightInset = 20
 
         return cell
     }
