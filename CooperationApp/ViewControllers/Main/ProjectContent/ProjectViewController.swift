@@ -99,7 +99,7 @@ extension ProjectViewController {
                 guard let count = value.firstIndex(of: content) else { return }
                 print(count)
                 let pc = ProjectContent(id: self.id, count: count, content: content)
-                print(pc)
+                self.projectContent.append(pc)
             }
             
         }) { error in
@@ -120,8 +120,11 @@ extension ProjectViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProjectContentCell", for: indexPath) as! ProjectContentTableViewCell
+        let projectContent = projectContent[indexPath.row]
         
-        //cell.content.text = projectContent.content
+        if self.projectContent[count] == currentCount {
+            cell.content.text = projectContent.
+        }
         cell.leftInset = 20
         cell.rightInset = 20
 
