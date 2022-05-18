@@ -16,14 +16,12 @@ class ProjectViewController: UIViewController {
     var ref: DatabaseReference! = Database.database().reference()
     var id: String = ""
     var currentCount: Int = 0 //현재 페이지
-    var maxCount: Int = 0 // 늘린 페이지 갯수
+    var contentTitle: String?
     
     @IBOutlet weak var tableView: UITableView!
     
     override func viewWillAppear(_ animated: Bool) {
-        print(id)
         self.readDB()
-        self.tableView.reloadData()
     }
     
     override func viewDidLoad() {
@@ -31,8 +29,11 @@ class ProjectViewController: UIViewController {
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        
         let tableViewNib = UINib(nibName: "ProjectContentCell", bundle: nil)
         self.tableView.register(tableViewNib, forCellReuseIdentifier: "ProjectContentCell")
+        
+        print(self.projectContent)
     }
     
     @IBAction func backButton(_ sender: UIButton) {
@@ -96,10 +97,16 @@ extension ProjectViewController {
             
             guard let value = snapshot.value as? [Dictionary<String, [String]>] else {return}
             for content in value {
+                //몇번째 인덱스인지?
                 guard let count = value.firstIndex(of: content) else { return }
                 print(count)
                 let pc = ProjectContent(id: self.id, count: count, content: content)
+                print(pc)
                 self.projectContent.append(pc)
+            }
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
             }
             
         }) { error in
@@ -114,17 +121,27 @@ extension ProjectViewController: UITableViewDelegate {
 
 extension ProjectViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        //첫번쨰 배열에 배열 갯수
         return self.projectContent.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProjectContentCell", for: indexPath) as! ProjectContentTableViewCell
-        let projectContent = projectContent[indexPath.row]
+        let projectContent = projectContent[indexPath.row].content
         
-        if self.projectContent[count] == currentCount {
-            cell.content.text = projectContent.
-        }
+//        struct ProjectContent {
+//            var id: String // Project 구조체에 있는 id 저장
+//            var count: Int // 몇번째 배열인지 저장하는함수
+//            var content: Dictionary<String, [String]> // title과 content들을 저장할 dictionary
+//        }
+//        if projectContent.count == currentCount {
+//            for (key,value) in projectContent.content{
+//                self.contentTitle = key
+//                cell.content.text = value.first
+//            }
+//        }
+        print(projectContent)
         cell.leftInset = 20
         cell.rightInset = 20
 
