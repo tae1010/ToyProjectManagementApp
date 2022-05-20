@@ -52,8 +52,10 @@ class ProjectViewController: UIViewController {
         let registerButton = UIAlertAction(title: "추가", style: .default, handler: { [weak self] _ in
             guard let self = self else { return }
             guard let content = alert.textFields?[0].text else { return }
+            // 경로중 self.content.count라고 안하고 "\(self.content.count)" 라고 작성한 이유는 경로를 찾을때는 string값만 허용
+            self.ref.child("\(email)/\(self.id)/content/\(self.currentCount)/\(self.currentTitle)").updateChildValues(["\(self.content.count)": content])
+            
             self.content.append(content)
-            //self.ref.child("\(email)/\(self.id)/content/").updateChildValues(["important": false])
             
             DispatchQueue.main.async {
                 self.readDB()
@@ -66,8 +68,7 @@ class ProjectViewController: UIViewController {
             //self.projectContent.append(pc)
             //self.ref.child("\(email)/\(self.id)/content").updateChildValues(["contents\(String(self.currentCount))": self.contents])
             //print(self.contents)
-            
-            //self.tableView.reloadData()
+
         })
         
         //alert 취소버튼
@@ -116,10 +117,10 @@ extension ProjectViewController {
     }
     
     private func readDB() {
+        
         let email = self.emailToString(Auth.auth().currentUser?.email ?? "고객")
         
         ref.child(email).child(id).child("content").observeSingleEvent(of: .value, with: { snapshot in
-            
             guard let value = snapshot.value as? [Dictionary<String, [String]>] else {return}
             
             for content in value {
@@ -127,14 +128,11 @@ extension ProjectViewController {
                 let pc = ProjectContent(id: self.id, countIndex: count, content: content)
                 self.projectContent.append(pc)
             }
-
             DispatchQueue.main.async {
                 self.readContents()
                 self.tableView.reloadData()
             }
 
-            
-            
         }) { error in
           print(error.localizedDescription)
         }
@@ -168,12 +166,7 @@ extension ProjectViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProjectContentCell", for: indexPath) as! ProjectContentTableViewCell
-        
         cell.content.text = self.content[indexPath.row]
-
-        cell.leftInset = 20
-        cell.rightInset = 20
-
         return cell
     }
 }
