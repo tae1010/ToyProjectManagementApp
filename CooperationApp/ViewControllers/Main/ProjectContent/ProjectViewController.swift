@@ -17,6 +17,10 @@ class ProjectViewController: UIViewController {
     var ref: DatabaseReference! = Database.database().reference()
     var id: String = "" // 프로젝트의 uuid값을 받을 변수
     var currentCount: Int = 0 //현재 페이지
+    var currentTitle: String = "이름없음"
+    
+    
+    @IBOutlet weak var contentTitleLabel: UILabel!
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -48,6 +52,15 @@ class ProjectViewController: UIViewController {
         let registerButton = UIAlertAction(title: "추가", style: .default, handler: { [weak self] _ in
             guard let self = self else { return }
             guard let content = alert.textFields?[0].text else { return }
+            self.content.append(content)
+            //self.ref.child("\(email)/\(self.id)/content/").updateChildValues(["important": false])
+            
+            DispatchQueue.main.async {
+                self.readDB()
+                self.tableView.reloadData()
+            }
+            //해야할것 : currentcount위치에 있는 current.value값에 append하기
+            
             //self.contents[self.currentCount].append(content)
             //let pc = ProjectContent(id: self.id, contentTitle: "제목", content: content)
             //self.projectContent.append(pc)
@@ -108,37 +121,35 @@ extension ProjectViewController {
         ref.child(email).child(id).child("content").observeSingleEvent(of: .value, with: { snapshot in
             
             guard let value = snapshot.value as? [Dictionary<String, [String]>] else {return}
+            
             for content in value {
-                // content는 ["contents0": ["123","234","123"]] ["contents1": ["11", "2323"]]
-                // content배열에서 몇번째 배열인지 ProjectContent.count에 저장
                 guard let count = value.firstIndex(of: content) else { return }
                 let pc = ProjectContent(id: self.id, countIndex: count, content: content)
                 self.projectContent.append(pc)
-                
             }
-            //self.projectContent
-            //[CooperationApp.ProjectContent(id: "4CCE18B9-88F2-4C4C-AB22-C6F74E74FF3F", count: 0, content: ["contents0": ["123", "234", "123"]]),
-            //CooperationApp.ProjectContent(id: "4CCE18B9-88F2-4C4C-AB22-C6F74E74FF3F", count: 1, content: ["contents1": ["11", "2323"]])]
+
             DispatchQueue.main.async {
+                self.readContents()
                 self.tableView.reloadData()
             }
+
             
-            print("readDB완료")
-            self.readContents()
             
         }) { error in
           print(error.localizedDescription)
         }
     }
     
-    //readDB에서 저장시킨 projectContent모델에서 현재 페이지의 content.value값을 저장시키는 함수
+    //readDB에서 저장시킨 projectContent모델에서 현재 페이지의 content.value(content의 내용)값과 content.key(content의 title)를 저장시키는 함수
     private func readContents() {
         for pc in self.projectContent{
             if pc.countIndex == currentCount {
                 //2차원 배열을 1차원으로 바꿔줌
+                self.currentTitle = pc.content.keys.joined(separator: "")
                 self.content = Array(pc.content.values.joined())
             }
         }
+        self.contentTitleLabel.text = self.currentTitle
     }
     
 }
@@ -148,6 +159,7 @@ extension ProjectViewController: UITableViewDelegate {
 }
 
 extension ProjectViewController: UITableViewDataSource {
+    //content의 배열 인덱스 갯수 만큼 return
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return self.content.count

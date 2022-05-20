@@ -235,7 +235,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Gbn-w3-LKI">
-                                <rect key="frame" x="0.0" y="104" width="414" height="727"/>
+                                <rect key="frame" x="0.0" y="124" width="414" height="707"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="uAh-9b-GDY">
@@ -293,6 +293,12 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q3q-57-utG">
+                                <rect key="frame" x="186.5" y="85" width="41.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="r4T-PV-xgh"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -302,15 +308,18 @@
                             <constraint firstItem="pfl-R7-I51" firstAttribute="top" secondItem="r4T-PV-xgh" secondAttribute="top" constant="10" id="Gk7-6z-9c7"/>
                             <constraint firstItem="Utg-mR-brP" firstAttribute="leading" secondItem="r4T-PV-xgh" secondAttribute="leading" id="Jd7-Vb-YU3"/>
                             <constraint firstItem="aq2-E4-0er" firstAttribute="top" secondItem="r4T-PV-xgh" secondAttribute="top" constant="10" id="LMI-qH-3FV"/>
-                            <constraint firstItem="Gbn-w3-LKI" firstAttribute="top" secondItem="r4T-PV-xgh" secondAttribute="top" constant="60" id="Pye-fz-Evb"/>
+                            <constraint firstItem="Gbn-w3-LKI" firstAttribute="top" secondItem="r4T-PV-xgh" secondAttribute="top" constant="80" id="Pye-fz-Evb"/>
+                            <constraint firstItem="q3q-57-utG" firstAttribute="centerX" secondItem="OXo-mG-vC1" secondAttribute="centerX" id="WlH-3E-LRt"/>
                             <constraint firstItem="Gbn-w3-LKI" firstAttribute="leading" secondItem="r4T-PV-xgh" secondAttribute="leading" id="bth-xU-raJ"/>
                             <constraint firstItem="pfl-R7-I51" firstAttribute="leading" secondItem="r4T-PV-xgh" secondAttribute="leading" constant="10" id="dQq-EN-arH"/>
                             <constraint firstItem="Utg-mR-brP" firstAttribute="bottom" secondItem="r4T-PV-xgh" secondAttribute="bottom" id="tTJ-A3-64E"/>
+                            <constraint firstItem="q3q-57-utG" firstAttribute="top" secondItem="r4T-PV-xgh" secondAttribute="top" constant="41" id="wrg-2U-dHg"/>
                             <constraint firstItem="r4T-PV-xgh" firstAttribute="trailing" secondItem="Utg-mR-brP" secondAttribute="trailing" id="y8c-WE-KEv"/>
                             <constraint firstItem="Utg-mR-brP" firstAttribute="top" secondItem="Gbn-w3-LKI" secondAttribute="bottom" id="yRR-HS-kKW"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="contentTitleLabel" destination="q3q-57-utG" id="nb9-nu-voV"/>
                         <outlet property="tableView" destination="Gbn-w3-LKI" id="dlH-Ul-7Oy"/>
                     </connections>
                 </viewController>
