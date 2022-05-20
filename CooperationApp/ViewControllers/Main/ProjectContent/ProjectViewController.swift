@@ -19,7 +19,6 @@ class ProjectViewController: UIViewController {
     var currentCount: Int = 0 //현재 페이지
     var currentTitle: String = "이름없음"
     
-    
     @IBOutlet weak var contentTitleLabel: UILabel!
     
     @IBOutlet weak var tableView: UITableView!
@@ -61,14 +60,6 @@ class ProjectViewController: UIViewController {
                 self.readDB()
                 self.tableView.reloadData()
             }
-            //해야할것 : currentcount위치에 있는 current.value값에 append하기
-            
-            //self.contents[self.currentCount].append(content)
-            //let pc = ProjectContent(id: self.id, contentTitle: "제목", content: content)
-            //self.projectContent.append(pc)
-            //self.ref.child("\(email)/\(self.id)/content").updateChildValues(["contents\(String(self.currentCount))": self.contents])
-            //print(self.contents)
-
         })
         
         //alert 취소버튼
@@ -109,6 +100,9 @@ class ProjectViewController: UIViewController {
     
 }
 
+// 이메일을 string값으로 변환 시켜주는 메소드
+// 전체 db값을 읽어오는 메소드
+// db값중 content부분을 읽어오는 메소드
 extension ProjectViewController {
     
     private func emailToString(_ email: String) -> String {
