@@ -23,9 +23,6 @@ class ProjectViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    override func viewWillAppear(_ animated: Bool) {
-    }
-    
     override func viewDidLoad() {
         print("viewdidload시작")
         
@@ -38,6 +35,18 @@ class ProjectViewController: UIViewController {
         print(self.currentCount)
         
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.readDB()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        
+    }
+    
+    
     
     //뒤로가기 버튼(Maintabbarview로 돌아감)
     @IBAction func backButton(_ sender: UIButton) {

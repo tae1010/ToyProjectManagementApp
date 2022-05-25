@@ -8,6 +8,7 @@
 import UIKit
 import FirebaseAuth
 import FirebaseDatabase
+import SideMenu
 
 class MainTabbarViewController: UIViewController {
     
@@ -19,16 +20,20 @@ class MainTabbarViewController: UIViewController {
         
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.isHidden = true
         self.configureView()
-        self.readDB()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        navigationController?.navigationBar.isHidden = true
+        super.viewWillAppear(true)
+        self.readDB()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        self.projectList.removeAll()
+    }
     //프로젝트 collection 추가
     @IBAction func addProjectButtonTap(_ sender: UIButton) {
         //alert창 생성 textfield, ok/cancel 버튼
