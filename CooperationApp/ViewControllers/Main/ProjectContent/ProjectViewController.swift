@@ -11,8 +11,10 @@ import FirebaseDatabase
 
 class ProjectViewController: UIViewController {
     
+    //ProjectContent(id: String, countIndex: Int, content: Dictionary<String, [String]>)
     var projectContent = [ProjectContent]() // project model 배열
-    var content = [String]() //projectcontent model의 content.value값을 저장
+    
+    var content = [String]() //projectcontent model의 content.value값을 저장 [String] // currentCount값에 따라 바뀜
     
     var ref: DatabaseReference! = Database.database().reference()
     var id: String = "" // 프로젝트의 uuid값을 받을 변수
@@ -24,49 +26,57 @@ class ProjectViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
-        print("viewdidload시작")
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
         let tableViewNib = UINib(nibName: "ProjectContentCell", bundle: nil)
         self.tableView.register(tableViewNib, forCellReuseIdentifier: "ProjectContentCell")
-        self.readDB()
-        print(self.currentCount)
+        
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         self.readDB()
+        self.readContents()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
-        
+        self.projectContent.removeAll()
+        self.content.removeAll()
     }
-    
-    
     
     //뒤로가기 버튼(Maintabbarview로 돌아감)
     @IBAction func backButton(_ sender: UIButton) {
         dismiss(animated: false)
     }
     
-    @IBAction func addTableView(_ sender: UIButton) {
+    @IBAction func cardEditButton(_ sender: UIButton) {
+        
+    }
+    
+    @IBAction func addCardView(_ sender: UIButton) {
         let email = self.emailToString(Auth.auth().currentUser?.email ?? "고객")
-        let alert = UIAlertController(title: "내용추가", message: nil, preferredStyle: .alert)
+        let alert = UIAlertController(title: "카드 추가", message: nil, preferredStyle: .alert)
         //alert 등록버튼
         let registerButton = UIAlertAction(title: "추가", style: .default, handler: { [weak self] _ in
             guard let self = self else { return }
             guard let content = alert.textFields?[0].text else { return }
+            
             // 경로중 self.content.count라고 안하고 "\(self.content.count)" 라고 작성한 이유는 경로를 찾을때는 string값만 허용
+            // content 값 작성
             self.ref.child("\(email)/\(self.id)/content/\(self.currentCount)/\(self.currentTitle)").updateChildValues(["\(self.content.count)": content])
             
             self.content.append(content)
+            self.projectContent[self.currentCount].content[self.currentTitle] = self.content
+            //projectContent 배열에도 append를 해줘야함
+            
+            
+            print(self.content)
             
             DispatchQueue.main.async {
-                self.readDB()
                 self.tableView.reloadData()
             }
         })
@@ -84,12 +94,41 @@ class ProjectViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
+    
+    @IBAction func addListButton(_ sender: UIButton) {
+        let email = self.emailToString(Auth.auth().currentUser?.email ?? "고객")
+        let alert = UIAlertController(title: "리스트 추가", message: nil, preferredStyle: .alert)
+        
+        let registerButton = UIAlertAction(title: "추가", style: .default, handler: { [weak self] _ in
+            guard let self = self else { return }
+            guard let content = alert.textFields?[0].text else { return }
+            self.ref.child("\(email)/\(self.id)/content/\(self.projectContent.count)/\(content)").updateChildValues(["0": "카드를 추가해주세요"])
+            let pc = ProjectContent(id: self.id, countIndex: self.projectContent.count, content: ["\(content)": ["카드를 추가해주세요"]])
+            self.projectContent.append(pc)
+        })
+        
+        //alert 취소버튼
+        let cancelButton = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+        
+        alert.addAction(registerButton)
+        alert.addAction(cancelButton)
+        
+        alert.addTextField(configurationHandler: { textfield in
+            textfield.placeholder = "내용을 입력해주세요."
+        })
+        
+        self.present(alert, animated: true, completion: nil)
+        
+    }
+                                           
     @IBAction func moveLeft(_ sender: UIButton) {
         if currentCount > 0 {
             self.currentCount -= 1
             self.readContents()
             DispatchQueue.main.async {
+                self.contentTitleLabel.text = self.currentTitle
                 self.tableView.reloadData()
+                
             }
             print(self.currentCount)
         }
@@ -101,6 +140,7 @@ class ProjectViewController: UIViewController {
             self.currentCount += 1
             DispatchQueue.main.async {
                 self.readContents()
+                self.contentTitleLabel.text = self.currentTitle
                 self.tableView.reloadData()
             }
             print(currentCount)
@@ -120,7 +160,7 @@ extension ProjectViewController {
     }
     
     private func readDB() {
-        
+    
         let email = self.emailToString(Auth.auth().currentUser?.email ?? "고객")
         
         ref.child(email).child(id).child("content").observeSingleEvent(of: .value, with: { snapshot in
@@ -131,17 +171,21 @@ extension ProjectViewController {
                 let pc = ProjectContent(id: self.id, countIndex: count, content: content)
                 self.projectContent.append(pc)
             }
+            
             DispatchQueue.main.async {
-                self.readContents()
+                self.contentTitleLabel.text = self.currentTitle
                 self.tableView.reloadData()
+                
             }
-
+            
+            print("readDB실행",self.projectContent)
+            
         }) { error in
           print(error.localizedDescription)
         }
     }
     
-    //readDB에서 저장시킨 projectContent모델에서 현재 페이지의 content.value(content의 내용)값과 content.key(content의 title)를 저장시키는 함수
+    //readDB에서 저장시킨 projectContent모델에서 현재 페이지의 content.value(content의 내용)값과 content.key(content의 title)를 저장시키는 함수, contentTitleLabel의 text값을 바꿔줌
     private func readContents() {
         for pc in self.projectContent{
             if pc.countIndex == currentCount {
@@ -150,7 +194,8 @@ extension ProjectViewController {
                 self.content = Array(pc.content.values.joined())
             }
         }
-        self.contentTitleLabel.text = self.currentTitle
+        print("readContents실행",self.content)
+        
     }
     
 }
