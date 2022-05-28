@@ -11,12 +11,9 @@ class ProjectContentTableViewCell: UITableViewCell {
 
     @IBOutlet weak var content: UILabel!
 
-    override func layoutMarginsDidChange() {
-        super.layoutMarginsDidChange()
-    }
-
     override func awakeFromNib() {
         super.awakeFromNib()
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -34,6 +34,7 @@ class ProjectViewController: UIViewController {
         self.tableView.register(tableViewNib, forCellReuseIdentifier: "ProjectContentCell")
         
         
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -54,7 +55,7 @@ class ProjectViewController: UIViewController {
     }
     
     @IBAction func cardEditButton(_ sender: UIButton) {
-        
+        self.tableView.setEditing(true, animated: true) //편집모드 실행
     }
     
     @IBAction func addCardView(_ sender: UIButton) {
@@ -215,6 +216,27 @@ extension ProjectViewController: UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProjectContentCell", for: indexPath) as! ProjectContentTableViewCell
         cell.content.text = self.content[indexPath.row]
+        cell.layer.cornerRadius = 10
         return cell
     }
+    
+    //편집모드에서 할일의 순서를 변경하는 메소드(canmoverowat, moverowat)
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+
+    }
+    
+    //편집모드에서 삭제버튼을 누를떄 어떤셀인지 알려주는 메서드
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        //편집모드에서 삭제할수 있고 편집모드를 들어가지 않아도 스와이프로 삭제가능
+        if editingStyle == .delete {
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+            
+        }
+
+    }
+    
 }
