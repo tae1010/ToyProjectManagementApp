@@ -29,6 +29,7 @@ class ProjectViewController: UIViewController {
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        self.tableView.allowsSelection = false // cell선택 x
         
         let tableViewNib = UINib(nibName: "ProjectContentCell", bundle: nil)
         self.tableView.register(tableViewNib, forCellReuseIdentifier: "ProjectContentCell")
@@ -55,7 +56,7 @@ class ProjectViewController: UIViewController {
     }
     
     @IBAction func cardEditButton(_ sender: UIButton) {
-        self.tableView.setEditing(true, animated: true) //편집모드 실행
+        //self.tableView.setEditing(true, animated: true) //편집모드 실행
     }
     
     @IBAction func addCardView(_ sender: UIButton) {
@@ -148,6 +149,38 @@ class ProjectViewController: UIViewController {
         }
     }
     
+    // tableview cell 길게 누르면 실행되는 메서드
+    // cell을 이동시키고 db값 변경
+    @IBAction func didLongPressCell(_ sender: UILongPressGestureRecognizer) {
+        let longPressedPoint = sender.location(in: tableView)
+        guard let indexPath = tableView.indexPathForRow(at: longPressedPoint) else { return }
+
+        struct BeforeIndexPath {
+            static var value: IndexPath?
+        }
+            
+        switch sender.state {
+        case .began:
+            BeforeIndexPath.value = indexPath
+        case .changed:
+            if let beforeIndexPath = BeforeIndexPath.value, beforeIndexPath != indexPath {
+                print("startchange")
+                let beforeValue = content[beforeIndexPath.row]
+                let afterValue = content[indexPath.row]
+                content[beforeIndexPath.row] = afterValue
+                content[indexPath.row] = beforeValue
+                tableView.moveRow(at: beforeIndexPath, to: indexPath)
+
+                BeforeIndexPath.value = indexPath
+                print(self.content)
+            }
+        default:
+            // TODO animation
+            break
+        }
+    }
+    
+    
 }
 
 // 이메일을 string값으로 변환 시켜주는 메소드
@@ -232,11 +265,13 @@ extension ProjectViewController: UITableViewDataSource {
     //편집모드에서 삭제버튼을 누를떄 어떤셀인지 알려주는 메서드
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         //편집모드에서 삭제할수 있고 편집모드를 들어가지 않아도 스와이프로 삭제가능
-        if editingStyle == .delete {
+            self.content.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
-            
-        }
 
+    }
+    
+    func swapByLongPress(with sender: UILongPressGestureRecognizer, to tableView: UITableView) {
+        
     }
     
 }
