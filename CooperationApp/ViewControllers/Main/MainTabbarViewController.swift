@@ -140,8 +140,10 @@ extension MainTabbarViewController {
 
 extension MainTabbarViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let email = self.emailToString(Auth.auth().currentUser?.email ?? "고객")
         
         guard let projectViewController = self.storyboard?.instantiateViewController(withIdentifier: "ProjectViewController") as? ProjectViewController else { return }
+        projectViewController.email = email
         projectViewController.id = projectList[indexPath.row].id
         projectViewController.modalPresentationStyle = .fullScreen
         self.present(projectViewController, animated: false, completion: nil)
@@ -159,6 +161,7 @@ extension MainTabbarViewController: UICollectionViewDataSource {
         let project = projectList[indexPath.row]
         cell.projectTitleLabel.text = project.projectTitle
         cell.userLabel.text = project.user.first
+        
         return cell
     }
 }

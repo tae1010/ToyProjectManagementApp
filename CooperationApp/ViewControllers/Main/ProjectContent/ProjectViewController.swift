@@ -10,6 +10,7 @@ import FirebaseAuth
 import FirebaseDatabase
 
 class ProjectViewController: UIViewController {
+    var email = ""
     
     //ProjectContent(id: String, countIndex: Int, content: Dictionary<String, [String]>)
     var projectContent = [ProjectContent]() // project model 배열
@@ -25,8 +26,10 @@ class ProjectViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
+    
     override func viewDidLoad() {
-        
+        print(email)
+        self.email = self.emailToString(Auth.auth().currentUser?.email ?? "고객")
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.allowsSelection = false // cell선택 x
@@ -60,7 +63,7 @@ class ProjectViewController: UIViewController {
     }
     
     @IBAction func addCardView(_ sender: UIButton) {
-        let email = self.emailToString(Auth.auth().currentUser?.email ?? "고객")
+
         let alert = UIAlertController(title: "카드 추가", message: nil, preferredStyle: .alert)
         //alert 등록버튼
         let registerButton = UIAlertAction(title: "추가", style: .default, handler: { [weak self] _ in
@@ -69,7 +72,7 @@ class ProjectViewController: UIViewController {
             
             // 경로중 self.content.count라고 안하고 "\(self.content.count)" 라고 작성한 이유는 경로를 찾을때는 string값만 허용
             // content 값 작성
-            self.ref.child("\(email)/\(self.id)/content/\(self.currentCount)/\(self.currentTitle)").updateChildValues(["\(self.content.count)": content])
+            self.ref.child("\(self.email)/\(self.id)/content/\(self.currentCount)/\(self.currentTitle)").updateChildValues(["\(self.content.count)": content])
             
             self.content.append(content)
             self.projectContent[self.currentCount].content[self.currentTitle] = self.content
@@ -98,13 +101,12 @@ class ProjectViewController: UIViewController {
     
     
     @IBAction func addListButton(_ sender: UIButton) {
-        let email = self.emailToString(Auth.auth().currentUser?.email ?? "고객")
         let alert = UIAlertController(title: "리스트 추가", message: nil, preferredStyle: .alert)
         
         let registerButton = UIAlertAction(title: "추가", style: .default, handler: { [weak self] _ in
             guard let self = self else { return }
             guard let content = alert.textFields?[0].text else { return }
-            self.ref.child("\(email)/\(self.id)/content/\(self.projectContent.count)/\(content)").updateChildValues(["0": "카드를 추가해주세요"])
+            self.ref.child("\(self.email)/\(self.id)/content/\(self.projectContent.count)/\(content)").updateChildValues(["0": "카드를 추가해주세요"])
             let pc = ProjectContent(id: self.id, countIndex: self.projectContent.count, content: ["\(content)": ["카드를 추가해주세요"]])
             self.projectContent.append(pc)
         })
@@ -172,7 +174,9 @@ class ProjectViewController: UIViewController {
                 tableView.moveRow(at: beforeIndexPath, to: indexPath)
 
                 BeforeIndexPath.value = indexPath
-                print(self.content)
+                
+                self.ref.child("\(email)/\(id)/content/\(currentCount)/\(currentTitle)").setValue(self.content)
+                
             }
         default:
             // TODO animation
