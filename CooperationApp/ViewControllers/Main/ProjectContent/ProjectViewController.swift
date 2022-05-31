@@ -170,6 +170,7 @@ class ProjectViewController: UIViewController {
                 BeforeIndexPath.value = indexPath
                 
                 self.ref.child("\(email)/\(id)/content/\(currentCount)/\(currentTitle)").setValue(self.content)
+                self.projectContent[self.currentCount].content[self.currentTitle] = self.content
                 
             }
         default:
