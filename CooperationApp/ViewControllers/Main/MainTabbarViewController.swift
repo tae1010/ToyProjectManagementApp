@@ -47,7 +47,7 @@ class MainTabbarViewController: UIViewController {
             let email = self.emailToString(Auth.auth().currentUser?.email ?? "고객")
             emails.append(email)
             let project = Project(id: id, user: emails, projectTitle: title, important: false, currentTime: self.koreanDate())
-            self.projectList.append(project)
+            self.projectList.insert(project, at: 0)
             
             //firebase에 데이터 입력
             self.ref.child("\(email)/\(id)").updateChildValues(["important": false])
@@ -107,11 +107,13 @@ extension MainTabbarViewController {
                 guard let currentTime = val["currentTime"] else { return }
                 
                 let pro = Project(id: id, user: users as! [String], projectTitle: projectTitle as! String, important: important as! Bool, currentTime: currentTime as! Int)
+                print(pro)
                 self.projectList.append(pro)
-                
             }
             //날짜 순서대로 정렬
             self.projectList = self.projectList.sorted(by: {$0.currentTime > $1.currentTime})
+            
+            print(self.projectList)
             DispatchQueue.main.async {
                 self.projectCollectionView.reloadData()
             }

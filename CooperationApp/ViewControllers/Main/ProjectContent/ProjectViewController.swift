@@ -33,12 +33,11 @@ class ProjectViewController: UIViewController {
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.allowsSelection = false // cell선택 x
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 100
         
         let tableViewNib = UINib(nibName: "ProjectContentCell", bundle: nil)
         self.tableView.register(tableViewNib, forCellReuseIdentifier: "ProjectContentCell")
-        
-        
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -76,10 +75,6 @@ class ProjectViewController: UIViewController {
             
             self.content.append(content)
             self.projectContent[self.currentCount].content[self.currentTitle] = self.content
-            //projectContent 배열에도 append를 해줘야함
-            
-            
-            print(self.content)
             
             DispatchQueue.main.async {
                 self.tableView.reloadData()
@@ -160,7 +155,6 @@ class ProjectViewController: UIViewController {
         struct BeforeIndexPath {
             static var value: IndexPath?
         }
-            
         switch sender.state {
         case .began:
             BeforeIndexPath.value = indexPath
@@ -183,8 +177,6 @@ class ProjectViewController: UIViewController {
             break
         }
     }
-    
-    
 }
 
 // 이메일을 string값으로 변환 시켜주는 메소드
@@ -211,6 +203,8 @@ extension ProjectViewController {
             }
             
             DispatchQueue.main.async {
+                
+                self.readContents()
                 self.contentTitleLabel.text = self.currentTitle
                 self.tableView.reloadData()
                 
@@ -233,27 +227,29 @@ extension ProjectViewController {
             }
         }
         print("readContents실행",self.content)
-        
     }
-    
 }
 
 extension ProjectViewController: UITableViewDelegate {
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
 }
 
 extension ProjectViewController: UITableViewDataSource {
     //content의 배열 인덱스 갯수 만큼 return
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         return self.content.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProjectContentCell", for: indexPath) as! ProjectContentTableViewCell
         cell.content.text = self.content[indexPath.row]
-        cell.layer.cornerRadius = 10
         return cell
     }
     
@@ -271,11 +267,5 @@ extension ProjectViewController: UITableViewDataSource {
         //편집모드에서 삭제할수 있고 편집모드를 들어가지 않아도 스와이프로 삭제가능
             self.content.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
-
     }
-    
-    func swapByLongPress(with sender: UILongPressGestureRecognizer, to tableView: UITableView) {
-        
-    }
-    
 }

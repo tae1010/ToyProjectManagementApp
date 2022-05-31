@@ -234,15 +234,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Gbn-w3-LKI">
-                                <rect key="frame" x="0.0" y="144" width="414" height="687"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Gbn-w3-LKI">
+                                <rect key="frame" x="10" y="154" width="394" height="667"/>
+                                <color key="separatorColor" red="0.97924558080000002" green="0.97924558080000002" blue="0.97924558080000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="projectContentCardCell" id="uAh-9b-GDY">
-                                        <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="394" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="uAh-9b-GDY" id="KOT-YG-XDe">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="394" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -327,22 +327,22 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="q3q-57-utG" firstAttribute="leading" secondItem="r4T-PV-xgh" secondAttribute="leading" constant="20" id="2ps-Vp-0sa"/>
-                            <constraint firstItem="r4T-PV-xgh" firstAttribute="trailing" secondItem="Gbn-w3-LKI" secondAttribute="trailing" id="DUP-Ym-kHL"/>
+                            <constraint firstItem="r4T-PV-xgh" firstAttribute="trailing" secondItem="Gbn-w3-LKI" secondAttribute="trailing" constant="10" id="DUP-Ym-kHL"/>
                             <constraint firstItem="aq2-E4-0er" firstAttribute="leading" secondItem="iir-tl-inD" secondAttribute="trailing" constant="-2.5" id="E1O-4S-wL4"/>
                             <constraint firstItem="q3q-57-utG" firstAttribute="top" secondItem="pfl-R7-I51" secondAttribute="bottom" constant="20" id="E6w-8v-Be3"/>
                             <constraint firstItem="pfl-R7-I51" firstAttribute="top" secondItem="r4T-PV-xgh" secondAttribute="top" constant="10" id="Gk7-6z-9c7"/>
                             <constraint firstItem="Utg-mR-brP" firstAttribute="leading" secondItem="r4T-PV-xgh" secondAttribute="leading" id="Jd7-Vb-YU3"/>
-                            <constraint firstItem="Gbn-w3-LKI" firstAttribute="top" secondItem="r4T-PV-xgh" secondAttribute="top" constant="100" id="Pye-fz-Evb"/>
+                            <constraint firstItem="Gbn-w3-LKI" firstAttribute="top" secondItem="r4T-PV-xgh" secondAttribute="top" constant="110" id="Pye-fz-Evb"/>
                             <constraint firstItem="hvh-Mn-QeN" firstAttribute="leading" secondItem="aq2-E4-0er" secondAttribute="trailing" constant="-7.5" id="YTF-5g-oX4"/>
                             <constraint firstItem="hvh-Mn-QeN" firstAttribute="top" secondItem="r4T-PV-xgh" secondAttribute="top" constant="10" id="Z6G-5n-AsZ"/>
-                            <constraint firstItem="Gbn-w3-LKI" firstAttribute="leading" secondItem="r4T-PV-xgh" secondAttribute="leading" id="bth-xU-raJ"/>
+                            <constraint firstItem="Gbn-w3-LKI" firstAttribute="leading" secondItem="r4T-PV-xgh" secondAttribute="leading" constant="10" id="bth-xU-raJ"/>
                             <constraint firstItem="aq2-E4-0er" firstAttribute="centerY" secondItem="hvh-Mn-QeN" secondAttribute="centerY" id="cPl-yo-gAA"/>
                             <constraint firstItem="pfl-R7-I51" firstAttribute="leading" secondItem="r4T-PV-xgh" secondAttribute="leading" constant="10" id="dQq-EN-arH"/>
                             <constraint firstItem="iir-tl-inD" firstAttribute="centerY" secondItem="aq2-E4-0er" secondAttribute="centerY" id="hyD-uQ-CPY"/>
                             <constraint firstItem="r4T-PV-xgh" firstAttribute="trailing" secondItem="hvh-Mn-QeN" secondAttribute="trailing" constant="10" id="pAc-Gg-UHH"/>
                             <constraint firstItem="Utg-mR-brP" firstAttribute="bottom" secondItem="r4T-PV-xgh" secondAttribute="bottom" id="tTJ-A3-64E"/>
                             <constraint firstItem="r4T-PV-xgh" firstAttribute="trailing" secondItem="Utg-mR-brP" secondAttribute="trailing" id="y8c-WE-KEv"/>
-                            <constraint firstItem="Utg-mR-brP" firstAttribute="top" secondItem="Gbn-w3-LKI" secondAttribute="bottom" id="yRR-HS-kKW"/>
+                            <constraint firstItem="Utg-mR-brP" firstAttribute="top" secondItem="Gbn-w3-LKI" secondAttribute="bottom" constant="10" id="yRR-HS-kKW"/>
                         </constraints>
                     </view>
                     <connections>
@@ -560,7 +560,7 @@
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="project Name" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eVv-ZC-13t">
                                                     <rect key="frame" x="12" y="40" width="156" height="20.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
