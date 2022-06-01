@@ -9,8 +9,16 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 
+// cell편집모드(cell 내용 수정, cell 양옆(다른 currentPage로 이동))
+enum Mode {
+    case edit
+    case normal
+}
+
 class ProjectViewController: UIViewController {
-    var email = ""
+    var email = "" //사용자 email을 저장할 변수
+    
+    var mode: Mode = .normal // 평상시상태는 edit상태가 아니라 normal이므로 normal로 초기화
     
     //ProjectContent(id: String, countIndex: Int, content: Dictionary<String, [String]>)
     var projectContent = [ProjectContent]() // project model 배열
@@ -19,22 +27,22 @@ class ProjectViewController: UIViewController {
     
     var ref: DatabaseReference! = Database.database().reference()
     var id: String = "" // 프로젝트의 uuid값을 받을 변수
-    var currentCount: Int = 0 //현재 페이지
+    var currentPage: Int = 0 //현재 페이지
     var currentTitle: String = "이름없음"
     
-    @IBOutlet weak var contentTitleLabel: UILabel!
+    @IBOutlet weak var editButton: UIButton!
+    @IBOutlet weak var addCardButton: UIButton!
+    @IBOutlet weak var addListButton: UIButton!
     
+    @IBOutlet weak var contentTitleLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
     
     override func viewDidLoad() {
-        print(email)
         self.email = self.emailToString(Auth.auth().currentUser?.email ?? "고객")
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.allowsSelection = false // cell선택 x
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 100
         
         let tableViewNib = UINib(nibName: "ProjectContentCell", bundle: nil)
         self.tableView.register(tableViewNib, forCellReuseIdentifier: "ProjectContentCell")
@@ -58,7 +66,27 @@ class ProjectViewController: UIViewController {
     }
     
     @IBAction func cardEditButton(_ sender: UIButton) {
-        //self.tableView.setEditing(true, animated: true) //편집모드 실행
+        switch self.mode {
+        case .normal:
+            self.addCardButton.isHidden = true
+            self.addListButton.isHidden = true
+            self.editButton.setImage(UIImage(systemName: "checkmark"), for: .normal)
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+                self.mode = .edit
+            }
+            
+        default:
+            self.addCardButton.isHidden = false
+            self.addListButton.isHidden = false
+            self.editButton.setImage(UIImage(systemName: "pencil"), for: .normal)
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+                self.mode = .normal
+            }
+        }
     }
     
     @IBAction func addCardView(_ sender: UIButton) {
@@ -71,10 +99,10 @@ class ProjectViewController: UIViewController {
             
             // 경로중 self.content.count라고 안하고 "\(self.content.count)" 라고 작성한 이유는 경로를 찾을때는 string값만 허용
             // content 값 작성
-            self.ref.child("\(self.email)/\(self.id)/content/\(self.currentCount)/\(self.currentTitle)").updateChildValues(["\(self.content.count)": content])
+            self.ref.child("\(self.email)/\(self.id)/content/\(self.currentPage)/\(self.currentTitle)").updateChildValues(["\(self.content.count)": content])
             
             self.content.append(content)
-            self.projectContent[self.currentCount].content[self.currentTitle] = self.content
+            self.projectContent[self.currentPage].content[self.currentTitle] = self.content
             
             DispatchQueue.main.async {
                 self.tableView.reloadData()
@@ -121,28 +149,28 @@ class ProjectViewController: UIViewController {
     }
                                            
     @IBAction func moveLeft(_ sender: UIButton) {
-        if currentCount > 0 {
-            self.currentCount -= 1
+        if currentPage > 0 {
+            self.currentPage -= 1
             self.readContents()
             DispatchQueue.main.async {
                 self.contentTitleLabel.text = self.currentTitle
                 self.tableView.reloadData()
                 
             }
-            print(self.currentCount)
+            print(self.currentPage)
         }
     }
     
     @IBAction func moveRight(_ sender: UIButton) {
-        if self.projectContent.count - 1 > currentCount {
+        if self.projectContent.count - 1 > currentPage {
 
-            self.currentCount += 1
+            self.currentPage += 1
             DispatchQueue.main.async {
                 self.readContents()
                 self.contentTitleLabel.text = self.currentTitle
                 self.tableView.reloadData()
             }
-            print(currentCount)
+            print(currentPage)
         }
     }
     
@@ -160,7 +188,7 @@ class ProjectViewController: UIViewController {
             BeforeIndexPath.value = indexPath
         case .changed:
             if let beforeIndexPath = BeforeIndexPath.value, beforeIndexPath != indexPath {
-                print("startchange")
+                
                 let beforeValue = content[beforeIndexPath.row]
                 let afterValue = content[indexPath.row]
                 content[beforeIndexPath.row] = afterValue
@@ -169,8 +197,8 @@ class ProjectViewController: UIViewController {
 
                 BeforeIndexPath.value = indexPath
                 
-                self.ref.child("\(email)/\(id)/content/\(currentCount)/\(currentTitle)").setValue(self.content)
-                self.projectContent[self.currentCount].content[self.currentTitle] = self.content
+                self.ref.child("\(email)/\(id)/content/\(currentPage)/\(currentTitle)").setValue(self.content)
+                self.projectContent[self.currentPage].content[self.currentTitle] = self.content
                 
             }
         default:
@@ -221,7 +249,7 @@ extension ProjectViewController {
     //readDB에서 저장시킨 projectContent모델에서 현재 페이지의 content.value(content의 내용)값과 content.key(content의 title)를 저장시키는 함수, contentTitleLabel의 text값을 바꿔줌
     private func readContents() {
         for pc in self.projectContent{
-            if pc.countIndex == currentCount {
+            if pc.countIndex == currentPage {
                 //2차원 배열을 1차원으로 바꿔줌
                 self.currentTitle = pc.content.keys.joined(separator: "")
                 self.content = Array(pc.content.values.joined())
@@ -250,7 +278,18 @@ extension ProjectViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProjectContentCell", for: indexPath) as! ProjectContentTableViewCell
-        cell.content.text = self.content[indexPath.row]
+        switch self.mode {
+        case .normal:
+            cell.contentLabel.isHidden = false
+            cell.editModeStackView.isHidden = true
+            cell.contentLabel.text = self.content[indexPath.row]
+        default:
+            cell.contentLabel.isHidden = true
+            cell.editModeStackView.isHidden = false
+            print(content[indexPath.row],"edit모드")
+            cell.contentTextView.text = self.content[indexPath.row]
+        }
+        
         return cell
     }
     
@@ -266,7 +305,10 @@ extension ProjectViewController: UITableViewDataSource {
     //편집모드에서 삭제버튼을 누를떄 어떤셀인지 알려주는 메서드
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         //편집모드에서 삭제할수 있고 편집모드를 들어가지 않아도 스와이프로 삭제가능
-            self.content.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .automatic)
+        self.content.remove(at: indexPath.row)
+        self.projectContent[self.currentPage].content[self.currentTitle] = self.content
+        self.ref.child("\(email)/\(id)/content/\(currentPage)/\(currentTitle)").setValue(self.content)
+        tableView.deleteRows(at: [indexPath], with: .automatic)
     }
+    
 }

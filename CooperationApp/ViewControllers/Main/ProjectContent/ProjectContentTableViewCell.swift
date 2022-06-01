@@ -9,8 +9,11 @@ import UIKit
 
 class ProjectContentTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var content: UILabel!
-
+    
+    @IBOutlet weak var editModeStackView: UIStackView!
+    @IBOutlet weak var contentLabel: UILabel!
+    @IBOutlet weak var contentTextView: UITextView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         configureView()
