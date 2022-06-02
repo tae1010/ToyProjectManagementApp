@@ -54,6 +54,7 @@ class MainTabbarViewController: UIViewController {
             self.ref.child("\(email)/\(id)").updateChildValues(["projectTitle": title])
             self.ref.child("\(email)/\(id)").updateChildValues(["user": emails])
             self.ref.child("\(email)/\(id)").updateChildValues(["currentTime": self.koreanDate()!])
+            self.ref.child("\(email)/\(id)/content/0/리스트 이름을 정해주세요").updateChildValues(["0": "카드를 추가해주세요"])
             
             DispatchQueue.main.async {
                 self.projectCollectionView.reloadData()
