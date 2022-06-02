@@ -194,9 +194,8 @@
                                     </textField>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SP0-bL-D4f">
-                                <rect key="frame" x="165" y="414" width="85" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SP0-bL-D4f">
+                                <rect key="frame" x="168" y="409" width="78" height="34"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="로그인하기">
@@ -210,6 +209,8 @@
                         <viewLayoutGuide key="safeArea" id="USe-F5-O8f"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="SP0-bL-D4f" firstAttribute="centerX" secondItem="9is-gj-7zT" secondAttribute="centerX" id="02K-qa-BHi"/>
+                            <constraint firstItem="SP0-bL-D4f" firstAttribute="top" secondItem="ok9-rJ-VLo" secondAttribute="bottom" constant="50" id="29C-V9-d6K"/>
                             <constraint firstItem="ok9-rJ-VLo" firstAttribute="centerX" secondItem="9is-gj-7zT" secondAttribute="centerX" id="LBi-JJ-cYr"/>
                             <constraint firstItem="ok9-rJ-VLo" firstAttribute="top" secondItem="USe-F5-O8f" secondAttribute="top" constant="70" id="aVP-Cr-a8p"/>
                             <constraint firstItem="ok9-rJ-VLo" firstAttribute="leading" secondItem="USe-F5-O8f" secondAttribute="leading" constant="30" id="cQf-Qf-sKK"/>

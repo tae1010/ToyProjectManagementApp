@@ -7,12 +7,18 @@
 
 import UIKit
 
+protocol MoveContentDelegate: AnyObject {
+    func moveContentTapButton(cell: UITableViewCell, tag: Int)
+}
+
 class ProjectContentTableViewCell: UITableViewCell {
 
     
     @IBOutlet weak var editModeStackView: UIStackView!
     @IBOutlet weak var contentLabel: UILabel!
     @IBOutlet weak var contentTextView: UITextView!
+    
+    var moveContentDelegate: MoveContentDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -21,11 +27,11 @@ class ProjectContentTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
     }
     
     private func configureView() {
+        
         //cell 테두리
         contentView.layer.borderWidth = 1
         contentView.layer.borderColor = UIColor.lightGray.cgColor
@@ -41,7 +47,17 @@ class ProjectContentTableViewCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 5, right: 0))
+        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0))
+    }
+    
+    
+    @IBAction func moveContentLeftButton(_ sender: UIButton) {
+        self.moveContentDelegate?.moveContentTapButton(cell: self, tag: sender.tag)
+    }
+    
+    
+    @IBAction func moveContentRightButton(_ sender: UIButton) {
+        self.moveContentDelegate?.moveContentTapButton(cell: self, tag: sender.tag)
     }
     
 }

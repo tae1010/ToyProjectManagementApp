@@ -157,7 +157,7 @@ class ProjectViewController: UIViewController {
                 self.tableView.reloadData()
                 
             }
-            print(self.currentPage)
+            print("currentPage는",self.currentPage)
         }
     }
     
@@ -170,7 +170,7 @@ class ProjectViewController: UIViewController {
                 self.contentTitleLabel.text = self.currentTitle
                 self.tableView.reloadData()
             }
-            print(currentPage)
+            print("currentPage는",currentPage)
         }
     }
     
@@ -232,11 +232,9 @@ extension ProjectViewController {
             }
             
             DispatchQueue.main.async {
-                
                 self.readContents()
                 self.contentTitleLabel.text = self.currentTitle
                 self.tableView.reloadData()
-                
             }
             
             print("readDB실행",self.projectContent)
@@ -246,7 +244,7 @@ extension ProjectViewController {
         }
     }
     
-    //readDB에서 저장시킨 projectContent모델에서 현재 페이지의 content.value(content의 내용)값과 content.key(content의 title)를 저장시키는 함수, contentTitleLabel의 text값을 바꿔줌
+    //readDB에서 저장시킨 projectContent모델에서 현재 페이지의 content.value(content의 내용)값과 content.key(content의 title)를 저장시키는 함수, contentTitleLabel의 text값을 바꿔줌 -> content값을 그 페이지의 content 값으로 변경
     private func readContents() {
         for pc in self.projectContent{
             if pc.countIndex == currentPage {
@@ -255,19 +253,16 @@ extension ProjectViewController {
                 self.content = Array(pc.content.values.joined())
             }
         }
-        print("readContents실행",self.content)
+        print("readContents실행",self.currentPage)
     }
 }
 
 extension ProjectViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
-    }
-    
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
     }
+    
 }
 
 extension ProjectViewController: UITableViewDataSource {
@@ -278,6 +273,9 @@ extension ProjectViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProjectContentCell", for: indexPath) as! ProjectContentTableViewCell
+        
+        cell.moveContentDelegate = self
+        
         switch self.mode {
         case .normal:
             cell.contentLabel.isHidden = false
@@ -286,7 +284,6 @@ extension ProjectViewController: UITableViewDataSource {
         default:
             cell.contentLabel.isHidden = true
             cell.editModeStackView.isHidden = false
-            print(content[indexPath.row],"edit모드")
             cell.contentTextView.text = self.content[indexPath.row]
         }
         
@@ -311,4 +308,47 @@ extension ProjectViewController: UITableViewDataSource {
         tableView.deleteRows(at: [indexPath], with: .automatic)
     }
     
+}
+
+
+extension ProjectViewController: MoveContentDelegate {
+    func moveContentTapButton(cell: UITableViewCell, tag: Int) {
+        guard let indexPath = self.tableView.indexPath(for: cell) else {return}
+        let title = self.content[indexPath.row] // 선택한 cell의 내용
+        
+        //tag가 1이면 left버튼, 현재페이지가 0이상일때만, content의 내용이 2개 이상일때만(내용이 1개만 있으면 cell을 삭제할경우 빈배열이 되어 db에 저장이 되지않는다.)
+        if tag == 1, currentPage > 0, self.content.count > 1 {
+            //현재 페이지의 content배열에서 삭제 -> projectcontent 배열에 저장 -> 바뀐 projectContent를 db에 저장
+            self.content.remove(at: indexPath.row)
+            self.projectContent[self.currentPage].content[self.currentTitle] = self.content
+            self.ref.child("\(email)/\(id)/content/\(currentPage)/\(currentTitle)").setValue(self.content)
+            
+            //현재 페이지를 왼쪽으로 옮김 -> 옮긴페이지의 content값을 불러오고 그 content에 위에 삭제시킨 cell을 추가 -> 바뀐 content값을 projectContent에 저장 -> 테이블뷰 새로고침
+            self.currentPage -= 1
+            self.readContents()
+            self.contentTitleLabel.text = self.currentTitle
+            self.content.insert(title, at: 0)
+            self.projectContent[self.currentPage].content[self.currentTitle] = self.content
+            self.tableView.reloadData()
+            self.ref.child("\(email)/\(id)/content/\(currentPage)/\(currentTitle)").setValue(self.content)
+        }
+        
+        //tag가 2이면 right버튼, 현재페이지가 projectContent배열 갯수보다 작아야함
+        if tag == 2, self.projectContent.count - 1 > currentPage, self.content.count > 1 {
+            
+            //현재 페이지의 content배열에서 삭제 -> projectcontent 배열에 저장 -> 바뀐 projectContent를 db에 저장
+            self.content.remove(at: indexPath.row)
+            self.projectContent[self.currentPage].content[self.currentTitle] = self.content
+            self.ref.child("\(email)/\(id)/content/\(currentPage)/\(currentTitle)").setValue(self.content)
+            
+            self.currentPage += 1
+            self.readContents()
+            self.contentTitleLabel.text = self.currentTitle
+            self.content.insert(title, at: 0)
+            self.projectContent[self.currentPage].content[self.currentTitle] = self.content
+            self.tableView.reloadData()
+            self.ref.child("\(email)/\(id)/content/\(currentPage)/\(currentTitle)").setValue(self.content)
+        }
+        
+    }
 }
