@@ -22,8 +22,10 @@ class ProjectViewController: UIViewController {
     
     //ProjectContent(id: String, countIndex: Int, content: Dictionary<String, [String]>)
     var projectContent = [ProjectContent]() // project model 배열
-    
     var content = [String]() //projectcontent model의 content.value값을 저장 [String] // currentCount값에 따라 바뀜
+    
+    //편집모드에 들어갈때 바뀐 textview를 저장시키고 content배열에 넣어줄 배열
+    var contentArray = [String]()
     
     var ref: DatabaseReference! = Database.database().reference()
     var id: String = "" // 프로젝트의 uuid값을 받을 변수
@@ -42,8 +44,7 @@ class ProjectViewController: UIViewController {
         self.email = self.emailToString(Auth.auth().currentUser?.email ?? "고객")
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        self.tableView.allowsSelection = false // cell선택 x
-        
+//        self.tableView.allowsSelection = false // cell선택 x
         let tableViewNib = UINib(nibName: "ProjectContentCell", bundle: nil)
         self.tableView.register(tableViewNib, forCellReuseIdentifier: "ProjectContentCell")
     }
@@ -65,24 +66,24 @@ class ProjectViewController: UIViewController {
         dismiss(animated: false)
     }
     
+    //cell 수정모드
     @IBAction func cardEditButton(_ sender: UIButton) {
         switch self.mode {
         case .normal:
-            self.addCardButton.isHidden = true
-            self.addListButton.isHidden = true
-            self.editButton.setImage(UIImage(systemName: "checkmark"), for: .normal)
-            
             DispatchQueue.main.async {
+                self.addCardButton.isHidden = true
+                self.addListButton.isHidden = true
+                self.editButton.setImage(UIImage(systemName: "checkmark"), for: .normal)
                 self.tableView.reloadData()
                 self.mode = .edit
             }
-            
+
+        //편집모드일때
         default:
-            self.addCardButton.isHidden = false
-            self.addListButton.isHidden = false
-            self.editButton.setImage(UIImage(systemName: "pencil"), for: .normal)
-            
             DispatchQueue.main.async {
+                self.addCardButton.isHidden = false
+                self.addListButton.isHidden = false
+                self.editButton.setImage(UIImage(systemName: "pencil"), for: .normal)
                 self.tableView.reloadData()
                 self.mode = .normal
             }
@@ -122,7 +123,7 @@ class ProjectViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-    
+    //list 추가
     @IBAction func addListButton(_ sender: UIButton) {
         let alert = UIAlertController(title: "리스트 추가", message: nil, preferredStyle: .alert)
         
@@ -266,6 +267,14 @@ extension ProjectViewController: UITableViewDelegate {
 }
 
 extension ProjectViewController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let contentPopup = ContentPopupViewController(nibName: "ContentPopupView", bundle: nil)
+
+        contentPopup.modalPresentationStyle = .overFullScreen
+        self.present(contentPopup, animated: true, completion: nil)
+    }
+    
     //content의 배열 인덱스 갯수 만큼 return
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.content.count
@@ -277,26 +286,25 @@ extension ProjectViewController: UITableViewDataSource {
         cell.moveContentDelegate = self
         
         switch self.mode {
+            
         case .normal:
             cell.contentLabel.isHidden = false
             cell.editModeStackView.isHidden = true
             cell.contentLabel.text = self.content[indexPath.row]
+//            self.content[content.count - indexPath.row - 1] = cell.contentTextView.text
+            
         default:
             cell.contentLabel.isHidden = true
             cell.editModeStackView.isHidden = false
             cell.contentTextView.text = self.content[indexPath.row]
+            
         }
-        
         return cell
     }
     
     //편집모드에서 할일의 순서를 변경하는 메소드(canmoverowat, moverowat)
     func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         return true
-    }
-    
-    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-
     }
     
     //편집모드에서 삭제버튼을 누를떄 어떤셀인지 알려주는 메서드
@@ -307,10 +315,9 @@ extension ProjectViewController: UITableViewDataSource {
         self.ref.child("\(email)/\(id)/content/\(currentPage)/\(currentTitle)").setValue(self.content)
         tableView.deleteRows(at: [indexPath], with: .automatic)
     }
-    
 }
 
-
+//cell을 양옆페이지로 옮기는 메서드
 extension ProjectViewController: MoveContentDelegate {
     func moveContentTapButton(cell: UITableViewCell, tag: Int) {
         guard let indexPath = self.tableView.indexPath(for: cell) else {return}
@@ -349,6 +356,5 @@ extension ProjectViewController: MoveContentDelegate {
             self.tableView.reloadData()
             self.ref.child("\(email)/\(id)/content/\(currentPage)/\(currentTitle)").setValue(self.content)
         }
-        
     }
 }

@@ -10,6 +10,8 @@
 		930B2BDF28056CBD00CCB0EE /* Pods_CooperationApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0FB3D49C10786D1206783F4 /* Pods_CooperationApp.framework */; };
 		93285BEE2801887C00396083 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 93285BED2801887C00396083 /* GoogleService-Info.plist */; };
 		932EA506280EDA96001AC470 /* FirebaseDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932EA505280EDA96001AC470 /* FirebaseDB.swift */; };
+		9349948C2850900800AAD69B /* ContentPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9349948B2850900700AAD69B /* ContentPopupViewController.swift */; };
+		9349948F2850909100AAD69B /* ContentPopupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9349948E2850909100AAD69B /* ContentPopupView.xib */; };
 		93568B6A2805F14900A1B4B8 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93568B692805F14900A1B4B8 /* SignInViewController.swift */; };
 		935CBC862806A1C300759A24 /* MainTabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935CBC852806A1C300759A24 /* MainTabbarViewController.swift */; };
 		935CBC882806AD7900759A24 /* ProjectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935CBC872806AD7900759A24 /* ProjectCell.swift */; };
@@ -33,6 +35,8 @@
 /* Begin PBXFileReference section */
 		93285BED2801887C00396083 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		932EA505280EDA96001AC470 /* FirebaseDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDB.swift; sourceTree = "<group>"; };
+		9349948B2850900700AAD69B /* ContentPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentPopupViewController.swift; sourceTree = "<group>"; };
+		9349948E2850909100AAD69B /* ContentPopupView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContentPopupView.xib; sourceTree = "<group>"; };
 		93568B692805F14900A1B4B8 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		935CBC852806A1C300759A24 /* MainTabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabbarViewController.swift; sourceTree = "<group>"; };
 		935CBC872806AD7900759A24 /* ProjectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCell.swift; sourceTree = "<group>"; };
@@ -84,6 +88,7 @@
 			children = (
 				937CC55828002F1400F18553 /* Main.storyboard */,
 				93DEFA9327FAFF1700827C79 /* LaunchScreen.storyboard */,
+				9349948D2850905800AAD69B /* Popup */,
 				93DA8F84282FB0FB00217360 /* Cell */,
 			);
 			path = Views;
@@ -123,6 +128,14 @@
 				932EA505280EDA96001AC470 /* FirebaseDB.swift */,
 			);
 			path = FirebaseDatabase;
+			sourceTree = "<group>";
+		};
+		9349948D2850905800AAD69B /* Popup */ = {
+			isa = PBXGroup;
+			children = (
+				9349948E2850909100AAD69B /* ContentPopupView.xib */,
+			);
+			path = Popup;
 			sourceTree = "<group>";
 		};
 		935CBC892806AD8D00759A24 /* Main */ = {
@@ -217,6 +230,7 @@
 			children = (
 				93F8E4C0282BBE8800F888F0 /* ProjectViewController.swift */,
 				93DA8F85282FB16900217360 /* ProjectContentTableViewCell.swift */,
+				9349948B2850900700AAD69B /* ContentPopupViewController.swift */,
 			);
 			path = ProjectContent;
 			sourceTree = "<group>";
@@ -291,6 +305,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				93DA8F83282FB0CD00217360 /* ProjectContentCell.xib in Resources */,
+				9349948F2850909100AAD69B /* ContentPopupView.xib in Resources */,
 				937CC55928002F1400F18553 /* Main.storyboard in Resources */,
 				93285BEE2801887C00396083 /* GoogleService-Info.plist in Resources */,
 				93DEFA9527FAFF1700827C79 /* LaunchScreen.storyboard in Resources */,
@@ -366,6 +381,7 @@
 			files = (
 				937CC55B2800304400F18553 /* LoginViewController.swift in Sources */,
 				93DA8F86282FB16900217360 /* ProjectContentTableViewCell.swift in Sources */,
+				9349948C2850900800AAD69B /* ContentPopupViewController.swift in Sources */,
 				93DEFA8627FAFF1600827C79 /* AppDelegate.swift in Sources */,
 				935CBC862806A1C300759A24 /* MainTabbarViewController.swift in Sources */,
 				93F8E4C1282BBE8800F888F0 /* ProjectViewController.swift in Sources */,
@@ -527,6 +543,7 @@
 				INFOPLIST_FILE = CooperationApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -555,6 +572,7 @@
 				INFOPLIST_FILE = CooperationApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
