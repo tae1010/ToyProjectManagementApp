@@ -17,7 +17,6 @@ enum Mode {
 
 class ProjectViewController: UIViewController {
     var email = "" //사용자 email을 저장할 변수
-    
     var mode: Mode = .normal // 평상시상태는 edit상태가 아니라 normal이므로 normal로 초기화
     
     //ProjectContent(id: String, countIndex: Int, content: Dictionary<String, [String]>)
@@ -30,12 +29,11 @@ class ProjectViewController: UIViewController {
     var ref: DatabaseReference! = Database.database().reference()
     var id: String = "" // 프로젝트의 uuid값을 받을 변수
     var currentPage: Int = 0 //현재 페이지
-    var currentTitle: String = "이름없음"
+    var currentTitle: String = "이름없음" // 현제 페이지의 title
     
     @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var addCardButton: UIButton!
     @IBOutlet weak var addListButton: UIButton!
-    
     @IBOutlet weak var contentTitleLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
@@ -44,19 +42,20 @@ class ProjectViewController: UIViewController {
         self.email = self.emailToString(Auth.auth().currentUser?.email ?? "고객")
         self.tableView.delegate = self
         self.tableView.dataSource = self
-//        self.tableView.allowsSelection = false // cell선택 x
         let tableViewNib = UINib(nibName: "ProjectContentCell", bundle: nil)
         self.tableView.register(tableViewNib, forCellReuseIdentifier: "ProjectContentCell")
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        print("viewwillappear실행")
         self.readDB()
         self.readContents()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
+        print("viewwillDisappear실행")
         self.projectContent.removeAll()
         self.content.removeAll()
     }
@@ -269,10 +268,13 @@ extension ProjectViewController: UITableViewDelegate {
 extension ProjectViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let contentPopup = ContentPopupViewController(nibName: "ContentPopupView", bundle: nil)
+        
+        guard let detailContentViewController = self.storyboard?.instantiateViewController(withIdentifier: "DetailContentViewController") as? DetailContentViewController else { return }
+        detailContentViewController.index = indexPath.row
+        detailContentViewController.content = content[indexPath.row]
+        detailContentViewController.delegate = self
 
-        contentPopup.modalPresentationStyle = .overFullScreen
-        self.present(contentPopup, animated: true, completion: nil)
+        self.present(detailContentViewController, animated: true, completion: nil)
     }
     
     //content의 배열 인덱스 갯수 만큼 return
@@ -282,7 +284,7 @@ extension ProjectViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProjectContentCell", for: indexPath) as! ProjectContentTableViewCell
-        
+        cell.selectionStyle = .none
         cell.moveContentDelegate = self
         
         switch self.mode {
@@ -356,5 +358,14 @@ extension ProjectViewController: MoveContentDelegate {
             self.tableView.reloadData()
             self.ref.child("\(email)/\(id)/content/\(currentPage)/\(currentTitle)").setValue(self.content)
         }
+    }
+}
+
+//detailContentView에서 보낸 값을 db에 저장하고 테이블 reload
+extension ProjectViewController: SendContentDelegate {
+    func sendContent(_ name: String, _ index: Int) {
+        self.content[index] = name
+        self.tableView.reloadRows(at: [[0,index]], with: .automatic)
+        self.ref.child("\(email)/\(id)/content/\(currentPage)/\(currentTitle)").updateChildValues(["\(index)": name])
     }
 }
