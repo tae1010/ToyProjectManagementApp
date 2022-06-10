@@ -12,6 +12,7 @@ import SideMenu
 
 class MainTabbarViewController: UIViewController {
     
+    var userProfile = [String]()
     var projectList = [Project]()
     
     var ref: DatabaseReference! = Database.database().reference()
@@ -22,7 +23,6 @@ class MainTabbarViewController: UIViewController {
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = true
         self.configureView()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {

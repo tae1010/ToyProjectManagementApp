@@ -35,15 +35,27 @@ class ProjectViewController: UIViewController {
     @IBOutlet weak var addCardButton: UIButton!
     @IBOutlet weak var addListButton: UIButton!
     @IBOutlet weak var contentTitleLabel: UILabel!
+    @IBOutlet weak var contentTitleTextField: UITextField!
+    @IBOutlet weak var editContentTitleButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var moveLeftButton: UIButton!
+    @IBOutlet weak var moveRightButton: UIButton!
     
     
+    // MARK: - LifeCycle
     override func viewDidLoad() {
-        self.email = self.emailToString(Auth.auth().currentUser?.email ?? "고객")
+        self.email = self.emailToString(Auth.auth().currentUser?.email ?? "고객") // 이메일변수 내가 로그인 한 아이디로 초기화
+        
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        
+        //collectionview cell 등록
         let tableViewNib = UINib(nibName: "ProjectContentCell", bundle: nil)
         self.tableView.register(tableViewNib, forCellReuseIdentifier: "ProjectContentCell")
+        
+        let tabTitleLabel = UITapGestureRecognizer(target: self, action: #selector(tabContentTitleLabel))
+        self.contentTitleLabel.isUserInteractionEnabled = true
+        self.contentTitleLabel.addGestureRecognizer(tabTitleLabel)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -60,12 +72,14 @@ class ProjectViewController: UIViewController {
         self.content.removeAll()
     }
     
-    //뒤로가기 버튼(Maintabbarview로 돌아감)
+    /// 뒤로가기 버튼(Maintabbarview로 돌아감)
     @IBAction func backButton(_ sender: UIButton) {
         dismiss(animated: false)
     }
     
-    //cell 수정모드
+    
+    // MARK: - 상단 button 이벤트
+    /// cell 수정모드
     @IBAction func cardEditButton(_ sender: UIButton) {
         switch self.mode {
         case .normal:
@@ -122,7 +136,7 @@ class ProjectViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-    //list 추가
+    /// list 추가
     @IBAction func addListButton(_ sender: UIButton) {
         let alert = UIAlertController(title: "리스트 추가", message: nil, preferredStyle: .alert)
         
@@ -147,7 +161,41 @@ class ProjectViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
         
     }
-                                           
+    
+    /// contentTitltLabel 클릭시 일어날 이벤트 작성
+    @objc func tabContentTitleLabel(sender: UITapGestureRecognizer) {
+        DispatchQueue.main.async {
+            let title = self.contentTitleLabel.text
+            self.contentTitleTextField.isHidden = false
+            self.editContentTitleButton.isHidden = false
+            self.contentTitleLabel.isHidden = true
+            self.moveLeftButton.isEnabled = false
+            self.moveRightButton.isEnabled = false
+            self.contentTitleTextField.text = title
+        }
+    }
+    
+    /// contentTitle 변경
+    @IBAction func tabEditContentTitleButton(_ sender: UIButton) {
+        
+        //변경된 title db저장
+        guard let title = self.contentTitleTextField.text else { return }
+        self.ref.child("\(self.email)/\(self.id)/content/\(self.currentPage)").setValue(["\(title)": self.content])
+        
+        //변경된 title projectContent배열에 저장
+        projectContent[currentPage].content = [title: content]
+        
+        DispatchQueue.main.async {
+            self.contentTitleLabel.text = self.contentTitleTextField.text
+            self.contentTitleTextField.isHidden = true
+            self.editContentTitleButton.isHidden = true
+            self.contentTitleLabel.isHidden = false
+            self.moveLeftButton.isEnabled = true
+            self.moveRightButton.isEnabled = true
+        }
+    }
+    
+    // MARK: - 하단 버튼 이벤트
     @IBAction func moveLeft(_ sender: UIButton) {
         if currentPage > 0 {
             self.currentPage -= 1
@@ -244,6 +292,7 @@ extension ProjectViewController {
         }
     }
     
+    /// content 배열 작성
     //readDB에서 저장시킨 projectContent모델에서 현재 페이지의 content.value(content의 내용)값과 content.key(content의 title)를 저장시키는 함수, contentTitleLabel의 text값을 바꿔줌 -> content값을 그 페이지의 content 값으로 변경
     private func readContents() {
         for pc in self.projectContent{
@@ -255,8 +304,13 @@ extension ProjectViewController {
         }
         print("readContents실행",self.currentPage)
     }
+    
+
+
 }
 
+
+// MARK: - tableview
 extension ProjectViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -319,7 +373,7 @@ extension ProjectViewController: UITableViewDataSource {
     }
 }
 
-//cell을 양옆페이지로 옮기는 메서드
+/// move cell
 extension ProjectViewController: MoveContentDelegate {
     func moveContentTapButton(cell: UITableViewCell, tag: Int) {
         guard let indexPath = self.tableView.indexPath(for: cell) else {return}
