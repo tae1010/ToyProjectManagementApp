@@ -146,6 +146,13 @@ class ProjectViewController: UIViewController {
             self.ref.child("\(self.email)/\(self.id)/content/\(self.projectContent.count)/\(content)").updateChildValues(["0": "카드를 추가해주세요"])
             let pc = ProjectContent(id: self.id, countIndex: self.projectContent.count, content: ["\(content)": ["카드를 추가해주세요"]])
             self.projectContent.append(pc)
+            
+            DispatchQueue.main.async {
+                self.currentPage = self.projectContent.count - 1
+                self.readContents()
+                self.contentTitleLabel.text = self.currentTitle
+                self.tableView.reloadData()
+            }
         })
         
         //alert 취소버튼
