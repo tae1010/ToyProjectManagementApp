@@ -7,9 +7,16 @@
 
 import UIKit
 
+protocol SendButtonTagDelegate : AnyObject{
+    func sendSender(index: Int, tag: Int)
+}
+
 class ProjectPopupViewController: UIViewController {
 
     @IBOutlet var backGroundView: UIView!
+    
+    weak var sendTagDelegate: SendButtonTagDelegate?
+    var cellIndex: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,9 +31,14 @@ class ProjectPopupViewController: UIViewController {
     }
     
     @IBAction func cellInfo(_ sender: UIButton) {
+        print(sender.tag)
+        self.sendTagDelegate?.sendSender(index: cellIndex, tag: sender.tag)
+        self.dismiss(animated: true)
     }
     
     @IBAction func cellDelete(_ sender: UIButton) {
-        
+        print(sender.tag)
+        self.sendTagDelegate?.sendSender(index: cellIndex, tag: sender.tag)
+        self.dismiss(animated: true)
     }
 }

@@ -33,6 +33,7 @@ class DetailContentViewController: UIViewController {
         self.contentTextView.translatesAutoresizingMaskIntoConstraints = false //
     }
     
+    // cell 안에 내용 수정
     @IBAction func fixButton(_ sender: UIButton) {
         self.delegate?.sendContent(contentTextView.text, index)
         self.dismiss(animated: true)

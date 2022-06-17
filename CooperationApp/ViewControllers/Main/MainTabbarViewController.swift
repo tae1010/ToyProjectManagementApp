@@ -76,16 +76,18 @@ class MainTabbarViewController: UIViewController {
     
     
     @IBAction func didLongPressCell(_ sender: UILongPressGestureRecognizer) {
-        print("start")
+        
         let longPressedPoint = sender.location(in: projectCollectionView)
-        guard let indexPath = projectCollectionView.indexPathForItem(at: longPressedPoint) else { return }
+        guard let indexPath = projectCollectionView.indexPathForItem(at: longPressedPoint)?.row else { return }
 
         switch sender.state {
         case .began:
             
             let projectPopup = ProjectPopupViewController(nibName: "projectCollectionViewPopup", bundle: nil)
+            projectPopup.cellIndex = indexPath
+            projectPopup.sendTagDelegate = self
             projectPopup.modalPresentationStyle = .overCurrentContext
-            projectPopup.modalTransitionStyle = .crossDissolve
+            projectPopup.modalTransitionStyle = .crossDissolve // 뷰가 투명해지면서 넘어가는 애니메이션
             self.present(projectPopup, animated: false, completion: nil)
             
         case .ended:
@@ -193,5 +195,23 @@ extension MainTabbarViewController: UICollectionViewDataSource {
 extension MainTabbarViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: (UIScreen.main.bounds.width / 2) - 20, height: (UIScreen.main.bounds.width / 2) - 50)
+    }
+}
+
+extension MainTabbarViewController: SendButtonTagDelegate {
+    func sendSender(index: Int, tag: Int) {
+        let email = self.emailToString(Auth.auth().currentUser?.email ?? "고객")
+        var id = projectList[index].id
+        // tag1 : 정보보기, tag2 : 삭제하기
+        if tag == 1 {
+            print("정보보기 클릭", index ,tag)
+
+        } else {
+            print("삭제하기 클릭", index ,tag)
+            projectList.remove(at: index) //배열에서 삭제
+            
+            projectCollectionView.deleteItems(at: [[0, index]])
+            self.ref.child("\(email)/\(id)/").removeValue()
+        }
     }
 }
