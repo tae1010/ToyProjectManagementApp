@@ -74,6 +74,27 @@ class MainTabbarViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
+    
+    @IBAction func didLongPressCell(_ sender: UILongPressGestureRecognizer) {
+        print("start")
+        let longPressedPoint = sender.location(in: projectCollectionView)
+        guard let indexPath = projectCollectionView.indexPathForItem(at: longPressedPoint) else { return }
+
+        switch sender.state {
+        case .began:
+            
+            let projectPopup = ProjectPopupViewController(nibName: "projectCollectionViewPopup", bundle: nil)
+            projectPopup.modalPresentationStyle = .overCurrentContext
+            projectPopup.modalTransitionStyle = .crossDissolve
+            self.present(projectPopup, animated: false, completion: nil)
+            
+        case .ended:
+            print("ended", indexPath)
+        default:
+            // TODO animation
+            break
+        }
+    }
 }
 
 extension MainTabbarViewController {
@@ -171,6 +192,6 @@ extension MainTabbarViewController: UICollectionViewDataSource {
 
 extension MainTabbarViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: (UIScreen.main.bounds.width / 2) - 20, height: 140)
+        return CGSize(width: (UIScreen.main.bounds.width / 2) - 20, height: (UIScreen.main.bounds.width / 2) - 50)
     }
 }

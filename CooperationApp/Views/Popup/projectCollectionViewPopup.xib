@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProjectPopupViewController" customModule="CooperationApp" customModuleProvider="target">
+            <connections>
+                <outlet property="backGroundView" destination="iN0-l3-epB" id="6KL-zA-JnY"/>
+                <outlet property="view" destination="iN0-l3-epB" id="ZXm-Ys-GVO"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F3H-E8-17G">
+                    <rect key="frame" x="107" y="398" width="200" height="100"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="9zH-Hf-MWq">
+                            <rect key="frame" x="0.0" y="0.0" width="200" height="100"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I7N-ds-50Q">
+                                    <rect key="frame" x="0.0" y="0.0" width="200" height="46"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" title="정보보기">
+                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="cellInfo:" destination="-1" eventType="touchUpInside" id="Lz9-5t-43C"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ihz-Dj-ooG">
+                                    <rect key="frame" x="0.0" y="51" width="200" height="49"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" title="삭제하기">
+                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="cellDelete:" destination="-1" eventType="touchUpInside" id="wuw-7P-0An"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="9zH-Hf-MWq" firstAttribute="leading" secondItem="F3H-E8-17G" secondAttribute="leading" id="54t-df-Lca"/>
+                        <constraint firstAttribute="trailing" secondItem="9zH-Hf-MWq" secondAttribute="trailing" id="Im7-6O-dko"/>
+                        <constraint firstAttribute="bottom" secondItem="9zH-Hf-MWq" secondAttribute="bottom" id="Kl8-Ne-dcc"/>
+                        <constraint firstAttribute="width" constant="200" id="PJL-TJ-1L9"/>
+                        <constraint firstAttribute="height" constant="100" id="bAg-3k-dIZ"/>
+                        <constraint firstItem="9zH-Hf-MWq" firstAttribute="top" secondItem="F3H-E8-17G" secondAttribute="top" id="w0M-My-D31"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.35784871688741721" colorSpace="custom" customColorSpace="displayP3"/>
+            <constraints>
+                <constraint firstItem="F3H-E8-17G" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="EvM-Xp-pb3"/>
+                <constraint firstItem="F3H-E8-17G" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="wgP-ev-Zv1"/>
+            </constraints>
+            <point key="canvasLocation" x="157" y="165"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

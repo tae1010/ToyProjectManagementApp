@@ -238,6 +238,7 @@ class ProjectViewController: UIViewController {
         struct BeforeIndexPath {
             static var value: IndexPath?
         }
+        
         switch sender.state {
         case .began:
             BeforeIndexPath.value = indexPath
@@ -254,7 +255,6 @@ class ProjectViewController: UIViewController {
                 
                 self.ref.child("\(email)/\(id)/content/\(currentPage)/\(currentTitle)").setValue(self.content)
                 self.projectContent[self.currentPage].content[self.currentTitle] = self.content
-                
             }
         default:
             // TODO animation
@@ -311,9 +311,6 @@ extension ProjectViewController {
         }
         print("readContents실행",self.currentPage)
     }
-    
-
-
 }
 
 

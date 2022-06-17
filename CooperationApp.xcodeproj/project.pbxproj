@@ -10,6 +10,8 @@
 		930B2BDF28056CBD00CCB0EE /* Pods_CooperationApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0FB3D49C10786D1206783F4 /* Pods_CooperationApp.framework */; };
 		93285BEE2801887C00396083 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 93285BED2801887C00396083 /* GoogleService-Info.plist */; };
 		932EA506280EDA96001AC470 /* FirebaseDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932EA505280EDA96001AC470 /* FirebaseDB.swift */; };
+		9333CC47285C6B6F005C0262 /* projectCollectionViewPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9333CC46285C6B6E005C0262 /* projectCollectionViewPopup.xib */; };
+		9333CC49285C7173005C0262 /* ProjectPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9333CC48285C7173005C0262 /* ProjectPopupViewController.swift */; };
 		9340E46B2851D29E00338790 /* DetailContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9340E46A2851D29D00338790 /* DetailContentViewController.swift */; };
 		9340E47B2852050700338790 /* NanumGothicExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9340E4772852050700338790 /* NanumGothicExtraBold.otf */; };
 		9340E47C2852050700338790 /* NanumGothic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9340E4782852050700338790 /* NanumGothic.otf */; };
@@ -39,6 +41,8 @@
 /* Begin PBXFileReference section */
 		93285BED2801887C00396083 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		932EA505280EDA96001AC470 /* FirebaseDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDB.swift; sourceTree = "<group>"; };
+		9333CC46285C6B6E005C0262 /* projectCollectionViewPopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = projectCollectionViewPopup.xib; sourceTree = "<group>"; };
+		9333CC48285C7173005C0262 /* ProjectPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectPopupViewController.swift; sourceTree = "<group>"; };
 		9340E46A2851D29D00338790 /* DetailContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailContentViewController.swift; sourceTree = "<group>"; };
 		9340E4772852050700338790 /* NanumGothicExtraBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumGothicExtraBold.otf; sourceTree = "<group>"; };
 		9340E4782852050700338790 /* NanumGothic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumGothic.otf; sourceTree = "<group>"; };
@@ -152,6 +156,7 @@
 		9349948D2850905800AAD69B /* Popup */ = {
 			isa = PBXGroup;
 			children = (
+				9333CC46285C6B6E005C0262 /* projectCollectionViewPopup.xib */,
 			);
 			path = Popup;
 			sourceTree = "<group>";
@@ -160,6 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				935CBC852806A1C300759A24 /* MainTabbarViewController.swift */,
+				9333CC48285C7173005C0262 /* ProjectPopupViewController.swift */,
 				935CBC872806AD7900759A24 /* ProjectCell.swift */,
 				93F8E4BF282BB8F400F888F0 /* ProjectContent */,
 			);
@@ -331,6 +337,7 @@
 				93285BEE2801887C00396083 /* GoogleService-Info.plist in Resources */,
 				93DEFA9527FAFF1700827C79 /* LaunchScreen.storyboard in Resources */,
 				93DEFA9227FAFF1700827C79 /* Assets.xcassets in Resources */,
+				9333CC47285C6B6F005C0262 /* projectCollectionViewPopup.xib in Resources */,
 				9340E47B2852050700338790 /* NanumGothicExtraBold.otf in Resources */,
 				9340E47E2852050700338790 /* NanumGothicLight.otf in Resources */,
 			);
@@ -408,6 +415,7 @@
 				93DEFA8627FAFF1600827C79 /* AppDelegate.swift in Sources */,
 				935CBC862806A1C300759A24 /* MainTabbarViewController.swift in Sources */,
 				93F8E4C1282BBE8800F888F0 /* ProjectViewController.swift in Sources */,
+				9333CC49285C7173005C0262 /* ProjectPopupViewController.swift in Sources */,
 				935CBC882806AD7900759A24 /* ProjectCell.swift in Sources */,
 				93DA8F88282FC1A200217360 /* ProjectContent.swift in Sources */,
 				93DEFA8827FAFF1600827C79 /* SceneDelegate.swift in Sources */,
