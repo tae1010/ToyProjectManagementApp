@@ -10,6 +10,9 @@ target 'CooperationApp' do
   pod 'FirebaseUI'
   pod 'Firebase/Database', '~> 8.0.0'
   pod 'SideMenu'
+  pod 'FBSDKCoreKit'
+  pod 'FBSDKLoginKit'
+  pod 'FBSDKMarketingKit'
   # Pods for CooperationApp
 
   post_install do |installer|

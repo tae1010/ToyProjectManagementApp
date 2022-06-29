@@ -137,9 +137,10 @@ extension MainTabbarViewController {
             //날짜 순서대로 정렬
             self.projectList = self.projectList.sorted(by: {$0.currentTime > $1.currentTime})
             
-            print(self.projectList)
+            print(self.projectList,"확인용")
             DispatchQueue.main.async {
                 self.projectCollectionView.reloadData()
+
             }
             
         }) { error in

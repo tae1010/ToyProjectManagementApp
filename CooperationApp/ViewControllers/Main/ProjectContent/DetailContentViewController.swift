@@ -14,13 +14,14 @@ protocol SendContentDelegate: AnyObject{
 }
 
 class DetailContentViewController: UIViewController {
-
-    @IBOutlet weak var contentTextView: UITextView!
+    
     var ref: DatabaseReference! = Database.database().reference()
     var content: String = ""
     var id: String = ""
     var index = 0
     weak var delegate: SendContentDelegate?
+    
+    @IBOutlet weak var contentTextView: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()

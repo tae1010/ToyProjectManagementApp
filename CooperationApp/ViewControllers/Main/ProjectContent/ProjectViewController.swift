@@ -278,21 +278,22 @@ extension ProjectViewController {
         let email = self.emailToString(Auth.auth().currentUser?.email ?? "고객")
         
         ref.child(email).child(id).child("content").observeSingleEvent(of: .value, with: { snapshot in
-            guard let value = snapshot.value as? [Dictionary<String, [String]>] else {return}
-            
-            for content in value {
-                guard let count = value.firstIndex(of: content) else { return }
-                let pc = ProjectContent(id: self.id, countIndex: count, content: content)
-                self.projectContent.append(pc)
-            }
-            
-            DispatchQueue.main.async {
-                self.readContents()
-                self.contentTitleLabel.text = self.currentTitle
-                self.tableView.reloadData()
-            }
-            
-            print("readDB실행",self.projectContent)
+            guard let value = snapshot.value as? [Dictionary<String, Any>] else {return}
+            print(value,"snapshot 확인-----")
+//
+//            for content in value {
+//                guard let count = value.firstIndex(of: content) else { return }
+//                let pc = ProjectContent(id: self.id, countIndex: count, content: content)
+//                self.projectContent.append(pc)
+//            }
+//
+//            DispatchQueue.main.async {
+//                self.readContents()
+//                self.contentTitleLabel.text = self.currentTitle
+//                self.tableView.reloadData()
+//            }
+//
+//            print("readDB실행",self.projectContent)
             
         }) { error in
           print(error.localizedDescription)
