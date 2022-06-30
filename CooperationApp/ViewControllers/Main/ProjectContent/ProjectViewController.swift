@@ -278,22 +278,44 @@ extension ProjectViewController {
         let email = self.emailToString(Auth.auth().currentUser?.email ?? "고객")
         
         ref.child(email).child(id).child("content").observeSingleEvent(of: .value, with: { snapshot in
-            guard let value = snapshot.value as? [Dictionary<String, Any>] else {return}
-            print(value,"snapshot 확인-----")
-//
+            guard let value = snapshot.value as? [Dictionary<String, Any>] else { return }
+            var count = 0
+
+            for list in value {
+                var contentInfo = [String]() // card들을 저장할 변수
+                var listName: String = "" // key값(list 이름)
+                var contentDic: [String: [String]] = [:] // list이름과 contentInfo(저장한 카드)를 dic타입으로 저장
+               
+                for (key, val) in list {
+                    guard let content = val as? [Dictionary<String, String>] else { return }
+                    listName = key
+                    
+                    for i in content {
+                        guard let cardName = i["cardName"] else { return }
+                        contentInfo.append(cardName)
+                    }
+                }
+                contentDic[listName] = contentInfo
+                let pc = ProjectContent(id: self.id, countIndex: count, content: contentDic)
+                self.projectContent.append(pc)
+                count += 1
+            }
+
+
 //            for content in value {
 //                guard let count = value.firstIndex(of: content) else { return }
+//                print(content,"count 확인")
 //                let pc = ProjectContent(id: self.id, countIndex: count, content: content)
 //                self.projectContent.append(pc)
 //            }
 //
-//            DispatchQueue.main.async {
-//                self.readContents()
-//                self.contentTitleLabel.text = self.currentTitle
-//                self.tableView.reloadData()
-//            }
-//
-//            print("readDB실행",self.projectContent)
+            DispatchQueue.main.async {
+                self.readContents()
+                self.contentTitleLabel.text = self.currentTitle
+                self.tableView.reloadData()
+            }
+
+            print("readDB실행",self.projectContent)
             
         }) { error in
           print(error.localizedDescription)
