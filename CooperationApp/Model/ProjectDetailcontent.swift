@@ -12,4 +12,12 @@ struct ProjectDetailcontent {
     var color: String
     var startTime: String
     var endTime: String
+    
+    init(_ cardName: String) {
+        self.cardName = cardName
+        self.color = "blue"
+        self.startTime = "20220701"
+        self.endTime = "20220702"
+    }
+    
 }

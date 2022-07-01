@@ -143,7 +143,8 @@ class ProjectViewController: UIViewController {
         let registerButton = UIAlertAction(title: "추가", style: .default, handler: { [weak self] _ in
             guard let self = self else { return }
             guard let content = alert.textFields?[0].text else { return }
-            self.ref.child("\(self.email)/\(self.id)/content/\(self.projectContent.count)/\(content)").updateChildValues(["0": "카드를 추가해주세요"])
+            let updateContent = ["cardName": "카드를 추가해주세요", "color": "red", "startTime": String(self.koreanDate()), "endTime": String(self.koreanDate())] as [String : String]
+            self.ref.child("\(self.email)/\(self.id)/content/\(self.projectContent.count)/\(content)/\(0)").updateChildValues(updateContent)
             let pc = ProjectContent(id: self.id, countIndex: self.projectContent.count, content: ["\(content)": ["카드를 추가해주세요"]])
             self.projectContent.append(pc)
             
@@ -333,6 +334,19 @@ extension ProjectViewController {
             }
         }
         print("readContents실행",self.currentPage)
+    }
+    
+    private func koreanDate() -> Int!{
+        let current = Date()
+        
+        let formatter = DateFormatter()
+        //한국 시간으로 표시
+        formatter.locale = Locale(identifier: "ko_kr")
+        formatter.timeZone = TimeZone(abbreviation: "KST")
+        //형태 변환
+        formatter.dateFormat = "yyyyMMdd"
+        
+        return Int(formatter.string(from: current))
     }
 }
 

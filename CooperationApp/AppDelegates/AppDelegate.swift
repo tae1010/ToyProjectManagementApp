@@ -43,7 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         FirebaseApp.configure()
         
         //네비게이션 text color 바꿔주기
-        var navigationBarAppearace = UINavigationBar.appearance()
+        let navigationBarAppearace = UINavigationBar.appearance()
         navigationBarAppearace.tintColor = UIColor.systemMint
         navigationBarAppearace.barTintColor = UIColor.systemMint
         
