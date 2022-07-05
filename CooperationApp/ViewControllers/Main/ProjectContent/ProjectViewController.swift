@@ -21,6 +21,7 @@ class ProjectViewController: UIViewController {
     
     //ProjectContent(id: String, countIndex: Int, content: Dictionary<String, [String]>)
     var projectContent = [ProjectContent]() // project model 배열
+    var projectDetailContent = [String: [ProjectDetailcontent]]() // project Detail Content 배열
     var content = [String]() //projectcontent model의 content.value값을 저장 [String] // currentCount값에 따라 바뀜
     
     //편집모드에 들어갈때 바뀐 textview를 저장시키고 content배열에 넣어줄 배열
@@ -281,7 +282,7 @@ extension ProjectViewController {
         ref.child(email).child(id).child("content").observeSingleEvent(of: .value, with: { snapshot in
             guard let value = snapshot.value as? [Dictionary<String, Any>] else { return }
             var count = 0
-
+            
             for list in value {
                 var contentInfo = [String]() // card들을 저장할 변수
                 var listName: String = "" // key값(list 이름)
@@ -289,16 +290,26 @@ extension ProjectViewController {
                
                 for (key, val) in list {
                     guard let content = val as? [Dictionary<String, String>] else { return }
+                    var arrayProjectDetailcontent = [ProjectDetailcontent]()
                     listName = key
                     
                     for i in content {
                         guard let cardName = i["cardName"] else { return }
                         contentInfo.append(cardName)
+                        
+                        guard let color = i["color"] else { return }
+                        guard let startTime = i["startTime"] else { return }
+                        guard let endTime = i["endTime"] else { return }
+                        
+                        let projectDetailContent = ProjectDetailcontent(cardName, color, startTime, endTime)
+                        arrayProjectDetailcontent.append(projectDetailContent)
+                        self.projectDetailContent[listName] = arrayProjectDetailcontent
+                        print(self.projectDetailContent,"확인해볼까")
                     }
                 }
                 contentDic[listName] = contentInfo
-                let pc = ProjectContent(id: self.id, countIndex: count, content: contentDic)
-                self.projectContent.append(pc)
+                let projectContent = ProjectContent(id: self.id, countIndex: count, content: contentDic)
+                self.projectContent.append(projectContent)
                 count += 1
             }
 
@@ -362,12 +373,16 @@ extension ProjectViewController: UITableViewDelegate {
 
 extension ProjectViewController: UITableViewDataSource {
     
+    //cell 클릭시
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         guard let detailContentViewController = self.storyboard?.instantiateViewController(withIdentifier: "DetailContentViewController") as? DetailContentViewController else { return }
         detailContentViewController.index = indexPath.row
         detailContentViewController.content = content[indexPath.row]
         detailContentViewController.delegate = self
+        detailContentViewController.startTime = (self.projectDetailContent[self.currentTitle]?[indexPath.row].startTime)!
+        detailContentViewController.endTime = (self.projectDetailContent[self.currentTitle]?[indexPath.row].endTime)!
+
 
         self.present(detailContentViewController, animated: true, completion: nil)
     }
@@ -458,9 +473,13 @@ extension ProjectViewController: MoveContentDelegate {
 
 //detailContentView에서 보낸 값을 db에 저장하고 테이블 reload
 extension ProjectViewController: SendContentDelegate {
-    func sendContent(_ name: String, _ index: Int) {
-        self.content[index] = name
-        self.tableView.reloadRows(at: [[0,index]], with: .automatic)
-        self.ref.child("\(email)/\(id)/content/\(currentPage)/\(currentTitle)").updateChildValues(["\(index)": name])
+    func sendContent(_ name: String, _ index: Int, _ startTime: String, _ endTime: String) {
+        self.content[index] = name //content배열 수정
+        self.projectDetailContent[self.currentTitle]?[index].startTime = startTime
+        self.projectDetailContent[self.currentTitle]?[index].endTime = endTime
+        
+        self.tableView.reloadRows(at: [[0,index]], with: .automatic) // 선택된 cell 갱신
+        self.projectDetailContent[self.currentTitle]
+        self.ref.child("\(email)/\(id)/content/\(currentPage)/\(currentTitle)/\(index)").updateChildValues(["cardName": name, "color": "red", "startTime": startTime, "endTime": endTime])
     }
 }
