@@ -13,7 +13,7 @@
 		9333CC47285C6B6F005C0262 /* projectCollectionViewPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9333CC46285C6B6E005C0262 /* projectCollectionViewPopup.xib */; };
 		9333CC49285C7173005C0262 /* ProjectPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9333CC48285C7173005C0262 /* ProjectPopupViewController.swift */; };
 		9333CC4B285CA310005C0262 /* ProjectInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9333CC4A285CA310005C0262 /* ProjectInfoView.xib */; };
-		9340C003286C66C200F9DE35 /* ProjectDetailcontent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9340C002286C66C200F9DE35 /* ProjectDetailcontent.swift */; };
+		9340C003286C66C200F9DE35 /* ProjectDetailContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9340C002286C66C200F9DE35 /* ProjectDetailContent.swift */; };
 		9340E46B2851D29E00338790 /* DetailContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9340E46A2851D29D00338790 /* DetailContentViewController.swift */; };
 		9340E47B2852050700338790 /* NanumGothicExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9340E4772852050700338790 /* NanumGothicExtraBold.otf */; };
 		9340E47C2852050700338790 /* NanumGothic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9340E4782852050700338790 /* NanumGothic.otf */; };
@@ -45,7 +45,7 @@
 		9333CC46285C6B6E005C0262 /* projectCollectionViewPopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = projectCollectionViewPopup.xib; sourceTree = "<group>"; };
 		9333CC48285C7173005C0262 /* ProjectPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectPopupViewController.swift; sourceTree = "<group>"; };
 		9333CC4A285CA310005C0262 /* ProjectInfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProjectInfoView.xib; sourceTree = "<group>"; };
-		9340C002286C66C200F9DE35 /* ProjectDetailcontent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDetailcontent.swift; sourceTree = "<group>"; };
+		9340C002286C66C200F9DE35 /* ProjectDetailContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDetailContent.swift; sourceTree = "<group>"; };
 		9340E46A2851D29D00338790 /* DetailContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailContentViewController.swift; sourceTree = "<group>"; };
 		9340E4772852050700338790 /* NanumGothicExtraBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumGothicExtraBold.otf; sourceTree = "<group>"; };
 		9340E4782852050700338790 /* NanumGothic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumGothic.otf; sourceTree = "<group>"; };
@@ -196,7 +196,7 @@
 			children = (
 				935CBC8D2806AE5100759A24 /* Project.swift */,
 				93DA8F87282FC1A200217360 /* ProjectContent.swift */,
-				9340C002286C66C200F9DE35 /* ProjectDetailcontent.swift */,
+				9340C002286C66C200F9DE35 /* ProjectDetailContent.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -429,7 +429,7 @@
 				937CC55D2800377600F18553 /* SignUpViewController.swift in Sources */,
 				9380D24A27FF1196000DC92E /* SecondTabbarViewController.swift in Sources */,
 				93DEFA9027FAFF1600827C79 /* CooperationApp.xcdatamodeld in Sources */,
-				9340C003286C66C200F9DE35 /* ProjectDetailcontent.swift in Sources */,
+				9340C003286C66C200F9DE35 /* ProjectDetailContent.swift in Sources */,
 				9340E46B2851D29E00338790 /* DetailContentViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

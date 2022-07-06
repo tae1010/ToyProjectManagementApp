@@ -13,7 +13,7 @@ protocol MoveContentDelegate: AnyObject {
 
 class ProjectContentTableViewCell: UITableViewCell {
 
-    
+    @IBOutlet weak var cardColor: UIButton!
     @IBOutlet weak var editModeStackView: UIStackView!
     @IBOutlet weak var contentLabel: UILabel!
     @IBOutlet weak var contentTextView: UITextView!
@@ -31,6 +31,8 @@ class ProjectContentTableViewCell: UITableViewCell {
     }
     
     private func configureView() {
+        //card color 테두리
+        self.cardColor.layer.cornerRadius = 5
         
         //cell 테두리
         contentView.layer.borderWidth = 1

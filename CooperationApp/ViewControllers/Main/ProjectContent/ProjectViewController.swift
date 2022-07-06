@@ -21,7 +21,7 @@ class ProjectViewController: UIViewController {
     
     //ProjectContent(id: String, countIndex: Int, content: Dictionary<String, [String]>)
     var projectContent = [ProjectContent]() // project model 배열
-    var projectDetailContent = [String: [ProjectDetailcontent]]() // project Detail Content 배열
+    var projectDetailContent = [String: [ProjectDetailContent]]() // project Detail Content 배열
     var content = [String]() //projectcontent model의 content.value값을 저장 [String] // currentCount값에 따라 바뀜
     
     //편집모드에 들어갈때 바뀐 textview를 저장시키고 content배열에 넣어줄 배열
@@ -80,6 +80,7 @@ class ProjectViewController: UIViewController {
     
     
     // MARK: - 상단 button 이벤트
+    
     /// cell 수정모드
     @IBAction func cardEditButton(_ sender: UIButton) {
         switch self.mode {
@@ -104,6 +105,7 @@ class ProjectViewController: UIViewController {
         }
     }
     
+    /// card 추가하기
     @IBAction func addCardView(_ sender: UIButton) {
 
         let alert = UIAlertController(title: "카드 추가", message: nil, preferredStyle: .alert)
@@ -113,11 +115,17 @@ class ProjectViewController: UIViewController {
             guard let content = alert.textFields?[0].text else { return }
             
             // 경로중 self.content.count라고 안하고 "\(self.content.count)" 라고 작성한 이유는 경로를 찾을때는 string값만 허용
+            
+            //projectDetatailContent에 넣을 변수
+            let updateContent = ["cardName": content, "color": "", "startTime": "", "endTime": ""] as [String: String]
+            let updateProjectDetailContent = ProjectDetailContent(cardName: content, color: "", startTime: "", endTime: "")
+            
             // content 값 작성
-            self.ref.child("\(self.email)/\(self.id)/content/\(self.currentPage)/\(self.currentTitle)").updateChildValues(["\(self.content.count)": content])
+            self.ref.child("\(self.email)/\(self.id)/content/\(self.currentPage)/\(self.currentTitle)").updateChildValues(["\(self.content.count)": updateContent])
             
             self.content.append(content)
             self.projectContent[self.currentPage].content[self.currentTitle] = self.content
+            self.projectDetailContent[self.currentTitle]!.append(updateProjectDetailContent)
             
             DispatchQueue.main.async {
                 self.tableView.reloadData()
@@ -144,10 +152,18 @@ class ProjectViewController: UIViewController {
         let registerButton = UIAlertAction(title: "추가", style: .default, handler: { [weak self] _ in
             guard let self = self else { return }
             guard let content = alert.textFields?[0].text else { return }
-            let updateContent = ["cardName": "카드를 추가해주세요", "color": "red", "startTime": String(self.koreanDate()), "endTime": String(self.koreanDate())] as [String : String]
+            
+            //db에 저장할 변수
+            let updateContent = ["cardName": "카드를 추가해주세요", "color": "", "startTime": "", "endTime": ""] as [String : String]
+            
+            //배열에 저장할 변수 [projectDetailContent]
+            let updateProjectDetailContent = ProjectDetailContent(cardName: "카드를 추가해주세요", color: "", startTime: "", endTime: "")
+            
             self.ref.child("\(self.email)/\(self.id)/content/\(self.projectContent.count)/\(content)/\(0)").updateChildValues(updateContent)
+            
             let pc = ProjectContent(id: self.id, countIndex: self.projectContent.count, content: ["\(content)": ["카드를 추가해주세요"]])
             self.projectContent.append(pc)
+            self.projectDetailContent[content] = [updateProjectDetailContent]
             
             DispatchQueue.main.async {
                 self.currentPage = self.projectContent.count - 1
@@ -290,7 +306,7 @@ extension ProjectViewController {
                
                 for (key, val) in list {
                     guard let content = val as? [Dictionary<String, String>] else { return }
-                    var arrayProjectDetailcontent = [ProjectDetailcontent]()
+                    var arrayProjectDetailcontent = [ProjectDetailContent]()
                     listName = key
                     
                     for i in content {
@@ -301,7 +317,7 @@ extension ProjectViewController {
                         guard let startTime = i["startTime"] else { return }
                         guard let endTime = i["endTime"] else { return }
                         
-                        let projectDetailContent = ProjectDetailcontent(cardName, color, startTime, endTime)
+                        let projectDetailContent = ProjectDetailContent(cardName: cardName, color: color, startTime: startTime, endTime: endTime)
                         arrayProjectDetailcontent.append(projectDetailContent)
                         self.projectDetailContent[listName] = arrayProjectDetailcontent
                         print(self.projectDetailContent,"확인해볼까")
@@ -379,6 +395,7 @@ extension ProjectViewController: UITableViewDataSource {
         guard let detailContentViewController = self.storyboard?.instantiateViewController(withIdentifier: "DetailContentViewController") as? DetailContentViewController else { return }
         detailContentViewController.index = indexPath.row
         detailContentViewController.content = content[indexPath.row]
+        detailContentViewController.cardColor = (self.projectDetailContent[self.currentTitle]?[indexPath.row].color)!
         detailContentViewController.delegate = self
         detailContentViewController.startTime = (self.projectDetailContent[self.currentTitle]?[indexPath.row].startTime)!
         detailContentViewController.endTime = (self.projectDetailContent[self.currentTitle]?[indexPath.row].endTime)!
@@ -394,21 +411,42 @@ extension ProjectViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProjectContentCell", for: indexPath) as! ProjectContentTableViewCell
+        
         cell.selectionStyle = .none
         cell.moveContentDelegate = self
+        
+        let cardColor: UIColor = {
+            if projectDetailContent[self.currentTitle]?[indexPath.row].color == "blue" { return UIColor.blue }
+            else if projectDetailContent[self.currentTitle]?[indexPath.row].color == "green" { return UIColor.green }
+            else if projectDetailContent[self.currentTitle]?[indexPath.row].color == "orange" {
+                return UIColor.orange
+            } else if projectDetailContent[self.currentTitle]?[indexPath.row].color == "purple" {
+                return UIColor.purple
+            }
+            else if projectDetailContent[self.currentTitle]?[indexPath.row].color == "yellow" { return UIColor.yellow }
+            else { return UIColor.clear }
+        }()
         
         switch self.mode {
             
         case .normal:
-            cell.contentLabel.isHidden = false
-            cell.editModeStackView.isHidden = true
-            cell.contentLabel.text = self.content[indexPath.row]
+            DispatchQueue.main.async {
+                cell.contentLabel.isHidden = false
+                cell.editModeStackView.isHidden = true
+                cell.cardColor.isHidden = false
+                cell.contentLabel.text = self.content[indexPath.row]
+                cell.cardColor.backgroundColor = cardColor
+            }
 //            self.content[content.count - indexPath.row - 1] = cell.contentTextView.text
             
         default:
-            cell.contentLabel.isHidden = true
-            cell.editModeStackView.isHidden = false
-            cell.contentTextView.text = self.content[indexPath.row]
+            DispatchQueue.main.async {
+                cell.contentLabel.isHidden = true
+                cell.editModeStackView.isHidden = false
+                cell.cardColor.isHidden = true
+                cell.contentTextView.text = self.content[indexPath.row]
+                cell.cardColor.backgroundColor = cardColor
+            }
             
         }
         return cell
@@ -424,12 +462,33 @@ extension ProjectViewController: UITableViewDataSource {
         //편집모드에서 삭제할수 있고 편집모드를 들어가지 않아도 스와이프로 삭제가능
         self.content.remove(at: indexPath.row)
         self.projectContent[self.currentPage].content[self.currentTitle] = self.content
-        self.ref.child("\(email)/\(id)/content/\(currentPage)/\(currentTitle)").setValue(self.content)
-        tableView.deleteRows(at: [indexPath], with: .automatic)
+        self.projectDetailContent[self.currentTitle]?.remove(at: indexPath.row)
+        
+        var count = 0
+        //배열 중간값이 삭제될수 있기 떄문에 db배열을 갱신해줘야함
+        for i in self.projectDetailContent[self.currentTitle] ?? [] {
+            print(i,count, "뭐였지")
+            let cardName = i.cardName
+            let color = i.color
+            let startTime = i.startTime
+            let endTime = i.endTime
+
+            let detailContent = ["cardName": cardName, "color": color, "startTime": startTime, "endTime": endTime]
+            self.ref.child("\(email)/\(id)/content/\(currentPage)/\(self.currentTitle)/\(count)").setValue(detailContent)
+            count += 1
+        }
+        
+        guard let count = projectDetailContent[currentTitle]?.count else { return }
+        print(count,"카운트")
+        self.ref.child("\(email)/\(id)/content/\(currentPage)/\(self.currentTitle)/\(count)").removeValue()
+        
+        DispatchQueue.main.async {
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
     }
 }
 
-/// move cell
+// MARK: - currentPage이동
 extension ProjectViewController: MoveContentDelegate {
     func moveContentTapButton(cell: UITableViewCell, tag: Int) {
         guard let indexPath = self.tableView.indexPath(for: cell) else {return}
@@ -473,13 +532,13 @@ extension ProjectViewController: MoveContentDelegate {
 
 //detailContentView에서 보낸 값을 db에 저장하고 테이블 reload
 extension ProjectViewController: SendContentDelegate {
-    func sendContent(_ name: String, _ index: Int, _ startTime: String, _ endTime: String) {
+    func sendContent(_ name: String, _ index: Int, _ color: String, _ startTime: String, _ endTime: String) {
         self.content[index] = name //content배열 수정
         self.projectDetailContent[self.currentTitle]?[index].startTime = startTime
         self.projectDetailContent[self.currentTitle]?[index].endTime = endTime
+        self.projectDetailContent[self.currentTitle]?[index].color = color
         
         self.tableView.reloadRows(at: [[0,index]], with: .automatic) // 선택된 cell 갱신
-        self.projectDetailContent[self.currentTitle]
-        self.ref.child("\(email)/\(id)/content/\(currentPage)/\(currentTitle)/\(index)").updateChildValues(["cardName": name, "color": "red", "startTime": startTime, "endTime": endTime])
+        self.ref.child("\(email)/\(id)/content/\(currentPage)/\(currentTitle)/\(index)").updateChildValues(["cardName": name, "color": color, "startTime": startTime, "endTime": endTime])
     }
 }

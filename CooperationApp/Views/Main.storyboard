@@ -430,30 +430,45 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="MMq-be-lWs">
                                         <rect key="frame" x="0.0" y="48.666666666666686" width="345.33333333333331" height="56.666666666666657"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t1m-35-KNV">
+                                            <button opaque="NO" alpha="0.20000000000000001" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t1m-35-KNV">
                                                 <rect key="frame" x="0.0" y="0.0" width="66.666666666666671" height="56.666666666666664"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="blue_circle"/>
+                                                <connections>
+                                                    <action selector="tabCardColorButton:" destination="O4A-AN-wwR" eventType="touchUpInside" id="zB5-e0-4fp"/>
+                                                </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eh1-IM-Wqo">
+                                            <button opaque="NO" alpha="0.20000000000000001" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eh1-IM-Wqo">
                                                 <rect key="frame" x="69.666666666666657" y="0.0" width="66.666666666666657" height="56.666666666666664"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="green_circle"/>
+                                                <connections>
+                                                    <action selector="tabCardColorButton:" destination="O4A-AN-wwR" eventType="touchUpInside" id="6qg-FB-ytm"/>
+                                                </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Hh-bt-he4">
+                                            <button opaque="NO" alpha="0.20000000000000001" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Hh-bt-he4">
                                                 <rect key="frame" x="139.33333333333334" y="0.0" width="66.666666666666657" height="56.666666666666664"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="orange_circle"/>
+                                                <connections>
+                                                    <action selector="tabCardColorButton:" destination="O4A-AN-wwR" eventType="touchUpInside" id="nKb-7c-FsK"/>
+                                                </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XBW-f5-waz">
+                                            <button opaque="NO" alpha="0.20000000000000001" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XBW-f5-waz">
                                                 <rect key="frame" x="209" y="0.0" width="66.666666666666686" height="56.666666666666664"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="purple_circle"/>
+                                                <connections>
+                                                    <action selector="tabCardColorButton:" destination="O4A-AN-wwR" eventType="touchUpInside" id="7YW-y9-Rml"/>
+                                                </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ylk-TG-Yrr">
+                                            <button opaque="NO" alpha="0.20000000000000001" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ylk-TG-Yrr">
                                                 <rect key="frame" x="278.66666666666669" y="0.0" width="66.666666666666686" height="56.666666666666664"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="yellow_circle"/>
+                                                <connections>
+                                                    <action selector="tabCardColorButton:" destination="O4A-AN-wwR" eventType="touchUpInside" id="ePB-E4-Eao"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -577,13 +592,18 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="blueButton" destination="t1m-35-KNV" id="qsF-lI-del"/>
                         <outlet property="contentTextView" destination="i4y-gO-sBK" id="RJh-xO-96J"/>
                         <outlet property="endLabel" destination="3tX-sp-zEB" id="PlB-vd-Wnj"/>
                         <outlet property="endTimeLabel" destination="lxX-Jo-Jrp" id="oqt-Qo-fgT"/>
                         <outlet property="endTimeStackView" destination="GUX-1M-PuN" id="zHz-g4-1Vo"/>
+                        <outlet property="greenButton" destination="eh1-IM-Wqo" id="Nry-BK-ncA"/>
+                        <outlet property="orangeButton" destination="5Hh-bt-he4" id="ENa-bw-kpK"/>
+                        <outlet property="purpleButton" destination="XBW-f5-waz" id="b9A-R3-SSQ"/>
                         <outlet property="startLabel" destination="H2f-BE-Hd0" id="NIm-6v-jiQ"/>
                         <outlet property="startTimeLabel" destination="SGc-I6-qtA" id="YGW-WE-cGc"/>
                         <outlet property="startTimeStackView" destination="ehb-FN-PgD" id="k1i-ER-LyM"/>
+                        <outlet property="yellowButton" destination="ylk-TG-Yrr" id="ZKp-2c-eai"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qnf-qk-EHV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

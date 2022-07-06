@@ -9,8 +9,11 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 
+
+
+//변경된 카드 내용 전달 delegate
 protocol SendContentDelegate: AnyObject{
-    func sendContent(_ name: String, _ index: Int, _ startTime: String, _ endTime: String)
+    func sendContent(_ name: String, _ index: Int, _ color: String, _ startTime: String, _ endTime: String)
 }
 
 enum TimeSelectMode {
@@ -24,12 +27,20 @@ class DetailContentViewController: UIViewController {
     var content: String = ""
     var id: String = ""
     var index = 0
+    var cardColor = ""
     var timeSelectMode: TimeSelectMode = .startTime
     var startTime: String = ""
     var endTime: String = ""
     weak var delegate: SendContentDelegate?
     
     @IBOutlet weak var contentTextView: UITextView!
+    
+    @IBOutlet weak var blueButton: UIButton!
+    @IBOutlet weak var greenButton: UIButton!
+    @IBOutlet weak var orangeButton: UIButton!
+    @IBOutlet weak var purpleButton: UIButton!
+    @IBOutlet weak var yellowButton: UIButton!
+    
     @IBOutlet weak var startLabel: UILabel! // 달력에서 선택된 시작시간
     @IBOutlet weak var endLabel: UILabel! // 달력에서 선택된 종료시간
     @IBOutlet weak var startTimeLabel: UILabel! // 시작시간 Label
@@ -37,9 +48,9 @@ class DetailContentViewController: UIViewController {
     @IBOutlet weak var startTimeStackView: UIStackView!
     @IBOutlet weak var endTimeStackView: UIStackView!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.changeCardColor(color: cardColor)
 
         self.configureView()
         let tabStartTimeLabel = UITapGestureRecognizer(target: self, action: #selector(tabStartLabelSelector))
@@ -74,6 +85,38 @@ class DetailContentViewController: UIViewController {
         }
     }
     
+    //카드 색 설정
+    @IBAction func tabCardColorButton(_ sender: UIButton) {
+        if sender == self.blueButton {
+            self.cardColor = "blue"
+            changeCardColor(color: "blue")
+        } else if sender == self.greenButton {
+            self.cardColor = "green"
+            changeCardColor(color: "green")
+        } else if sender == self.orangeButton {
+            self.cardColor = "orange"
+            changeCardColor(color: "orange")
+        } else if sender == self.purpleButton {
+            self.cardColor = "purple"
+            changeCardColor(color: "purple")
+        } else {
+            self.cardColor = "yellow"
+            changeCardColor(color: "yellow")
+        }
+    }
+    
+    //카드 색 alpha값 조정
+    private func changeCardColor(color: String){
+        self.blueButton.alpha = color == "blue" ? 1 : 0.2
+        self.greenButton.alpha = color == "green" ? 1 : 0.2
+        self.orangeButton.alpha = color == "orange" ? 1 : 0.2
+        self.purpleButton.alpha = color == "purple" ? 1 : 0.2
+        self.yellowButton.alpha = color == "yellow" ? 1 : 0.2
+    }
+    
+    
+    
+    //날짜 정하기 설정
     @IBAction func UIDatePicker(_ sender: UIDatePicker) {
         let datePickerView = sender
         let formatter = DateFormatter()
@@ -87,9 +130,7 @@ class DetailContentViewController: UIViewController {
             
         }
     }
-    
-    
-    
+
     // 화면 구성
     func configureView() {
         self.contentTextView.text = content
@@ -100,7 +141,7 @@ class DetailContentViewController: UIViewController {
     
     // cell 안에 내용 수정
     @IBAction func fixButton(_ sender: UIButton) {
-        self.delegate?.sendContent(contentTextView.text, index, startTimeLabel.text!, endTimeLabel.text!)
+        self.delegate?.sendContent(contentTextView.text, index, self.cardColor, startTimeLabel.text!, endTimeLabel.text!)
         self.dismiss(animated: true)
     }
     
