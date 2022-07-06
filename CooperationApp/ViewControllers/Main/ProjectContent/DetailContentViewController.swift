@@ -9,7 +9,10 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 
-
+//cell을 삭제하기 위한 index 값을 넘기는 delegate
+protocol DeleteCellDelegate: AnyObject {
+    func sendCellIndex(_ index: IndexPath)
+}
 
 //변경된 카드 내용 전달 delegate
 protocol SendContentDelegate: AnyObject{
@@ -31,7 +34,8 @@ class DetailContentViewController: UIViewController {
     var timeSelectMode: TimeSelectMode = .startTime
     var startTime: String = ""
     var endTime: String = ""
-    weak var delegate: SendContentDelegate?
+    weak var sendContentDelegate: SendContentDelegate?
+    weak var sendCellIndexDelegate: DeleteCellDelegate?
     
     @IBOutlet weak var contentTextView: UITextView!
     
@@ -141,9 +145,15 @@ class DetailContentViewController: UIViewController {
     
     // cell 안에 내용 수정
     @IBAction func fixButton(_ sender: UIButton) {
-        self.delegate?.sendContent(contentTextView.text, index, self.cardColor, startTimeLabel.text!, endTimeLabel.text!)
+        self.sendContentDelegate?.sendContent(contentTextView.text, index, self.cardColor, startTimeLabel.text!, endTimeLabel.text!)
         self.dismiss(animated: true)
     }
+    
+    @IBAction func deleteCell(_ sender: UIButton) {
+        self.sendCellIndexDelegate?.sendCellIndex([0, self.index])
+        self.dismiss(animated: true)
+    }
+    
     
     @IBAction func cancelButton(_ sender: UIButton) {
         self.dismiss(animated: true)

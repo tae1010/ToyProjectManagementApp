@@ -396,7 +396,8 @@ extension ProjectViewController: UITableViewDataSource {
         detailContentViewController.index = indexPath.row
         detailContentViewController.content = content[indexPath.row]
         detailContentViewController.cardColor = (self.projectDetailContent[self.currentTitle]?[indexPath.row].color)!
-        detailContentViewController.delegate = self
+        detailContentViewController.sendCellIndexDelegate = self
+        detailContentViewController.sendContentDelegate = self
         detailContentViewController.startTime = (self.projectDetailContent[self.currentTitle]?[indexPath.row].startTime)!
         detailContentViewController.endTime = (self.projectDetailContent[self.currentTitle]?[indexPath.row].endTime)!
 
@@ -457,17 +458,25 @@ extension ProjectViewController: UITableViewDataSource {
         return true
     }
     
-    //편집모드에서 삭제버튼을 누를떄 어떤셀인지 알려주는 메서드
+    //왼쪽으로 슬라이스 할시 cell삭제
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        //편집모드에서 삭제할수 있고 편집모드를 들어가지 않아도 스와이프로 삭제가능
-        self.content.remove(at: indexPath.row)
+        
+        //cell삭제 함수
+        self.deleteCell(indexPath)
+        
+        DispatchQueue.main.async {
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+    }
+    
+    func deleteCell(_ index: IndexPath) {
+        self.content.remove(at: index.row)
         self.projectContent[self.currentPage].content[self.currentTitle] = self.content
-        self.projectDetailContent[self.currentTitle]?.remove(at: indexPath.row)
+        self.projectDetailContent[self.currentTitle]?.remove(at: index.row)
         
         var count = 0
         //배열 중간값이 삭제될수 있기 떄문에 db배열을 갱신해줘야함
         for i in self.projectDetailContent[self.currentTitle] ?? [] {
-            print(i,count, "뭐였지")
             let cardName = i.cardName
             let color = i.color
             let startTime = i.startTime
@@ -481,10 +490,6 @@ extension ProjectViewController: UITableViewDataSource {
         guard let count = projectDetailContent[currentTitle]?.count else { return }
         print(count,"카운트")
         self.ref.child("\(email)/\(id)/content/\(currentPage)/\(self.currentTitle)/\(count)").removeValue()
-        
-        DispatchQueue.main.async {
-            tableView.deleteRows(at: [indexPath], with: .automatic)
-        }
     }
 }
 
@@ -540,5 +545,15 @@ extension ProjectViewController: SendContentDelegate {
         
         self.tableView.reloadRows(at: [[0,index]], with: .automatic) // 선택된 cell 갱신
         self.ref.child("\(email)/\(id)/content/\(currentPage)/\(currentTitle)/\(index)").updateChildValues(["cardName": name, "color": color, "startTime": startTime, "endTime": endTime])
+    }
+}
+
+extension ProjectViewController: DeleteCellDelegate {
+    func sendCellIndex(_ index: IndexPath) {
+        self.deleteCell(index)
+        
+        DispatchQueue.main.async {
+            self.tableView.deleteRows(at: [index], with: .automatic)
+        }
     }
 }
