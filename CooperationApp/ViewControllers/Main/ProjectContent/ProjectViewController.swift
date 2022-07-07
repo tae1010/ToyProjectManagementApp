@@ -204,10 +204,34 @@ class ProjectViewController: UIViewController {
     @IBAction func tabEditContentTitleButton(_ sender: UIButton) {
         
         //변경된 title db저장
+        let currentTitle = self.currentTitle
         guard let title = self.contentTitleTextField.text else { return }
-        self.ref.child("\(self.email)/\(self.id)/content/\(self.currentPage)").setValue(["\(title)": self.content])
+        var count = 0
+        var detailContentArray = [ProjectDetailContent]()
         
+        self.ref.child("\(email)/\(id)/content/\(currentPage)").removeValue()
+        
+        
+        for i in self.projectDetailContent[self.currentTitle] ?? [] {
+            let cardName = i.cardName
+            let color = i.color
+            let startTime = i.startTime
+            let endTime = i.endTime
+
+            let detailContent = ["cardName": cardName, "color": color, "startTime": startTime, "endTime": endTime]
+            let detailContentModel = ProjectDetailContent(cardName: cardName, color: color, startTime: startTime, endTime: endTime)
+            
+            self.ref.child("\(email)/\(id)/content/\(currentPage)/\(title)/\(count)").setValue(detailContent)
+            print("됐나?")
+            detailContentArray.append(detailContentModel)
+            self.projectDetailContent[title] = detailContentArray
+            count += 1
+        }
+        
+        self.projectDetailContent.removeValue(forKey: currentTitle)
+        print(projectDetailContent,"확인들어갑니다")
         //변경된 title projectContent배열에 저장
+        
         projectContent[currentPage].content = [title: content]
         
         DispatchQueue.main.async {
@@ -263,15 +287,37 @@ class ProjectViewController: UIViewController {
         case .changed:
             if let beforeIndexPath = BeforeIndexPath.value, beforeIndexPath != indexPath {
                 
-                let beforeValue = content[beforeIndexPath.row]
-                let afterValue = content[indexPath.row]
-                content[beforeIndexPath.row] = afterValue
-                content[indexPath.row] = beforeValue
+                let beforeContentValue = content[beforeIndexPath.row]
+                let afterContentValue = content[indexPath.row]
+                
+                let beforeDetailContent = projectDetailContent[currentTitle]?[beforeIndexPath.row]
+                let afterDetailContent = projectDetailContent[currentTitle]?[indexPath.row]
+                
+                var count = 0
+                
+                self.content[beforeIndexPath.row] = afterContentValue
+                self.content[indexPath.row] = beforeContentValue
+                
+                self.projectDetailContent[currentTitle]?[beforeIndexPath.row] = afterDetailContent!
+                self.projectDetailContent[currentTitle]?[indexPath.row] = beforeDetailContent!
+                
+                //projectDetailContent[beforeIndexPath.row]
                 tableView.moveRow(at: beforeIndexPath, to: indexPath)
 
                 BeforeIndexPath.value = indexPath
                 
-                self.ref.child("\(email)/\(id)/content/\(currentPage)/\(currentTitle)").setValue(self.content)
+                for i in self.projectDetailContent[self.currentTitle] ?? [] {
+                    let cardName = i.cardName
+                    let color = i.color
+                    let startTime = i.startTime
+                    let endTime = i.endTime
+
+                    let detailContent = ["cardName": cardName, "color": color, "startTime": startTime, "endTime": endTime]
+                    self.ref.child("\(email)/\(id)/content/\(currentPage)/\(self.currentTitle)/\(count)").setValue(detailContent)
+                    count += 1
+                }
+        
+
                 self.projectContent[self.currentPage].content[self.currentTitle] = self.content
             }
         default:
