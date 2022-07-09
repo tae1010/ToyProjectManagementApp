@@ -507,16 +507,10 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ehb-FN-PgD">
-                                <rect key="frame" x="24" y="563.33333333333337" width="380" height="48.666666666666629"/>
+                                <rect key="frame" x="24" y="563.33333333333337" width="380" height="20.333333333333371"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="시작 시간" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H2f-BE-Hd0">
-                                        <rect key="frame" x="0.0" y="0.0" width="380" height="20.333333333333332"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="날짜를 정해주세요." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SGc-I6-qtA">
-                                        <rect key="frame" x="0.0" y="28.333333333333258" width="380" height="20.333333333333329"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="380" height="20.333333333333332"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -524,7 +518,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="GUX-1M-PuN">
-                                <rect key="frame" x="24" y="632" width="380" height="48.666666666666629"/>
+                                <rect key="frame" x="24" y="603.66666666666663" width="380" height="48.666666666666629"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="종료 시간" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3tX-sp-zEB">
                                         <rect key="frame" x="0.0" y="0.0" width="380" height="20.333333333333332"/>
@@ -541,7 +535,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="fHC-pb-1Zg">
-                                <rect key="frame" x="177.66666666666666" y="710.66666666666663" width="72.666666666666657" height="113"/>
+                                <rect key="frame" x="177.66666666666666" y="682.33333333333337" width="72.666666666666657" height="113"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mnj-3L-6mX">
                                         <rect key="frame" x="0.0" y="0.0" width="72.666666666666671" height="31"/>
@@ -609,7 +603,6 @@
                         <outlet property="greenButton" destination="eh1-IM-Wqo" id="Nry-BK-ncA"/>
                         <outlet property="orangeButton" destination="5Hh-bt-he4" id="ENa-bw-kpK"/>
                         <outlet property="purpleButton" destination="XBW-f5-waz" id="b9A-R3-SSQ"/>
-                        <outlet property="startLabel" destination="H2f-BE-Hd0" id="NIm-6v-jiQ"/>
                         <outlet property="startTimeLabel" destination="SGc-I6-qtA" id="YGW-WE-cGc"/>
                         <outlet property="startTimeStackView" destination="ehb-FN-PgD" id="k1i-ER-LyM"/>
                         <outlet property="yellowButton" destination="ylk-TG-Yrr" id="ZKp-2c-eai"/>
