@@ -37,18 +37,37 @@ class DetailContentViewController: UIViewController {
     weak var sendContentDelegate: SendContentDelegate?
     weak var sendCellIndexDelegate: DeleteCellDelegate?
     
+    lazy var originConstraints = [
+        dateStackView.topAnchor.constraint(equalTo: cardColorStackView.bottomAnchor, constant: 24),
+    ]
+      lazy var updatedConstraints = [
+        dateStackView.topAnchor.constraint(equalTo: cardColorDetailStackView.bottomAnchor, constant: 24),
+      ]
+    
+    @IBOutlet weak var detailView: UIView!
+    
     @IBOutlet weak var contentTextView: UITextView!
     
+    @IBOutlet weak var cardColorStackView: UIStackView!
     @IBOutlet weak var blueButton: UIButton!
     @IBOutlet weak var greenButton: UIButton!
     @IBOutlet weak var orangeButton: UIButton!
     @IBOutlet weak var purpleButton: UIButton!
     @IBOutlet weak var yellowButton: UIButton!
     
+    @IBOutlet weak var cardColorDetailStackView: UIStackView!
+    @IBOutlet weak var detailBlueImage: UIButton!
+    @IBOutlet weak var detailGreenImage: UIButton!
+    @IBOutlet weak var detailOrangeImage: UIButton!
+    @IBOutlet weak var detailPurpleImage: UIButton!
+    @IBOutlet weak var detailYellowImage: UIButton!
+    
+    @IBOutlet weak var dateStackView: UIStackView!
     @IBOutlet weak var startLabel: UILabel! // 달력에서 선택된 시작시간
     @IBOutlet weak var endLabel: UILabel! // 달력에서 선택된 종료시간
     @IBOutlet weak var startTimeLabel: UILabel! // 시작시간 Label
     @IBOutlet weak var endTimeLabel: UILabel! // 종료시간 Label
+    
     @IBOutlet weak var startTimeStackView: UIStackView!
     @IBOutlet weak var endTimeStackView: UIStackView!
     
@@ -88,6 +107,23 @@ class DetailContentViewController: UIViewController {
 //            self.startTimeLabel.backgroundColor = .white
         }
     }
+    
+    @IBAction func showDetailColorStackView(_ sender: UIButton) {
+        print("버튼이 클릭되었습니다.")
+        
+        DispatchQueue.main.async {
+            self.cardColorDetailStackView.isHidden = false
+            self.cardColorDetailStackView.translatesAutoresizingMaskIntoConstraints = false
+            self.dateStackView.translatesAutoresizingMaskIntoConstraints = false
+            
+            self.dateStackView.topAnchor.constraint(equalTo: self.cardColorDetailStackView.bottomAnchor, constant: 24.0).isActive = true
+            self.dateStackView.trailingAnchor.constraint(equalTo: self.detailView.trailingAnchor, constant: 24.0).isActive = true
+            self.dateStackView.leadingAnchor.constraint(equalTo: self.detailView.leadingAnchor, constant: 24.0).isActive = true
+
+        }
+
+    }
+    
     
     //카드 색 설정
     @IBAction func tabCardColorButton(_ sender: UIButton) {
@@ -141,6 +177,21 @@ class DetailContentViewController: UIViewController {
         self.startTimeLabel.text = startTime
         self.endTimeLabel.text = endTime
         self.contentTextView.translatesAutoresizingMaskIntoConstraints = false //
+        
+        self.detailBlueImage.layer.cornerRadius = 10
+        self.detailGreenImage.layer.cornerRadius = 10
+        self.detailOrangeImage.layer.cornerRadius = 10
+        self.detailPurpleImage.layer.cornerRadius = 10
+        self.detailYellowImage.layer.cornerRadius = 10
+        
+        self.cardColorDetailStackView.isHidden = true
+        self.cardColorDetailStackView.translatesAutoresizingMaskIntoConstraints = false
+        self.dateStackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        self.dateStackView.topAnchor.constraint(equalTo: cardColorStackView.bottomAnchor, constant: 24.0).isActive = true
+        self.dateStackView.trailingAnchor.constraint(equalTo: self.detailView.trailingAnchor, constant: 24.0).isActive = true
+        self.dateStackView.leadingAnchor.constraint(equalTo: self.detailView.leadingAnchor, constant: 24.0).isActive = true
+    
     }
     
     // cell 안에 내용 수정
