@@ -391,14 +391,14 @@
             <objects>
                 <viewController storyboardIdentifier="DetailContentViewController" id="O4A-AN-wwR" customClass="DetailContentViewController" customModule="CooperationApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vob-LY-BTV">
-                        <rect key="frame" x="0.0" y="0.0" width="428" height="1033"/>
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="1000"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Ah-Kb-xhU">
-                                <rect key="frame" x="0.0" y="44" width="428" height="955"/>
+                                <rect key="frame" x="0.0" y="44" width="428" height="922"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" restorationIdentifier="detailview" translatesAutoresizingMaskIntoConstraints="NO" id="tnh-aU-eH6">
-                                        <rect key="frame" x="0.0" y="0.0" width="428" height="1033"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="428" height="1000"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="카드 이름" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O0a-Pa-ezE">
                                                 <rect key="frame" x="24" y="24" width="63" height="20.333333333333329"/>
@@ -406,7 +406,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="i4y-gO-sBK">
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="i4y-gO-sBK">
                                                 <rect key="frame" x="24" y="54.333333333333329" width="380" height="36.333333333333329"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <color key="textColor" systemColor="labelColor"/>
@@ -594,7 +594,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="jdb-Hb-E9Z">
-                                                <rect key="frame" x="24" y="465.99999999999994" width="380" height="243.33333333333331"/>
+                                                <rect key="frame" x="24" y="466" width="380" height="288.33333333333326"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="날짜 정하기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZdM-ig-dP3">
                                                         <rect key="frame" x="0.0" y="0.0" width="380" height="20.333333333333332"/>
@@ -603,7 +603,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="wheels" translatesAutoresizingMaskIntoConstraints="NO" id="pIc-oW-j9L">
-                                                        <rect key="frame" x="0.0" y="27.333333333333371" width="380" height="216"/>
+                                                        <rect key="frame" x="0.0" y="27.333333333333371" width="380" height="261"/>
                                                         <date key="minimumDate" timeIntervalSinceReferenceDate="-978267600">
                                                             <!--1970-01-01 11:00:00 +0000-->
                                                         </date>
@@ -622,7 +622,7 @@
                                                 </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ehb-FN-PgD">
-                                                <rect key="frame" x="24" y="721.33333333333337" width="380" height="50"/>
+                                                <rect key="frame" x="24" y="766.33333333333337" width="380" height="50"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="시작 시간" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zn4-Jl-Aqw">
                                                         <rect key="frame" x="0.0" y="0.0" width="380" height="21.666666666666668"/>
@@ -639,7 +639,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="GUX-1M-PuN">
-                                                <rect key="frame" x="24" y="795.33333333333337" width="380" height="48.666666666666629"/>
+                                                <rect key="frame" x="24" y="840.33333333333337" width="380" height="48.666666666666629"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="종료 시간" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3tX-sp-zEB">
                                                         <rect key="frame" x="0.0" y="0.0" width="380" height="20.333333333333332"/>
@@ -656,7 +656,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="fHC-pb-1Zg">
-                                                <rect key="frame" x="95" y="884" width="238" height="31"/>
+                                                <rect key="frame" x="95" y="929" width="238" height="31"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mnj-3L-6mX">
                                                         <rect key="frame" x="0.0" y="0.0" width="72.666666666666671" height="31"/>
@@ -702,14 +702,15 @@
                                             <constraint firstItem="Pbe-II-0KM" firstAttribute="leading" secondItem="tnh-aU-eH6" secondAttribute="leading" constant="24" id="PFP-en-kgB"/>
                                             <constraint firstItem="GUX-1M-PuN" firstAttribute="leading" secondItem="tnh-aU-eH6" secondAttribute="leading" constant="24" id="QCj-4k-YzH"/>
                                             <constraint firstItem="i4y-gO-sBK" firstAttribute="leading" secondItem="O0a-Pa-ezE" secondAttribute="leading" id="SMh-iv-IVz"/>
-                                            <constraint firstAttribute="height" priority="250" constant="1033" id="Sgi-m9-ONE"/>
                                             <constraint firstAttribute="trailing" secondItem="i4y-gO-sBK" secondAttribute="trailing" constant="24" id="Vyl-2D-bqH"/>
                                             <constraint firstAttribute="trailing" secondItem="jdb-Hb-E9Z" secondAttribute="trailing" constant="24" id="W66-sy-X6U"/>
                                             <constraint firstItem="i4y-gO-sBK" firstAttribute="top" secondItem="O0a-Pa-ezE" secondAttribute="bottom" constant="10" id="WbT-4O-zoE"/>
                                             <constraint firstItem="Mj6-MT-pph" firstAttribute="top" secondItem="i4y-gO-sBK" secondAttribute="bottom" constant="24" id="aQ2-CD-5bF"/>
+                                            <constraint firstAttribute="bottom" secondItem="fHC-pb-1Zg" secondAttribute="bottom" constant="40" id="db2-xM-Ofs"/>
                                             <constraint firstItem="GUX-1M-PuN" firstAttribute="top" secondItem="ehb-FN-PgD" secondAttribute="bottom" constant="24" id="gSb-Ko-YrR"/>
                                             <constraint firstAttribute="trailing" secondItem="ehb-FN-PgD" secondAttribute="trailing" constant="24" id="iV5-3J-U0y"/>
                                             <constraint firstItem="fHC-pb-1Zg" firstAttribute="centerX" secondItem="tnh-aU-eH6" secondAttribute="centerX" id="ilg-by-0rw"/>
+                                            <constraint firstAttribute="height" constant="1000" id="nic-sw-sxZ"/>
                                             <constraint firstItem="ehb-FN-PgD" firstAttribute="leading" secondItem="tnh-aU-eH6" secondAttribute="leading" constant="24" id="ob8-bh-W5J"/>
                                             <constraint firstItem="ehb-FN-PgD" firstAttribute="top" secondItem="jdb-Hb-E9Z" secondAttribute="bottom" constant="12" id="poz-DE-9VT"/>
                                             <constraint firstItem="fHC-pb-1Zg" firstAttribute="top" secondItem="GUX-1M-PuN" secondAttribute="bottom" constant="40" id="xpG-m9-sxh"/>
@@ -719,14 +720,14 @@
                                     </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="tnh-aU-eH6" firstAttribute="bottom" secondItem="Q9b-ls-cXl" secondAttribute="bottom" id="BHz-4d-J2q"/>
-                                    <constraint firstItem="tnh-aU-eH6" firstAttribute="leading" secondItem="Q9b-ls-cXl" secondAttribute="leading" id="FkD-0o-Jfl"/>
-                                    <constraint firstItem="tnh-aU-eH6" firstAttribute="width" secondItem="JlD-a1-vxA" secondAttribute="width" id="G5b-f5-4PM"/>
-                                    <constraint firstItem="tnh-aU-eH6" firstAttribute="trailing" secondItem="Q9b-ls-cXl" secondAttribute="trailing" id="QGh-95-7wN"/>
-                                    <constraint firstItem="tnh-aU-eH6" firstAttribute="top" secondItem="Q9b-ls-cXl" secondAttribute="top" id="e9P-Oz-g93"/>
+                                    <constraint firstItem="tnh-aU-eH6" firstAttribute="bottom" secondItem="3Ah-Kb-xhU" secondAttribute="bottom" id="BHz-4d-J2q"/>
+                                    <constraint firstItem="tnh-aU-eH6" firstAttribute="leading" secondItem="3Ah-Kb-xhU" secondAttribute="leading" id="FkD-0o-Jfl"/>
+                                    <constraint firstItem="tnh-aU-eH6" firstAttribute="width" secondItem="3Ah-Kb-xhU" secondAttribute="width" id="G5b-f5-4PM"/>
+                                    <constraint firstItem="tnh-aU-eH6" firstAttribute="trailing" secondItem="3Ah-Kb-xhU" secondAttribute="trailing" id="QGh-95-7wN"/>
+                                    <constraint firstItem="tnh-aU-eH6" firstAttribute="top" secondItem="3Ah-Kb-xhU" secondAttribute="top" id="e9P-Oz-g93"/>
                                 </constraints>
-                                <viewLayoutGuide key="contentLayoutGuide" id="Q9b-ls-cXl"/>
-                                <viewLayoutGuide key="frameLayoutGuide" id="JlD-a1-vxA"/>
+                                <viewLayoutGuide key="contentLayoutGuide" id="a18-Ta-8lT"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="u57-r8-hhN"/>
                             </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="tYn-UW-DaH"/>
@@ -738,25 +739,33 @@
                             <constraint firstItem="3Ah-Kb-xhU" firstAttribute="top" secondItem="tYn-UW-DaH" secondAttribute="top" id="n9m-l7-wl5"/>
                         </constraints>
                     </view>
-                    <size key="freeformSize" width="428" height="1033"/>
+                    <size key="freeformSize" width="428" height="1000"/>
                     <connections>
                         <outlet property="blueButton" destination="t1m-35-KNV" id="qsF-lI-del"/>
+                        <outlet property="buttonStackView" destination="fHC-pb-1Zg" id="O8o-9R-kLH"/>
                         <outlet property="cardColorDetailStackView" destination="Pbe-II-0KM" id="P9J-0d-osa"/>
                         <outlet property="cardColorStackView" destination="Mj6-MT-pph" id="afq-Xr-bEf"/>
                         <outlet property="contentTextView" destination="i4y-gO-sBK" id="RJh-xO-96J"/>
                         <outlet property="dateStackView" destination="jdb-Hb-E9Z" id="hZp-IZ-iys"/>
                         <outlet property="detailBlueImage" destination="3xC-bL-Nbj" id="jTc-E2-Qmz"/>
+                        <outlet property="detailBlueTextField" destination="dMP-S3-bqr" id="gpO-Yf-oqL"/>
                         <outlet property="detailGreenImage" destination="Vel-nt-Ngf" id="756-fj-vEd"/>
+                        <outlet property="detailGreenTextField" destination="1Fg-O8-3ot" id="AJG-9d-hmo"/>
                         <outlet property="detailOrangeImage" destination="2d3-sf-lEJ" id="KoI-G5-XXh"/>
+                        <outlet property="detailOrangeTextField" destination="vMa-89-cW2" id="wMK-FA-Epw"/>
                         <outlet property="detailPurpleImage" destination="bMc-BF-saU" id="jb6-Do-fz9"/>
+                        <outlet property="detailPurpleTextField" destination="DUl-dU-iyr" id="Z9T-b9-9ik"/>
                         <outlet property="detailView" destination="tnh-aU-eH6" id="6VJ-Oo-HrO"/>
                         <outlet property="detailYellowImage" destination="B2O-Ot-j54" id="S5Z-q6-hm4"/>
+                        <outlet property="detailYellowTextField" destination="ci9-U1-6fJ" id="P3t-mx-DhL"/>
                         <outlet property="endLabel" destination="3tX-sp-zEB" id="PlB-vd-Wnj"/>
                         <outlet property="endTimeLabel" destination="lxX-Jo-Jrp" id="oqt-Qo-fgT"/>
                         <outlet property="endTimeStackView" destination="GUX-1M-PuN" id="zHz-g4-1Vo"/>
                         <outlet property="greenButton" destination="eh1-IM-Wqo" id="Nry-BK-ncA"/>
                         <outlet property="orangeButton" destination="5Hh-bt-he4" id="ENa-bw-kpK"/>
                         <outlet property="purpleButton" destination="XBW-f5-waz" id="b9A-R3-SSQ"/>
+                        <outlet property="scrollView" destination="3Ah-Kb-xhU" id="OeB-eW-R8g"/>
+                        <outlet property="showDetailColorButton" destination="Jue-JS-3wj" id="ASU-fe-f71"/>
                         <outlet property="startLabel" destination="zn4-Jl-Aqw" id="6HA-Za-KEz"/>
                         <outlet property="startTimeLabel" destination="SGc-I6-qtA" id="YGW-WE-cGc"/>
                         <outlet property="startTimeStackView" destination="ehb-FN-PgD" id="k1i-ER-LyM"/>

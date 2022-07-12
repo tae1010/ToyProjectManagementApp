@@ -24,6 +24,11 @@ enum TimeSelectMode {
     case endTime
 }
 
+enum ShowColorDetailViewMode {
+    case show
+    case notShow
+}
+
 class DetailContentViewController: UIViewController {
     
     var ref: DatabaseReference! = Database.database().reference()
@@ -32,6 +37,7 @@ class DetailContentViewController: UIViewController {
     var index = 0
     var cardColor = ""
     var timeSelectMode: TimeSelectMode = .startTime
+    var showColorDetailViewMode: ShowColorDetailViewMode = .notShow
     var startTime: String = ""
     var endTime: String = ""
     weak var sendContentDelegate: SendContentDelegate?
@@ -44,11 +50,14 @@ class DetailContentViewController: UIViewController {
         dateStackView.topAnchor.constraint(equalTo: cardColorDetailStackView.bottomAnchor, constant: 24),
       ]
     
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var detailView: UIView!
     
     @IBOutlet weak var contentTextView: UITextView!
     
     @IBOutlet weak var cardColorStackView: UIStackView!
+    
+    @IBOutlet weak var showDetailColorButton: UIButton!
     @IBOutlet weak var blueButton: UIButton!
     @IBOutlet weak var greenButton: UIButton!
     @IBOutlet weak var orangeButton: UIButton!
@@ -56,11 +65,19 @@ class DetailContentViewController: UIViewController {
     @IBOutlet weak var yellowButton: UIButton!
     
     @IBOutlet weak var cardColorDetailStackView: UIStackView!
+    //detail Color Iamage
     @IBOutlet weak var detailBlueImage: UIButton!
     @IBOutlet weak var detailGreenImage: UIButton!
     @IBOutlet weak var detailOrangeImage: UIButton!
     @IBOutlet weak var detailPurpleImage: UIButton!
     @IBOutlet weak var detailYellowImage: UIButton!
+    
+    //detail color TextField
+    @IBOutlet weak var detailBlueTextField: UITextField!
+    @IBOutlet weak var detailGreenTextField: UITextField!
+    @IBOutlet weak var detailOrangeTextField: UITextField!
+    @IBOutlet weak var detailPurpleTextField: UITextField!
+    @IBOutlet weak var detailYellowTextField: UITextField!
     
     @IBOutlet weak var dateStackView: UIStackView!
     @IBOutlet weak var startLabel: UILabel! // 달력에서 선택된 시작시간
@@ -71,16 +88,24 @@ class DetailContentViewController: UIViewController {
     @IBOutlet weak var startTimeStackView: UIStackView!
     @IBOutlet weak var endTimeStackView: UIStackView!
     
+    @IBOutlet weak var buttonStackView: UIStackView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.changeCardColor(color: cardColor)
-
         self.configureView()
+        
         let tabStartTimeLabel = UITapGestureRecognizer(target: self, action: #selector(tabStartLabelSelector))
         let tabEndTimeLabel = UITapGestureRecognizer(target: self, action: #selector(tabEndLabelSelector))
         self.startTimeStackView.addGestureRecognizer(tabStartTimeLabel)
         self.endTimeStackView.addGestureRecognizer(tabEndTimeLabel)
 
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.scrollView.contentSize.height = 800
+        self.detailView.frame.size.height = 800
     }
     
     //시작시간 stackview클릭시 발생
@@ -110,17 +135,39 @@ class DetailContentViewController: UIViewController {
     
     @IBAction func showDetailColorStackView(_ sender: UIButton) {
         print("버튼이 클릭되었습니다.")
-        
-        DispatchQueue.main.async {
-            self.cardColorDetailStackView.isHidden = false
-            self.cardColorDetailStackView.translatesAutoresizingMaskIntoConstraints = false
-            self.dateStackView.translatesAutoresizingMaskIntoConstraints = false
+        UIView.animate(withDuration: 0.5, animations: {
             
-            self.dateStackView.topAnchor.constraint(equalTo: self.cardColorDetailStackView.bottomAnchor, constant: 24.0).isActive = true
-            self.dateStackView.trailingAnchor.constraint(equalTo: self.detailView.trailingAnchor, constant: 24.0).isActive = true
-            self.dateStackView.leadingAnchor.constraint(equalTo: self.detailView.leadingAnchor, constant: 24.0).isActive = true
+            switch self.showColorDetailViewMode {
+            case .show:
+                self.scrollView.contentSize.height = 800
+                self.detailView.frame.size.height = 800
+                self.showDetailColorButton.setImage(UIImage(systemName: "plus"), for: .normal)
+                self.cardColorDetailStackView.alpha = 0
 
-        }
+                self.dateStackView.transform = CGAffineTransform(translationX: 0, y: -200)
+                self.startTimeStackView.transform = CGAffineTransform(translationX: 0, y: -200)
+                self.endTimeStackView.transform = CGAffineTransform(translationX: 0, y: -200)
+                self.buttonStackView.transform = CGAffineTransform(translationX: 0, y: -200)
+
+                self.showColorDetailViewMode = .notShow
+                
+            case .notShow:
+                self.scrollView.contentSize.height = 1000
+                self.detailView.frame.size.height = 1000
+                self.showDetailColorButton.setImage(UIImage(systemName: "minus"), for: .normal)
+                self.cardColorDetailStackView.alpha = 1
+
+                self.dateStackView.transform = CGAffineTransform(translationX: 0, y: 0)
+                self.startTimeStackView.transform = CGAffineTransform(translationX: 0, y: 0)
+                self.endTimeStackView.transform = CGAffineTransform(translationX: 0, y: 0)
+                self.buttonStackView.transform = CGAffineTransform(translationX: 0, y: 0)
+
+                self.showColorDetailViewMode = .show
+                
+            }
+            
+        })
+
 
     }
     
@@ -173,24 +220,37 @@ class DetailContentViewController: UIViewController {
 
     // 화면 구성
     func configureView() {
-        self.contentTextView.text = content
-        self.startTimeLabel.text = startTime
-        self.endTimeLabel.text = endTime
-        self.contentTextView.translatesAutoresizingMaskIntoConstraints = false //
         
-        self.detailBlueImage.layer.cornerRadius = 10
-        self.detailGreenImage.layer.cornerRadius = 10
-        self.detailOrangeImage.layer.cornerRadius = 10
-        self.detailPurpleImage.layer.cornerRadius = 10
-        self.detailYellowImage.layer.cornerRadius = 10
+        DispatchQueue.main.async {
+            self.contentTextView.text = self.content
+            self.startTimeLabel.text = self.startTime
+            self.endTimeLabel.text = self.endTime
+            self.contentTextView.translatesAutoresizingMaskIntoConstraints = false //
+            
+            self.scrollView.contentSize.height = 800
+            self.detailView.bounds.size.height = 800
+            
+            self.detailBlueImage.layer.cornerRadius = 10
+            self.detailGreenImage.layer.cornerRadius = 10
+            self.detailOrangeImage.layer.cornerRadius = 10
+            self.detailPurpleImage.layer.cornerRadius = 10
+            self.detailYellowImage.layer.cornerRadius = 10
+            
+            self.cardColorDetailStackView.alpha = 0
+            
+            self.dateStackView.transform = CGAffineTransform(translationX: 0, y: -200)
+            self.startTimeStackView.transform = CGAffineTransform(translationX: 0, y: -200)
+            self.endTimeStackView.transform = CGAffineTransform(translationX: 0, y: -200)
+            self.buttonStackView.transform = CGAffineTransform(translationX: 0, y: -200)
+        }
         
-        self.cardColorDetailStackView.isHidden = true
-        self.cardColorDetailStackView.translatesAutoresizingMaskIntoConstraints = false
-        self.dateStackView.translatesAutoresizingMaskIntoConstraints = false
-        
-        self.dateStackView.topAnchor.constraint(equalTo: cardColorStackView.bottomAnchor, constant: 24.0).isActive = true
-        self.dateStackView.trailingAnchor.constraint(equalTo: self.detailView.trailingAnchor, constant: 24.0).isActive = true
-        self.dateStackView.leadingAnchor.constraint(equalTo: self.detailView.leadingAnchor, constant: 24.0).isActive = true
+//        self.cardColorDetailStackView.isHidden = true
+//        self.cardColorDetailStackView.translatesAutoresizingMaskIntoConstraints = false
+//        self.dateStackView.translatesAutoresizingMaskIntoConstraints = false
+//
+//        self.dateStackView.topAnchor.constraint(equalTo: cardColorStackView.bottomAnchor, constant: 24.0).isActive = true
+//        self.dateStackView.trailingAnchor.constraint(equalTo: self.detailView.trailingAnchor, constant: 24.0).isActive = true
+//        self.dateStackView.leadingAnchor.constraint(equalTo: self.detailView.leadingAnchor, constant: 24.0).isActive = true
     
     }
     
