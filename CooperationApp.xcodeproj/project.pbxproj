@@ -19,6 +19,7 @@
 		9340E47C2852050700338790 /* NanumGothic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9340E4782852050700338790 /* NanumGothic.otf */; };
 		9340E47D2852050700338790 /* NanumGothicBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9340E4792852050700338790 /* NanumGothicBold.otf */; };
 		9340E47E2852050700338790 /* NanumGothicLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9340E47A2852050700338790 /* NanumGothicLight.otf */; };
+		9353E3C1287D809700C63681 /* DetailColorContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9353E3C0287D809700C63681 /* DetailColorContent.swift */; };
 		93568B6A2805F14900A1B4B8 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93568B692805F14900A1B4B8 /* SignInViewController.swift */; };
 		935CBC862806A1C300759A24 /* MainTabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935CBC852806A1C300759A24 /* MainTabbarViewController.swift */; };
 		935CBC882806AD7900759A24 /* ProjectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935CBC872806AD7900759A24 /* ProjectCell.swift */; };
@@ -51,6 +52,7 @@
 		9340E4782852050700338790 /* NanumGothic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumGothic.otf; sourceTree = "<group>"; };
 		9340E4792852050700338790 /* NanumGothicBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumGothicBold.otf; sourceTree = "<group>"; };
 		9340E47A2852050700338790 /* NanumGothicLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumGothicLight.otf; sourceTree = "<group>"; };
+		9353E3C0287D809700C63681 /* DetailColorContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailColorContent.swift; sourceTree = "<group>"; };
 		93568B692805F14900A1B4B8 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		935CBC852806A1C300759A24 /* MainTabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabbarViewController.swift; sourceTree = "<group>"; };
 		935CBC872806AD7900759A24 /* ProjectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCell.swift; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 				935CBC8D2806AE5100759A24 /* Project.swift */,
 				93DA8F87282FC1A200217360 /* ProjectContent.swift */,
 				9340C002286C66C200F9DE35 /* ProjectDetailContent.swift */,
+				9353E3C0287D809700C63681 /* DetailColorContent.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -418,6 +421,7 @@
 				93DEFA8627FAFF1600827C79 /* AppDelegate.swift in Sources */,
 				935CBC862806A1C300759A24 /* MainTabbarViewController.swift in Sources */,
 				93F8E4C1282BBE8800F888F0 /* ProjectViewController.swift in Sources */,
+				9353E3C1287D809700C63681 /* DetailColorContent.swift in Sources */,
 				9333CC49285C7173005C0262 /* ProjectPopupViewController.swift in Sources */,
 				935CBC882806AD7900759A24 /* ProjectCell.swift in Sources */,
 				93DA8F88282FC1A200217360 /* ProjectContent.swift in Sources */,

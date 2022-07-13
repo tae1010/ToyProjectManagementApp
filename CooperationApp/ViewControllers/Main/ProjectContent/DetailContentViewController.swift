@@ -32,6 +32,9 @@ enum ShowColorDetailViewMode {
 class DetailContentViewController: UIViewController {
     
     var ref: DatabaseReference! = Database.database().reference()
+    
+    var detailColorContent = DetailColorContent()
+    
     var content: String = ""
     var id: String = ""
     var index = 0
@@ -95,6 +98,7 @@ class DetailContentViewController: UIViewController {
         super.viewDidLoad()
         self.changeCardColor(color: cardColor)
         self.configureView()
+        self.loadUserDefault()
         
         let tabStartTimeLabel = UITapGestureRecognizer(target: self, action: #selector(tabStartLabelSelector))
         let tabEndTimeLabel = UITapGestureRecognizer(target: self, action: #selector(tabEndLabelSelector))
@@ -102,12 +106,6 @@ class DetailContentViewController: UIViewController {
         self.endTimeStackView.addGestureRecognizer(tabEndTimeLabel)
 
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        self.scrollView.contentSize.height = 800
-        self.detailView.frame.size.height = 800
-    }
-    
     //시작시간 stackview클릭시 발생
     @objc func tabStartLabelSelector(sender: UITapGestureRecognizer) {
         
@@ -199,6 +197,46 @@ class DetailContentViewController: UIViewController {
         self.orangeButton.alpha = color == "orange" ? 1 : 0.2
         self.purpleButton.alpha = color == "purple" ? 1 : 0.2
         self.yellowButton.alpha = color == "yellow" ? 1 : 0.2
+    }
+    
+    
+    //detailColorContent 변경하기
+    @IBAction func changeDetailColorContent(_ sender: UIButton) {
+        
+        let userDefaults = UserDefaults.standard
+        let encoder = JSONEncoder()
+        
+        let blueContent = self.detailBlueTextField.text ?? ""
+        let greenContent = self.detailGreenTextField.text ?? ""
+        let orangeContent = self.detailOrangeTextField.text ?? ""
+        let purpleContent = self.detailPurpleTextField.text ?? ""
+        let yellowContent = self.detailYellowTextField.text ?? ""
+        
+        let colorContent = DetailColorContent(blueContent: blueContent, greenContent: greenContent, orangeContent: orangeContent, purpleContent: purpleContent, yellowContent: yellowContent)
+        
+        let colorContentEncoder = try? encoder.encode(colorContent)
+        
+        userDefaults.set(colorContentEncoder, forKey: "detailColorContent")
+        print("변경되었다")
+    }
+    
+    
+    //userDefault 불러오기
+    func loadUserDefault() {
+        let userDefaults = UserDefaults.standard
+        let decoder = JSONDecoder()
+        let data = userDefaults.object(forKey: "detailColorContent")
+        
+        let colorContentDecoder = try? decoder.decode(DetailColorContent.self, from: data as! Data)
+        
+        self.detailBlueTextField.text =  colorContentDecoder?.blueContent
+        self.detailGreenTextField.text = colorContentDecoder?.greenContent
+        self.detailOrangeTextField.text = colorContentDecoder?.orangeContent
+        self.detailPurpleTextField.text = colorContentDecoder?.purpleContent
+        self.detailYellowTextField.text = colorContentDecoder?.yellowContent
+        
+        print("이거 잘됐나?")
+        //TestSwitch.isOn =  UserDefaults.standard.bool(forKey: "switchState")
     }
     
     

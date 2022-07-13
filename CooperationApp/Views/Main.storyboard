@@ -413,20 +413,20 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" restorationIdentifier="cardColorStackView" axis="vertical" alignment="top" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="Mj6-MT-pph">
-                                                <rect key="frame" x="24" y="114.66666666666666" width="380" height="105.33333333333334"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" restorationIdentifier="cardColorStackView" axis="vertical" distribution="fillEqually" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="Mj6-MT-pph">
+                                                <rect key="frame" x="24" y="114.66666666666664" width="380" height="131.33333333333337"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="FEv-qm-tpR">
-                                                        <rect key="frame" x="0.0" y="0.0" width="380" height="30.666666666666668"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="380" height="56.666666666666664"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="카드 색" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LcU-gQ-5an">
-                                                                <rect key="frame" x="0.0" y="0.0" width="48.333333333333336" height="30.666666666666668"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="48.333333333333336" height="56.666666666666664"/>
                                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jue-JS-3wj">
-                                                                <rect key="frame" x="66.333333333333343" y="0.0" width="313.66666666666663" height="30.666666666666668"/>
+                                                                <rect key="frame" x="66.333333333333343" y="0.0" width="313.66666666666663" height="56.666666666666664"/>
                                                                 <color key="tintColor" red="0.36235400880000002" green="0.36235400880000002" blue="0.36235400880000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 <state key="normal" title="Button"/>
                                                                 <buttonConfiguration key="configuration" style="plain" image="plus" catalog="system"/>
@@ -437,10 +437,10 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="MMq-be-lWs">
-                                                        <rect key="frame" x="0.0" y="48.666666666666686" width="345.33333333333331" height="56.666666666666657"/>
+                                                        <rect key="frame" x="0.0" y="74.666666666666686" width="380" height="56.666666666666657"/>
                                                         <subviews>
                                                             <button opaque="NO" alpha="0.20000000000000001" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t1m-35-KNV">
-                                                                <rect key="frame" x="0.0" y="0.0" width="66.666666666666671" height="56.666666666666664"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="73.666666666666671" height="56.666666666666664"/>
                                                                 <state key="normal" title="Button"/>
                                                                 <buttonConfiguration key="configuration" style="plain" image="blue_circle"/>
                                                                 <connections>
@@ -448,7 +448,7 @@
                                                                 </connections>
                                                             </button>
                                                             <button opaque="NO" alpha="0.20000000000000001" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eh1-IM-Wqo">
-                                                                <rect key="frame" x="69.666666666666657" y="0.0" width="66.666666666666657" height="56.666666666666664"/>
+                                                                <rect key="frame" x="76.666666666666657" y="0.0" width="73.666666666666657" height="56.666666666666664"/>
                                                                 <state key="normal" title="Button"/>
                                                                 <buttonConfiguration key="configuration" style="plain" image="green_circle"/>
                                                                 <connections>
@@ -456,7 +456,7 @@
                                                                 </connections>
                                                             </button>
                                                             <button opaque="NO" alpha="0.20000000000000001" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Hh-bt-he4">
-                                                                <rect key="frame" x="139.33333333333334" y="0.0" width="66.666666666666657" height="56.666666666666664"/>
+                                                                <rect key="frame" x="153.33333333333334" y="0.0" width="73.333333333333343" height="56.666666666666664"/>
                                                                 <state key="normal" title="Button"/>
                                                                 <buttonConfiguration key="configuration" style="plain" image="orange_circle"/>
                                                                 <connections>
@@ -464,7 +464,7 @@
                                                                 </connections>
                                                             </button>
                                                             <button opaque="NO" alpha="0.20000000000000001" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XBW-f5-waz">
-                                                                <rect key="frame" x="209" y="0.0" width="66.666666666666686" height="56.666666666666664"/>
+                                                                <rect key="frame" x="229.66666666666666" y="0.0" width="73.666666666666657" height="56.666666666666664"/>
                                                                 <state key="normal" title="Button"/>
                                                                 <buttonConfiguration key="configuration" style="plain" image="purple_circle"/>
                                                                 <connections>
@@ -472,7 +472,7 @@
                                                                 </connections>
                                                             </button>
                                                             <button opaque="NO" alpha="0.20000000000000001" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ylk-TG-Yrr">
-                                                                <rect key="frame" x="278.66666666666669" y="0.0" width="66.666666666666686" height="56.666666666666664"/>
+                                                                <rect key="frame" x="306.33333333333331" y="0.0" width="73.666666666666686" height="56.666666666666664"/>
                                                                 <state key="normal" title="Button"/>
                                                                 <buttonConfiguration key="configuration" style="plain" image="yellow_circle"/>
                                                                 <connections>
@@ -489,7 +489,7 @@
                                                 </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="Pbe-II-0KM">
-                                                <rect key="frame" x="24" y="244" width="380" height="198"/>
+                                                <rect key="frame" x="24" y="270" width="380" height="236"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="4A6-vo-96E">
                                                         <rect key="frame" x="0.0" y="0.0" width="380" height="34"/>
@@ -591,38 +591,19 @@
                                                             <constraint firstItem="ci9-U1-6fJ" firstAttribute="leading" secondItem="B2O-Ot-j54" secondAttribute="trailing" constant="24" id="56u-S7-2gY"/>
                                                         </constraints>
                                                     </stackView>
-                                                </subviews>
-                                            </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="jdb-Hb-E9Z">
-                                                <rect key="frame" x="24" y="466" width="380" height="288.33333333333326"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="날짜 정하기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZdM-ig-dP3">
-                                                        <rect key="frame" x="0.0" y="0.0" width="380" height="20.333333333333332"/>
-                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="wheels" translatesAutoresizingMaskIntoConstraints="NO" id="pIc-oW-j9L">
-                                                        <rect key="frame" x="0.0" y="27.333333333333371" width="380" height="261"/>
-                                                        <date key="minimumDate" timeIntervalSinceReferenceDate="-978267600">
-                                                            <!--1970-01-01 11:00:00 +0000-->
-                                                        </date>
-                                                        <date key="maximumDate" timeIntervalSinceReferenceDate="1167562800">
-                                                            <!--2037-12-31 11:00:00 +0000-->
-                                                        </date>
-                                                        <locale key="locale" localeIdentifier="ko_KR"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QBY-rJ-A2s">
+                                                        <rect key="frame" x="0.0" y="205" width="380" height="31"/>
+                                                        <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="변경하기"/>
                                                         <connections>
-                                                            <action selector="UIDatePicker:" destination="O4A-AN-wwR" eventType="valueChanged" id="3XR-Ud-ulh"/>
+                                                            <action selector="changeDetailColorContent:" destination="O4A-AN-wwR" eventType="touchUpInside" id="5Zr-LP-tZq"/>
                                                         </connections>
-                                                    </datePicker>
+                                                    </button>
                                                 </subviews>
-                                                <constraints>
-                                                    <constraint firstItem="pIc-oW-j9L" firstAttribute="leading" secondItem="jdb-Hb-E9Z" secondAttribute="leading" id="Lc3-Z7-RrO"/>
-                                                    <constraint firstAttribute="trailing" secondItem="pIc-oW-j9L" secondAttribute="trailing" id="gwy-ty-l6z"/>
-                                                </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ehb-FN-PgD">
-                                                <rect key="frame" x="24" y="766.33333333333337" width="380" height="50"/>
+                                                <rect key="frame" x="24" y="759.33333333333337" width="380" height="50"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="시작 시간" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zn4-Jl-Aqw">
                                                         <rect key="frame" x="0.0" y="0.0" width="380" height="21.666666666666668"/>
@@ -639,7 +620,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="GUX-1M-PuN">
-                                                <rect key="frame" x="24" y="840.33333333333337" width="380" height="48.666666666666629"/>
+                                                <rect key="frame" x="24" y="833.33333333333337" width="380" height="48.666666666666629"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="종료 시간" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3tX-sp-zEB">
                                                         <rect key="frame" x="0.0" y="0.0" width="380" height="20.333333333333332"/>
@@ -656,7 +637,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="fHC-pb-1Zg">
-                                                <rect key="frame" x="95" y="929" width="238" height="31"/>
+                                                <rect key="frame" x="95" y="922" width="238" height="31"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mnj-3L-6mX">
                                                         <rect key="frame" x="0.0" y="0.0" width="72.666666666666671" height="31"/>
@@ -689,13 +670,41 @@
                                                     </button>
                                                 </subviews>
                                             </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="jdb-Hb-E9Z">
+                                                <rect key="frame" x="24" y="503.99999999999994" width="380" height="243.33333333333331"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="날짜 정하기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZdM-ig-dP3">
+                                                        <rect key="frame" x="0.0" y="0.0" width="380" height="20.333333333333332"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="wheels" translatesAutoresizingMaskIntoConstraints="NO" id="pIc-oW-j9L">
+                                                        <rect key="frame" x="0.0" y="27.333333333333371" width="380" height="216"/>
+                                                        <date key="minimumDate" timeIntervalSinceReferenceDate="-978267600">
+                                                            <!--1970-01-01 11:00:00 +0000-->
+                                                        </date>
+                                                        <date key="maximumDate" timeIntervalSinceReferenceDate="1167562800">
+                                                            <!--2037-12-31 11:00:00 +0000-->
+                                                        </date>
+                                                        <locale key="locale" localeIdentifier="ko_KR"/>
+                                                        <connections>
+                                                            <action selector="UIDatePicker:" destination="O4A-AN-wwR" eventType="valueChanged" id="3XR-Ud-ulh"/>
+                                                        </connections>
+                                                    </datePicker>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="pIc-oW-j9L" firstAttribute="leading" secondItem="jdb-Hb-E9Z" secondAttribute="leading" id="Lc3-Z7-RrO"/>
+                                                    <constraint firstAttribute="trailing" secondItem="pIc-oW-j9L" secondAttribute="trailing" id="gwy-ty-l6z"/>
+                                                </constraints>
+                                            </stackView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstItem="jdb-Hb-E9Z" firstAttribute="leading" secondItem="tnh-aU-eH6" secondAttribute="leading" constant="24" id="42r-Dg-Kgu"/>
                                             <constraint firstAttribute="trailing" secondItem="Mj6-MT-pph" secondAttribute="trailing" constant="24" id="8Ym-ia-NG0"/>
-                                            <constraint firstItem="jdb-Hb-E9Z" firstAttribute="top" secondItem="Pbe-II-0KM" secondAttribute="bottom" constant="24" id="9za-ff-XUW"/>
                                             <constraint firstItem="O0a-Pa-ezE" firstAttribute="top" secondItem="tnh-aU-eH6" secondAttribute="top" constant="24" id="EVw-1h-gPk"/>
+                                            <constraint firstAttribute="bottom" secondItem="fHC-pb-1Zg" secondAttribute="bottom" constant="47" id="HBf-iz-M8B"/>
                                             <constraint firstAttribute="trailing" secondItem="GUX-1M-PuN" secondAttribute="trailing" constant="24" id="Huq-sm-7wj"/>
                                             <constraint firstItem="Mj6-MT-pph" firstAttribute="leading" secondItem="tnh-aU-eH6" secondAttribute="leading" constant="24" id="M5Z-rq-c6e"/>
                                             <constraint firstItem="O0a-Pa-ezE" firstAttribute="leading" secondItem="tnh-aU-eH6" secondAttribute="leading" constant="24" id="NB1-KE-1Oc"/>
@@ -706,7 +715,6 @@
                                             <constraint firstAttribute="trailing" secondItem="jdb-Hb-E9Z" secondAttribute="trailing" constant="24" id="W66-sy-X6U"/>
                                             <constraint firstItem="i4y-gO-sBK" firstAttribute="top" secondItem="O0a-Pa-ezE" secondAttribute="bottom" constant="10" id="WbT-4O-zoE"/>
                                             <constraint firstItem="Mj6-MT-pph" firstAttribute="top" secondItem="i4y-gO-sBK" secondAttribute="bottom" constant="24" id="aQ2-CD-5bF"/>
-                                            <constraint firstAttribute="bottom" secondItem="fHC-pb-1Zg" secondAttribute="bottom" constant="40" id="db2-xM-Ofs"/>
                                             <constraint firstItem="GUX-1M-PuN" firstAttribute="top" secondItem="ehb-FN-PgD" secondAttribute="bottom" constant="24" id="gSb-Ko-YrR"/>
                                             <constraint firstAttribute="trailing" secondItem="ehb-FN-PgD" secondAttribute="trailing" constant="24" id="iV5-3J-U0y"/>
                                             <constraint firstItem="fHC-pb-1Zg" firstAttribute="centerX" secondItem="tnh-aU-eH6" secondAttribute="centerX" id="ilg-by-0rw"/>
@@ -774,7 +782,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qnf-qk-EHV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2540" y="1668"/>
+            <point key="canvasLocation" x="2538.7850467289718" y="1667.818574514039"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="pu0-cO-cwD">
