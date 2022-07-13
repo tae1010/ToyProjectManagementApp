@@ -159,14 +159,11 @@ class DetailContentViewController: UIViewController {
                 self.startTimeStackView.transform = CGAffineTransform(translationX: 0, y: 0)
                 self.endTimeStackView.transform = CGAffineTransform(translationX: 0, y: 0)
                 self.buttonStackView.transform = CGAffineTransform(translationX: 0, y: 0)
-
+                
                 self.showColorDetailViewMode = .show
                 
             }
-            
         })
-
-
     }
     
     
@@ -199,7 +196,6 @@ class DetailContentViewController: UIViewController {
         self.yellowButton.alpha = color == "yellow" ? 1 : 0.2
     }
     
-    
     //detailColorContent 변경하기
     @IBAction func changeDetailColorContent(_ sender: UIButton) {
         
@@ -220,7 +216,6 @@ class DetailContentViewController: UIViewController {
         print("변경되었다")
     }
     
-    
     //userDefault 불러오기
     func loadUserDefault() {
         let userDefaults = UserDefaults.standard
@@ -234,12 +229,7 @@ class DetailContentViewController: UIViewController {
         self.detailOrangeTextField.text = colorContentDecoder?.orangeContent
         self.detailPurpleTextField.text = colorContentDecoder?.purpleContent
         self.detailYellowTextField.text = colorContentDecoder?.yellowContent
-        
-        print("이거 잘됐나?")
-        //TestSwitch.isOn =  UserDefaults.standard.bool(forKey: "switchState")
     }
-    
-    
     
     //날짜 정하기 설정
     @IBAction func UIDatePicker(_ sender: UIDatePicker) {
@@ -252,7 +242,6 @@ class DetailContentViewController: UIViewController {
             startTimeLabel.text = formatter.string(from: datePickerView.date)
         default:
             endTimeLabel.text = formatter.string(from: datePickerView.date)
-            
         }
     }
 
@@ -281,15 +270,6 @@ class DetailContentViewController: UIViewController {
             self.endTimeStackView.transform = CGAffineTransform(translationX: 0, y: -200)
             self.buttonStackView.transform = CGAffineTransform(translationX: 0, y: -200)
         }
-        
-//        self.cardColorDetailStackView.isHidden = true
-//        self.cardColorDetailStackView.translatesAutoresizingMaskIntoConstraints = false
-//        self.dateStackView.translatesAutoresizingMaskIntoConstraints = false
-//
-//        self.dateStackView.topAnchor.constraint(equalTo: cardColorStackView.bottomAnchor, constant: 24.0).isActive = true
-//        self.dateStackView.trailingAnchor.constraint(equalTo: self.detailView.trailingAnchor, constant: 24.0).isActive = true
-//        self.dateStackView.leadingAnchor.constraint(equalTo: self.detailView.leadingAnchor, constant: 24.0).isActive = true
-    
     }
     
     // cell 안에 내용 수정
