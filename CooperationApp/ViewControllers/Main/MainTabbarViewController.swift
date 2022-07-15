@@ -18,7 +18,7 @@ class MainTabbarViewController: UIViewController {
     var ref: DatabaseReference! = Database.database().reference()
     
     @IBOutlet weak var projectCollectionView: UICollectionView!
-        
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = true
@@ -34,25 +34,22 @@ class MainTabbarViewController: UIViewController {
         super.viewWillDisappear(true)
         self.projectList.removeAll()
     }
+    
     //프로젝트 collection 추가
     @IBAction func addProjectButtonTap(_ sender: UIButton) {
         //alert창 생성 textfield, ok/cancel 버튼
         let alert = UIAlertController(title: "프로젝트명", message: nil, preferredStyle: UIAlertController.Style.alert)
         
         let okAction = UIAlertAction(title: "만들기", style: .default, handler: { [weak self] _ in
-            guard let self = self,
-                  let title = alert.textFields?[0].text else { return }
+            guard let self = self, let title = alert.textFields?[0].text else { return }
             let id = UUID().uuidString
-            var emails = [String]()
             let email = self.emailToString(Auth.auth().currentUser?.email ?? "고객")
-            emails.append(email)
-            let project = Project(id: id, user: emails, projectTitle: title, important: false, currentTime: self.koreanDate())
+            let project = Project(id: id, projectTitle: title, important: false, currentTime: self.koreanDate())
             self.projectList.insert(project, at: 0)
             
             //firebase에 데이터 입력
             self.ref.child("\(email)/\(id)").updateChildValues(["important": false])
             self.ref.child("\(email)/\(id)").updateChildValues(["projectTitle": title])
-            self.ref.child("\(email)/\(id)").updateChildValues(["user": emails])
             self.ref.child("\(email)/\(id)").updateChildValues(["currentTime": self.koreanDate()!])
             self.ref.child("\(email)/\(id)/content/0/리스트 이름을 정해주세요/0").updateChildValues(["cardName": "카드를 추가해주세요", "color": "", "startTime": "", "endTime": ""])
             
@@ -127,20 +124,17 @@ extension MainTabbarViewController {
                 guard let val = val as? Dictionary<String, Any> else { return }
                 guard let projectTitle = val["projectTitle"] else { return }
                 guard let important = val["important"] else { return }
-                guard let users = val["user"] else { return }
                 guard let currentTime = val["currentTime"] else { return }
                 
-                let pro = Project(id: id, user: users as! [String], projectTitle: projectTitle as! String, important: important as! Bool, currentTime: currentTime as! Int)
-                print(pro)
+                let pro = Project(id: id, projectTitle: projectTitle as! String, important: important as! Bool, currentTime: currentTime as! Int)
+
                 self.projectList.append(pro)
             }
             //날짜 순서대로 정렬
             self.projectList = self.projectList.sorted(by: {$0.currentTime > $1.currentTime})
-            
-            print(self.projectList,"확인용")
+
             DispatchQueue.main.async {
                 self.projectCollectionView.reloadData()
-
             }
             
         }) { error in
@@ -166,6 +160,7 @@ extension MainTabbarViewController {
 }
 
 extension MainTabbarViewController: UICollectionViewDelegate {
+    //셀 클릭시 작용
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let email = self.emailToString(Auth.auth().currentUser?.email ?? "고객")
         
@@ -187,7 +182,7 @@ extension MainTabbarViewController: UICollectionViewDataSource {
         
         let project = projectList[indexPath.row]
         cell.projectTitleLabel.text = project.projectTitle
-        cell.userLabel.text = project.user.first
+        cell.userLabel.text = "일단 임시로 ㄱ"
         
         return cell
     }
@@ -202,7 +197,7 @@ extension MainTabbarViewController: UICollectionViewDelegateFlowLayout {
 extension MainTabbarViewController: SendButtonTagDelegate {
     func sendSender(index: Int, tag: Int) {
         let email = self.emailToString(Auth.auth().currentUser?.email ?? "고객")
-        var id = projectList[index].id
+        let id = projectList[index].id
         // tag1 : 정보보기, tag2 : 삭제하기
         if tag == 1 {
             print("정보보기 클릭", index ,tag)

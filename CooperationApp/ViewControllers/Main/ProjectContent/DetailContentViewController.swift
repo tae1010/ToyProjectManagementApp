@@ -34,13 +34,14 @@ class DetailContentViewController: UIViewController {
     var ref: DatabaseReference! = Database.database().reference()
     
     var detailColorContent = DetailColorContent()
+    var projectDetailContent = ProjectDetailContent()
     
     var content: String = ""
     var id: String = ""
     var index = 0
     var cardColor = ""
-    var timeSelectMode: TimeSelectMode = .startTime
-    var showColorDetailViewMode: ShowColorDetailViewMode = .notShow
+    var timeSelectMode: TimeSelectMode = .startTime // 처음에 시작시간을 입력할수 있게 하기
+    var showColorDetailViewMode: ShowColorDetailViewMode = .notShow // 처음에 color detail label 스택뷰는 안보이기
     var startTime: String = ""
     var endTime: String = ""
     weak var sendContentDelegate: SendContentDelegate?
@@ -116,7 +117,6 @@ class DetailContentViewController: UIViewController {
 //            self.endTimeLabel.backgroundColor = .white
 //            self.startTimeLabel.backgroundColor = .gray
         }
-        
     }
     
     //종료시간 stackview클릭시 발생

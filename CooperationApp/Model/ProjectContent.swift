@@ -8,7 +8,21 @@
 import Foundation
 
 struct ProjectContent {
-    var id: String // Project 구조체에 있는 id 저장
-    var countIndex: Int // 몇번째 배열인지 저장하는함수
-    var content: Dictionary<String, [String]> // title과 content들을 저장할 dictionary
+    var listTitle: String
+    var index: Int
+    var detailContent: [ProjectDetailContent] // cardName, color, startTime, endTime
+}
+
+struct ProjectDetailContent {
+    var cardName: String
+    var color: String
+    var startTime: String
+    var endTime: String
+
+    init(cardName: String, color: String, startTime: String, endTime: String) {
+        self.cardName = cardName
+        self.color = color
+        self.startTime = startTime
+        self.endTime = endTime
+    }
 }

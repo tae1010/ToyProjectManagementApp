@@ -7,6 +7,9 @@
 
 import Foundation
 
+// userDefault에 저장
+// cardColor 내용저장
+
 struct DetailColorContent: Codable {
     var blueContent: String?
     var greenContent: String?
