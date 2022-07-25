@@ -114,9 +114,11 @@ extension MainTabbarViewController {
     
     //db값을 읽어서 projectList에 db값을 넣어준 뒤 collectionview 업데이트 해주는 함수
     private func readDB() {
-        let email = self.emailToString(Auth.auth().currentUser?.email ?? "고객")
         
+        let email = self.emailToString(Auth.auth().currentUser?.email ?? "고객")
+
         ref.child(email).observeSingleEvent(of: .value, with: { snapshot in
+            print("이건되네")
           // Get user value
             guard let value = snapshot.value as? Dictionary<String, Any> else {return}
             for (key,val) in value {

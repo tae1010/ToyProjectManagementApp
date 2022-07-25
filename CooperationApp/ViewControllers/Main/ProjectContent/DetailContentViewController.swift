@@ -34,7 +34,7 @@ class DetailContentViewController: UIViewController {
     var ref: DatabaseReference! = Database.database().reference()
     
     var detailColorContent = DetailColorContent()
-    var projectDetailContent = ProjectDetailContent()
+    var projectDetailContent = ProjectDetailContent(cardName: "", color: "", startTime: "", endTime: "")
     
     var content: String = ""
     var id: String = ""

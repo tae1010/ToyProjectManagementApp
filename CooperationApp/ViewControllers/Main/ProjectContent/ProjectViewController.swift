@@ -16,13 +16,13 @@ enum Mode {
 }
 
 class ProjectViewController: UIViewController {
-    
-    var ref: DatabaseReference! = Database.database().reference()
-    
+
     var mode: Mode = .normal // 평상시 상태는 edit상태가 아니라 normal이므로 normal로 초기화
     
     var projectContent = [ProjectContent]() // projectContent 배열
     //var projectDetailContent = [ProjectDetailContent]() // project Detail Content 배열
+    
+    var ref: DatabaseReference!
 
     var email = "" //사용자 email을 저장할 변수
     var id: String = "" // 프로젝트의 uuid값을 받을 변수
@@ -42,9 +42,11 @@ class ProjectViewController: UIViewController {
     
     // MARK: - LifeCycle
     override func viewDidLoad() {
+        ref = Database.database().reference()
+
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        
+
         //collectionview cell 등록
         let tableViewNib = UINib(nibName: "ProjectContentCell", bundle: nil)
         self.tableView.register(tableViewNib, forCellReuseIdentifier: "ProjectContentCell")
@@ -55,10 +57,13 @@ class ProjectViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
+        
         print("viewwillappear실행")
         self.readDB()
         self.changeListName()
+        super.viewWillAppear(true)
+        print("....")
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -155,9 +160,6 @@ class ProjectViewController: UIViewController {
             //list 추가
             self.ref.child("\(self.email)/\(self.id)/content/\(self.projectContent.count)/\(content)/\(0)").updateChildValues(updateContent)
             
-            
-            
-
             let pc = ProjectContent(listTitle: content, index: self.projectContent.count, detailContent: [updateProjectDetailContent])
             
             self.projectContent[self.currentPage].detailContent.append(updateProjectDetailContent)
@@ -302,8 +304,6 @@ class ProjectViewController: UIViewController {
                     self.ref.child("\(email)/\(id)/content/\(currentPage)/\(self.currentTitle)/\(count)").setValue(detailContent)
                     count += 1
                 }
-
-                self.projectContent[self.currentPage].listTitle = self.content
             }
         default:
             // TODO animation
@@ -323,49 +323,65 @@ extension ProjectViewController {
     }
     
     private func readDB() {
-        
-        ref.child(self.email).child(id).child("content").observeSingleEvent(of: .value, with: { snapshot in
+        print("readDB접속")
+        self.ref.child("\(email)/\(id)/content").observeSingleEvent(of: .value, with: { snapshot in
             guard let value = snapshot.value as? [Dictionary<String, Any>] else { return }
-            var count = 0
             
-            for list in value {
-                var listName: String = "" // key값(list 이름)
-                
-                for (key, val) in list {
-                    guard let content = val as? [Dictionary<String, String>] else { return }
-                    var arrayProjectDetailContent = [ProjectDetailContent]()
-                    listName = key
-                    
-                    for i in content {
-                        guard let cardName = i["cardName"] else { return }
-                        guard let color = i["color"] else { return }
-                        guard let startTime = i["startTime"] else { return }
-                        guard let endTime = i["endTime"] else { return }
-                        
-                        let projectDetailContent = ProjectDetailContent(cardName: cardName, color: color, startTime: startTime, endTime: endTime)
-                        
-                        arrayProjectDetailContent.append(projectDetailContent)
-                    }
-                    count += 1
-                    
-                    let projectContent = ProjectContent(listTitle: listName, index: count, detailContent: arrayProjectDetailContent)
-                    self.projectContent.append(projectContent)
-                }
+            do {
+                let jsonData = try JSONSerialization.data(withJSONObject: value)
+                let projectContentData = try JSONDecoder().decode([String: String].self, from: jsonData)
+                let projectContentList = Array(projectContentData.values)
+                print(projectContentList,"잘된건가")
             }
-
-            DispatchQueue.main.async {
-                self.changeListName()
-                self.tableView.reloadData()
+            catch {
+                print("Error JSON Parsing \(error.localizedDescription)")
             }
-
-            print("readDB실행",self.projectContent)
-            
         }) { error in
-          print(error.localizedDescription)
+            print(error.localizedDescription)
         }
     }
     
-    /// content 배열 작성
+//    { snapshot in
+//        // Get user value
+//        print("fbdb접속 시작")
+//        guard let value = snapshot.value as? [Dictionary<String, Any>] else { return }
+//        var count = 0
+//        print("asdasdasd",value)
+//        for list in value {
+//            var listName: String = "" // key값(list 이름)
+//
+//            for (key, val) in list {
+//                guard let content = val as? [Dictionary<String, String>] else { return }
+//                var arrayProjectDetailContent = [ProjectDetailContent]()
+//                listName = key
+//
+//                for i in content {
+//                    print("이거됨?")
+//                    guard let cardName = i["cardName"] else { return }
+//                    guard let color = i["color"] else { return }
+//                    guard let startTime = i["startTime"] else { return }
+//                    guard let endTime = i["endTime"] else { return }
+//
+//                    let projectDetailContent = ProjectDetailContent(cardName: cardName, color: color, startTime: startTime, endTime: endTime)
+//
+//                    arrayProjectDetailContent.append(projectDetailContent)
+//                }
+//                count += 1
+//                print("허허",arrayProjectDetailContent)
+//                let projectContent = ProjectContent(listTitle: listName, index: count, detailContent: arrayProjectDetailContent)
+//                self.projectContent.append(projectContent)
+//            }
+//        }
+//        print(self.projectContent,"흠")
+//
+//        DispatchQueue.main.async {
+//            self.changeListName()
+//            //self.tableView.reloadData()
+//        }
+//        print("fbdb접속 끝")
+//    }
+    
+    /// listTitle 변경
     private func changeListName() {
         // projectContent의 intex가 currentPage와 같으면 currentTitle을 그 인덱스에 있는 listTitle로 변경
         if let index = self.projectContent.firstIndex(where: { $0.index == self.currentPage }) {
@@ -408,16 +424,17 @@ extension ProjectViewController: UITableViewDataSource {
         detailContentViewController.sendContentDelegate = self
         
         // currentpage에 있는 projectDetailContent 값을 전달
-        detailContentViewController.projectDetailContent = self.projectContent[currentPage].detailContent
-
-
+        detailContentViewController.projectDetailContent = self.projectContent[currentPage].detailContent[indexPath.row]
+        
         self.present(detailContentViewController, animated: true, completion: nil)
     }
     
     
     //content의 배열 인덱스 갯수 만큼 return
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.projectContent[self.currentPage].detailContent.count
+        print("")
+        print(self.projectContent.count,"과연 몇일까")
+        return self.projectContent.count
     }
     
     
@@ -460,6 +477,7 @@ extension ProjectViewController: UITableViewDataSource {
             }
             
         }
+        print("cell이 리턴됨")
         return cell
     }
     
@@ -505,7 +523,7 @@ extension ProjectViewController: UITableViewDataSource {
 extension ProjectViewController: MoveContentDelegate {
     func moveContentTapButton(cell: UITableViewCell, tag: Int) {
         guard let indexPath = self.tableView.indexPath(for: cell) else {return}
-        let title = self.projectContent[indexPath.row] // 선택한 cell의 내용
+        //let title = self.projectContent[indexPath.row] // 선택한 cell의 내용
         
         //projectContent[self.currentPage].detailContent[indexPath.row].color
         
