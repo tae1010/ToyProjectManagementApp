@@ -8,7 +8,6 @@
 import UIKit
 import FirebaseAuth
 import FirebaseDatabase
-import SideMenu
 
 class MainTabbarViewController: UIViewController {
     

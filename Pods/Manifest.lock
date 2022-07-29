@@ -738,7 +738,7 @@ PODS:
     - FirebasePhoneAuthUI (~> 11.0)
   - FirebaseUI/Storage (11.0.3):
     - FirebaseStorageUI (~> 11.0)
-  - GoogleDataTransport (9.1.4):
+  - GoogleDataTransport (9.2.0):
     - GoogleUtilities/Environment (~> 7.7)
     - nanopb (< 2.30910.0, >= 2.30908.0)
     - PromisesObjC (< 3.0, >= 1.2)
@@ -831,17 +831,15 @@ PODS:
   - nanopb/decode (2.30908.0)
   - nanopb/encode (2.30908.0)
   - PromisesObjC (2.1.1)
-  - SDWebImage (5.13.0):
-    - SDWebImage/Core (= 5.13.0)
-  - SDWebImage/Core (5.13.0)
-  - SideMenu (6.5.0)
+  - SDWebImage (5.13.2):
+    - SDWebImage/Core (= 5.13.2)
+  - SDWebImage/Core (5.13.2)
 
 DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Database (~> 8.0.0)
   - FirebaseUI
   - GoogleSignIn (~> 5.0.2)
-  - SideMenu
 
 SPEC REPOS:
   trunk:
@@ -882,7 +880,6 @@ SPEC REPOS:
     - nanopb
     - PromisesObjC
     - SDWebImage
-    - SideMenu
 
 SPEC CHECKSUMS:
   abseil: ebe5b5529fb05d93a8bdb7951607be08b7fa71bc
@@ -910,7 +907,7 @@ SPEC CHECKSUMS:
   FirebaseStorage: 8019af461599b2c3bc61c6a5dbdfa3d2de66a4d9
   FirebaseStorageUI: 8fa52fa81abf26a6d4c618c1a1915d1909050366
   FirebaseUI: d2777b3abcb3fa40ea9eea9e40db5a154df608d3
-  GoogleDataTransport: 5fffe35792f8b96ec8d6775f5eccd83c998d5a3b
+  GoogleDataTransport: 1c8145da7117bd68bbbed00cf304edb6a24de00f
   GoogleSignIn: 7137d297ddc022a7e0aa4619c86d72c909fa7213
   GoogleUtilities: e0913149f6b0625b553d70dae12b49fc62914fd1
   "gRPC-C++": 9675f953ace2b3de7c506039d77be1f2e77a8db2
@@ -921,9 +918,8 @@ SPEC CHECKSUMS:
   Libuv-gRPC: 55e51798e14ef436ad9bc45d12d43b77b49df378
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   PromisesObjC: ab77feca74fa2823e7af4249b8326368e61014cb
-  SDWebImage: 0327043dbb9533e75f2eff8445b3df0f2ceca6ac
-  SideMenu: f583187d21c5b1dd04c72002be544b555a2627a2
+  SDWebImage: 72f86271a6f3139cc7e4a89220946489d4b9a866
 
-PODFILE CHECKSUM: 6a2ef29b97682a57d47a2ce98932e8e3cd6c6bc4
+PODFILE CHECKSUM: 4eccb5cf0f8ec3d4329a30f7d3c7648d4d4caf18
 
 COCOAPODS: 1.11.3

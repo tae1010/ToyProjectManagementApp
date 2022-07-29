@@ -16,13 +16,13 @@ enum Mode {
 }
 
 class ProjectViewController: UIViewController {
-
+    
     var mode: Mode = .normal // 평상시 상태는 edit상태가 아니라 normal이므로 normal로 초기화
     
     var projectContent = [ProjectContent]() // projectContent 배열
     //var projectDetailContent = [ProjectDetailContent]() // project Detail Content 배열
     
-    var ref: DatabaseReference!
+    var ref: DatabaseReference! = Database.database().reference()
 
     var email = "" //사용자 email을 저장할 변수
     var id: String = "" // 프로젝트의 uuid값을 받을 변수
@@ -42,7 +42,6 @@ class ProjectViewController: UIViewController {
     
     // MARK: - LifeCycle
     override func viewDidLoad() {
-        ref = Database.database().reference()
 
         self.tableView.delegate = self
         self.tableView.dataSource = self
@@ -57,13 +56,9 @@ class ProjectViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
+        super.viewWillAppear(true)
         print("viewwillappear실행")
         self.readDB()
-        self.changeListName()
-        super.viewWillAppear(true)
-        print("....")
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -325,61 +320,34 @@ extension ProjectViewController {
     private func readDB() {
         print("readDB접속")
         self.ref.child("\(email)/\(id)/content").observeSingleEvent(of: .value, with: { snapshot in
-            guard let value = snapshot.value as? [Dictionary<String, Any>] else { return }
+            guard let value = snapshot.value as? [[String: Any]] else { return }
+            print(value,"흠")
             
-            do {
-                let jsonData = try JSONSerialization.data(withJSONObject: value)
-                let projectContentData = try JSONDecoder().decode([String: String].self, from: jsonData)
-                let projectContentList = Array(projectContentData.values)
-                print(projectContentList,"잘된건가")
+            for list in value {
+                var count = 0
+                for (key, val) in list {
+                    do {
+                        let jsonData = try JSONSerialization.data(withJSONObject: val)
+                        let projectContentData = try JSONDecoder().decode([ProjectDetailContent].self, from: jsonData)
+                        self.projectContent.append(ProjectContent(listTitle: key, index: count, detailContent: projectContentData))
+                        count += 1
+                    }
+                    catch {
+                        print("Error JSON Parsing \(error.localizedDescription)")
+                    }
+                }
             }
-            catch {
-                print("Error JSON Parsing \(error.localizedDescription)")
+            
+            DispatchQueue.main.async {
+                self.changeListName()
+                self.tableView.reloadData()
             }
+
         }) { error in
             print(error.localizedDescription)
         }
     }
-    
-//    { snapshot in
-//        // Get user value
-//        print("fbdb접속 시작")
-//        guard let value = snapshot.value as? [Dictionary<String, Any>] else { return }
-//        var count = 0
-//        print("asdasdasd",value)
-//        for list in value {
-//            var listName: String = "" // key값(list 이름)
-//
-//            for (key, val) in list {
-//                guard let content = val as? [Dictionary<String, String>] else { return }
-//                var arrayProjectDetailContent = [ProjectDetailContent]()
-//                listName = key
-//
-//                for i in content {
-//                    print("이거됨?")
-//                    guard let cardName = i["cardName"] else { return }
-//                    guard let color = i["color"] else { return }
-//                    guard let startTime = i["startTime"] else { return }
-//                    guard let endTime = i["endTime"] else { return }
-//
-//                    let projectDetailContent = ProjectDetailContent(cardName: cardName, color: color, startTime: startTime, endTime: endTime)
-//
-//                    arrayProjectDetailContent.append(projectDetailContent)
-//                }
-//                count += 1
-//                print("허허",arrayProjectDetailContent)
-//                let projectContent = ProjectContent(listTitle: listName, index: count, detailContent: arrayProjectDetailContent)
-//                self.projectContent.append(projectContent)
-//            }
-//        }
-//        print(self.projectContent,"흠")
-//
-//        DispatchQueue.main.async {
-//            self.changeListName()
-//            //self.tableView.reloadData()
-//        }
-//        print("fbdb접속 끝")
-//    }
+
     
     /// listTitle 변경
     private func changeListName() {
@@ -432,9 +400,7 @@ extension ProjectViewController: UITableViewDataSource {
     
     //content의 배열 인덱스 갯수 만큼 return
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("")
-        print(self.projectContent.count,"과연 몇일까")
-        return self.projectContent.count
+        if self.projectContent.isEmpty { return 0 } else { return self.projectContent[currentPage].detailContent.count }
     }
     
     
