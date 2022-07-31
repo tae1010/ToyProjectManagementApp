@@ -19,5 +19,4 @@ struct ProjectDetailContent: Codable {
     var color: String?
     var startTime: String?
     var endTime: String?
-
 }

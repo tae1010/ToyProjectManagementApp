@@ -153,11 +153,9 @@ class ProjectViewController: UIViewController {
             let updateProjectDetailContent = ProjectDetailContent(cardName: "카드를 추가해주세요", color: "", startTime: "", endTime: "")
             
             //list 추가
-            self.ref.child("\(self.email)/\(self.id)/content/\(self.projectContent.count - 1)/\(content)/\(0)").updateChildValues(updateContent)
+            self.ref.child("\(self.email)/\(self.id)/content/\(self.projectContent.count)/\(content)/\(0)").updateChildValues(updateContent)
             
             let pc = ProjectContent(listTitle: content, index: self.projectContent.count, detailContent: [updateProjectDetailContent])
-            
-            self.projectContent[self.currentPage].detailContent.append(updateProjectDetailContent)
             
             self.projectContent.append(pc)
             
@@ -470,11 +468,9 @@ extension ProjectViewController: UITableViewDataSource {
     }
     
     func deleteCell(_ index: Int) {
-        
-        // 배열과 db에서 삭제
+        // 배열에서 삭제
         self.projectContent[self.currentPage].detailContent.remove(at: index)
-        self.ref.child("\(email)/\(id)/content/\(currentPage)/\(self.currentTitle)/\(index)").removeValue()
-        
+        self.ref.child("\(email)/\(id)/content/\(currentPage)/\(self.currentTitle)").removeValue()
         //배열 중간값이 삭제될수 있기 떄문에 db배열을 갱신해줘야함
         var count = 0
         for i in self.projectContent[self.currentPage].detailContent {
@@ -484,6 +480,7 @@ extension ProjectViewController: UITableViewDataSource {
             let endTime = i.endTime
 
             let detailContent = ["cardName": cardName, "color": color, "startTime": startTime, "endTime": endTime]
+            
             self.ref.child("\(email)/\(id)/content/\(currentPage)/\(self.currentTitle)/\(count)").setValue(detailContent)
             count += 1
         }
@@ -495,26 +492,25 @@ extension ProjectViewController: UITableViewDataSource {
 extension ProjectViewController: MoveContentDelegate {
     func moveContentTapButton(cell: UITableViewCell, tag: Int) {
         guard let indexPath = self.tableView.indexPath(for: cell) else {return}
-        //let title = self.projectContent[indexPath.row] // 선택한 cell의 내용
-        
-        //projectContent[self.currentPage].detailContent[indexPath.row].color
-        
+        var count = 0
         //tag가 1이면 left버튼, 현재 페이지가 0이상일때만, detailContent의 내용이 2개 이상일때만(내용이 1개만 있으면 cell을 삭제할경우 빈배열이 되어 db에 저장이 되지않는다.),(오른쪽 버튼 누를때도 같음)
+        
         if tag == 1, currentPage > 0, self.projectContent[self.currentPage].detailContent.count > 1 {
             //현재 페이지의 content배열에서 삭제 -> projectcontent 배열에 저장 -> 바뀐 projectContent를 db에 저장
-            // 이동시킬 셀 내용 저장
-            let moveDetailContent = self.projectContent[self.currentPage].detailContent[indexPath.row]
-            var count = 0
-            self.projectContent[self.currentPage].detailContent.remove(at: indexPath.row)
             
+            let moveDetailContent: ProjectDetailContent = self.projectContent[self.currentPage].detailContent[indexPath.row] // 이동시킬 셀 내용
+            
+            self.projectContent[self.currentPage].detailContent.remove(at: indexPath.row)
+            self.ref.child("\(email)/\(id)/content/\(currentPage)/\(self.currentTitle)").removeValue()
+            print(count,"@@111111111111")
             for i in self.projectContent[self.currentPage].detailContent {
-                
-                let cardName = i.cardName
-                let color = i.color
-                let startTime = i.startTime
-                let endTime = i.endTime
-                
-                self.ref.child("\(email)/\(id)/content/\(currentPage)/\(currentTitle)/\(count)").updateChildValues(["cardName": cardName, "color": color, "startTime": startTime, "endTime": endTime])
+
+                let cardName = i.cardName ?? ""
+                let color = i.color ?? ""
+                let startTime = i.startTime ?? ""
+                let endTime = i.endTime ?? ""
+
+                self.ref.child("\(email)/\(id)/content/\(currentPage)/\(currentTitle)/\(count)").setValue(["cardName": cardName, "color": color, "startTime": startTime, "endTime": endTime])
                 count += 1
             }
             
@@ -523,36 +519,40 @@ extension ProjectViewController: MoveContentDelegate {
             self.changeListName()
             self.projectContent[self.currentPage].detailContent.insert(moveDetailContent, at: 0)
             self.tableView.reloadData()
+            count = 0
             
+            self.ref.child("\(email)/\(id)/content/\(currentPage)/\(self.currentTitle)").removeValue()
+            print(count,"@@2222222222")
             for i in self.projectContent[self.currentPage].detailContent {
                 
-                let cardName = i.cardName
-                let color = i.color
-                let startTime = i.startTime
-                let endTime = i.endTime
+                let cardName = i.cardName ?? ""
+                let color = i.color ?? ""
+                let startTime = i.startTime ?? ""
+                let endTime = i.endTime ?? ""
                 
-                self.ref.child("\(email)/\(id)/content/\(currentPage)/\(currentTitle)/\(count)").updateChildValues(["cardName": cardName, "color": color, "startTime": startTime, "endTime": endTime])
+                self.ref.child("\(email)/\(id)/content/\(currentPage)/\(currentTitle)/\(count)").setValue(["cardName": cardName, "color": color, "startTime": startTime, "endTime": endTime])
                 count += 1
             }
             
         }
         
-        //tag가 2이면 right버튼, 현재 페이지가 projectContent배열 갯수보다 작아야함
-        if tag == 2, self.projectContent[self.currentPage].detailContent.count - 1 > currentPage, self.projectContent[self.currentPage].detailContent.count > 1 {
+        //tag가 2이면 right버튼, 현재 페이지가 projectContent배열 갯수보다 작아야함, 페이지 갯수가 리스트 갯수를 넘으면 안됨
+        if tag == 2, self.projectContent[self.currentPage].detailContent.count > 1, self.projectContent.count - 1 > currentPage {
             
             //현재 페이지의 content배열, projectDetailContent배열에서 삭제 -> projectcontent 배열에 저장 -> 바뀐 내용을 db에 저장
             let moveDetailContent = self.projectContent[self.currentPage].detailContent[indexPath.row]
             var count = 0
             self.projectContent[self.currentPage].detailContent.remove(at: indexPath.row)
             
+            self.ref.child("\(email)/\(id)/content/\(currentPage)/\(self.currentTitle)").removeValue()
             for i in self.projectContent[self.currentPage].detailContent {
                 
-                let cardName = i.cardName
-                let color = i.color
-                let startTime = i.startTime
-                let endTime = i.endTime
+                let cardName = i.cardName ?? ""
+                let color = i.color ?? ""
+                let startTime = i.startTime ?? ""
+                let endTime = i.endTime ?? ""
                 
-                self.ref.child("\(email)/\(id)/content/\(currentPage)/\(currentTitle)/\(count)").updateChildValues(["cardName": cardName, "color": color, "startTime": startTime, "endTime": endTime])
+                self.ref.child("\(email)/\(id)/content/\(currentPage)/\(currentTitle)/\(count)").setValue(["cardName": cardName, "color": color, "startTime": startTime, "endTime": endTime])
                 count += 1
             }
             
@@ -561,14 +561,16 @@ extension ProjectViewController: MoveContentDelegate {
             self.projectContent[self.currentPage].detailContent.insert(moveDetailContent, at: 0)
             self.tableView.reloadData()
             
+            self.ref.child("\(email)/\(id)/content/\(currentPage)/\(self.currentTitle)").removeValue()
+            count = 0
             for i in self.projectContent[self.currentPage].detailContent {
                 
-                let cardName = i.cardName
-                let color = i.color
-                let startTime = i.startTime
-                let endTime = i.endTime
+                let cardName = i.cardName ?? ""
+                let color = i.color ?? ""
+                let startTime = i.startTime ?? ""
+                let endTime = i.endTime ?? ""
                 
-                self.ref.child("\(email)/\(id)/content/\(currentPage)/\(currentTitle)/\(count)").updateChildValues(["cardName": cardName, "color": color, "startTime": startTime, "endTime": endTime])
+                self.ref.child("\(email)/\(id)/content/\(currentPage)/\(currentTitle)/\(count)").setValue(["cardName": cardName, "color": color, "startTime": startTime, "endTime": endTime])
                 count += 1
             }
         }

@@ -31,7 +31,6 @@ class MainTabbarViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
-        self.projectList.removeAll()
     }
     
     //프로젝트 collection 추가
