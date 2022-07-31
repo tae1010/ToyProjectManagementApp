@@ -153,7 +153,7 @@ class ProjectViewController: UIViewController {
             let updateProjectDetailContent = ProjectDetailContent(cardName: "카드를 추가해주세요", color: "", startTime: "", endTime: "")
             
             //list 추가
-            self.ref.child("\(self.email)/\(self.id)/content/\(self.projectContent.count)/\(content)/\(0)").updateChildValues(updateContent)
+            self.ref.child("\(self.email)/\(self.id)/content/\(self.projectContent.count - 1)/\(content)/\(0)").updateChildValues(updateContent)
             
             let pc = ProjectContent(listTitle: content, index: self.projectContent.count, detailContent: [updateProjectDetailContent])
             
@@ -339,8 +339,8 @@ extension ProjectViewController {
             }
             
             DispatchQueue.main.async {
-                self.changeListName()
                 self.tableView.reloadData()
+                self.changeListName()
             }
 
         }) { error in
@@ -351,10 +351,13 @@ extension ProjectViewController {
     
     /// listTitle 변경
     private func changeListName() {
+        
+        self.currentTitle = self.projectContent[currentPage].listTitle
+        self.contentTitleLabel.text = currentTitle
         // projectContent의 intex가 currentPage와 같으면 currentTitle을 그 인덱스에 있는 listTitle로 변경
-        if let index = self.projectContent.firstIndex(where: { $0.index == self.currentPage }) {
-            self.currentTitle = self.projectContent[index].listTitle
-        }
+//        if let index = self.projectContent.firstIndex(where: { $0.index == self.currentPage }) {
+//             = self.projectContent[index].listTitle
+//        }
     }
     
     private func koreanDate() -> Int!{
@@ -393,6 +396,8 @@ extension ProjectViewController: UITableViewDataSource {
         
         // currentpage에 있는 projectDetailContent 값을 전달
         detailContentViewController.projectDetailContent = self.projectContent[currentPage].detailContent[indexPath.row]
+        detailContentViewController.index = indexPath.row
+        
         
         self.present(detailContentViewController, animated: true, completion: nil)
     }
@@ -417,22 +422,23 @@ extension ProjectViewController: UITableViewDataSource {
             case "orange": return UIColor.orange
             case "purple": return UIColor.purple
             case "yellow": return UIColor.yellow
-            default: return UIColor.black
+            default: return UIColor.lightGray
             }
         }()
 
         switch self.mode {
-            
+        // 편집모드가 아닐때
         case .normal:
+
             DispatchQueue.main.async {
                 cell.contentLabel.isHidden = false
                 cell.editModeStackView.isHidden = true
-                cell.cardColor.isHidden = false
+                cell.cardColor.isHidden = cardColor == UIColor.lightGray ? true : false
                 cell.contentLabel.text = self.projectContent[self.currentPage].detailContent[indexPath.row].cardName
                 cell.cardColor.backgroundColor = cardColor
             }
-//            self.content[content.count - indexPath.row - 1] = cell.contentTextView.text
             
+        // 편집모드 일때
         default:
             DispatchQueue.main.async {
                 cell.contentLabel.isHidden = true
@@ -579,6 +585,8 @@ extension ProjectViewController: SendContentDelegate {
         
         self.tableView.reloadRows(at: [[0,index]], with: .automatic) // 선택된 cell 갱신
         self.ref.child("\(email)/\(id)/content/\(currentPage)/\(currentTitle)/\(index)").updateChildValues(["cardName": name, "color": color, "startTime": startTime, "endTime": endTime])
+        
+        
     }
 }
 

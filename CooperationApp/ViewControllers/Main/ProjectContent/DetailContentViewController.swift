@@ -50,9 +50,9 @@ class DetailContentViewController: UIViewController {
     lazy var originConstraints = [
         dateStackView.topAnchor.constraint(equalTo: cardColorStackView.bottomAnchor, constant: 24),
     ]
-      lazy var updatedConstraints = [
+    lazy var updatedConstraints = [
         dateStackView.topAnchor.constraint(equalTo: cardColorDetailStackView.bottomAnchor, constant: 24),
-      ]
+    ]
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var detailView: UIView!
@@ -97,7 +97,8 @@ class DetailContentViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.changeCardColor(color: cardColor)
+        guard let color = self.projectDetailContent.color else { return }
+        self.changeCardColor(color: color)
         self.configureView()
         self.loadUserDefault()
         
@@ -248,10 +249,15 @@ class DetailContentViewController: UIViewController {
     // 화면 구성
     func configureView() {
         
+        if let color = self.projectDetailContent.color {
+            self.cardColor = color
+        }
+        
         DispatchQueue.main.async {
-            self.contentTextView.text = self.content
-            self.startTimeLabel.text = self.startTime
-            self.endTimeLabel.text = self.endTime
+            
+            self.contentTextView.text = self.projectDetailContent.cardName
+            self.startTimeLabel.text = self.projectDetailContent.startTime
+            self.endTimeLabel.text = self.projectDetailContent.endTime
             self.contentTextView.translatesAutoresizingMaskIntoConstraints = false //
             
             self.scrollView.contentSize.height = 800
