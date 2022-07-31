@@ -398,7 +398,7 @@
                                 <rect key="frame" x="0.0" y="44" width="428" height="922"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" restorationIdentifier="detailview" translatesAutoresizingMaskIntoConstraints="NO" id="tnh-aU-eH6">
-                                        <rect key="frame" x="0.0" y="0.0" width="428" height="1000"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="428" height="1003"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="카드 이름" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O0a-Pa-ezE">
                                                 <rect key="frame" x="24" y="24" width="63" height="20.333333333333329"/>
@@ -488,8 +488,8 @@
                                                     <constraint firstItem="FEv-qm-tpR" firstAttribute="leading" secondItem="Mj6-MT-pph" secondAttribute="leading" id="d4e-1T-UTg"/>
                                                 </constraints>
                                             </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="Pbe-II-0KM">
-                                                <rect key="frame" x="24" y="270" width="380" height="236"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="Pbe-II-0KM">
+                                                <rect key="frame" x="24" y="270" width="380" height="239"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="4A6-vo-96E">
                                                         <rect key="frame" x="0.0" y="0.0" width="380" height="34"/>
@@ -592,7 +592,7 @@
                                                         </constraints>
                                                     </stackView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QBY-rJ-A2s">
-                                                        <rect key="frame" x="0.0" y="205" width="380" height="31"/>
+                                                        <rect key="frame" x="0.0" y="205" width="380" height="34"/>
                                                         <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" title="변경하기"/>
@@ -603,7 +603,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ehb-FN-PgD">
-                                                <rect key="frame" x="24" y="759.33333333333337" width="380" height="50"/>
+                                                <rect key="frame" x="24" y="762.33333333333337" width="380" height="50"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="시작 시간" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zn4-Jl-Aqw">
                                                         <rect key="frame" x="0.0" y="0.0" width="380" height="21.666666666666668"/>
@@ -620,7 +620,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="GUX-1M-PuN">
-                                                <rect key="frame" x="24" y="833.33333333333337" width="380" height="48.666666666666629"/>
+                                                <rect key="frame" x="24" y="836.33333333333337" width="380" height="48.666666666666629"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="종료 시간" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3tX-sp-zEB">
                                                         <rect key="frame" x="0.0" y="0.0" width="380" height="20.333333333333332"/>
@@ -637,7 +637,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="fHC-pb-1Zg">
-                                                <rect key="frame" x="95" y="922" width="238" height="31"/>
+                                                <rect key="frame" x="95" y="925" width="238" height="31"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mnj-3L-6mX">
                                                         <rect key="frame" x="0.0" y="0.0" width="72.666666666666671" height="31"/>
@@ -671,7 +671,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="jdb-Hb-E9Z">
-                                                <rect key="frame" x="24" y="503.99999999999994" width="380" height="243.33333333333331"/>
+                                                <rect key="frame" x="24" y="510.99999999999994" width="380" height="243.33333333333331"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="날짜 정하기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZdM-ig-dP3">
                                                         <rect key="frame" x="0.0" y="0.0" width="380" height="20.333333333333332"/>
@@ -701,26 +701,27 @@
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstItem="jdb-Hb-E9Z" firstAttribute="leading" secondItem="tnh-aU-eH6" secondAttribute="leading" constant="24" id="42r-Dg-Kgu"/>
+                                            <constraint firstItem="ehb-FN-PgD" firstAttribute="top" secondItem="jdb-Hb-E9Z" secondAttribute="bottom" constant="8.0000000000001137" id="60d-7P-s6H"/>
                                             <constraint firstAttribute="trailing" secondItem="Mj6-MT-pph" secondAttribute="trailing" constant="24" id="8Ym-ia-NG0"/>
                                             <constraint firstItem="O0a-Pa-ezE" firstAttribute="top" secondItem="tnh-aU-eH6" secondAttribute="top" constant="24" id="EVw-1h-gPk"/>
                                             <constraint firstAttribute="bottom" secondItem="fHC-pb-1Zg" secondAttribute="bottom" constant="47" id="HBf-iz-M8B"/>
                                             <constraint firstAttribute="trailing" secondItem="GUX-1M-PuN" secondAttribute="trailing" constant="24" id="Huq-sm-7wj"/>
                                             <constraint firstItem="Mj6-MT-pph" firstAttribute="leading" secondItem="tnh-aU-eH6" secondAttribute="leading" constant="24" id="M5Z-rq-c6e"/>
                                             <constraint firstItem="O0a-Pa-ezE" firstAttribute="leading" secondItem="tnh-aU-eH6" secondAttribute="leading" constant="24" id="NB1-KE-1Oc"/>
+                                            <constraint firstItem="jdb-Hb-E9Z" firstAttribute="top" secondItem="Pbe-II-0KM" secondAttribute="bottom" constant="1.9999999999999432" id="NCD-Dz-mwz"/>
                                             <constraint firstItem="Pbe-II-0KM" firstAttribute="leading" secondItem="tnh-aU-eH6" secondAttribute="leading" constant="24" id="PFP-en-kgB"/>
                                             <constraint firstItem="GUX-1M-PuN" firstAttribute="leading" secondItem="tnh-aU-eH6" secondAttribute="leading" constant="24" id="QCj-4k-YzH"/>
                                             <constraint firstItem="i4y-gO-sBK" firstAttribute="leading" secondItem="O0a-Pa-ezE" secondAttribute="leading" id="SMh-iv-IVz"/>
                                             <constraint firstAttribute="trailing" secondItem="i4y-gO-sBK" secondAttribute="trailing" constant="24" id="Vyl-2D-bqH"/>
-                                            <constraint firstAttribute="trailing" secondItem="jdb-Hb-E9Z" secondAttribute="trailing" constant="24" id="W66-sy-X6U"/>
                                             <constraint firstItem="i4y-gO-sBK" firstAttribute="top" secondItem="O0a-Pa-ezE" secondAttribute="bottom" constant="10" id="WbT-4O-zoE"/>
+                                            <constraint firstItem="jdb-Hb-E9Z" firstAttribute="trailing" secondItem="Pbe-II-0KM" secondAttribute="trailing" id="ZlC-KF-W5k"/>
                                             <constraint firstItem="Mj6-MT-pph" firstAttribute="top" secondItem="i4y-gO-sBK" secondAttribute="bottom" constant="24" id="aQ2-CD-5bF"/>
+                                            <constraint firstItem="jdb-Hb-E9Z" firstAttribute="leading" secondItem="Pbe-II-0KM" secondAttribute="leading" id="eMd-rJ-B23"/>
+                                            <constraint firstAttribute="width" constant="428" id="gL5-p1-TER"/>
                                             <constraint firstItem="GUX-1M-PuN" firstAttribute="top" secondItem="ehb-FN-PgD" secondAttribute="bottom" constant="24" id="gSb-Ko-YrR"/>
                                             <constraint firstAttribute="trailing" secondItem="ehb-FN-PgD" secondAttribute="trailing" constant="24" id="iV5-3J-U0y"/>
                                             <constraint firstItem="fHC-pb-1Zg" firstAttribute="centerX" secondItem="tnh-aU-eH6" secondAttribute="centerX" id="ilg-by-0rw"/>
-                                            <constraint firstAttribute="height" constant="1000" id="nic-sw-sxZ"/>
                                             <constraint firstItem="ehb-FN-PgD" firstAttribute="leading" secondItem="tnh-aU-eH6" secondAttribute="leading" constant="24" id="ob8-bh-W5J"/>
-                                            <constraint firstItem="ehb-FN-PgD" firstAttribute="top" secondItem="jdb-Hb-E9Z" secondAttribute="bottom" constant="12" id="poz-DE-9VT"/>
                                             <constraint firstItem="fHC-pb-1Zg" firstAttribute="top" secondItem="GUX-1M-PuN" secondAttribute="bottom" constant="40" id="xpG-m9-sxh"/>
                                             <constraint firstAttribute="trailing" secondItem="Pbe-II-0KM" secondAttribute="trailing" constant="24" id="y6P-0Z-Dae"/>
                                             <constraint firstItem="Pbe-II-0KM" firstAttribute="top" secondItem="Mj6-MT-pph" secondAttribute="bottom" constant="24" id="zfH-0e-sk8"/>
@@ -734,8 +735,8 @@
                                     <constraint firstItem="tnh-aU-eH6" firstAttribute="trailing" secondItem="3Ah-Kb-xhU" secondAttribute="trailing" id="QGh-95-7wN"/>
                                     <constraint firstItem="tnh-aU-eH6" firstAttribute="top" secondItem="3Ah-Kb-xhU" secondAttribute="top" id="e9P-Oz-g93"/>
                                 </constraints>
-                                <viewLayoutGuide key="contentLayoutGuide" id="a18-Ta-8lT"/>
-                                <viewLayoutGuide key="frameLayoutGuide" id="u57-r8-hhN"/>
+                                <viewLayoutGuide key="contentLayoutGuide" id="0Qh-6x-5td"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="9sZ-F8-LDJ"/>
                             </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="tYn-UW-DaH"/>
