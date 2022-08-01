@@ -834,12 +834,14 @@ PODS:
   - SDWebImage (5.13.2):
     - SDWebImage/Core (= 5.13.2)
   - SDWebImage/Core (5.13.2)
+  - SideMenu (6.5.0)
 
 DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Database (~> 8.0.0)
   - FirebaseUI
   - GoogleSignIn (~> 5.0.2)
+  - SideMenu
 
 SPEC REPOS:
   trunk:
@@ -880,6 +882,7 @@ SPEC REPOS:
     - nanopb
     - PromisesObjC
     - SDWebImage
+    - SideMenu
 
 SPEC CHECKSUMS:
   abseil: ebe5b5529fb05d93a8bdb7951607be08b7fa71bc
@@ -919,7 +922,8 @@ SPEC CHECKSUMS:
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   PromisesObjC: ab77feca74fa2823e7af4249b8326368e61014cb
   SDWebImage: 72f86271a6f3139cc7e4a89220946489d4b9a866
+  SideMenu: f583187d21c5b1dd04c72002be544b555a2627a2
 
-PODFILE CHECKSUM: 4eccb5cf0f8ec3d4329a30f7d3c7648d4d4caf18
+PODFILE CHECKSUM: 6a2ef29b97682a57d47a2ce98932e8e3cd6c6bc4
 
 COCOAPODS: 1.11.3

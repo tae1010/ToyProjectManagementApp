@@ -9,6 +9,7 @@ target 'CooperationApp' do
   pod 'GoogleSignIn', '~> 5.0.2'
   pod 'FirebaseUI'
   pod 'Firebase/Database', '~> 8.0.0'
+  pod 'SideMenu'
   # Pods for CooperationApp
 
   post_install do |installer|

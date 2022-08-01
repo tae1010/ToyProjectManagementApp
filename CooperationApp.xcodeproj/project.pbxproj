@@ -23,6 +23,7 @@
 		935CBC862806A1C300759A24 /* MainTabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935CBC852806A1C300759A24 /* MainTabbarViewController.swift */; };
 		935CBC882806AD7900759A24 /* ProjectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935CBC872806AD7900759A24 /* ProjectCell.swift */; };
 		935CBC8E2806AE5100759A24 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935CBC8D2806AE5100759A24 /* Project.swift */; };
+		936F8E932897AF0700897316 /* ProjectContentSideMenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 936F8E922897AF0700897316 /* ProjectContentSideMenu.storyboard */; };
 		937CC55928002F1400F18553 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 937CC55828002F1400F18553 /* Main.storyboard */; };
 		937CC55B2800304400F18553 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937CC55A2800304400F18553 /* LoginViewController.swift */; };
 		937CC55D2800377600F18553 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937CC55C2800377600F18553 /* SignUpViewController.swift */; };
@@ -55,6 +56,7 @@
 		935CBC852806A1C300759A24 /* MainTabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabbarViewController.swift; sourceTree = "<group>"; };
 		935CBC872806AD7900759A24 /* ProjectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCell.swift; sourceTree = "<group>"; };
 		935CBC8D2806AE5100759A24 /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
+		936F8E922897AF0700897316 /* ProjectContentSideMenu.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProjectContentSideMenu.storyboard; sourceTree = "<group>"; };
 		937CC55828002F1400F18553 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		937CC55A2800304400F18553 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		937CC55C2800377600F18553 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				937CC55828002F1400F18553 /* Main.storyboard */,
+				936F8E922897AF0700897316 /* ProjectContentSideMenu.storyboard */,
 				93DEFA9327FAFF1700827C79 /* LaunchScreen.storyboard */,
 				9349948D2850905800AAD69B /* Popup */,
 				93DA8F84282FB0FB00217360 /* Cell */,
@@ -337,6 +340,7 @@
 				93DA8F83282FB0CD00217360 /* ProjectContentCell.xib in Resources */,
 				9340E47C2852050700338790 /* NanumGothic.otf in Resources */,
 				9333CC4B285CA310005C0262 /* ProjectInfoView.xib in Resources */,
+				936F8E932897AF0700897316 /* ProjectContentSideMenu.storyboard in Resources */,
 				937CC55928002F1400F18553 /* Main.storyboard in Resources */,
 				93285BEE2801887C00396083 /* GoogleService-Info.plist in Resources */,
 				93DEFA9527FAFF1700827C79 /* LaunchScreen.storyboard in Resources */,
