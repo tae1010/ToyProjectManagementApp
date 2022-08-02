@@ -8,6 +8,7 @@
 import UIKit
 import FirebaseAuth
 import FirebaseDatabase
+import SideMenu
 
 // cell편집모드(cell 내용 수정, cell 양옆(다른 currentPage로 이동))
 enum Mode {
@@ -302,6 +303,18 @@ class ProjectViewController: UIViewController {
             // TODO animation
             break
         }
+    }
+    @IBAction func showSideBar(_ sender: UIButton) {
+
+        let listTitle = self.projectContent.map({ $0.listTitle })
+        print(listTitle,"잘 안되나/?")
+        let projectContentSideMenu = UIStoryboard(name: "ProjectContentSideMenu", bundle: nil)
+        let projectSideBarViewController = projectContentSideMenu.instantiateViewController(withIdentifier: "ProjectSideBarViewController") as! ProjectSideBarViewController
+        let menu = CustomSideMenuNavigation(rootViewController: projectSideBarViewController)
+        
+        projectSideBarViewController.items = listTitle
+        present(menu, animated: true, completion: nil)
+        
     }
 }
 

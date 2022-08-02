@@ -24,6 +24,10 @@
 		935CBC882806AD7900759A24 /* ProjectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935CBC872806AD7900759A24 /* ProjectCell.swift */; };
 		935CBC8E2806AE5100759A24 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935CBC8D2806AE5100759A24 /* Project.swift */; };
 		936F8E932897AF0700897316 /* ProjectContentSideMenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 936F8E922897AF0700897316 /* ProjectContentSideMenu.storyboard */; };
+		936F8E952897B54C00897316 /* ProjectSideBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936F8E942897B54C00897316 /* ProjectSideBarViewController.swift */; };
+		936F8E972897B5E800897316 /* ProjectSideBarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936F8E962897B5E800897316 /* ProjectSideBarTableViewCell.swift */; };
+		936F8E992897BB8D00897316 /* ProjectContentSideBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 936F8E982897BB8D00897316 /* ProjectContentSideBar.xib */; };
+		936F8E9D2898F96700897316 /* CustomSideMenuNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936F8E9C2898F96700897316 /* CustomSideMenuNavigation.swift */; };
 		937CC55928002F1400F18553 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 937CC55828002F1400F18553 /* Main.storyboard */; };
 		937CC55B2800304400F18553 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937CC55A2800304400F18553 /* LoginViewController.swift */; };
 		937CC55D2800377600F18553 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937CC55C2800377600F18553 /* SignUpViewController.swift */; };
@@ -57,6 +61,10 @@
 		935CBC872806AD7900759A24 /* ProjectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCell.swift; sourceTree = "<group>"; };
 		935CBC8D2806AE5100759A24 /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
 		936F8E922897AF0700897316 /* ProjectContentSideMenu.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProjectContentSideMenu.storyboard; sourceTree = "<group>"; };
+		936F8E942897B54C00897316 /* ProjectSideBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectSideBarViewController.swift; sourceTree = "<group>"; };
+		936F8E962897B5E800897316 /* ProjectSideBarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectSideBarTableViewCell.swift; sourceTree = "<group>"; };
+		936F8E982897BB8D00897316 /* ProjectContentSideBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProjectContentSideBar.xib; sourceTree = "<group>"; };
+		936F8E9C2898F96700897316 /* CustomSideMenuNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSideMenuNavigation.swift; sourceTree = "<group>"; };
 		937CC55828002F1400F18553 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		937CC55A2800304400F18553 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		937CC55C2800377600F18553 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -218,6 +226,7 @@
 			isa = PBXGroup;
 			children = (
 				93DA8F82282FB0CD00217360 /* ProjectContentCell.xib */,
+				936F8E982897BB8D00897316 /* ProjectContentSideBar.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -263,6 +272,9 @@
 				93F8E4C0282BBE8800F888F0 /* ProjectViewController.swift */,
 				9340E46A2851D29D00338790 /* DetailContentViewController.swift */,
 				93DA8F85282FB16900217360 /* ProjectContentTableViewCell.swift */,
+				936F8E962897B5E800897316 /* ProjectSideBarTableViewCell.swift */,
+				936F8E942897B54C00897316 /* ProjectSideBarViewController.swift */,
+				936F8E9C2898F96700897316 /* CustomSideMenuNavigation.swift */,
 			);
 			path = ProjectContent;
 			sourceTree = "<group>";
@@ -338,6 +350,7 @@
 			files = (
 				9340E47D2852050700338790 /* NanumGothicBold.otf in Resources */,
 				93DA8F83282FB0CD00217360 /* ProjectContentCell.xib in Resources */,
+				936F8E992897BB8D00897316 /* ProjectContentSideBar.xib in Resources */,
 				9340E47C2852050700338790 /* NanumGothic.otf in Resources */,
 				9333CC4B285CA310005C0262 /* ProjectInfoView.xib in Resources */,
 				936F8E932897AF0700897316 /* ProjectContentSideMenu.storyboard in Resources */,
@@ -423,7 +436,9 @@
 				935CBC862806A1C300759A24 /* MainTabbarViewController.swift in Sources */,
 				93F8E4C1282BBE8800F888F0 /* ProjectViewController.swift in Sources */,
 				9353E3C1287D809700C63681 /* DetailColorContent.swift in Sources */,
+				936F8E952897B54C00897316 /* ProjectSideBarViewController.swift in Sources */,
 				9333CC49285C7173005C0262 /* ProjectPopupViewController.swift in Sources */,
+				936F8E972897B5E800897316 /* ProjectSideBarTableViewCell.swift in Sources */,
 				935CBC882806AD7900759A24 /* ProjectCell.swift in Sources */,
 				93DA8F88282FC1A200217360 /* ProjectContent.swift in Sources */,
 				93DEFA8827FAFF1600827C79 /* SceneDelegate.swift in Sources */,
@@ -433,6 +448,7 @@
 				935CBC8E2806AE5100759A24 /* Project.swift in Sources */,
 				937CC55D2800377600F18553 /* SignUpViewController.swift in Sources */,
 				9380D24A27FF1196000DC92E /* SecondTabbarViewController.swift in Sources */,
+				936F8E9D2898F96700897316 /* CustomSideMenuNavigation.swift in Sources */,
 				93DEFA9027FAFF1600827C79 /* CooperationApp.xcdatamodeld in Sources */,
 				9340E46B2851D29E00338790 /* DetailContentViewController.swift in Sources */,
 			);

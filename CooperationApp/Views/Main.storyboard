@@ -336,6 +336,15 @@
                                     <action selector="tabEditContentTitleButton:" destination="Kxy-rI-Dt4" eventType="touchUpInside" id="6MY-hf-dbu"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BZ4-kj-Mw7">
+                                <rect key="frame" x="223" y="53" width="67" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <connections>
+                                    <action selector="showSideBar:" destination="Kxy-rI-Dt4" eventType="touchUpInside" id="jXe-P9-2aH"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="r4T-PV-xgh"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
