@@ -29,6 +29,7 @@ class ProjectViewController: UIViewController {
     var id: String = "" // 프로젝트의 uuid값을 받을 변수
     var currentPage: Int = 0 // 현재 페이지
     var currentTitle: String = "이름없음" // 현제 페이지의 title
+    var projectTitle: String = ""
     
     @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var addCardButton: UIButton!
@@ -307,12 +308,18 @@ class ProjectViewController: UIViewController {
     @IBAction func showSideBar(_ sender: UIButton) {
 
         let listTitle = self.projectContent.map({ $0.listTitle })
-        print(listTitle,"잘 안되나/?")
+        
+        // sideMenu storyboard
         let projectContentSideMenu = UIStoryboard(name: "ProjectContentSideMenu", bundle: nil)
+        
+        // sideMenu viewController
         let projectSideBarViewController = projectContentSideMenu.instantiateViewController(withIdentifier: "ProjectSideBarViewController") as! ProjectSideBarViewController
+        
+        // sideMenu navigationController
         let menu = CustomSideMenuNavigation(rootViewController: projectSideBarViewController)
         
-        projectSideBarViewController.items = listTitle
+        projectSideBarViewController.listName = listTitle
+        projectSideBarViewController.projectTitle = self.projectTitle
         present(menu, animated: true, completion: nil)
         
     }

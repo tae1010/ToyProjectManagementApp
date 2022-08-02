@@ -166,6 +166,7 @@ extension MainTabbarViewController: UICollectionViewDelegate {
         guard let projectViewController = self.storyboard?.instantiateViewController(withIdentifier: "ProjectViewController") as? ProjectViewController else { return }
         projectViewController.email = email
         projectViewController.id = projectList[indexPath.row].id
+        projectViewController.projectTitle = projectList[indexPath.row].projectTitle
         projectViewController.modalPresentationStyle = .fullScreen
         self.present(projectViewController, animated: false, completion: nil)
     }

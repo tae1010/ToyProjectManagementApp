@@ -272,8 +272,8 @@
 				93F8E4C0282BBE8800F888F0 /* ProjectViewController.swift */,
 				9340E46A2851D29D00338790 /* DetailContentViewController.swift */,
 				93DA8F85282FB16900217360 /* ProjectContentTableViewCell.swift */,
-				936F8E962897B5E800897316 /* ProjectSideBarTableViewCell.swift */,
 				936F8E942897B54C00897316 /* ProjectSideBarViewController.swift */,
+				936F8E962897B5E800897316 /* ProjectSideBarTableViewCell.swift */,
 				936F8E9C2898F96700897316 /* CustomSideMenuNavigation.swift */,
 			);
 			path = ProjectContent;

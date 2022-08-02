@@ -9,15 +9,19 @@ import UIKit
 
 class ProjectSideBarViewController: UIViewController {
     
-    var items: [String] = ["1","2","3"]
-    var test: String = ""
+    var sectionHeader = [String]()
+    var listName = [String]()
+    var listFunc = ["리스트 추가"]
+    var projectTitle: String = ""
 
     @IBOutlet weak var sideBarTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(items,"아이템ㄱ")
-        print(test)
+        self.sectionHeader.append(projectTitle)
+        self.sectionHeader.append(" ")
+        self.navigationController?.isNavigationBarHidden = true
+        
         sideBarTableView.dataSource = self
         sideBarTableView.delegate = self
         let tableViewNib = UINib(nibName: "ProjectContentSideBar", bundle: nil)
@@ -33,13 +37,32 @@ extension ProjectSideBarViewController: UITableViewDelegate {
 extension ProjectSideBarViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return items.count
+        if section == 0 {
+            return listName.count
+        } else if section == 1 {
+            return listFunc.count
+        } else {
+            return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProjectContentSideBar", for: indexPath) as! ProjectSideBarTableViewCell
-        cell.sideBarList.text = items[indexPath.row]
-        return cell
         
+        if indexPath.section == 0 {
+            cell.sideBarList.text = listName[indexPath.row]
+        } else if indexPath.section == 1 {
+            cell.sideBarList.text = listFunc[indexPath.row]
+        }
+        
+        return cell
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return sectionHeader.count
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return sectionHeader[section]
     }
 }
