@@ -738,6 +738,7 @@ PODS:
     - FirebasePhoneAuthUI (~> 11.0)
   - FirebaseUI/Storage (11.0.3):
     - FirebaseStorageUI (~> 11.0)
+  - FSCalendar (2.8.4)
   - GoogleDataTransport (9.2.0):
     - GoogleUtilities/Environment (~> 7.7)
     - nanopb (< 2.30910.0, >= 2.30908.0)
@@ -840,6 +841,7 @@ DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Database (~> 8.0.0)
   - FirebaseUI
+  - FSCalendar
   - GoogleSignIn (~> 5.0.2)
   - SideMenu
 
@@ -870,6 +872,7 @@ SPEC REPOS:
     - FirebaseStorage
     - FirebaseStorageUI
     - FirebaseUI
+    - FSCalendar
     - GoogleDataTransport
     - GoogleSignIn
     - GoogleUtilities
@@ -910,6 +913,7 @@ SPEC CHECKSUMS:
   FirebaseStorage: 8019af461599b2c3bc61c6a5dbdfa3d2de66a4d9
   FirebaseStorageUI: 8fa52fa81abf26a6d4c618c1a1915d1909050366
   FirebaseUI: d2777b3abcb3fa40ea9eea9e40db5a154df608d3
+  FSCalendar: 2d1d0d9398f12d439f55c1fe0f01525b151b8260
   GoogleDataTransport: 1c8145da7117bd68bbbed00cf304edb6a24de00f
   GoogleSignIn: 7137d297ddc022a7e0aa4619c86d72c909fa7213
   GoogleUtilities: e0913149f6b0625b553d70dae12b49fc62914fd1
@@ -924,6 +928,6 @@ SPEC CHECKSUMS:
   SDWebImage: 72f86271a6f3139cc7e4a89220946489d4b9a866
   SideMenu: f583187d21c5b1dd04c72002be544b555a2627a2
 
-PODFILE CHECKSUM: 6a2ef29b97682a57d47a2ce98932e8e3cd6c6bc4
+PODFILE CHECKSUM: a76ba090de8dce5aab2c092eaab410b2ed3109ab
 
 COCOAPODS: 1.11.3

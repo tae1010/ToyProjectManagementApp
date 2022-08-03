@@ -4,12 +4,13 @@ platform :ios, '11.0'
 target 'CooperationApp' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
-  
   pod 'Firebase/Auth'
   pod 'GoogleSignIn', '~> 5.0.2'
   pod 'FirebaseUI'
   pod 'Firebase/Database', '~> 8.0.0'
   pod 'SideMenu'
+  pod 'FSCalendar'
+  
   # Pods for CooperationApp
 
   post_install do |installer|

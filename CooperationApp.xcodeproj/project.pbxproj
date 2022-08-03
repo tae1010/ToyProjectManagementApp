@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		930B2BDF28056CBD00CCB0EE /* Pods_CooperationApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0FB3D49C10786D1206783F4 /* Pods_CooperationApp.framework */; };
 		93285BEE2801887C00396083 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 93285BED2801887C00396083 /* GoogleService-Info.plist */; };
-		932EA506280EDA96001AC470 /* FirebaseDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932EA505280EDA96001AC470 /* FirebaseDB.swift */; };
 		9333CC47285C6B6F005C0262 /* projectCollectionViewPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9333CC46285C6B6E005C0262 /* projectCollectionViewPopup.xib */; };
 		9333CC49285C7173005C0262 /* ProjectPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9333CC48285C7173005C0262 /* ProjectPopupViewController.swift */; };
 		9333CC4B285CA310005C0262 /* ProjectInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9333CC4A285CA310005C0262 /* ProjectInfoView.xib */; };
@@ -46,7 +45,6 @@
 
 /* Begin PBXFileReference section */
 		93285BED2801887C00396083 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		932EA505280EDA96001AC470 /* FirebaseDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDB.swift; sourceTree = "<group>"; };
 		9333CC46285C6B6E005C0262 /* projectCollectionViewPopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = projectCollectionViewPopup.xib; sourceTree = "<group>"; };
 		9333CC48285C7173005C0262 /* ProjectPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectPopupViewController.swift; sourceTree = "<group>"; };
 		9333CC4A285CA310005C0262 /* ProjectInfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProjectInfoView.xib; sourceTree = "<group>"; };
@@ -148,14 +146,6 @@
 			path = Assets;
 			sourceTree = "<group>";
 		};
-		932EA504280EDA71001AC470 /* FirebaseDatabase */ = {
-			isa = PBXGroup;
-			children = (
-				932EA505280EDA96001AC470 /* FirebaseDB.swift */,
-			);
-			path = FirebaseDatabase;
-			sourceTree = "<group>";
-		};
 		9340E476285204E100338790 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -253,7 +243,6 @@
 			isa = PBXGroup;
 			children = (
 				9340E476285204E100338790 /* Fonts */,
-				932EA504280EDA71001AC470 /* FirebaseDatabase */,
 				935CBC8C2806AE3B00759A24 /* Model */,
 				9301D3082803513E0010191F /* Assets */,
 				9301D307280351200010191F /* AppDelegates */,
@@ -298,8 +287,8 @@
 				93DEFA7E27FAFF1600827C79 /* Sources */,
 				93DEFA7F27FAFF1600827C79 /* Frameworks */,
 				93DEFA8027FAFF1600827C79 /* Resources */,
-				F82BE88C426999667606CDAC /* [CP] Embed Pods Frameworks */,
-				526B9AAD38A9530D6588F127 /* [CP] Copy Pods Resources */,
+				2930CED67C220EAF36C66EE6 /* [CP] Embed Pods Frameworks */,
+				F5D42289CEA12C3AAACCD7A0 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -367,21 +356,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		526B9AAD38A9530D6588F127 /* [CP] Copy Pods Resources */ = {
+		2930CED67C220EAF36C66EE6 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CooperationApp/Pods-CooperationApp-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-CooperationApp/Pods-CooperationApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Copy Pods Resources";
+			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CooperationApp/Pods-CooperationApp-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-CooperationApp/Pods-CooperationApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CooperationApp/Pods-CooperationApp-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CooperationApp/Pods-CooperationApp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		5368219C207F4A025DF30B8B /* [CP] Check Pods Manifest.lock */ = {
@@ -406,21 +395,21 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		F82BE88C426999667606CDAC /* [CP] Embed Pods Frameworks */ = {
+		F5D42289CEA12C3AAACCD7A0 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CooperationApp/Pods-CooperationApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-CooperationApp/Pods-CooperationApp-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Embed Pods Frameworks";
+			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CooperationApp/Pods-CooperationApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-CooperationApp/Pods-CooperationApp-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CooperationApp/Pods-CooperationApp-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CooperationApp/Pods-CooperationApp-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -443,7 +432,6 @@
 				93DA8F88282FC1A200217360 /* ProjectContent.swift in Sources */,
 				93DEFA8827FAFF1600827C79 /* SceneDelegate.swift in Sources */,
 				9380D24C27FF13D9000DC92E /* ThirdTabbarViewController.swift in Sources */,
-				932EA506280EDA96001AC470 /* FirebaseDB.swift in Sources */,
 				93568B6A2805F14900A1B4B8 /* SignInViewController.swift in Sources */,
 				935CBC8E2806AE5100759A24 /* Project.swift in Sources */,
 				937CC55D2800377600F18553 /* SignUpViewController.swift in Sources */,
@@ -636,6 +624,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = Acho.CooperationApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
