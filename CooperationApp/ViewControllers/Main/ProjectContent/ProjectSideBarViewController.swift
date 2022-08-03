@@ -7,12 +7,19 @@
 
 import UIKit
 
+//sidebar에서 리스트 이름을 클릭하면 그페이지로 이동시키는 delegate
+protocol SendPageDelegate: AnyObject {
+    func sendPage(_ index: IndexPath)
+}
+
 class ProjectSideBarViewController: UIViewController {
     
     var sectionHeader = [String]()
     var listName = [String]()
     var listFunc = ["리스트 추가"]
     var projectTitle: String = ""
+    
+    weak var sendPageDelegate: SendPageDelegate?
 
     @IBOutlet weak var sideBarTableView: UITableView!
     
@@ -26,6 +33,8 @@ class ProjectSideBarViewController: UIViewController {
         sideBarTableView.delegate = self
         let tableViewNib = UINib(nibName: "ProjectContentSideBar", bundle: nil)
         self.sideBarTableView.register(tableViewNib, forCellReuseIdentifier: "ProjectContentSideBar")
+        
+        
     }
 
 }
@@ -64,5 +73,11 @@ extension ProjectSideBarViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return sectionHeader[section]
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.sendPageDelegate?.sendPage(indexPath)
+        print(indexPath,"됐다")
+        dismiss(animated: true)
     }
 }

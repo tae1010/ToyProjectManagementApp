@@ -305,6 +305,7 @@ class ProjectViewController: UIViewController {
             break
         }
     }
+    
     @IBAction func showSideBar(_ sender: UIButton) {
 
         let listTitle = self.projectContent.map({ $0.listTitle })
@@ -317,6 +318,7 @@ class ProjectViewController: UIViewController {
         
         // sideMenu navigationController
         let menu = CustomSideMenuNavigation(rootViewController: projectSideBarViewController)
+        projectSideBarViewController.sendPageDelegate = self
         
         projectSideBarViewController.listName = listTitle
         projectSideBarViewController.projectTitle = self.projectTitle
@@ -620,5 +622,41 @@ extension ProjectViewController: DeleteCellDelegate {
         DispatchQueue.main.async {
             self.tableView.deleteRows(at: [index], with: .automatic)
         }
+    }
+}
+
+extension ProjectViewController: SendPageDelegate {
+    func sendPage(_ index: IndexPath) {
+        self.currentPage = index.row
+        print(index.row,"?????")
+        print(currentPage)
+        print(projectContent[index.row].detailContent,"?")
+        
+        DispatchQueue.main.async {
+            print("이거 안됨??")
+            self.changeListName()
+            self.tableView.reloadData()
+        }
+    }
+}
+
+
+extension ProjectViewController: SideMenuNavigationControllerDelegate {
+    
+    
+
+    func sideMenuWillAppear(menu: SideMenuNavigationController, animated: Bool) {
+        print("willAppear")
+    }
+
+    func sideMenuDidAppear(menu: SideMenuNavigationController, animated: Bool) {
+
+    }
+
+    func sideMenuWillDisappear(menu: SideMenuNavigationController, animated: Bool) {
+    }
+
+    func sideMenuDidDisappear(menu: SideMenuNavigationController, animated: Bool) {
+
     }
 }

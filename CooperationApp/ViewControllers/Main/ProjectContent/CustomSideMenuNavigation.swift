@@ -23,7 +23,7 @@ class CustomSideMenuNavigation: SideMenuNavigationController {
         //뒤에 배경 alpha값 설정
         self.presentationStyle.presentingEndAlpha = 0.7
         
-        //self.statusBarEndAlpha = 0.0
+//        self.statusBarEndAlpha = 0.0
 //        self.menuWidth = (UIScreen.main.bounds.width / 5) * 4
     }
     
