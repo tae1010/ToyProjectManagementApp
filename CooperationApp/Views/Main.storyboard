@@ -941,22 +941,6 @@
             </objects>
             <point key="canvasLocation" x="3561" y="858"/>
         </scene>
-        <!--Second Tabbar View Controller-->
-        <scene sceneID="hdV-FV-eYH">
-            <objects>
-                <viewController storyboardIdentifier="SecondTabbarViewController" id="2SE-Y1-NfJ" customClass="SecondTabbarViewController" customModule="CooperationApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="nP6-ce-zdy">
-                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="pRj-hd-ngu"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="" image="message" catalog="system" selectedImage="message.fill" id="LJp-IY-7vB"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hwu-o7-zXd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2577" y="858"/>
-        </scene>
         <!--Main Tabbar View Controller-->
         <scene sceneID="ueE-Gr-mSl">
             <objects>
@@ -1067,6 +1051,16 @@
             </objects>
             <point key="canvasLocation" x="1657.9710144927537" y="857.8125"/>
         </scene>
+        <!--SecondTabbarViewController-->
+        <scene sceneID="qZS-Um-Mxh">
+            <objects>
+                <viewControllerPlaceholder storyboardName="SecondTabbar" referencedIdentifier="SecondTabbarViewController" id="cc3-IU-vCG" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="calendar" catalog="system" selectedImage="calendar" id="vHN-Fv-nvx"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XLj-Us-MdU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2584" y="779"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Vk3-Xo-CxF">
             <objects>
@@ -1082,8 +1076,8 @@
                     </tabBar>
                     <connections>
                         <segue destination="UAM-km-w7Y" kind="relationship" relationship="viewControllers" id="NCS-70-0xJ"/>
-                        <segue destination="2SE-Y1-NfJ" kind="relationship" relationship="viewControllers" id="icT-lQ-zwc"/>
                         <segue destination="nbL-Mq-rke" kind="relationship" relationship="viewControllers" id="Olv-Jh-Cjb"/>
+                        <segue destination="cc3-IU-vCG" kind="relationship" relationship="viewControllers" id="fdr-gj-hLY"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1cG-Tq-jHf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1096,13 +1090,12 @@
         <image name="arrowshape.turn.up.left.fill" catalog="system" width="128" height="106"/>
         <image name="arrowshape.turn.up.right.fill" catalog="system" width="128" height="106"/>
         <image name="blue_circle" width="42.666667938232422" height="42.666667938232422"/>
+        <image name="calendar" catalog="system" width="128" height="106"/>
         <image name="chevron.backward" catalog="system" width="96" height="128"/>
         <image name="green_circle" width="42.666667938232422" height="42.666667938232422"/>
         <image name="list.bullet.rectangle.portrait" catalog="system" width="115" height="128"/>
         <image name="logo" width="570" height="252"/>
         <image name="logo_google" width="33.333332061767578" height="33.333332061767578"/>
-        <image name="message" catalog="system" width="128" height="113"/>
-        <image name="message.fill" catalog="system" width="128" height="113"/>
         <image name="orange_circle" width="42.666667938232422" height="42.666667938232422"/>
         <image name="pencil" catalog="system" width="128" height="113"/>
         <image name="person" catalog="system" width="128" height="117"/>

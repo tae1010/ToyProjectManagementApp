@@ -17,6 +17,7 @@
 		9340E47C2852050700338790 /* NanumGothic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9340E4782852050700338790 /* NanumGothic.otf */; };
 		9340E47D2852050700338790 /* NanumGothicBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9340E4792852050700338790 /* NanumGothicBold.otf */; };
 		9340E47E2852050700338790 /* NanumGothicLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9340E47A2852050700338790 /* NanumGothicLight.otf */; };
+		935145EF289D2057009B1DEF /* projectDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935145EE289D2057009B1DEF /* projectDate.swift */; };
 		9353E3C1287D809700C63681 /* DetailColorContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9353E3C0287D809700C63681 /* DetailColorContent.swift */; };
 		93568B6A2805F14900A1B4B8 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93568B692805F14900A1B4B8 /* SignInViewController.swift */; };
 		935CBC862806A1C300759A24 /* MainTabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935CBC852806A1C300759A24 /* MainTabbarViewController.swift */; };
@@ -32,6 +33,7 @@
 		937CC55D2800377600F18553 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937CC55C2800377600F18553 /* SignUpViewController.swift */; };
 		9380D24A27FF1196000DC92E /* SecondTabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9380D24927FF1195000DC92E /* SecondTabbarViewController.swift */; };
 		9380D24C27FF13D9000DC92E /* ThirdTabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9380D24B27FF13D9000DC92E /* ThirdTabbarViewController.swift */; };
+		93C1C5DC289A8F1B00B4D5EE /* SecondTabbar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93C1C5DB289A8F1B00B4D5EE /* SecondTabbar.storyboard */; };
 		93DA8F83282FB0CD00217360 /* ProjectContentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93DA8F82282FB0CD00217360 /* ProjectContentCell.xib */; };
 		93DA8F86282FB16900217360 /* ProjectContentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DA8F85282FB16900217360 /* ProjectContentTableViewCell.swift */; };
 		93DA8F88282FC1A200217360 /* ProjectContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DA8F87282FC1A200217360 /* ProjectContent.swift */; };
@@ -53,6 +55,7 @@
 		9340E4782852050700338790 /* NanumGothic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumGothic.otf; sourceTree = "<group>"; };
 		9340E4792852050700338790 /* NanumGothicBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumGothicBold.otf; sourceTree = "<group>"; };
 		9340E47A2852050700338790 /* NanumGothicLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumGothicLight.otf; sourceTree = "<group>"; };
+		935145EE289D2057009B1DEF /* projectDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = projectDate.swift; sourceTree = "<group>"; };
 		9353E3C0287D809700C63681 /* DetailColorContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailColorContent.swift; sourceTree = "<group>"; };
 		93568B692805F14900A1B4B8 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		935CBC852806A1C300759A24 /* MainTabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabbarViewController.swift; sourceTree = "<group>"; };
@@ -68,6 +71,7 @@
 		937CC55C2800377600F18553 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		9380D24927FF1195000DC92E /* SecondTabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondTabbarViewController.swift; sourceTree = "<group>"; };
 		9380D24B27FF13D9000DC92E /* ThirdTabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdTabbarViewController.swift; sourceTree = "<group>"; };
+		93C1C5DB289A8F1B00B4D5EE /* SecondTabbar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SecondTabbar.storyboard; sourceTree = "<group>"; };
 		93DA8F82282FB0CD00217360 /* ProjectContentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProjectContentCell.xib; sourceTree = "<group>"; };
 		93DA8F85282FB16900217360 /* ProjectContentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectContentTableViewCell.swift; sourceTree = "<group>"; };
 		93DA8F87282FC1A200217360 /* ProjectContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectContent.swift; sourceTree = "<group>"; };
@@ -111,9 +115,10 @@
 				937CC55828002F1400F18553 /* Main.storyboard */,
 				936F8E922897AF0700897316 /* ProjectContentSideMenu.storyboard */,
 				93DEFA9327FAFF1700827C79 /* LaunchScreen.storyboard */,
+				93C1C5DB289A8F1B00B4D5EE /* SecondTabbar.storyboard */,
+				9333CC4A285CA310005C0262 /* ProjectInfoView.xib */,
 				9349948D2850905800AAD69B /* Popup */,
 				93DA8F84282FB0FB00217360 /* Cell */,
-				9333CC4A285CA310005C0262 /* ProjectInfoView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -197,6 +202,7 @@
 			children = (
 				935CBC8D2806AE5100759A24 /* Project.swift */,
 				93DA8F87282FC1A200217360 /* ProjectContent.swift */,
+				935145EE289D2057009B1DEF /* projectDate.swift */,
 				9353E3C0287D809700C63681 /* DetailColorContent.swift */,
 			);
 			path = Model;
@@ -347,6 +353,7 @@
 				93285BEE2801887C00396083 /* GoogleService-Info.plist in Resources */,
 				93DEFA9527FAFF1700827C79 /* LaunchScreen.storyboard in Resources */,
 				93DEFA9227FAFF1700827C79 /* Assets.xcassets in Resources */,
+				93C1C5DC289A8F1B00B4D5EE /* SecondTabbar.storyboard in Resources */,
 				9333CC47285C6B6F005C0262 /* projectCollectionViewPopup.xib in Resources */,
 				9340E47B2852050700338790 /* NanumGothicExtraBold.otf in Resources */,
 				9340E47E2852050700338790 /* NanumGothicLight.otf in Resources */,
@@ -435,6 +442,7 @@
 				93568B6A2805F14900A1B4B8 /* SignInViewController.swift in Sources */,
 				935CBC8E2806AE5100759A24 /* Project.swift in Sources */,
 				937CC55D2800377600F18553 /* SignUpViewController.swift in Sources */,
+				935145EF289D2057009B1DEF /* projectDate.swift in Sources */,
 				9380D24A27FF1196000DC92E /* SecondTabbarViewController.swift in Sources */,
 				936F8E9D2898F96700897316 /* CustomSideMenuNavigation.swift in Sources */,
 				93DEFA9027FAFF1600827C79 /* CooperationApp.xcdatamodeld in Sources */,
