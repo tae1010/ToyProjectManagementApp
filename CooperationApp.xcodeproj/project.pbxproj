@@ -18,6 +18,8 @@
 		9340E47D2852050700338790 /* NanumGothicBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9340E4792852050700338790 /* NanumGothicBold.otf */; };
 		9340E47E2852050700338790 /* NanumGothicLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9340E47A2852050700338790 /* NanumGothicLight.otf */; };
 		935145EF289D2057009B1DEF /* projectDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935145EE289D2057009B1DEF /* projectDate.swift */; };
+		935145F128A1213C009B1DEF /* DateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 935145F028A1213C009B1DEF /* DateCell.xib */; };
+		935145F328A1222F009B1DEF /* DateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935145F228A1222F009B1DEF /* DateCollectionViewCell.swift */; };
 		9353E3C1287D809700C63681 /* DetailColorContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9353E3C0287D809700C63681 /* DetailColorContent.swift */; };
 		93568B6A2805F14900A1B4B8 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93568B692805F14900A1B4B8 /* SignInViewController.swift */; };
 		935CBC862806A1C300759A24 /* MainTabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935CBC852806A1C300759A24 /* MainTabbarViewController.swift */; };
@@ -56,6 +58,8 @@
 		9340E4792852050700338790 /* NanumGothicBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumGothicBold.otf; sourceTree = "<group>"; };
 		9340E47A2852050700338790 /* NanumGothicLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumGothicLight.otf; sourceTree = "<group>"; };
 		935145EE289D2057009B1DEF /* projectDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = projectDate.swift; sourceTree = "<group>"; };
+		935145F028A1213C009B1DEF /* DateCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DateCell.xib; sourceTree = "<group>"; };
+		935145F228A1222F009B1DEF /* DateCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCollectionViewCell.swift; sourceTree = "<group>"; };
 		9353E3C0287D809700C63681 /* DetailColorContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailColorContent.swift; sourceTree = "<group>"; };
 		93568B692805F14900A1B4B8 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		935CBC852806A1C300759A24 /* MainTabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabbarViewController.swift; sourceTree = "<group>"; };
@@ -116,7 +120,6 @@
 				936F8E922897AF0700897316 /* ProjectContentSideMenu.storyboard */,
 				93DEFA9327FAFF1700827C79 /* LaunchScreen.storyboard */,
 				93C1C5DB289A8F1B00B4D5EE /* SecondTabbar.storyboard */,
-				9333CC4A285CA310005C0262 /* ProjectInfoView.xib */,
 				9349948D2850905800AAD69B /* Popup */,
 				93DA8F84282FB0FB00217360 /* Cell */,
 			);
@@ -166,6 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				9333CC46285C6B6E005C0262 /* projectCollectionViewPopup.xib */,
+				9333CC4A285CA310005C0262 /* ProjectInfoView.xib */,
 			);
 			path = Popup;
 			sourceTree = "<group>";
@@ -185,6 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				9380D24927FF1195000DC92E /* SecondTabbarViewController.swift */,
+				935145F228A1222F009B1DEF /* DateCollectionViewCell.swift */,
 			);
 			path = Second;
 			sourceTree = "<group>";
@@ -223,6 +228,7 @@
 			children = (
 				93DA8F82282FB0CD00217360 /* ProjectContentCell.xib */,
 				936F8E982897BB8D00897316 /* ProjectContentSideBar.xib */,
+				935145F028A1213C009B1DEF /* DateCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -352,6 +358,7 @@
 				937CC55928002F1400F18553 /* Main.storyboard in Resources */,
 				93285BEE2801887C00396083 /* GoogleService-Info.plist in Resources */,
 				93DEFA9527FAFF1700827C79 /* LaunchScreen.storyboard in Resources */,
+				935145F128A1213C009B1DEF /* DateCell.xib in Resources */,
 				93DEFA9227FAFF1700827C79 /* Assets.xcassets in Resources */,
 				93C1C5DC289A8F1B00B4D5EE /* SecondTabbar.storyboard in Resources */,
 				9333CC47285C6B6F005C0262 /* projectCollectionViewPopup.xib in Resources */,
@@ -438,6 +445,7 @@
 				935CBC882806AD7900759A24 /* ProjectCell.swift in Sources */,
 				93DA8F88282FC1A200217360 /* ProjectContent.swift in Sources */,
 				93DEFA8827FAFF1600827C79 /* SceneDelegate.swift in Sources */,
+				935145F328A1222F009B1DEF /* DateCollectionViewCell.swift in Sources */,
 				9380D24C27FF13D9000DC92E /* ThirdTabbarViewController.swift in Sources */,
 				93568B6A2805F14900A1B4B8 /* SignInViewController.swift in Sources */,
 				935CBC8E2806AE5100759A24 /* Project.swift in Sources */,
