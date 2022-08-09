@@ -9,4 +9,15 @@ import UIKit
 
 class DateCollectionViewCell: UICollectionViewCell {
     
+    @IBOutlet weak var dateLabel: UILabel!
+    var dateString: String?
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        if let dateString = dateString {
+            dateLabel.text = dateString
+        }
+        
+    }
+
 }
