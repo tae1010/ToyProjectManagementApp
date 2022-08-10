@@ -9,15 +9,25 @@ import UIKit
 
 class DateCollectionViewCell: UICollectionViewCell {
     
+    @IBOutlet weak var cellBackground: UIView!
     @IBOutlet weak var dateLabel: UILabel!
-    var dateString: String?
+    var check: Bool = true
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        if let dateString = dateString {
-            dateLabel.text = dateString
-        }
-        
     }
+
+    // cell에 날짜 UI 설정
+    func update(day: String?) {
+        guard let day = day else { return }
+        self.dateLabel.text = day
+        self.dateLabel.font = UIFont.boldSystemFont(ofSize: 14)
+    }
+    
+    
 
 }

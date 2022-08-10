@@ -17,40 +17,30 @@
                 <rect key="frame" x="0.0" y="0.0" width="262" height="191"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qcX-MT-fmn">
-                        <rect key="frame" x="0.0" y="0.0" width="262" height="191"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eAn-4m-nWJ">
-                                <rect key="frame" x="110" y="85" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="eAn-4m-nWJ" firstAttribute="centerY" secondItem="qcX-MT-fmn" secondAttribute="centerY" id="10M-79-Vvw"/>
-                            <constraint firstItem="eAn-4m-nWJ" firstAttribute="centerX" secondItem="qcX-MT-fmn" secondAttribute="centerX" id="Trn-kE-FPh"/>
-                        </constraints>
-                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eAn-4m-nWJ">
+                        <rect key="frame" x="110" y="85" width="42" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
+                <color key="backgroundColor" systemColor="systemCyanColor"/>
                 <constraints>
-                    <constraint firstItem="qcX-MT-fmn" firstAttribute="top" secondItem="jdw-rT-G6M" secondAttribute="top" id="Pjq-U6-YqV"/>
-                    <constraint firstAttribute="bottom" secondItem="qcX-MT-fmn" secondAttribute="bottom" id="S0l-hA-soK"/>
-                    <constraint firstItem="qcX-MT-fmn" firstAttribute="leading" secondItem="jdw-rT-G6M" secondAttribute="leading" id="fto-nj-1D2"/>
-                    <constraint firstAttribute="trailing" secondItem="qcX-MT-fmn" secondAttribute="trailing" id="xlH-Fu-rEx"/>
+                    <constraint firstItem="eAn-4m-nWJ" firstAttribute="centerY" secondItem="jdw-rT-G6M" secondAttribute="centerY" id="FWe-ud-7dm"/>
+                    <constraint firstItem="eAn-4m-nWJ" firstAttribute="centerX" secondItem="jdw-rT-G6M" secondAttribute="centerX" id="cR4-Zu-VeM"/>
                 </constraints>
             </collectionViewCellContentView>
             <size key="customSize" width="262" height="191"/>
             <connections>
+                <outlet property="cellBackground" destination="jdw-rT-G6M" id="t46-da-9oq"/>
                 <outlet property="dateLabel" destination="eAn-4m-nWJ" id="kZo-yb-qh7"/>
             </connections>
             <point key="canvasLocation" x="249" y="156"/>
         </collectionViewCell>
     </objects>
     <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        <systemColor name="systemCyanColor">
+            <color red="0.19607843137254902" green="0.67843137254901964" blue="0.90196078431372551" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
