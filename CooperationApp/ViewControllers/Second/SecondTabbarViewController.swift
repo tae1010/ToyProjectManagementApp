@@ -116,10 +116,10 @@ class SecondTabbarViewController: UIViewController {
         //형태 변환
         formatter.dateFormat = "yyyyMMdd"
         guard let currentDate = Int(formatter.string(from: current)) else { return 1 }
-        self.dateLabeltext = date
         
-        print(date,"date")
-        //날짜 day만(일) 따로 구하기
+        // 현재 날짜의 date를 따로 저장
+        self.dateLabeltext = date
+        // 날짜 day만(일) 따로 구하기
         self.dayDate = String(String(currentDate).dropFirst(6))
         
         return currentDate
@@ -171,7 +171,13 @@ class SecondTabbarViewController: UIViewController {
 
 extension SecondTabbarViewController: UICollectionViewDelegate {
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) -> UICollectionViewCell{
 //
+//        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DateCell", for: indexPath) as? DateCollectionViewCell
+//
+//        cell.cellBackground
+//        print(indexPath.row)
+//    }
     
 }
 
@@ -189,30 +195,17 @@ extension SecondTabbarViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DateCell", for: indexPath) as? DateCollectionViewCell else { return UICollectionViewCell() }
-        cell.update(day: self.days[indexPath.item])
-        
-        // currentDate = 20220810 이라고 뜸
-//        if let index = userInfo.firstIndex(where: { $0.name == "민이" }) {
-//            print(userInfo[index].phone)
-//        }
+        cell.update(day: self.days[indexPath.row])
 
-        // 현재 날짜가 dateLabel에 나와있는 날짜와 같아야하고 days[indexPath.item]에 나와있는 숫자가 현재 날짜이면 true
-        
-        print(dayDate)
-        if let index = days.firstIndex(of: dayDate) {
-            print(index,"이이이이이이")
-        }
-
-        if dateLabel.text == dateLabeltext, Int(indexPath.item) == index {
+        if dateLabel.text == dateLabeltext, days[indexPath.row] == dayDate {
             print("오늘 날짜 실행됨")
             cell.check = true
-            cell.cellBackground.backgroundColor = UIColor.green
+            cell.dateLabel.textColor = .white
+            cell.cellBackground.backgroundColor = UIColor.black
+            cell.cellBackground.layer.cornerRadius = 5.0
         }
-        
         return cell
-
     }
-    
 }
 
 
