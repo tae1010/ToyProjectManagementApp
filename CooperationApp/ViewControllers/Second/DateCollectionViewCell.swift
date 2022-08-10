@@ -17,6 +17,18 @@ class DateCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
     }
     
+    override var isSelected: Bool {
+      didSet {
+        if isSelected {
+            backgroundColor = .gray
+            selectedBackgroundView?.layer.cornerRadius = 5.0
+            //cellBackground.layer.cornerRadius = 5.0
+        } else {
+            backgroundColor = .white
+        }
+      }
+    }
+    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
@@ -27,6 +39,7 @@ class DateCollectionViewCell: UICollectionViewCell {
         self.dateLabel.text = day
         self.dateLabel.font = UIFont.boldSystemFont(ofSize: 14)
     }
+    
     
     
 

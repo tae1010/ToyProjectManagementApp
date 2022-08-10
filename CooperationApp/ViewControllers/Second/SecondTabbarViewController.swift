@@ -170,15 +170,7 @@ class SecondTabbarViewController: UIViewController {
 }
 
 extension SecondTabbarViewController: UICollectionViewDelegate {
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) -> UICollectionViewCell{
-//
-//        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DateCell", for: indexPath) as? DateCollectionViewCell
-//
-//        cell.cellBackground
-//        print(indexPath.row)
-//    }
-    
+ 
 }
 
 extension SecondTabbarViewController: UICollectionViewDataSource {
@@ -198,7 +190,8 @@ extension SecondTabbarViewController: UICollectionViewDataSource {
         cell.update(day: self.days[indexPath.row])
 
         if dateLabel.text == dateLabeltext, days[indexPath.row] == dayDate {
-            print("오늘 날짜 실행됨")
+            
+            print("오늘 날짜 실행됨",indexPath.row)
             cell.check = true
             cell.dateLabel.textColor = .white
             cell.cellBackground.backgroundColor = UIColor.black

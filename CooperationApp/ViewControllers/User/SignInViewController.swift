@@ -13,8 +13,15 @@ class SignInViewController: UIViewController {
 
     @IBOutlet weak var emailTextFiled: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    
+    let userDefaults = UserDefaults.standard
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        guard let emailData = userDefaults.object(forKey: "email") else { return }
+        
+        emailTextFiled.text = emailData as? String
 
         // Do any additional setup after loading the view.
     }
@@ -36,6 +43,8 @@ class SignInViewController: UIViewController {
         guard let email = self.emailTextFiled.text else { return }
         guard let password = self.passwordTextField.text else { return }
 
+        UserDefaults.standard.set(email, forKey: "email")
+        
         Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
             if user != nil{
                 print("login success")
