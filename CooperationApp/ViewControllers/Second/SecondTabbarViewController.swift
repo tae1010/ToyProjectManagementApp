@@ -18,17 +18,21 @@ class SecondTabbarViewController: UIViewController {
     private let calendar = Calendar.current // 달력 구조체
     private let dateFormatter = DateFormatter()
     private var calendarDate = Date() // 달력에 표시할 날짜를 저장할 배열 (달이 바뀌면 바뀐 달이 포함된 날짜를 가지고 있음)
-    private var days = [String]() // 달력에 표시될 날짜 배열
-    var currentDate: Int = 0 // 현재날짜를 저장할 변수 (년, 월)
-    var dateLabeltext: String? // 현재 날짜 일때 dateLabel에 저장된 변수 저장
-    var dayDate: String = " " //현재 날짜(일)
-    var calendarMode: CalendarMode = .halfMonth
+    private var daysMonthMode = [String]() // 달력에 표시될 날짜 배열 (calendarMode가 full, halfMode 일때 사용)
+    private var daysWeekMode = [[String]]() // 달력에 표시될 날짜 배열 (calendarMode가 weekMode일때 사용), (한달 배열을 7개씩 나눠서 저장
+    //ex. [["""","1","2"..."6"""],["7","8","9"..."13"]...["28","29","30","31","",""]])
     
-    @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var dateStackView: UIStackView!
-    @IBOutlet weak var weekStackView: UIStackView!
-    @IBOutlet weak var calendarView: UICollectionView!
-    @IBOutlet weak var calendarHeight: NSLayoutConstraint!
+    var currentDate: Int = 0 // 현재날짜를 저장할 변수 (년, 월) ex. 202210
+    var dateLabeltext: String? // 현재 날짜 일때 dateLabel에 저장된 변수 저장 ex. 2022년 10월
+    var dayDate: String = "" //현재 날짜(일) ex. 10
+    var calendarMode: CalendarMode = .halfMonth // 기본으로 halfMonth모드
+    var selectDate: String? // 선택한 cell 날짜
+    var showIndex: Int = 0 // week모드일때 보여줄 배열, 현재날짜가 포함된 주를 보여줌(선택한 cell이 있으면 선택한 cell이 포함된 주를 보여줌)
+    
+    @IBOutlet weak var dateLabel: UILabel! // 상단에 년과 월을 표시하는 label
+    @IBOutlet weak var dateStackView: UIStackView! // dateLabel + 옆에 v버튼
+    @IBOutlet weak var weekStackView: UIStackView! // 일~토를 표시하는 label stackView
+    @IBOutlet weak var calendarView: UICollectionView! // calendar collectionView
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,11 +41,11 @@ class SecondTabbarViewController: UIViewController {
                 
         let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(swipeEvent(_:)))
         swipeUp.direction = .up
-        self.view.addGestureRecognizer(swipeUp)
+        self.calendarView.addGestureRecognizer(swipeUp)
 
         let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(swipeEvent(_:)))
         swipeDown.direction = .down
-        self.view.addGestureRecognizer(swipeDown)
+        self.calendarView.addGestureRecognizer(swipeDown)
         
     }
     
@@ -51,6 +55,7 @@ class SecondTabbarViewController: UIViewController {
         if swipe.direction == .up, calendarMode == .halfMonth {
             print("week모드")
             calendarMode = .week
+            self.updateWeekMode()
             self.calendarView.reloadData()
         }
         
@@ -76,7 +81,83 @@ class SecondTabbarViewController: UIViewController {
             
         }
     }
+}
+
+extension SecondTabbarViewController: UICollectionViewDelegate {
+
+}
+
+extension SecondTabbarViewController: UICollectionViewDataSource {
     
+    //cell return 갯수
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        switch calendarMode {
+        case .halfMonth: return self.daysMonthMode.count
+        case .fullMonth: return self.daysMonthMode.count
+        case .week: return 7
+        }
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DateCell", for: indexPath) as? DateCollectionViewCell else { return UICollectionViewCell() }
+        
+        switch calendarMode {
+            
+        case .halfMonth:
+            cell.update(day: self.daysMonthMode[indexPath.row])
+
+            if dateLabel.text == dateLabeltext && daysMonthMode[indexPath.row] == dayDate {
+                cell.checkCurrentDate(true)
+
+                return cell
+            } else {
+                return cell
+            }
+            
+            
+        case .fullMonth:
+            cell.update(day: self.daysMonthMode[indexPath.row])
+
+            if dateLabel.text == dateLabeltext && daysMonthMode[indexPath.row] == dayDate {
+                cell.checkCurrentDate(true)
+            }
+            return cell
+            
+        case .week:
+            print(indexPath.row,"zaaasdasd")
+            if dateLabel.text == dateLabeltext && daysWeekMode[showIndex][indexPath.row] == dayDate {
+                cell.checkCurrentDate(true)
+                return cell
+            } else {
+                return cell
+            }
+        }
+    }
+}
+
+
+extension SecondTabbarViewController: UICollectionViewDelegateFlowLayout {
+    
+    //cell 크기
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let width = self.weekStackView.frame.width / 7
+        return CGSize(width: width, height: width)
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+            return .zero
+        }
+
+}
+
+// claendar 관련 함수
+extension SecondTabbarViewController {
+    
+    //calendarView 초기 설정
     private func configureCalendarView() {
         
         // caledarView ui 설정
@@ -121,9 +202,7 @@ class SecondTabbarViewController: UIViewController {
         self.dateLabeltext = date
         // 날짜 day만(일) 따로 구하기
         self.dayDate = String(String(currentDate).dropFirst(6))
-        
         return currentDate
-        
 
     }
     
@@ -143,77 +222,56 @@ class SecondTabbarViewController: UIViewController {
         self.dateLabel.text = date
     }
     
-    // 날짜 업데이트
-    func updateDays() {
-        self.days.removeAll()
+    // 날짜 업데이트 (halfMonth, fullMonth 모드)
+    func updateMonthMode() {
+        self.daysMonthMode.removeAll()
         let startDayOfTheWeek = self.startDayOfTheWeek()
         let totalDays = startDayOfTheWeek + self.endDate()
         
         // 만약에 1일이 화요일부터 시작된다고 하면 ["", "", "1", "2" ....] 이런식으로 저장됨
         for day in Int()..<totalDays {
             if day < startDayOfTheWeek {
-                self.days.append("")
+                self.daysMonthMode.append("")
                 continue
             }
-            self.days.append("\(day - startDayOfTheWeek + 1)")
+            self.daysMonthMode.append("\(day - startDayOfTheWeek + 1)")
         }
         
         self.calendarView.reloadData()
     }
     
+    // 날짜 업데이트 (week 모드)
+    func updateWeekMode() {
+        print("updateWeekMode 실행")
+        self.daysWeekMode.removeAll()
+        var count = 0
+        var index = 0
+        var week = [String]()
+        
+        for i in self.daysMonthMode {
+            // 현재 날짜가 있는 2차원 배열에 index에 배열
+            print(i, currentDate, type(of: i), type(of: currentDate))
+            if i == String(dayDate) { self.showIndex = index }
+            
+            // 만약 선택된 날짜가 있다면 선택된 날짜가 있는 배열index가 showIndex에 들어감
+            if let _ = selectDate { self.showIndex = index }
+
+            week.append(i)
+            
+            // 7개씩 daysWeekMode 배열에 저장
+            if count == 6 {
+                self.daysWeekMode.append(week)
+                week.removeAll()
+                count = 0
+                index += 1
+            } else { count += 1 }
+        }
+    }
+    
     // 달력 업데이트
     func updateCalendar() {
         self.updateTitle()
-        self.updateDays()
+        self.updateMonthMode()
+        self.updateWeekMode()
     }
-    
-}
-
-extension SecondTabbarViewController: UICollectionViewDelegate {
- 
-}
-
-extension SecondTabbarViewController: UICollectionViewDataSource {
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        switch calendarMode {
-        case .halfMonth: return self.days.count
-        case .fullMonth: return self.days.count
-        case .week: return 7
-        }
-        
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DateCell", for: indexPath) as? DateCollectionViewCell else { return UICollectionViewCell() }
-        cell.update(day: self.days[indexPath.row])
-
-        if dateLabel.text == dateLabeltext, days[indexPath.row] == dayDate {
-            
-            print("오늘 날짜 실행됨",indexPath.row)
-            cell.check = true
-            cell.dateLabel.textColor = .white
-            cell.cellBackground.backgroundColor = UIColor.black
-            cell.cellBackground.layer.cornerRadius = 5.0
-        }
-        return cell
-    }
-}
-
-
-extension SecondTabbarViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        let width = self.weekStackView.frame.width / 7
-        return CGSize(width: width, height: width)
-
-    }
-    
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        
-            return .zero
-        }
-
 }
