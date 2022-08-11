@@ -107,32 +107,32 @@ extension SecondTabbarViewController: UICollectionViewDataSource {
             
         case .halfMonth:
             cell.update(day: self.daysMonthMode[indexPath.row])
-
+            cell.checkCurrentDate(false)
             if dateLabel.text == dateLabeltext && daysMonthMode[indexPath.row] == dayDate {
                 cell.checkCurrentDate(true)
-
-                return cell
-            } else {
-                return cell
+                cell.dateLabel.textColor = .white
             }
+            return cell
             
             
         case .fullMonth:
             cell.update(day: self.daysMonthMode[indexPath.row])
-
+            cell.checkCurrentDate(false)
             if dateLabel.text == dateLabeltext && daysMonthMode[indexPath.row] == dayDate {
                 cell.checkCurrentDate(true)
+                cell.dateLabel.textColor = .white
             }
+            
             return cell
             
         case .week:
-            print(indexPath.row,"zaaasdasd")
+            cell.update(day: self.daysWeekMode[showIndex][indexPath.row])
+            cell.checkCurrentDate(false)
             if dateLabel.text == dateLabeltext && daysWeekMode[showIndex][indexPath.row] == dayDate {
                 cell.checkCurrentDate(true)
-                return cell
-            } else {
-                return cell
+
             }
+            return cell
         }
     }
 }

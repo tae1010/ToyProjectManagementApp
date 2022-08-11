@@ -42,7 +42,12 @@ class DateCollectionViewCell: UICollectionViewCell {
         if check == true {
             print("check는 true")
             self.contentView.backgroundColor = .black
+            self.dateLabel.textColor = .white
             self.contentView.layer.cornerRadius = 5
+        } else {
+            print("이거 실행되나?")
+            self.contentView.backgroundColor = .white
+            self.dateLabel.textColor = .black
         }
     }
     
