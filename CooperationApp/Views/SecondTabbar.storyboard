@@ -123,6 +123,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="calendarView" destination="S0X-Qd-rlZ" id="ade-KU-Hul"/>
+                        <outlet property="calendarViewHeight" destination="CdC-3K-ksC" id="oHo-wJ-JRH"/>
                         <outlet property="dateLabel" destination="fQv-QX-aHZ" id="tab-k5-T89"/>
                         <outlet property="dateStackView" destination="2pe-Tf-eXd" id="ZNU-9b-EKj"/>
                         <outlet property="weekStackView" destination="lzD-jb-PLt" id="Vzy-iR-bgE"/>

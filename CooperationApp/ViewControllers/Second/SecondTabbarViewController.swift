@@ -34,57 +34,55 @@ class SecondTabbarViewController: UIViewController {
     @IBOutlet weak var weekStackView: UIStackView! // 일~토를 표시하는 label stackView
     @IBOutlet weak var calendarView: UICollectionView! // calendar collectionView
     
+    @IBOutlet weak var calendarViewHeight: NSLayoutConstraint!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configureCalendarView()
 
-                
         let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(swipeEvent(_:)))
         swipeUp.direction = .up
-        self.calendarView.addGestureRecognizer(swipeUp)
+        self.view.addGestureRecognizer(swipeUp)
 
         let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(swipeEvent(_:)))
         swipeDown.direction = .down
-        self.calendarView.addGestureRecognizer(swipeDown)
+        self.view.addGestureRecognizer(swipeDown)
         
     }
     
     @objc func swipeEvent(_ swipe: UISwipeGestureRecognizer) {
-
-        // 달력이 반만 나와있을떄 위로 swipe
-        if swipe.direction == .up, calendarMode == .halfMonth {
-            print("week모드")
-            calendarMode = .week
+        
+        if swipe.direction == .up, self.calendarMode == .halfMonth {
+            self.calendarMode = .week
             self.updateWeekMode()
-            self.calendarView.reloadData()
+        } else if swipe.direction == .up, self.calendarMode == .fullMonth {
+            self.calendarMode = .halfMonth
+        } else if swipe.direction == .down, self.calendarMode == .week {
+            self.calendarMode = .halfMonth
+        }  else if swipe.direction == .down, self.calendarMode == .halfMonth {
+            self.calendarMode = .fullMonth
+        } else if swipe.direction == .up, self.calendarMode == .week {
+            return
+        } else if swipe.direction == .down, self.calendarMode == .fullMonth {
+            return
         }
         
-        // 달력이 전체화면일때 위로 swipe
-        else if swipe.direction == .up, calendarMode == .fullMonth {
-            print("halfMonth모드")
-            calendarMode = .halfMonth
-            self.calendarView.reloadData()
-        }
-        
-        // 달력이 week상태일때 아래로 swipe
-        else if swipe.direction == .down, calendarMode == .week {
-            print("halfMonth모드")
-            calendarMode = .halfMonth
-            self.calendarView.reloadData()
-        }
-        
-        // 달력이 반만 나와있을떄 아래로 swipe
-        else if swipe.direction == .down, calendarMode == .halfMonth {
-            print("fullMonth모드")
-            calendarMode = .fullMonth
-            self.calendarView.reloadData()
-            
-        }
+        self.calendarView.performBatchUpdates({
+            self.calendarView.reloadSections(IndexSet(integer: 0))
+        }, completion: { [weak self]_ in
+            self?.calendarView.reloadData()
+        })
+
     }
 }
 
 extension SecondTabbarViewController: UICollectionViewDelegate {
-
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let cell = collectionView.cellForItem(at: indexPath) as? DateCollectionViewCell {
+            cell.selectCell(true)
+        }
+    }
 }
 
 extension SecondTabbarViewController: UICollectionViewDataSource {
@@ -92,8 +90,7 @@ extension SecondTabbarViewController: UICollectionViewDataSource {
     //cell return 갯수
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch calendarMode {
-        case .halfMonth: return self.daysMonthMode.count
-        case .fullMonth: return self.daysMonthMode.count
+        case .halfMonth, .fullMonth: return self.daysMonthMode.count
         case .week: return 7
         }
         
@@ -104,8 +101,7 @@ extension SecondTabbarViewController: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DateCell", for: indexPath) as? DateCollectionViewCell else { return UICollectionViewCell() }
         
         switch calendarMode {
-            
-        case .halfMonth:
+        case .fullMonth:
             cell.update(day: self.daysMonthMode[indexPath.row])
             cell.checkCurrentDate(false)
             if dateLabel.text == dateLabeltext && daysMonthMode[indexPath.row] == dayDate {
@@ -114,15 +110,13 @@ extension SecondTabbarViewController: UICollectionViewDataSource {
             }
             return cell
             
-            
-        case .fullMonth:
+        case .halfMonth:
             cell.update(day: self.daysMonthMode[indexPath.row])
             cell.checkCurrentDate(false)
             if dateLabel.text == dateLabeltext && daysMonthMode[indexPath.row] == dayDate {
                 cell.checkCurrentDate(true)
                 cell.dateLabel.textColor = .white
             }
-            
             return cell
             
         case .week:
@@ -143,8 +137,20 @@ extension SecondTabbarViewController: UICollectionViewDelegateFlowLayout {
     //cell 크기
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
+        // halfMonth, week모드는 가로의 길이는 동일
         let width = self.weekStackView.frame.width / 7
-        return CGSize(width: width, height: width)
+        
+        switch self.calendarMode {
+        // halfMonth, week모든 가로 새로의 길이가 같다.
+        case .halfMonth, .week:
+            return CGSize(width: width, height: width)
+            
+        //fullMonth는 view를 꽉채워야 하기 떄문에 새로의 길이가 길어져야 함
+        case .fullMonth:
+            self.calendarViewHeight.constant = UIScreen.main.bounds.height - 70
+            let height = UIScreen.main.bounds.height / 5 - 70
+            return CGSize(width: width, height: height)
+        }
     }
     
     
@@ -162,8 +168,9 @@ extension SecondTabbarViewController {
         
         // caledarView ui 설정
         self.calendarView.translatesAutoresizingMaskIntoConstraints = false
-        self.calendarView.showsVerticalScrollIndicator = false
-        self.calendarView.showsHorizontalScrollIndicator = false
+//        self.calendarView.showsVerticalScrollIndicator = false // 가로 스크롤 안 보이게 하기
+//        self.calendarView.showsHorizontalScrollIndicator = false // 세로 스크롤 안 보이게 하기
+        self.calendarView.isScrollEnabled = false // scroll x
         self.calendarView.collectionViewLayout = UICollectionViewFlowLayout()
         self.calendarView.delegate = self
         self.calendarView.dataSource = self
@@ -175,13 +182,10 @@ extension SecondTabbarViewController {
         // calendarView 날짜 설정
         let components = self.calendar.dateComponents([.year, .month], from: Date())
         self.calendarDate = self.calendar.date(from: components) ?? Date()
-        print(calendarDate,"rrrr")
-        
         self.dateFormatter.locale = Locale(identifier: "ko_kr")
         self.dateFormatter.timeZone = TimeZone(abbreviation: "KST")
         self.dateFormatter.dateFormat = "yyyy년 MM월"
         self.currentDate = koreanDate()
-        print(currentDate,"kkk")
         self.updateCalendar()
     }
     

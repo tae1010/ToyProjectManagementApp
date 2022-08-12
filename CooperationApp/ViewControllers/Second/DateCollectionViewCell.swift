@@ -11,43 +11,33 @@ class DateCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var cellBackground: UIView!
     @IBOutlet weak var dateLabel: UILabel!
-    var check: Bool = false
-//
-//    override init(frame: CGRect) {
-//        super.init(frame: frame)
-//
-//    }
-//
-//    override func awakeFromNib() {
-//        print(check)
-//        self.contentView.backgroundColor = check ? .black : .white
-//
-//    }
-//
-//
-//    required init?(coder: NSCoder) {
-//        super.init(coder: coder)
-//    }
 
     // cell에 날짜 UI 설정
     func update(day: String?) {
         guard let day = day else { return }
-        print(day,"데이")
         self.dateLabel.text = day
         self.dateLabel.font = UIFont.boldSystemFont(ofSize: 14)
     }
-//
+    
+    // 오늘 날짜 cell ui 설정 
     func checkCurrentDate(_ check: Bool) {
-        print("cehckCurrentDate 실행")
         if check == true {
-            print("check는 true")
             self.contentView.backgroundColor = .black
             self.dateLabel.textColor = .white
             self.contentView.layer.cornerRadius = 5
         } else {
-            print("이거 실행되나?")
             self.contentView.backgroundColor = .white
             self.dateLabel.textColor = .black
+        }
+    }
+    
+    // 선택된 cell ui 설정
+    func selectCell(_ select: Bool) {
+        if select == true {
+            self.contentView.backgroundColor = .lightGray
+            self.contentView.alpha = 0.8
+        } else {
+            self.contentView.backgroundColor = .white
         }
     }
     

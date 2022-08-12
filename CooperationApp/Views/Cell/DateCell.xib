@@ -33,7 +33,7 @@
                 <outlet property="cellBackground" destination="jdw-rT-G6M" id="t46-da-9oq"/>
                 <outlet property="dateLabel" destination="eAn-4m-nWJ" id="kZo-yb-qh7"/>
             </connections>
-            <point key="canvasLocation" x="249" y="156"/>
+            <point key="canvasLocation" x="247.82608695652175" y="155.69196428571428"/>
         </collectionViewCell>
     </objects>
 </document>
