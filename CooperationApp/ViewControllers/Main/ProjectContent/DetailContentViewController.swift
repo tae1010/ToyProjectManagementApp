@@ -221,7 +221,7 @@ class DetailContentViewController: UIViewController {
     func loadUserDefault() {
         let userDefaults = UserDefaults.standard
         let decoder = JSONDecoder()
-        let data = userDefaults.object(forKey: "detailColorContent")
+        guard let data = userDefaults.object(forKey: "detailColorContent") else { return }
         
         let colorContentDecoder = try? decoder.decode(DetailColorContent.self, from: data as! Data)
         

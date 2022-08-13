@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		930B2BDF28056CBD00CCB0EE /* Pods_CooperationApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0FB3D49C10786D1206783F4 /* Pods_CooperationApp.framework */; };
+		931F9BB928A7D38B000AFA9E /* ScheduleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 931F9BB828A7D38B000AFA9E /* ScheduleCell.xib */; };
+		931F9BBB28A7D468000AFA9E /* ScheduleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931F9BBA28A7D468000AFA9E /* ScheduleCollectionViewCell.swift */; };
 		93285BEE2801887C00396083 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 93285BED2801887C00396083 /* GoogleService-Info.plist */; };
 		9333CC47285C6B6F005C0262 /* projectCollectionViewPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9333CC46285C6B6E005C0262 /* projectCollectionViewPopup.xib */; };
 		9333CC49285C7173005C0262 /* ProjectPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9333CC48285C7173005C0262 /* ProjectPopupViewController.swift */; };
@@ -48,6 +50,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		931F9BB828A7D38B000AFA9E /* ScheduleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScheduleCell.xib; sourceTree = "<group>"; };
+		931F9BBA28A7D468000AFA9E /* ScheduleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleCollectionViewCell.swift; sourceTree = "<group>"; };
 		93285BED2801887C00396083 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9333CC46285C6B6E005C0262 /* projectCollectionViewPopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = projectCollectionViewPopup.xib; sourceTree = "<group>"; };
 		9333CC48285C7173005C0262 /* ProjectPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectPopupViewController.swift; sourceTree = "<group>"; };
@@ -190,6 +194,7 @@
 			children = (
 				9380D24927FF1195000DC92E /* SecondTabbarViewController.swift */,
 				935145F228A1222F009B1DEF /* DateCollectionViewCell.swift */,
+				931F9BBA28A7D468000AFA9E /* ScheduleCollectionViewCell.swift */,
 			);
 			path = Second;
 			sourceTree = "<group>";
@@ -229,6 +234,7 @@
 				93DA8F82282FB0CD00217360 /* ProjectContentCell.xib */,
 				936F8E982897BB8D00897316 /* ProjectContentSideBar.xib */,
 				935145F028A1213C009B1DEF /* DateCell.xib */,
+				931F9BB828A7D38B000AFA9E /* ScheduleCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -363,6 +369,7 @@
 				93C1C5DC289A8F1B00B4D5EE /* SecondTabbar.storyboard in Resources */,
 				9333CC47285C6B6F005C0262 /* projectCollectionViewPopup.xib in Resources */,
 				9340E47B2852050700338790 /* NanumGothicExtraBold.otf in Resources */,
+				931F9BB928A7D38B000AFA9E /* ScheduleCell.xib in Resources */,
 				9340E47E2852050700338790 /* NanumGothicLight.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -451,6 +458,7 @@
 				935CBC8E2806AE5100759A24 /* Project.swift in Sources */,
 				937CC55D2800377600F18553 /* SignUpViewController.swift in Sources */,
 				935145EF289D2057009B1DEF /* projectDate.swift in Sources */,
+				931F9BBB28A7D468000AFA9E /* ScheduleCollectionViewCell.swift in Sources */,
 				9380D24A27FF1196000DC92E /* SecondTabbarViewController.swift in Sources */,
 				936F8E9D2898F96700897316 /* CustomSideMenuNavigation.swift in Sources */,
 				93DEFA9027FAFF1600827C79 /* CooperationApp.xcdatamodeld in Sources */,
