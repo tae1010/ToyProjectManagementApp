@@ -42,9 +42,6 @@ class SecondTabbarViewController: UIViewController {
         super.viewDidLoad()
         self.configureCalendarView()
         self.configureScheduleView()
-        
-        self.betweenCaledarScheduleView.translatesAutoresizingMaskIntoConstraints = false
-        self.scheduleView.translatesAutoresizingMaskIntoConstraints = false
 
         let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(swipeEvent(_:)))
         swipeUp.direction = .up
@@ -54,31 +51,70 @@ class SecondTabbarViewController: UIViewController {
         swipeDown.direction = .down
         self.view.addGestureRecognizer(swipeDown)
         
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(changeMonth(_:)))
+        swipeLeft.direction = .left
+        self.calendarView.addGestureRecognizer(swipeLeft)
+        
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(changeMonth(_:)))
+        swipeRight.direction = .right
+        self.calendarView.addGestureRecognizer(swipeRight)
+        
     }
     
-    private func moveView() {
+    private func moveView(_ height: CGFloat, _ showSchedule: Bool) {
+        
         UIView.animate(withDuration: 0.5, animations: {
-            self.dateLabel.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 15).isActive = true
-            self.dateLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: 15).isActive = true
+            if showSchedule == false {
+                self.betweenCaledarScheduleView.transform = CGAffineTransform(translationX: 0, y: height)
+                self.scheduleView.transform = CGAffineTransform(translationX: 0, y: height)
+            }
             
-            self.betweenCaledarScheduleView.topAnchor.constraint(equalTo: self.calendarView.bottomAnchor, constant: 0).isActive = true
-            self.scheduleView.topAnchor.constraint(equalTo: self.betweenCaledarScheduleView.bottomAnchor, constant: 0).isActive = true
-            //self.betweenCaledarScheduleView.transform = CGAffineTransform(translationX: 0, y: -200)
+            self.dateStackView.translatesAutoresizingMaskIntoConstraints = false
+            self.calendarView.translatesAutoresizingMaskIntoConstraints = false
             
+            self.dateStackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 15).isActive = showSchedule
+            self.calendarView.topAnchor.constraint(equalTo: self.dateStackView.bottomAnchor, constant: 15).isActive = showSchedule
+            self.calendarView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: 0).isActive = showSchedule
+            
+            self.calendarView.heightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.heightAnchor, constant: 0.5).isActive = showSchedule
+            
+            self.betweenCaledarScheduleView.isHidden = showSchedule
+            self.scheduleView.isHidden = showSchedule
+
         })
     }
     
+    @objc func changeMonth(_ swipe: UISwipeGestureRecognizer) {
+        if swipe.direction == .left {
+            print("left swipe")
+            self.plusMonth()
+        } else {
+            print("right swipe")
+            self.minusMonth()
+        }
+    }
+    
+    // swipe할시 생기는 이벤트
     @objc func swipeEvent(_ swipe: UISwipeGestureRecognizer) {
         
         if swipe.direction == .up, self.calendarMode == .halfMonth {
+            print("week 모드")
             self.calendarMode = .week
             self.updateWeekMode()
+            self.moveView(-250, false)
         } else if swipe.direction == .up, self.calendarMode == .fullMonth {
+            print("half 모드")
             self.calendarMode = .halfMonth
+            self.moveView(0, false)
         } else if swipe.direction == .down, self.calendarMode == .week {
+            print("half 모드")
             self.calendarMode = .halfMonth
+            self.moveView(0, false)
         }  else if swipe.direction == .down, self.calendarMode == .halfMonth {
+            print("full 모드")
             self.calendarMode = .fullMonth
+            self.moveView(250, true)
+            
         } else if swipe.direction == .up, self.calendarMode == .week {
             return
         } else if swipe.direction == .down, self.calendarMode == .fullMonth {
@@ -88,12 +124,7 @@ class SecondTabbarViewController: UIViewController {
         self.calendarView.performBatchUpdates({
             self.calendarView.reloadSections(IndexSet(integer: 0))
         }, completion: { [weak self]_ in
-            DispatchQueue.main.async {
-                self?.calendarView.reloadData()
-                self?.moveView()
-            }
-            
-           
+            self?.updateCalendar()
         })
 
     }
@@ -123,7 +154,7 @@ extension SecondTabbarViewController: UICollectionViewDataSource {
             case .week: return 7
             }
         } else {
-            return 3
+            return 10
         }
         
     }
@@ -186,7 +217,7 @@ extension SecondTabbarViewController: UICollectionViewDelegateFlowLayout {
         
             // halfMonth, week모드는 가로의 길이는 동일
             let width = self.weekStackView.frame.width / 7
-            
+
             switch self.calendarMode {
             // halfMonth, week모든 가로 새로의 길이가 같다.
             case .halfMonth, .week:
@@ -194,8 +225,9 @@ extension SecondTabbarViewController: UICollectionViewDelegateFlowLayout {
                 
             //fullMonth는 view를 꽉채워야 하기 떄문에 새로의 길이가 길어져야 함
             case .fullMonth:
-                self.calendarViewHeight.constant = UIScreen.main.bounds.height - 70
-                let height = UIScreen.main.bounds.height / 5 - 70
+                //self.calendarViewHeight.constant = UIScreen.main.bounds.height - 70
+                let height = (UIScreen.main.bounds.height - 140) / 7
+                print(UIScreen.main.bounds.height)
                 return CGSize(width: width, height: height)
             }
         } else {
@@ -235,7 +267,8 @@ extension SecondTabbarViewController {
         self.calendarView.register(calendarViewCellNib, forCellWithReuseIdentifier: "DateCell")
         
         // calendarView 날짜 설정
-        let components = self.calendar.dateComponents([.year, .month], from: Date())
+        let components = self.calendar.dateComponents([.weekOfYear, .year, .month], from: Date())
+        print(components, "???????")
         self.calendarDate = self.calendar.date(from: components) ?? Date()
         self.dateFormatter.locale = Locale(identifier: "ko_kr")
         self.dateFormatter.timeZone = TimeZone(abbreviation: "KST")
@@ -262,15 +295,15 @@ extension SecondTabbarViewController {
         // 날짜 day만(일) 따로 구하기
         self.dayDate = String(String(currentDate).dropFirst(6))
         return currentDate
-
     }
     
     // 1일이 시작되는 날짜 구하기
     func startDayOfTheWeek() -> Int {
+        print(self.calendar.component(.weekday, from: self.calendarDate) - 1,"asdasdasd")
         return self.calendar.component(.weekday, from: self.calendarDate) - 1
     }
     
-    // 달에 총 몇일이 있는지 계산
+    // 달에 마지막 날짜를 return
     func endDate() -> Int {
         return self.calendar.range(of: .day, in: .month, for: self.calendarDate)?.count ?? Int()
     }
@@ -309,12 +342,11 @@ extension SecondTabbarViewController {
         
         for i in self.daysMonthMode {
             // 현재 날짜가 있는 2차원 배열에 index에 배열
-            print(i, currentDate, type(of: i), type(of: currentDate))
             if i == String(dayDate) { self.showIndex = index }
             
             // 만약 선택된 날짜가 있다면 선택된 날짜가 있는 배열index가 showIndex에 들어감
             if let _ = selectDate { self.showIndex = index }
-
+            
             week.append(i)
             
             // 7개씩 daysWeekMode 배열에 저장
@@ -325,6 +357,7 @@ extension SecondTabbarViewController {
                 index += 1
             } else { count += 1 }
         }
+        self.calendarView.reloadData()
     }
     
     // 달력 업데이트
@@ -332,6 +365,35 @@ extension SecondTabbarViewController {
         self.updateTitle()
         self.updateMonthMode()
         self.updateWeekMode()
+    }
+    
+    func minusMonth() {
+        
+        switch calendarMode {
+            
+        case .fullMonth, .halfMonth:
+            self.calendarDate = self.calendar.date(byAdding: DateComponents(month: -1), to: self.calendarDate) ?? Date()
+            
+        case .week:
+            self.updateWeekMode()
+            self.daysWeekMode
+            //self.calendarDate = self.calendar.date(byAdding: DateComponents(day: -7), to: self.calendarDate) ?? Date()
+        }
+        
+        self.updateCalendar()
+    }
+    
+    func plusMonth() {
+        switch calendarMode {
+            
+        case .fullMonth, .halfMonth:
+            self.calendarDate = self.calendar.date(byAdding: DateComponents(month: 1), to: self.calendarDate) ?? Date()
+            
+        case .week:
+            self.updateWeekMode()
+            //self.calendarDate = self.calendar.date(byAdding: DateComponents(day: 7), to: self.calendarDate) ?? Date()
+        }
+        self.updateCalendar()
     }
 }
 
@@ -347,7 +409,7 @@ extension SecondTabbarViewController {
         // scheduleView nib 설정
         let scheduleViewCellNib = UINib(nibName: "ScheduleCell", bundle: nil)
         self.scheduleView.register(scheduleViewCellNib, forCellWithReuseIdentifier: "ScheduleCell")
-
+        
     }
 }
 

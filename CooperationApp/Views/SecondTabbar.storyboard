@@ -17,24 +17,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2pe-Tf-eXd">
-                                <rect key="frame" x="15" y="58.999999999999993" width="96.666666666666671" height="30.666666666666664"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2pe-Tf-eXd">
+                                <rect key="frame" x="15" y="58.999999999999993" width="90" height="30.666666666666664"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fQv-QX-aHZ">
-                                        <rect key="frame" x="0.0" y="0.0" width="53" height="30.666666666666668"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="46.333333333333336" height="30.666666666666668"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pyd-wL-neV">
-                                        <rect key="frame" x="53" y="0.0" width="43.666666666666657" height="30.666666666666668"/>
+                                        <rect key="frame" x="46.333333333333343" y="0.0" width="43.666666666666657" height="30.666666666666668"/>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" image="chevron.down" catalog="system"/>
                                     </button>
                                 </subviews>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="lzD-jb-PLt">
+                            <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="lzD-jb-PLt">
                                 <rect key="frame" x="15" y="109.66666666666667" width="360" height="20.333333333333329"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="일" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wOc-Jr-K0C">
@@ -85,7 +85,7 @@
                                 <rect key="frame" x="15" y="140" width="360" height="308"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="308" id="CdC-3K-ksC"/>
+                                    <constraint firstAttribute="height" constant="308" id="D4C-rk-7To"/>
                                 </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="3aU-h6-aby">
                                     <size key="itemSize" width="70" height="76"/>
@@ -113,7 +113,7 @@
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="P0e-rO-ffs">
-                                <rect key="frame" x="0.0" y="458" width="390" height="303"/>
+                                <rect key="frame" x="0.0" y="451" width="390" height="310"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="wKX-Ey-o2Q">
                                     <size key="itemSize" width="128" height="128"/>
@@ -139,7 +139,6 @@
                             <constraint firstItem="S0X-Qd-rlZ" firstAttribute="top" secondItem="lzD-jb-PLt" secondAttribute="bottom" constant="10" id="1We-aS-Ka6"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="P0e-rO-ffs" secondAttribute="bottom" id="21l-fq-xBq"/>
                             <constraint firstItem="S0X-Qd-rlZ" firstAttribute="trailing" secondItem="lzD-jb-PLt" secondAttribute="trailing" id="8FK-h3-lux"/>
-                            <constraint firstItem="P0e-rO-ffs" firstAttribute="top" secondItem="GT3-qp-sy5" secondAttribute="bottom" constant="8" symbolic="YES" id="BMx-Pd-u1t"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="lzD-jb-PLt" secondAttribute="trailing" constant="15" id="Bb7-cg-jih"/>
                             <constraint firstItem="GT3-qp-sy5" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="Dzo-O8-Tz8"/>
                             <constraint firstItem="lzD-jb-PLt" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="15" id="ESU-eh-Qyj"/>
@@ -148,6 +147,7 @@
                             <constraint firstItem="lzD-jb-PLt" firstAttribute="top" secondItem="2pe-Tf-eXd" secondAttribute="bottom" constant="20" id="R8Q-UJ-LR4"/>
                             <constraint firstItem="S0X-Qd-rlZ" firstAttribute="leading" secondItem="lzD-jb-PLt" secondAttribute="leading" id="f8d-YU-BtT"/>
                             <constraint firstItem="P0e-rO-ffs" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="ifr-vp-7Mb"/>
+                            <constraint firstItem="P0e-rO-ffs" firstAttribute="top" secondItem="GT3-qp-sy5" secondAttribute="bottom" constant="1" id="lfg-es-emm"/>
                             <constraint firstItem="2pe-Tf-eXd" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="15" id="ls5-o7-bYw"/>
                             <constraint firstItem="GT3-qp-sy5" firstAttribute="top" secondItem="S0X-Qd-rlZ" secondAttribute="bottom" id="nYL-8I-ySg"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="P0e-rO-ffs" secondAttribute="trailing" id="yaU-Nu-0Rv"/>
@@ -158,7 +158,6 @@
                     <connections>
                         <outlet property="betweenCaledarScheduleView" destination="GT3-qp-sy5" id="092-V2-xeF"/>
                         <outlet property="calendarView" destination="S0X-Qd-rlZ" id="ade-KU-Hul"/>
-                        <outlet property="calendarViewHeight" destination="CdC-3K-ksC" id="oHo-wJ-JRH"/>
                         <outlet property="dateLabel" destination="fQv-QX-aHZ" id="tab-k5-T89"/>
                         <outlet property="dateStackView" destination="2pe-Tf-eXd" id="ZNU-9b-EKj"/>
                         <outlet property="scheduleView" destination="P0e-rO-ffs" id="HyQ-jj-46U"/>
