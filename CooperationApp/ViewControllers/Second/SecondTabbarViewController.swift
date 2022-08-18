@@ -27,7 +27,11 @@ class SecondTabbarViewController: UIViewController {
     var dayDate: String = "" //현재 날짜(일) ex. 10
     var calendarMode: CalendarMode = .halfMonth // 기본으로 halfMonth모드
     var selectDate: String? // 선택한 cell 날짜
-    var showIndex: Int = 0 // week모드일때 보여줄 배열, 현재날짜가 포함된 주를 보여줌(선택한 cell이 있으면 선택한 cell이 포함된 주를 보여줌)
+    var showIndex: Int = 0 {
+        didSet{
+            print(showIndex,"showIndex")
+        }
+    } // week모드일때 보여줄 배열, 현재날짜가 포함된 주를 보여줌(선택한 cell이 있으면 선택한 cell이 포함된 주를 보여줌)
     
     @IBOutlet weak var dateLabel: UILabel! // 상단에 년과 월을 표시하는 label
     @IBOutlet weak var dateStackView: UIStackView! // dateLabel + 옆에 v버튼
@@ -150,8 +154,10 @@ extension SecondTabbarViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == calendarView {
             switch calendarMode {
-            case .halfMonth, .fullMonth: return self.daysMonthMode.count
-            case .week: return 7
+            case .halfMonth, .fullMonth:
+                print("이건 또머야",self.daysMonthMode.count)
+                return self.daysMonthMode.count
+            case .week: return self.daysWeekMode[showIndex].count
             }
         } else {
             return 10
@@ -219,10 +225,17 @@ extension SecondTabbarViewController: UICollectionViewDelegateFlowLayout {
             let width = self.weekStackView.frame.width / 7
 
             switch self.calendarMode {
-            // halfMonth, week모든 가로 새로의 길이가 같다.
-            case .halfMonth, .week:
-                return CGSize(width: width, height: width)
                 
+            case .week:
+                return CGSize(width: width, height: width)
+
+            case .halfMonth:
+                if daysWeekMode.count >= 6 {
+                    return CGSize(width: width, height: (width * 5) / 6)
+                } else {
+                    return CGSize(width: width, height: width)
+                }
+
             //fullMonth는 view를 꽉채워야 하기 떄문에 새로의 길이가 길어져야 함
             case .fullMonth:
                 //self.calendarViewHeight.constant = UIScreen.main.bounds.height - 70
@@ -254,7 +267,7 @@ extension SecondTabbarViewController {
     private func configureCalendarView() {
         
         // caledarView ui 설정
-        self.calendarView.translatesAutoresizingMaskIntoConstraints = false
+        self.calendarView.translatesAutoresizingMaskIntoConstraints = true
 //        self.calendarView.showsVerticalScrollIndicator = false // 가로 스크롤 안 보이게 하기
 //        self.calendarView.showsHorizontalScrollIndicator = false // 세로 스크롤 안 보이게 하기
         self.calendarView.isScrollEnabled = false // scroll x
@@ -275,6 +288,7 @@ extension SecondTabbarViewController {
         self.dateFormatter.dateFormat = "yyyy년 MM월"
         self.currentDate = koreanDate()
         self.updateCalendar()
+        self.findcurrentIndex()
     }
     
     //현재 날짜 구하기
@@ -332,31 +346,34 @@ extension SecondTabbarViewController {
         self.calendarView.reloadData()
     }
     
+    // 현재 날짜가 있는 showIndex 구하기
+    func findcurrentIndex() {
+        print("현재날짜 index 구해짐")
+        if let firstIndex = self.daysMonthMode.firstIndex(of: String(dayDate)) {
+            self.showIndex = firstIndex / 7
+        }
+    }
+    
     // 날짜 업데이트 (week 모드)
     func updateWeekMode() {
         print("updateWeekMode 실행")
         self.daysWeekMode.removeAll()
-        var count = 0
-        var index = 0
+        
         var week = [String]()
         
         for i in self.daysMonthMode {
-            // 현재 날짜가 있는 2차원 배열에 index에 배열
-            if i == String(dayDate) { self.showIndex = index }
             
             // 만약 선택된 날짜가 있다면 선택된 날짜가 있는 배열index가 showIndex에 들어감
-            if let _ = selectDate { self.showIndex = index }
+            //if let _ = selectDate { self.showIndex = index }
             
             week.append(i)
-            
             // 7개씩 daysWeekMode 배열에 저장
-            if count == 6 {
+            if week.count == 7 || endDate() == Int(i)  {
                 self.daysWeekMode.append(week)
                 week.removeAll()
-                count = 0
-                index += 1
-            } else { count += 1 }
+            }
         }
+        print("흠",daysWeekMode.count,daysWeekMode)
         self.calendarView.reloadData()
     }
     
@@ -375,9 +392,17 @@ extension SecondTabbarViewController {
             self.calendarDate = self.calendar.date(byAdding: DateComponents(month: -1), to: self.calendarDate) ?? Date()
             
         case .week:
-            self.updateWeekMode()
-            self.daysWeekMode
-            //self.calendarDate = self.calendar.date(byAdding: DateComponents(day: -7), to: self.calendarDate) ?? Date()
+            
+            if self.showIndex > 0 {
+                print("이거실행3")
+                self.showIndex -= 1
+            } else {
+                print("이거실행4")
+                self.calendarDate = self.calendar.date(byAdding: DateComponents(month: -1), to: self.calendarDate) ?? Date()
+                print(daysWeekMode,"daysWeekMode")
+                self.updateCalendar()
+                self.showIndex = self.daysWeekMode.count - 1
+            }
         }
         
         self.updateCalendar()
@@ -390,10 +415,19 @@ extension SecondTabbarViewController {
             self.calendarDate = self.calendar.date(byAdding: DateComponents(month: 1), to: self.calendarDate) ?? Date()
             
         case .week:
-            self.updateWeekMode()
-            //self.calendarDate = self.calendar.date(byAdding: DateComponents(day: 7), to: self.calendarDate) ?? Date()
+           
+            if daysWeekMode.count - 1 > self.showIndex {
+                print("이거실행1")
+                self.showIndex += 1
+            } else {
+                print("이거실행2")
+                self.calendarDate = self.calendar.date(byAdding: DateComponents(month: 1), to: self.calendarDate) ?? Date()
+                self.showIndex = 0
+            }
         }
+        
         self.updateCalendar()
+        
     }
 }
 
