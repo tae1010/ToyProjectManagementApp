@@ -10,6 +10,7 @@ target 'CooperationApp' do
   pod 'Firebase/Database', '~> 8.0.0'
   pod 'SideMenu'
   pod 'FSCalendar'
+  pod 'FirebaseFirestore'
   
   # Pods for CooperationApp
 

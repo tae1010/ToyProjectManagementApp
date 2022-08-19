@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseFirestore
 
 enum CalendarMode {
     case fullMonth
@@ -92,6 +93,7 @@ class SecondTabbarViewController: UIViewController {
         if swipe.direction == .left {
             print("left swipe")
             self.plusMonth()
+            
         } else {
             print("right swipe")
             self.minusMonth()
