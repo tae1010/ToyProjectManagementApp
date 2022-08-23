@@ -40,8 +40,5 @@ class DateCollectionViewCell: UICollectionViewCell {
             self.contentView.backgroundColor = .white
         }
     }
-    
-    
-    
-
 }
+

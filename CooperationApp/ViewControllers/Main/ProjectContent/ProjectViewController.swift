@@ -9,6 +9,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 import SideMenu
+import FirebaseFirestore
 
 // cell편집모드(cell 내용 수정, cell 양옆(다른 currentPage로 이동))
 enum Mode {
@@ -23,7 +24,8 @@ class ProjectViewController: UIViewController {
     var projectContent = [ProjectContent]() // projectContent 배열
     //var projectDetailContent = [ProjectDetailContent]() // project Detail Content 배열
     
-    var ref: DatabaseReference! = Database.database().reference()
+//    let db = Firestore.firestore() // firebase firestore
+    var ref: DatabaseReference! = Database.database().reference() // realtime DB
 
     var email = "" //사용자 email을 저장할 변수
     var id: String = "" // 프로젝트의 uuid값을 받을 변수
@@ -602,6 +604,8 @@ extension ProjectViewController: MoveContentDelegate {
 // detailContentView에서 보낸 값을 db에 저장하고 테이블 reload
 extension ProjectViewController: SendContentDelegate {
     func sendContent(_ name: String, _ index: Int, _ color: String, _ startTime: String, _ endTime: String) {
+        
+        // realtime DB작성
         self.projectContent[self.currentPage].detailContent[index].cardName = name
         self.projectContent[self.currentPage].detailContent[index].startTime = startTime
         self.projectContent[self.currentPage].detailContent[index].endTime = endTime
@@ -609,6 +613,8 @@ extension ProjectViewController: SendContentDelegate {
         
         self.tableView.reloadRows(at: [[0,index]], with: .automatic) // 선택된 cell 갱신
         self.ref.child("\(email)/\(id)/content/\(currentPage)/\(currentTitle)/\(index)").updateChildValues(["cardName": name, "color": color, "startTime": startTime, "endTime": endTime])
+        
+        // firestore DB작성
         
         
     }
@@ -628,12 +634,9 @@ extension ProjectViewController: DeleteCellDelegate {
 extension ProjectViewController: SendPageDelegate {
     func sendPage(_ index: IndexPath) {
         self.currentPage = index.row
-        print(index.row,"?????")
         print(currentPage)
-        print(projectContent[index.row].detailContent,"?")
         
         DispatchQueue.main.async {
-            print("이거 안됨??")
             self.changeListName()
             self.tableView.reloadData()
         }
@@ -642,8 +645,6 @@ extension ProjectViewController: SendPageDelegate {
 
 
 extension ProjectViewController: SideMenuNavigationControllerDelegate {
-    
-    
 
     func sideMenuWillAppear(menu: SideMenuNavigationController, animated: Bool) {
         print("willAppear")

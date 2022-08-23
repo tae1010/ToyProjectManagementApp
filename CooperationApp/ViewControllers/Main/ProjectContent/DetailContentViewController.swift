@@ -8,6 +8,7 @@
 import UIKit
 import FirebaseAuth
 import FirebaseDatabase
+import FirebaseFirestore
 
 //cell을 삭제하기 위한 index 값을 넘기는 delegate
 protocol DeleteCellDelegate: AnyObject {
@@ -19,6 +20,7 @@ protocol SendContentDelegate: AnyObject{
     func sendContent(_ name: String, _ index: Int, _ color: String, _ startTime: String, _ endTime: String)
 }
 
+// 시작 시간과 종료 시간을 선택할 때 변경
 enum TimeSelectMode {
     case startTime
     case endTime
@@ -31,7 +33,8 @@ enum ShowColorDetailViewMode {
 
 class DetailContentViewController: UIViewController {
     
-    var ref: DatabaseReference! = Database.database().reference()
+    let db = Firestore.firestore() // firebase firestore
+    var ref: DatabaseReference! = Database.database().reference() // firebase realtimeDB
     
     var detailColorContent = DetailColorContent()
     var projectDetailContent = ProjectDetailContent(cardName: "", color: "", startTime: "", endTime: "")

@@ -7,6 +7,8 @@
 
 import UIKit
 import FirebaseFirestore
+import FirebaseDatabase
+import FirebaseAuth
 
 enum CalendarMode {
     case fullMonth
@@ -15,6 +17,8 @@ enum CalendarMode {
 }
 
 class SecondTabbarViewController: UIViewController {
+    
+    var ref: DatabaseReference! = Database.database().reference() // realtime DB
 
     private let calendar = Calendar.current // 달력 구조체
     private let dateFormatter = DateFormatter()
@@ -34,6 +38,12 @@ class SecondTabbarViewController: UIViewController {
         }
     } // week모드일때 보여줄 배열, 현재날짜가 포함된 주를 보여줌(선택한 cell이 있으면 선택한 cell이 포함된 주를 보여줌)
     
+    var projectID = [ProjectID]() // projectID를 저장할 배열, second tabbar가 열리면 db에서 데이터를 읽어와 저장
+    var projectContent = [ProjectContent]()
+    //var projectDetailContent = [ProjectDetailContent]()
+    //var calendarProject = CalendarProject()
+    var id: String?
+    
     @IBOutlet weak var dateLabel: UILabel! // 상단에 년과 월을 표시하는 label
     @IBOutlet weak var dateStackView: UIStackView! // dateLabel + 옆에 v버튼
     @IBOutlet weak var weekStackView: UIStackView! // 일~토를 표시하는 label stackView
@@ -45,9 +55,28 @@ class SecondTabbarViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.readProjectId()
+        
         self.configureCalendarView()
         self.configureScheduleView()
 
+        self.swipeView()
+    }
+    
+    @IBAction func showProjectIdPopupButton(_ sender: UIButton) {
+        
+        let projectIDPopup = ProjectIDPopupViewController(nibName: "ProjectIdPopup", bundle: nil)
+        projectIDPopup.modalPresentationStyle = .overCurrentContext
+        
+        projectIDPopup.projectId = self.projectID
+
+        projectIDPopup.modalPresentationStyle = .overCurrentContext
+        projectIDPopup.modalTransitionStyle = .crossDissolve
+        self.present(projectIDPopup, animated: true, completion: nil)
+    }
+    
+    // swipe 정의
+    private func swipeView() {
         let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(swipeEvent(_:)))
         swipeUp.direction = .up
         self.view.addGestureRecognizer(swipeUp)
@@ -63,9 +92,9 @@ class SecondTabbarViewController: UIViewController {
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(changeMonth(_:)))
         swipeRight.direction = .right
         self.calendarView.addGestureRecognizer(swipeRight)
-        
     }
     
+    // month모드가 바뀔떄마다 뷰 변경
     private func moveView(_ height: CGFloat, _ showSchedule: Bool) {
         
         UIView.animate(withDuration: 0.5, animations: {
@@ -89,6 +118,7 @@ class SecondTabbarViewController: UIViewController {
         })
     }
     
+    // left right swipe시 달 바뀜
     @objc func changeMonth(_ swipe: UISwipeGestureRecognizer) {
         if swipe.direction == .left {
             print("left swipe")
@@ -108,6 +138,7 @@ class SecondTabbarViewController: UIViewController {
             self.calendarMode = .week
             self.updateWeekMode()
             self.moveView(-250, false)
+            self.readProjectContent("D815D7B7-6BBA-45D1-9C4C-B3365CD233CA")
         } else if swipe.direction == .up, self.calendarMode == .fullMonth {
             print("half 모드")
             self.calendarMode = .halfMonth
@@ -145,7 +176,7 @@ extension SecondTabbarViewController: UICollectionViewDelegate {
                 cell.selectCell(true)
             }
         } else {
-            
+            // ...
         }
     }
 }
@@ -157,12 +188,11 @@ extension SecondTabbarViewController: UICollectionViewDataSource {
         if collectionView == calendarView {
             switch calendarMode {
             case .halfMonth, .fullMonth:
-                print("이건 또머야",self.daysMonthMode.count)
                 return self.daysMonthMode.count
             case .week: return self.daysWeekMode[showIndex].count
             }
         } else {
-            return 10
+            return projectContent.count
         }
         
     }
@@ -206,8 +236,8 @@ extension SecondTabbarViewController: UICollectionViewDataSource {
         // scheduleView cell 설정
         } else {
             guard let scheduleCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ScheduleCell", for: indexPath) as? ScheduleCollectionViewCell else { return UICollectionViewCell() }
-            scheduleCell.cardlabel.text = "card1"
-            scheduleCell.cardDateLabel.text = "2022.08.01 - 2022.08.10"
+            scheduleCell.cardlabel.text = projectContent[indexPath.row].detailContent[indexPath.row]
+                .            scheduleCell.cardDateLabel.text = "2022.08.01 - 2022.08.10"
             
             return scheduleCell
         }
@@ -433,7 +463,7 @@ extension SecondTabbarViewController {
     }
 }
 
-/// scheduleView 관련 함수
+// MARK: - scheduleView
 extension SecondTabbarViewController {
     
     private func configureScheduleView() {
@@ -449,3 +479,73 @@ extension SecondTabbarViewController {
     }
 }
 
+// MARK: - DB관련
+extension SecondTabbarViewController {
+    
+    private func emailToString(_ email: String) -> String {
+        let emailToString = email.replacingOccurrences(of: ".", with: ",")
+        return emailToString
+    }
+    
+    // second탭바에 들어오면 projectID만 따로 배열로 저장
+    private func readProjectId() {
+        let email = self.emailToString(Auth.auth().currentUser?.email ?? "고객")
+        
+        self.ref.child("\(email)/").observeSingleEvent(of: .value, with: { snapshot in
+            guard let value = snapshot.value as? [String: Any] else { return }
+            
+            for (key,val) in value {
+                let id = key
+                
+                guard let val = val as? Dictionary<String, Any> else { return }
+                guard let projectTitle = val["projectTitle"] as? String else { return }
+                
+                let p_id = ProjectID(projectid: id, projectTitle: projectTitle)
+                self.projectID.append(p_id)
+            }
+            
+        }) { error in
+            print(error.localizedDescription)
+        }
+    }
+    
+    //project id선택하면 project내용 db에서 읽어오기
+    private func readProjectContent(_ id: String) {
+        let email = self.emailToString(Auth.auth().currentUser?.email ?? "고객")
+
+        self.ref.child("\(email)/\(id)/content").observeSingleEvent(of: .value, with: { snapshot in
+            guard let value = snapshot.value as? [[String: Any]] else { return }
+            
+            for list in value {
+                var count = 0
+                for (key, val) in list {
+                    do {
+                        let jsonData = try JSONSerialization.data(withJSONObject: val)
+                        let projectContentData = try JSONDecoder().decode([ProjectDetailContent].self, from: jsonData)
+                        print(projectContentData,"확인용")
+                        self.projectContent.append(ProjectContent(listTitle: key, index: count, detailContent: projectContentData))
+                        count += 1
+                    }
+                    catch {
+                        print("Error JSON Parsing \(error.localizedDescription)")
+                    }
+                }
+            }
+
+        }) { error in
+            print(error.localizedDescription)
+        }
+    }
+}
+
+extension SecondTabbarViewController: SelectIdDelegate {
+    func sendId(_ id: String) {
+        self.readProjectContent(id)
+        
+        DispatchQueue.main.async {
+            self.scheduleView.reloadData()
+        }
+    }
+    
+    
+}
