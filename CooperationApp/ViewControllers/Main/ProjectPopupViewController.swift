@@ -27,6 +27,7 @@ class ProjectPopupViewController: UIViewController {
     
     //백 그라운드 클릭시 팝업창 닫기
     @objc func tabBackGroundSelector(sender: UITapGestureRecognizer) {
+        print("크으으을릭")
         self.dismiss(animated: true)
     }
     

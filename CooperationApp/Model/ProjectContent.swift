@@ -8,7 +8,7 @@
 import Foundation
 
 // projectID
-struct ProjectID {
+struct ProjectID: Codable {
     var projectid: String
     var projectTitle: String
 }

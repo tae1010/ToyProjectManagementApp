@@ -491,6 +491,7 @@ extension ProjectViewController: UITableViewDataSource {
         }
     }
     
+    // cell 삭제
     func deleteCell(_ index: Int) {
         // 배열에서 삭제
         self.projectContent[self.currentPage].detailContent.remove(at: index)

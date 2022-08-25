@@ -66,7 +66,8 @@ class SecondTabbarViewController: UIViewController {
     @IBAction func showProjectIdPopupButton(_ sender: UIButton) {
         
         let projectIDPopup = ProjectIDPopupViewController(nibName: "ProjectIdPopup", bundle: nil)
-        projectIDPopup.modalPresentationStyle = .overCurrentContext
+        
+        projectIDPopup.selectIdDelegate = self
         
         projectIDPopup.projectId = self.projectID
 
@@ -192,7 +193,7 @@ extension SecondTabbarViewController: UICollectionViewDataSource {
             case .week: return self.daysWeekMode[showIndex].count
             }
         } else {
-            return projectContent.count
+            return 5
         }
         
     }
@@ -236,8 +237,8 @@ extension SecondTabbarViewController: UICollectionViewDataSource {
         // scheduleView cell 설정
         } else {
             guard let scheduleCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ScheduleCell", for: indexPath) as? ScheduleCollectionViewCell else { return UICollectionViewCell() }
-            scheduleCell.cardlabel.text = projectContent[indexPath.row].detailContent[indexPath.row]
-                .            scheduleCell.cardDateLabel.text = "2022.08.01 - 2022.08.10"
+            scheduleCell.cardlabel.text = "일단은 이걸로"
+            scheduleCell.cardDateLabel.text = "2022.08.01 - 2022.08.10"
             
             return scheduleCell
         }
@@ -345,7 +346,6 @@ extension SecondTabbarViewController {
     
     // 1일이 시작되는 날짜 구하기
     func startDayOfTheWeek() -> Int {
-        print(self.calendar.component(.weekday, from: self.calendarDate) - 1,"asdasdasd")
         return self.calendar.component(.weekday, from: self.calendarDate) - 1
     }
     
@@ -522,7 +522,6 @@ extension SecondTabbarViewController {
                     do {
                         let jsonData = try JSONSerialization.data(withJSONObject: val)
                         let projectContentData = try JSONDecoder().decode([ProjectDetailContent].self, from: jsonData)
-                        print(projectContentData,"확인용")
                         self.projectContent.append(ProjectContent(listTitle: key, index: count, detailContent: projectContentData))
                         count += 1
                     }
@@ -530,6 +529,11 @@ extension SecondTabbarViewController {
                         print("Error JSON Parsing \(error.localizedDescription)")
                     }
                 }
+            }
+            print(self.projectContent,"확인용용")
+            
+            DispatchQueue.main.async {
+                self.scheduleView.reloadData()
             }
 
         }) { error in
@@ -540,11 +544,11 @@ extension SecondTabbarViewController {
 
 extension SecondTabbarViewController: SelectIdDelegate {
     func sendId(_ id: String) {
+        print("이거 왜 실행 안됨?")
         self.readProjectContent(id)
         
-        DispatchQueue.main.async {
-            self.scheduleView.reloadData()
-        }
+        print(id,"아이디")
+        
     }
     
     

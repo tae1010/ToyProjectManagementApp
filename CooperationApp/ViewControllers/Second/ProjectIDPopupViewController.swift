@@ -32,20 +32,26 @@ class ProjectIDPopupViewController: UIViewController {
         let projectIDCellNib = UINib(nibName: "ProjectIDCell", bundle: nil)
         self.projectIDCollectionView.register(projectIDCellNib, forCellWithReuseIdentifier: "ProjectIDCell")
         
-        let tabBackGroundView = UITapGestureRecognizer(target: self, action: #selector(tabBackGroundSelector))
-        self.backGroundView.addGestureRecognizer(tabBackGroundView)
-        self.backGroundView.isUserInteractionEnabled = true
+//        let tabBackGroundView = UITapGestureRecognizer(target: self, action: #selector(tabBackGroundSelector))
+//        self.backGroundView.addGestureRecognizer(tabBackGroundView)
+//        self.backGroundView.isUserInteractionEnabled = true
     }
-    
+
     //백 그라운드 클릭시 팝업창 닫기
-    @objc func tabBackGroundSelector(sender: UITapGestureRecognizer) {
-        self.dismiss(animated: true)
-    }
+//    @objc func tabBackGroundSelector(sender: UITapGestureRecognizer) {
+//        print("background view 선택")
+//        self.dismiss(animated: true)
+//    }
 }
+    
 
 extension ProjectIDPopupViewController: UICollectionViewDelegate {
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("실행됨")
+        print(projectId[indexPath.row].projectid,"afafaf")
         self.selectIdDelegate?.sendId(projectId[indexPath.row].projectid)
+        self.dismiss(animated: true)
     }
 }
 
@@ -57,7 +63,7 @@ extension ProjectIDPopupViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let projectIDCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProjectIDCell", for: indexPath) as? ProjectIDCollectionViewCell else { return UICollectionViewCell() }
-        projectIDCell.proejctID.text = projectId[indexPath.row].projectTitle
+        projectIDCell.projectID.text = projectId[indexPath.row].projectTitle
         
         return projectIDCell
     }

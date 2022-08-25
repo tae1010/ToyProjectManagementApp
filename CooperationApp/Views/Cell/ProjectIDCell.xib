@@ -12,11 +12,11 @@
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ProjectIDCell" id="Ky9-Dh-Ljh" customClass="ProjectIDCollectionViewCell" customModule="CooperationApp" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="298" height="110"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="ProjectIDCell" insetsLayoutMarginsFromSafeArea="NO" id="s5r-8M-ob9" customClass="ProejectID">
+            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="ProjectIDCell" insetsLayoutMarginsFromSafeArea="NO" id="s5r-8M-ob9">
                 <rect key="frame" x="0.0" y="0.0" width="298" height="110"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j4w-vi-OPN">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1dV-kD-IVi">
                         <rect key="frame" x="128" y="44.5" width="42" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
@@ -24,13 +24,13 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="j4w-vi-OPN" firstAttribute="centerX" secondItem="s5r-8M-ob9" secondAttribute="centerX" id="N5z-sz-Yy9"/>
-                    <constraint firstItem="j4w-vi-OPN" firstAttribute="centerY" secondItem="s5r-8M-ob9" secondAttribute="centerY" id="dEr-Ft-u4g"/>
+                    <constraint firstItem="1dV-kD-IVi" firstAttribute="centerX" secondItem="s5r-8M-ob9" secondAttribute="centerX" id="O1j-bo-MdI"/>
+                    <constraint firstItem="1dV-kD-IVi" firstAttribute="centerY" secondItem="s5r-8M-ob9" secondAttribute="centerY" id="f9f-W1-tMN"/>
                 </constraints>
             </collectionViewCellContentView>
             <size key="customSize" width="298" height="110"/>
             <connections>
-                <outlet property="proejctID" destination="j4w-vi-OPN" id="uYg-cU-E7B"/>
+                <outlet property="projectID" destination="1dV-kD-IVi" id="jyo-a7-amb"/>
             </connections>
             <point key="canvasLocation" x="405.79710144927537" y="56.25"/>
         </collectionViewCell>

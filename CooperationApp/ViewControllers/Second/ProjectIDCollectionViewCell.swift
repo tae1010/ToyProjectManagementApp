@@ -9,6 +9,9 @@ import UIKit
 
 class ProjectIDCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var proejctID: UILabel!
+    @IBOutlet weak var projectID: UILabel!
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+    }
 }
