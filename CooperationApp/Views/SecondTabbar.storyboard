@@ -34,6 +34,15 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BrD-3k-A3i">
+                                <rect key="frame" x="328.33333333333331" y="58.999999999999993" width="46.666666666666686" height="30.666666666666664"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="line.3.horizontal" catalog="system"/>
+                                <connections>
+                                    <action selector="showProjectIdPopupButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="jCY-Y4-G2s"/>
+                                </connections>
+                            </button>
                             <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="lzD-jb-PLt">
                                 <rect key="frame" x="15" y="109.66666666666667" width="360" height="20.333333333333329"/>
                                 <subviews>
@@ -112,8 +121,14 @@
                                     <constraint firstAttribute="height" constant="2" id="LC9-MJ-FeK"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VUT-tg-UFe">
+                                <rect key="frame" x="15" y="460" width="360" height="24"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="P0e-rO-ffs">
-                                <rect key="frame" x="0.0" y="451" width="390" height="310"/>
+                                <rect key="frame" x="0.0" y="489" width="390" height="272"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="wKX-Ey-o2Q">
                                     <size key="itemSize" width="128" height="128"/>
@@ -132,15 +147,6 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BrD-3k-A3i">
-                                <rect key="frame" x="328.33333333333331" y="58.999999999999993" width="46.666666666666686" height="30.666666666666664"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="line.3.horizontal" catalog="system"/>
-                                <connections>
-                                    <action selector="showProjectIdPopupButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="jCY-Y4-G2s"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -148,17 +154,20 @@
                             <constraint firstItem="BrD-3k-A3i" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="15" id="1Lw-oj-1Mz"/>
                             <constraint firstItem="S0X-Qd-rlZ" firstAttribute="top" secondItem="lzD-jb-PLt" secondAttribute="bottom" constant="10" id="1We-aS-Ka6"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="P0e-rO-ffs" secondAttribute="bottom" id="21l-fq-xBq"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="VUT-tg-UFe" secondAttribute="trailing" constant="15" id="3SX-hd-mMj"/>
                             <constraint firstItem="S0X-Qd-rlZ" firstAttribute="trailing" secondItem="lzD-jb-PLt" secondAttribute="trailing" id="8FK-h3-lux"/>
+                            <constraint firstItem="VUT-tg-UFe" firstAttribute="top" secondItem="GT3-qp-sy5" secondAttribute="bottom" constant="10" id="BTh-6E-er6"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="lzD-jb-PLt" secondAttribute="trailing" constant="15" id="Bb7-cg-jih"/>
                             <constraint firstItem="GT3-qp-sy5" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="Dzo-O8-Tz8"/>
                             <constraint firstItem="lzD-jb-PLt" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="15" id="ESU-eh-Qyj"/>
                             <constraint firstItem="2pe-Tf-eXd" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="15" id="EYV-iT-kwm"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="BrD-3k-A3i" secondAttribute="trailing" constant="15" id="FTI-WB-bzc"/>
+                            <constraint firstItem="VUT-tg-UFe" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="15" id="LOj-om-0P4"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="GT3-qp-sy5" secondAttribute="trailing" id="PAp-QT-kIT"/>
                             <constraint firstItem="lzD-jb-PLt" firstAttribute="top" secondItem="2pe-Tf-eXd" secondAttribute="bottom" constant="20" id="R8Q-UJ-LR4"/>
+                            <constraint firstItem="P0e-rO-ffs" firstAttribute="top" secondItem="VUT-tg-UFe" secondAttribute="bottom" constant="5" id="Sug-eh-DTa"/>
                             <constraint firstItem="S0X-Qd-rlZ" firstAttribute="leading" secondItem="lzD-jb-PLt" secondAttribute="leading" id="f8d-YU-BtT"/>
                             <constraint firstItem="P0e-rO-ffs" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="ifr-vp-7Mb"/>
-                            <constraint firstItem="P0e-rO-ffs" firstAttribute="top" secondItem="GT3-qp-sy5" secondAttribute="bottom" constant="1" id="lfg-es-emm"/>
                             <constraint firstItem="2pe-Tf-eXd" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="15" id="ls5-o7-bYw"/>
                             <constraint firstItem="GT3-qp-sy5" firstAttribute="top" secondItem="S0X-Qd-rlZ" secondAttribute="bottom" id="nYL-8I-ySg"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="P0e-rO-ffs" secondAttribute="trailing" id="yaU-Nu-0Rv"/>
@@ -171,6 +180,7 @@
                         <outlet property="calendarView" destination="S0X-Qd-rlZ" id="ade-KU-Hul"/>
                         <outlet property="dateLabel" destination="fQv-QX-aHZ" id="tab-k5-T89"/>
                         <outlet property="dateStackView" destination="2pe-Tf-eXd" id="ZNU-9b-EKj"/>
+                        <outlet property="projectTitie" destination="VUT-tg-UFe" id="1BY-oH-2pT"/>
                         <outlet property="scheduleView" destination="P0e-rO-ffs" id="HyQ-jj-46U"/>
                         <outlet property="weekStackView" destination="lzD-jb-PLt" id="Vzy-iR-bgE"/>
                     </connections>

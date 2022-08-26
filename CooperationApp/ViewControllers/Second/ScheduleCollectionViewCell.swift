@@ -11,6 +11,6 @@ class ScheduleCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var cardlabel: UILabel!
     @IBOutlet weak var cardDateLabel: UILabel!
-    
+    @IBOutlet weak var listName: UILabel!
     
 }

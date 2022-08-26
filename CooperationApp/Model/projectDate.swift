@@ -8,3 +8,9 @@
 
 import Foundation
 
+struct Schedule {
+    var list: String
+    var card: String
+    var startTime: String?
+    var endTime: String?
+}

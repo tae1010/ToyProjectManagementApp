@@ -13,7 +13,7 @@ protocol SelectIdDelegate: AnyObject {
 
 class ProjectIDPopupViewController: UIViewController {
     
-    var projectId = [ProjectID]()
+    var project = [Project]()
     weak var selectIdDelegate: SelectIdDelegate?
 
     @IBOutlet var backGroundView: UIView!
@@ -24,7 +24,7 @@ class ProjectIDPopupViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //popupview height 오토레이아웃 설정
-        self.popUpViewHeight.constant = projectId.count < 5 ? CGFloat(projectId.count * 50) : 250
+        self.popUpViewHeight.constant = project.count < 5 ? CGFloat(project.count * 50) : 250
         self.projectIDCollectionView.delegate = self
         self.projectIDCollectionView.dataSource = self
         self.projectIDCollectionView.collectionViewLayout = UICollectionViewFlowLayout()
@@ -49,8 +49,8 @@ extension ProjectIDPopupViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("실행됨")
-        print(projectId[indexPath.row].projectid,"afafaf")
-        self.selectIdDelegate?.sendId(projectId[indexPath.row].projectid)
+        print(project[indexPath.row].id,"afafaf")
+        self.selectIdDelegate?.sendId(project[indexPath.row].id)
         self.dismiss(animated: true)
     }
 }
@@ -58,12 +58,13 @@ extension ProjectIDPopupViewController: UICollectionViewDelegate {
 extension ProjectIDPopupViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return projectId.count
+        return project.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let projectIDCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProjectIDCell", for: indexPath) as? ProjectIDCollectionViewCell else { return UICollectionViewCell() }
-        projectIDCell.projectID.text = projectId[indexPath.row].projectTitle
+        
+        projectIDCell.projectID.text = project[indexPath.row].projectTitle
         
         return projectIDCell
     }

@@ -38,10 +38,9 @@ class SecondTabbarViewController: UIViewController {
         }
     } // week모드일때 보여줄 배열, 현재날짜가 포함된 주를 보여줌(선택한 cell이 있으면 선택한 cell이 포함된 주를 보여줌)
     
-    var projectID = [ProjectID]() // projectID를 저장할 배열, second tabbar가 열리면 db에서 데이터를 읽어와 저장
+    var project = [Project]() // projectID를 저장할 배열, second tabbar가 열리면 db에서 데이터를 읽어와 저장
     var projectContent = [ProjectContent]()
-    //var projectDetailContent = [ProjectDetailContent]()
-    //var calendarProject = CalendarProject()
+    var scheduleProjectContent = [Schedule]() // scheduleView에 띄우기 위한 모델(projecetContent모델에서 정제)
     var id: String?
     
     @IBOutlet weak var dateLabel: UILabel! // 상단에 년과 월을 표시하는 label
@@ -51,6 +50,8 @@ class SecondTabbarViewController: UIViewController {
     @IBOutlet weak var calendarViewHeight: NSLayoutConstraint! // calendarView 높이
     @IBOutlet weak var betweenCaledarScheduleView: UIView! // calendarView와 scheduleview 사이 이미지뷰
     @IBOutlet weak var scheduleView: UICollectionView! // schedule collectionView
+    @IBOutlet weak var projectTitie: UILabel!
+    
     
     
     override func viewDidLoad() {
@@ -69,7 +70,7 @@ class SecondTabbarViewController: UIViewController {
         
         projectIDPopup.selectIdDelegate = self
         
-        projectIDPopup.projectId = self.projectID
+        projectIDPopup.project = self.project
 
         projectIDPopup.modalPresentationStyle = .overCurrentContext
         projectIDPopup.modalTransitionStyle = .crossDissolve
@@ -193,7 +194,7 @@ extension SecondTabbarViewController: UICollectionViewDataSource {
             case .week: return self.daysWeekMode[showIndex].count
             }
         } else {
-            return 5
+            return self.scheduleProjectContent.count
         }
         
     }
@@ -237,8 +238,13 @@ extension SecondTabbarViewController: UICollectionViewDataSource {
         // scheduleView cell 설정
         } else {
             guard let scheduleCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ScheduleCell", for: indexPath) as? ScheduleCollectionViewCell else { return UICollectionViewCell() }
-            scheduleCell.cardlabel.text = "일단은 이걸로"
-            scheduleCell.cardDateLabel.text = "2022.08.01 - 2022.08.10"
+            
+            let startTime: String? = self.scheduleProjectContent[indexPath.row].startTime ?? ""
+            let endTime: String? = self.scheduleProjectContent[indexPath.row].endTime ?? ""
+            
+            scheduleCell.cardlabel.text = self.scheduleProjectContent[indexPath.row].card
+            scheduleCell.cardDateLabel.text = "\(startTime) ~ \(endTime))"
+            scheduleCell.listName.text = self.scheduleProjectContent[indexPath.row].list
             
             return scheduleCell
         }
@@ -276,6 +282,7 @@ extension SecondTabbarViewController: UICollectionViewDelegateFlowLayout {
                 print(UIScreen.main.bounds.height)
                 return CGSize(width: width, height: height)
             }
+            
         } else {
             
             let width = UIScreen.main.bounds.width
@@ -416,6 +423,7 @@ extension SecondTabbarViewController {
         self.updateWeekMode()
     }
     
+    // 이전 달 이동
     func minusMonth() {
         
         switch calendarMode {
@@ -440,6 +448,7 @@ extension SecondTabbarViewController {
         self.updateCalendar()
     }
     
+    // 다음 달 이동
     func plusMonth() {
         switch calendarMode {
             
@@ -499,9 +508,11 @@ extension SecondTabbarViewController {
                 
                 guard let val = val as? Dictionary<String, Any> else { return }
                 guard let projectTitle = val["projectTitle"] as? String else { return }
+                guard let important = val["important"] as? Bool else { return }
+                guard let currentTime = val["currentTime"] as? Int else { return }
                 
-                let p_id = ProjectID(projectid: id, projectTitle: projectTitle)
-                self.projectID.append(p_id)
+                let p_id = Project(id: id, projectTitle: projectTitle, important: important, currentTime: currentTime)
+                self.project.append(p_id)
             }
             
         }) { error in
@@ -511,6 +522,9 @@ extension SecondTabbarViewController {
     
     //project id선택하면 project내용 db에서 읽어오기
     private func readProjectContent(_ id: String) {
+        
+        self.projectContent.removeAll()
+        
         let email = self.emailToString(Auth.auth().currentUser?.email ?? "고객")
 
         self.ref.child("\(email)/\(id)/content").observeSingleEvent(of: .value, with: { snapshot in
@@ -532,24 +546,61 @@ extension SecondTabbarViewController {
             }
             print(self.projectContent,"확인용용")
             
+            self.changeProjectTitleLabel(id)
+            self.organizeProjectContent()
+            
             DispatchQueue.main.async {
                 self.scheduleView.reloadData()
             }
 
-        }) { error in
+        })
+        
+        
+        
+        { error in
             print(error.localizedDescription)
         }
     }
+    
+    // popup창에서 받아온 id값으로 title값 저장 후 projectTitle Label 변경
+    private func changeProjectTitleLabel(_ id: String) {
+        
+        if let projectTitle = self.project.first(where: {$0.id == id}) {
+           // it exists, do something
+            print("projectTitle이 변경되었습니다.")
+            projectTitie.text = projectTitle.projectTitle
+            
+        } else {
+            print("id값이 존재하지 않습니다.")
+            return
+        }
+    }
+    
+    // scheduleCollectionView에 projectContent값을 적용시키기 위해 projectContent 구조체를 하나의 배열로 정제
+    private func organizeProjectContent() {
+        print("organizeProjectcontent가 실행됨")
+        
+        self.scheduleProjectContent.removeAll()
+
+        for projectContent in self.projectContent {
+            let listTitle = projectContent.listTitle
+            
+            for detailContent in projectContent.detailContent {
+                let cardName = detailContent.cardName ?? ""
+                let startTime = detailContent.startTime ?? ""
+                let endTime = detailContent.endTime ?? ""
+                print(Schedule(list: listTitle, card: cardName, startTime: startTime, endTime: endTime),"엥?")
+                self.scheduleProjectContent.append(Schedule(list: listTitle, card: cardName, startTime: startTime, endTime: endTime))
+            }
+        }
+    }
+    
 }
 
 extension SecondTabbarViewController: SelectIdDelegate {
+    
+    // popup창에서 id값 받아오기
     func sendId(_ id: String) {
-        print("이거 왜 실행 안됨?")
         self.readProjectContent(id)
-        
-        print(id,"아이디")
-        
     }
-    
-    
 }

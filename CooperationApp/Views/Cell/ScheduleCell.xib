@@ -17,34 +17,42 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="xLE-XP-Flv">
-                        <rect key="frame" x="15" y="15" width="256" height="61"/>
+                        <rect key="frame" x="15" y="15" width="42.5" height="61"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XG3-Uc-BmI">
-                                <rect key="frame" x="0.0" y="0.0" width="256" height="27"/>
+                                <rect key="frame" x="0.0" y="0.0" width="42.5" height="27"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d3k-rj-R6s">
-                                <rect key="frame" x="0.0" y="37" width="256" height="24"/>
+                                <rect key="frame" x="0.0" y="37" width="42.5" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                     </stackView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="List" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cT6-bU-Mzo">
+                        <rect key="frame" x="243.5" y="35.5" width="27.5" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="xLE-XP-Flv" firstAttribute="leading" secondItem="274-tT-jhh" secondAttribute="leading" constant="15" id="Idr-V6-Nj5"/>
-                    <constraint firstAttribute="trailing" secondItem="xLE-XP-Flv" secondAttribute="trailing" constant="15" id="aqS-dh-2GW"/>
                     <constraint firstAttribute="bottom" secondItem="xLE-XP-Flv" secondAttribute="bottom" constant="15" id="do4-On-H7G"/>
                     <constraint firstItem="xLE-XP-Flv" firstAttribute="top" secondItem="274-tT-jhh" secondAttribute="top" constant="15" id="hyB-nU-Vbg"/>
+                    <constraint firstAttribute="trailing" secondItem="cT6-bU-Mzo" secondAttribute="trailing" constant="15" id="xWk-wX-z3X"/>
+                    <constraint firstItem="cT6-bU-Mzo" firstAttribute="centerY" secondItem="274-tT-jhh" secondAttribute="centerY" id="zSR-bg-jsO"/>
                 </constraints>
             </collectionViewCellContentView>
             <size key="customSize" width="286" height="91"/>
             <connections>
                 <outlet property="cardDateLabel" destination="d3k-rj-R6s" id="fqX-3h-Qc5"/>
                 <outlet property="cardlabel" destination="XG3-Uc-BmI" id="77j-KA-eh8"/>
+                <outlet property="listName" destination="cT6-bU-Mzo" id="aDL-BO-m4S"/>
             </connections>
             <point key="canvasLocation" x="342.02898550724638" y="120.20089285714285"/>
         </collectionViewCell>

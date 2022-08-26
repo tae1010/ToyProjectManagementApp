@@ -7,12 +7,6 @@
 
 import Foundation
 
-// projectID
-struct ProjectID: Codable {
-    var projectid: String
-    var projectTitle: String
-}
-
 // project 내용
 struct ProjectContent: Codable {
     var listTitle: String
@@ -28,10 +22,5 @@ struct ProjectDetailContent: Codable {
     var endTime: String?
 }
 
-// secondTabbar scheduleView에 표시할 리배열
-struct CalendarProject {
-    var projectid: ProjectID?
-    var projectList: [ProjectContent]?
-}
 
 
