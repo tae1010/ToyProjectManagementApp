@@ -47,16 +47,20 @@ class SecondTabbarViewController: UIViewController {
     @IBOutlet weak var dateStackView: UIStackView! // dateLabel + 옆에 v버튼
     @IBOutlet weak var weekStackView: UIStackView! // 일~토를 표시하는 label stackView
     @IBOutlet weak var calendarView: UICollectionView! // calendar collectionView
-    @IBOutlet weak var calendarViewHeight: NSLayoutConstraint! // calendarView 높이
     @IBOutlet weak var betweenCaledarScheduleView: UIView! // calendarView와 scheduleview 사이 이미지뷰
+    @IBOutlet weak var projectTitie: UILabel! // project 이름
     @IBOutlet weak var scheduleView: UICollectionView! // schedule collectionView
-    @IBOutlet weak var projectTitie: UILabel!
+   
+    override func viewWillAppear(_ animated: Bool) {
+        self.readProjectId()
+    }
     
-    
+    override func viewWillDisappear(_ animated: Bool) {
+        print("second tabbar viewWillDisppear 실행")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.readProjectId()
         
         self.configureCalendarView()
         self.configureScheduleView()
@@ -97,27 +101,58 @@ class SecondTabbarViewController: UIViewController {
     }
     
     // month모드가 바뀔떄마다 뷰 변경
-    private func moveView(_ height: CGFloat, _ showSchedule: Bool) {
+    private func moveView(_ calendarMode: CalendarMode) {
         
-        UIView.animate(withDuration: 0.5, animations: {
-            if showSchedule == false {
-                self.betweenCaledarScheduleView.transform = CGAffineTransform(translationX: 0, y: height)
-                self.scheduleView.transform = CGAffineTransform(translationX: 0, y: height)
-            }
-            
+            self.weekStackView.translatesAutoresizingMaskIntoConstraints = false
             self.dateStackView.translatesAutoresizingMaskIntoConstraints = false
             self.calendarView.translatesAutoresizingMaskIntoConstraints = false
+            self.betweenCaledarScheduleView.translatesAutoresizingMaskIntoConstraints = false
+            self.projectTitie.translatesAutoresizingMaskIntoConstraints = false
+            self.scheduleView.translatesAutoresizingMaskIntoConstraints = false
+        
+        switch calendarMode {
+        case .fullMonth:
+            self.projectTitie.isHidden = true
+            self.scheduleView.isHidden = true
+            self.betweenCaledarScheduleView.isHidden = true
             
-            self.dateStackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 15).isActive = showSchedule
-            self.calendarView.topAnchor.constraint(equalTo: self.dateStackView.bottomAnchor, constant: 15).isActive = showSchedule
-            self.calendarView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: 0).isActive = showSchedule
+            self.dateStackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 15).isActive = true
+            self.weekStackView.topAnchor.constraint(equalTo: self.dateStackView.bottomAnchor, constant: 15).isActive = true
+            self.calendarView.topAnchor.constraint(equalTo: self.weekStackView.bottomAnchor, constant: 15).isActive = true
+            self.calendarView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: 15).isActive = true
+            //self.betweenCaledarScheduleView.topAnchor.constraint(equalTo: self.calendarView.bottomAnchor, constant: 15).isActive = true
             
-            self.calendarView.heightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.heightAnchor, constant: 0.5).isActive = showSchedule
+        case .halfMonth:
+            self.projectTitie.isHidden = false
+            self.scheduleView.isHidden = false
+            self.betweenCaledarScheduleView.isHidden = false
             
-            self.betweenCaledarScheduleView.isHidden = showSchedule
-            self.scheduleView.isHidden = showSchedule
-
-        })
+            self.dateStackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 15).isActive = true
+            self.weekStackView.topAnchor.constraint(equalTo: self.dateStackView.bottomAnchor, constant: 15).isActive = true
+            self.calendarView.topAnchor.constraint(equalTo: self.weekStackView.bottomAnchor, constant: 15).isActive = true
+            self.betweenCaledarScheduleView.topAnchor.constraint(equalTo: self.calendarView.bottomAnchor, constant: 15).isActive = true
+            self.scheduleView.topAnchor.constraint(equalTo: self.projectTitie.bottomAnchor, constant: 15).isActive = true
+            self.scheduleView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: 15).isActive = true
+            
+        case .week:
+            self.projectTitie.isHidden = false
+            self.scheduleView.isHidden = false
+            self.betweenCaledarScheduleView.isHidden = false
+            
+            self.dateStackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 15).isActive = true
+            self.weekStackView.topAnchor.constraint(equalTo: self.dateStackView.bottomAnchor, constant: 15).isActive = true
+            self.calendarView.topAnchor.constraint(equalTo: self.weekStackView.bottomAnchor, constant: 15).isActive = true
+            self.betweenCaledarScheduleView.topAnchor.constraint(equalTo: self.calendarView.bottomAnchor, constant: 15).isActive = true
+            self.scheduleView.topAnchor.constraint(equalTo: self.projectTitie.bottomAnchor, constant: 15).isActive = true
+            self.scheduleView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: 15).isActive = true
+        }
+        
+        dateStackView.setNeedsLayout()
+        weekStackView.setNeedsLayout()
+        calendarView.setNeedsLayout()
+        betweenCaledarScheduleView.setNeedsLayout()
+        projectTitie.setNeedsLayout()
+        scheduleView.setNeedsLayout()
     }
     
     // left right swipe시 달 바뀜
@@ -139,20 +174,19 @@ class SecondTabbarViewController: UIViewController {
             print("week 모드")
             self.calendarMode = .week
             self.updateWeekMode()
-            self.moveView(-250, false)
-            self.readProjectContent("D815D7B7-6BBA-45D1-9C4C-B3365CD233CA")
+            self.moveView(.week)
         } else if swipe.direction == .up, self.calendarMode == .fullMonth {
             print("half 모드")
             self.calendarMode = .halfMonth
-            self.moveView(0, false)
+            self.moveView(.halfMonth)
         } else if swipe.direction == .down, self.calendarMode == .week {
             print("half 모드")
             self.calendarMode = .halfMonth
-            self.moveView(0, false)
+            self.moveView(.halfMonth)
         }  else if swipe.direction == .down, self.calendarMode == .halfMonth {
             print("full 모드")
             self.calendarMode = .fullMonth
-            self.moveView(250, true)
+            self.moveView(.fullMonth)
             
         } else if swipe.direction == .up, self.calendarMode == .week {
             return
@@ -239,11 +273,11 @@ extension SecondTabbarViewController: UICollectionViewDataSource {
         } else {
             guard let scheduleCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ScheduleCell", for: indexPath) as? ScheduleCollectionViewCell else { return UICollectionViewCell() }
             
-            let startTime: String? = self.scheduleProjectContent[indexPath.row].startTime ?? ""
-            let endTime: String? = self.scheduleProjectContent[indexPath.row].endTime ?? ""
+            guard let startTime = self.scheduleProjectContent[indexPath.row].startTime else { return scheduleCell }
+            guard let endTime = self.scheduleProjectContent[indexPath.row].endTime else { return scheduleCell }
             
             scheduleCell.cardlabel.text = self.scheduleProjectContent[indexPath.row].card
-            scheduleCell.cardDateLabel.text = "\(startTime) ~ \(endTime))"
+            scheduleCell.cardDateLabel.text = "\(startTime) ~ \(endTime)"
             scheduleCell.listName.text = self.scheduleProjectContent[indexPath.row].list
             
             return scheduleCell
@@ -286,9 +320,9 @@ extension SecondTabbarViewController: UICollectionViewDelegateFlowLayout {
         } else {
             
             let width = UIScreen.main.bounds.width
-            let height = UIScreen.main.bounds.height / 10
-            
-            return CGSize(width: width, height: height)
+            let estimatedHeight: CGFloat = 100.0
+
+            return CGSize(width: width, height: estimatedHeight)
         }
     }
     
@@ -554,8 +588,6 @@ extension SecondTabbarViewController {
             }
 
         })
-        
-        
         
         { error in
             print(error.localizedDescription)

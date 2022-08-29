@@ -309,6 +309,14 @@
                                     <action selector="cardEditButton:" destination="Kxy-rI-Dt4" eventType="touchUpInside" id="4eP-Tp-vIv"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BZ4-kj-Mw7">
+                                <rect key="frame" x="202" y="59" width="67" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <connections>
+                                    <action selector="showSideBar:" destination="Kxy-rI-Dt4" eventType="touchUpInside" id="jXe-P9-2aH"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hvh-Mn-QeN">
                                 <rect key="frame" x="360" y="54" width="44" height="31"/>
                                 <color key="tintColor" red="0.64705882349999999" green="0.64705882349999999" blue="0.64705882349999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -337,20 +345,12 @@
                                     <action selector="tabEditContentTitleButton:" destination="Kxy-rI-Dt4" eventType="touchUpInside" id="6MY-hf-dbu"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BZ4-kj-Mw7">
-                                <rect key="frame" x="223" y="53" width="67" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
-                                <connections>
-                                    <action selector="showSideBar:" destination="Kxy-rI-Dt4" eventType="touchUpInside" id="jXe-P9-2aH"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="r4T-PV-xgh"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="q3q-57-utG" firstAttribute="leading" secondItem="r4T-PV-xgh" secondAttribute="leading" constant="20" id="2ps-Vp-0sa"/>
+                            <constraint firstItem="BZ4-kj-Mw7" firstAttribute="top" secondItem="r4T-PV-xgh" secondAttribute="top" constant="15" id="6u6-Im-NTe"/>
                             <constraint firstItem="r4T-PV-xgh" firstAttribute="trailing" secondItem="YjZ-7e-1h8" secondAttribute="trailing" constant="20" id="A4q-x9-4U3"/>
                             <constraint firstItem="Jq7-f6-o4M" firstAttribute="leading" secondItem="r4T-PV-xgh" secondAttribute="leading" constant="20" id="BIi-jI-pbc"/>
                             <constraint firstItem="r4T-PV-xgh" firstAttribute="trailing" secondItem="Gbn-w3-LKI" secondAttribute="trailing" constant="10" id="DUP-Ym-kHL"/>
@@ -363,6 +363,7 @@
                             <constraint firstItem="YjZ-7e-1h8" firstAttribute="leading" secondItem="Jq7-f6-o4M" secondAttribute="trailing" constant="10" id="VoO-23-reu"/>
                             <constraint firstItem="hvh-Mn-QeN" firstAttribute="leading" secondItem="aq2-E4-0er" secondAttribute="trailing" constant="-7.5" id="YTF-5g-oX4"/>
                             <constraint firstItem="hvh-Mn-QeN" firstAttribute="top" secondItem="r4T-PV-xgh" secondAttribute="top" constant="10" id="Z6G-5n-AsZ"/>
+                            <constraint firstItem="iir-tl-inD" firstAttribute="leading" secondItem="BZ4-kj-Mw7" secondAttribute="trailing" constant="15" id="aiQ-72-LNc"/>
                             <constraint firstItem="Gbn-w3-LKI" firstAttribute="leading" secondItem="r4T-PV-xgh" secondAttribute="leading" constant="10" id="bth-xU-raJ"/>
                             <constraint firstItem="aq2-E4-0er" firstAttribute="centerY" secondItem="hvh-Mn-QeN" secondAttribute="centerY" id="cPl-yo-gAA"/>
                             <constraint firstItem="pfl-R7-I51" firstAttribute="leading" secondItem="r4T-PV-xgh" secondAttribute="leading" constant="10" id="dQq-EN-arH"/>
