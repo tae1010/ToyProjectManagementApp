@@ -6,83 +6,123 @@
 //
 
 import UIKit
-import FirebaseFirestore
 import FirebaseDatabase
 import FirebaseAuth
 
 enum CalendarMode {
-    case fullMonth
-    case halfMonth
-    case week
+    case week // 주 단위 일때
+    case halfMonth // 월 단위 일때 (화면에 리스트와 달력 표시)
+    case fullMonth // 월 단위 일때 (화면 전체를 달력으로 표시)
 }
 
 class SecondTabbarViewController: UIViewController {
     
     var ref: DatabaseReference! = Database.database().reference() // realtime DB
-
-    private let calendar = Calendar.current // 달력 구조체
+    
+    private lazy var scrollView = UIScrollView()
+    private lazy var contentView = UIView()
+    private lazy var titleLabel = UILabel()
+    private lazy var previousButton = UIButton()
+    private lazy var nextButton = UIButton()
+    private lazy var todayButton = UIButton()
+    private lazy var weekStackView = UIStackView()
+    private lazy var calendarView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+    private lazy var betweenImageView = UIImageView()
+    private lazy var scheduleView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+    
+    private let calendar = Calendar.current
     private let dateFormatter = DateFormatter()
-    private var calendarDate = Date() // 달력에 표시할 날짜를 저장할 배열 (달이 바뀌면 바뀐 달이 포함된 날짜를 가지고 있음)
+    private var calendarDate = Date()
+    
     private var daysMonthMode = [String]() // 달력에 표시될 날짜 배열 (calendarMode가 full, halfMode 일때 사용) // ex. [" ", " ", " ", "1", "2", "3",....]
     private var daysWeekMode = [[String]]() // 달력에 표시될 날짜 배열 (calendarMode가 weekMode일때 사용), (한달 배열을 7개씩 나눠서 저장
     //ex. [["""","1","2"..."6"""],["7","8","9"..."13"]...["28","29","30","31","",""]])
-    
-    var currentDate: Int = 0 // 현재날짜를 저장할 변수 (년, 월) ex. 202210
-    var dateLabeltext: String? // 현재 날짜 일때 dateLabel에 저장된 변수 저장 ex. 2022년 10월
-    var dayDate: String = "" //현재 날짜(일) ex. 10
-    var calendarMode: CalendarMode = .halfMonth // 기본으로 halfMonth모드
-    var selectDate: String? // 선택한 cell 날짜
-    var showIndex: Int = 0 {
-        didSet{
-            print(showIndex,"showIndex")
-        }
-    } // week모드일때 보여줄 배열, 현재날짜가 포함된 주를 보여줌(선택한 cell이 있으면 선택한 cell이 포함된 주를 보여줌)
     
     var project = [Project]() // projectID를 저장할 배열, second tabbar가 열리면 db에서 데이터를 읽어와 저장
     var projectContent = [ProjectContent]()
     var scheduleProjectContent = [Schedule]() // scheduleView에 띄우기 위한 모델(projecetContent모델에서 정제)
     var id: String?
-    
-    @IBOutlet weak var dateLabel: UILabel! // 상단에 년과 월을 표시하는 label
-    @IBOutlet weak var dateStackView: UIStackView! // dateLabel + 옆에 v버튼
-    @IBOutlet weak var weekStackView: UIStackView! // 일~토를 표시하는 label stackView
-    @IBOutlet weak var calendarView: UICollectionView! // calendar collectionView
-    
-    @IBOutlet weak var calendarViewHeight: NSLayoutConstraint!
-    
-    @IBOutlet weak var betweenCaledarScheduleView: UIView! // calendarView와 scheduleview 사이 이미지뷰
-    @IBOutlet weak var projectTitie: UILabel! // project 이름
-    @IBOutlet weak var scheduleView: UICollectionView! // schedule collectionView
-   
-    override func viewWillAppear(_ animated: Bool) {
-        self.readProjectId()
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        print("second tabbar viewWillDisppear 실행")
-    }
+    var calendarMode: CalendarMode = .halfMonth // 기본으로 halfMonth모드
+    var showIndex: Int = 0
+    var dayDate: String = "" //현재 날짜(일) ex. 10
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.configureCalendarView()
-        self.configureScheduleView()
+        self.view.backgroundColor = .systemBackground
+        self.configure() // 뷰 구성
+        self.configureWeekLabel()
         self.swipeView()
+        
     }
     
-    @IBAction func showProjectIdPopupButton(_ sender: UIButton) {
-        
-        let projectIDPopup = ProjectIDPopupViewController(nibName: "ProjectIdPopup", bundle: nil)
-        
-        projectIDPopup.selectIdDelegate = self
-        
-        projectIDPopup.project = self.project
+}
 
-        projectIDPopup.modalPresentationStyle = .overCurrentContext
-        projectIDPopup.modalTransitionStyle = .crossDissolve
-        self.present(projectIDPopup, animated: true, completion: nil)
+//collectionView 함수
+extension SecondTabbarViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    
+    
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        switch calendarMode {
+        case .halfMonth, .fullMonth:
+            return self.daysMonthMode.count
+            
+        case .week: return self.daysWeekMode[showIndex].count
+        }
     }
     
-    // swipe 정의
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DateCollectionViewCell.identifier, for: indexPath) as? DateCollectionViewCell else { return UICollectionViewCell() }
+        cell.update(day: self.daysMonthMode[indexPath.item])
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width = self.weekStackView.frame.width / 7
+        
+        switch calendarMode {
+        case .halfMonth, .week:
+            return CGSize(width: width, height: width)
+        case .fullMonth:
+            return CGSize(width: width, height: width * 1.5)
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return .zero
+    }
+    
+    // cell 세로 간격
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return .zero
+    }
+    
+}
+
+
+// update 함수
+extension SecondTabbarViewController {
+    
+    //현재 날짜 구하기
+    private func koreanDate() -> Int!{
+        let current = Date()
+        
+        let formatter = DateFormatter()
+        let date = self.dateFormatter.string(from: self.calendarDate)
+        //한국 시간으로 표시
+        formatter.locale = Locale(identifier: "ko_kr")
+        formatter.timeZone = TimeZone(abbreviation: "KST")
+        //형태 변환
+        formatter.dateFormat = "yyyyMMdd"
+        guard let currentDate = Int(formatter.string(from: current)) else { return 1 }
+        
+        // 현재 날짜의 date를 따로 저장
+//        self.dateLabeltext = date
+        // 날짜 day만(일) 따로 구하기
+        self.dayDate = String(String(currentDate).dropFirst(6))
+        return currentDate
+    }
+    
     private func swipeView() {
         let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(swipeEvent(_:)))
         swipeUp.direction = .up
@@ -101,333 +141,48 @@ class SecondTabbarViewController: UIViewController {
         self.calendarView.addGestureRecognizer(swipeRight)
     }
     
-    // month모드가 바뀔떄마다 뷰 autolayout 변경
-    private func moveView(_ calendarMode: CalendarMode) {
-
-        self.calendarView.translatesAutoresizingMaskIntoConstraints = false
-        
-        switch calendarMode {
-            
-        case .fullMonth:
-            print(dateLabel.frame.height + weekStackView.frame.height,"이거 떄문 확실")
-            self.calendarViewHeight.constant = 800
-            self.betweenCaledarScheduleView.isHidden = true
-            self.projectTitie.isHidden = true
-            self.scheduleView.isHidden = true
-            
-        case .halfMonth:
-            self.calendarViewHeight.constant = weekStackView.frame.width / 7 * 5
-            self.betweenCaledarScheduleView.isHidden = false
-            self.projectTitie.isHidden = false
-            self.scheduleView.isHidden = false
-            
-        case .week:
-            self.calendarViewHeight.constant = weekStackView.frame.width / 7 + 15
-            
-        }
     
-    }
-    
-    // left right swipe시 달 바뀜
-    @objc func changeMonth(_ swipe: UISwipeGestureRecognizer) {
-        if swipe.direction == .left {
-            print("left swipe")
-            self.plusMonth()
-            
-        } else {
-            print("right swipe")
-            self.minusMonth()
-        }
-    }
-    
-    // swipe시 생기는 이벤트
-    @objc func swipeEvent(_ swipe: UISwipeGestureRecognizer) {
-        
-        if swipe.direction == .up, self.calendarMode == .halfMonth {
-            print("week 모드")
-            self.calendarMode = .week
-            self.updateWeekMode()
-            
-        } else if swipe.direction == .up, self.calendarMode == .fullMonth {
-            print("half 모드")
-            self.calendarMode = .halfMonth
-
-        } else if swipe.direction == .down, self.calendarMode == .week {
-            print("half 모드")
-            self.calendarMode = .halfMonth
-
-        }  else if swipe.direction == .down, self.calendarMode == .halfMonth {
-            print("full 모드")
-            self.calendarMode = .fullMonth
-
-        } else if swipe.direction == .up, self.calendarMode == .week {
-            return
-        } else if swipe.direction == .down, self.calendarMode == .fullMonth {
-            return
-        }
-        
-        DispatchQueue.main.async {
-            self.updateCalendar()
-            self.calendarView.reloadData()
-            self.moveView(self.calendarMode)
-            self.view.layoutIfNeeded()
-        }
-    }
-}
-
-extension SecondTabbarViewController: UICollectionViewDelegate {
-    
-    //collectionView select
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if collectionView == calendarView {
-            if let cell = collectionView.cellForItem(at: indexPath) as? DateCollectionViewCell {
-                cell.selectCell(true)
-            }
-        } else {
-            // ...
-        }
-    }
-}
-
-extension SecondTabbarViewController: UICollectionViewDataSource {
-    
-    //cell return 갯수
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if collectionView == calendarView {
-            switch calendarMode {
-            case .halfMonth, .fullMonth:
-                return self.daysMonthMode.count
-            case .week: return self.daysWeekMode[showIndex].count
-            }
-        } else {
-            return self.scheduleProjectContent.count
-        }
-        print("cell 갯수 return")
-        
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        
-        // calendarView cell 설정
-        if collectionView == calendarView {
-            guard let calendarCell = collectionView.dequeueReusableCell(withReuseIdentifier: "DateCell", for: indexPath) as? DateCollectionViewCell else { return UICollectionViewCell() }
-            
-            switch calendarMode {
-
-            case .fullMonth:
-                
-                calendarCell.update(day: self.daysMonthMode[indexPath.row])
-                calendarCell.checkCurrentDate(false)
-                
-                if dateLabel.text == dateLabeltext && daysMonthMode[indexPath.row] == dayDate {
-                    calendarCell.checkCurrentDate(true)
-                }
-                
-                // 현재 달력모드 체크
-                calendarCell.calendarMode(self.calendarMode)
-                return calendarCell
-                
-            case .halfMonth:
-                calendarCell.update(day: self.daysMonthMode[indexPath.row])
-                calendarCell.checkCurrentDate(false)
-                if dateLabel.text == dateLabeltext && daysMonthMode[indexPath.row] == dayDate {
-                    calendarCell.checkCurrentDate(true)
-                }
-                
-                // 현재 달력모드 체크
-                calendarCell.calendarMode(self.calendarMode)
-                return calendarCell
-                
-            case .week:
-                calendarCell.update(day: self.daysWeekMode[showIndex][indexPath.row])
-                calendarCell.checkCurrentDate(false)
-                if dateLabel.text == dateLabeltext && daysWeekMode[showIndex][indexPath.row] == dayDate {
-                    calendarCell.checkCurrentDate(true)
-
-                }
-                
-                // 현재 달력모드 체크
-                calendarCell.calendarMode(self.calendarMode)
-                return calendarCell
-            }
-            
-            
-            
-            
-        // scheduleView cell 설정
-        } else {
-            guard let scheduleCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ScheduleCell", for: indexPath) as? ScheduleCollectionViewCell else { return UICollectionViewCell() }
-            
-            guard let startTime = self.scheduleProjectContent[indexPath.row].startTime else { return scheduleCell }
-            guard let endTime = self.scheduleProjectContent[indexPath.row].endTime else { return scheduleCell }
-            
-            scheduleCell.cardlabel.text = self.scheduleProjectContent[indexPath.row].card
-            scheduleCell.cardDateLabel.text = "\(startTime) ~ \(endTime)"
-            scheduleCell.listName.text = self.scheduleProjectContent[indexPath.row].list
-            
-            return scheduleCell
-        }
-        
-    }
-}
-
-
-extension SecondTabbarViewController: UICollectionViewDelegateFlowLayout {
-    
-    //cell 크기
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        if collectionView == calendarView {
-        
-            // halfMonth, week모드는 가로의 길이는 동일
-            // cell 가로의 길이는 wekkstackview(월~일) 각 요일의 길이와 같아야 함
-            let width = self.weekStackView.frame.width / 7
-
-            switch self.calendarMode {
-                
-            case .week:
-                return CGSize(width: width, height: width)
-
-            case .halfMonth:
-
-                // 주가 6주가 넘을때
-                if daysWeekMode.count >= 6 {
-                    let height = (width * 5) / 6
-                    return CGSize(width: width, height: height)
-                    
-                // 주가 6주 미만일때
-                } else {
-                    return CGSize(width: width, height: width)
-                }
-
-            //fullMonth는 view를 꽉채워야 하기 떄문에 새로의 길이가 길어져야 함
-            case .fullMonth:
-                
-                let height = (UIScreen.main.bounds.height - (dateLabel.frame.height + weekStackView.frame.height + 25)) / 7
-                
-                return CGSize(width: width, height: height)
-            }
-            
-        } else {
-            
-            let width = UIScreen.main.bounds.width
-            let estimatedHeight: CGFloat = 100.0
-
-            return CGSize(width: width, height: estimatedHeight)
-        }
-    }
-    
-    // cell 가로간격
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-            return .zero
-        }
-    
-    // cell 세로 간격
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return .zero
-    }
-
-}
-
-
-/// calendarView 관련 함수
-extension SecondTabbarViewController {
-    
-    //calendarView 초기 설정
-    private func configureCalendarView() {
-        
-        // caledarView ui 설정
-        self.calendarView.translatesAutoresizingMaskIntoConstraints = true
-//        self.calendarView.showsVerticalScrollIndicator = false // 가로 스크롤 안 보이게 하기
-//        self.calendarView.showsHorizontalScrollIndicator = false // 세로 스크롤 안 보이게 하기
-        self.calendarView.isScrollEnabled = false // scroll x
-        self.calendarView.collectionViewLayout = UICollectionViewFlowLayout()
-        self.moveView(.halfMonth)
-        self.calendarView.delegate = self
-        self.calendarView.dataSource = self
-        
-        // calendarView nib 설정
-        let calendarViewCellNib = UINib(nibName: "DateCell", bundle: nil)
-        self.calendarView.register(calendarViewCellNib, forCellWithReuseIdentifier: "DateCell")
-        
-        // calendarView 날짜 설정
-        let components = self.calendar.dateComponents([.weekOfYear, .year, .month], from: Date())
-        print(components, "???????")
-        self.calendarDate = self.calendar.date(from: components) ?? Date()
-        self.dateFormatter.locale = Locale(identifier: "ko_kr")
-        self.dateFormatter.timeZone = TimeZone(abbreviation: "KST")
+    private func configureCalendar() {
         self.dateFormatter.dateFormat = "yyyy년 MM월"
-        self.currentDate = koreanDate()
-        self.updateCalendar()
-        self.findcurrentIndex()
+        self.today()
     }
     
-    //현재 날짜 구하기
-    func koreanDate() -> Int!{
-        let current = Date()
-        
-        let formatter = DateFormatter()
-        let date = self.dateFormatter.string(from: self.calendarDate)
-        //한국 시간으로 표시
-        formatter.locale = Locale(identifier: "ko_kr")
-        formatter.timeZone = TimeZone(abbreviation: "KST")
-        //형태 변환
-        formatter.dateFormat = "yyyyMMdd"
-        guard let currentDate = Int(formatter.string(from: current)) else { return 1 }
-        
-        // 현재 날짜의 date를 따로 저장
-        self.dateLabeltext = date
-        // 날짜 day만(일) 따로 구하기
-        self.dayDate = String(String(currentDate).dropFirst(6))
-        return currentDate
-    }
-    
-    // 1일이 시작되는 날짜 구하기
-    func startDayOfTheWeek() -> Int {
+    private func startDayOfTheWeek() -> Int {
         return self.calendar.component(.weekday, from: self.calendarDate) - 1
     }
     
-    // 달에 마지막 날짜를 return
-    func endDate() -> Int {
+    private func endDate() -> Int {
         return self.calendar.range(of: .day, in: .month, for: self.calendarDate)?.count ?? Int()
     }
-
-    // 맨위에 날짜 label 설정
-    func updateTitle() {
-        let date = self.dateFormatter.string(from: self.calendarDate)
-        self.dateLabel.text = date
+    
+    private func updateCalendar() {
+        self.updateTitle()
+        self.updateMonthMode()
+        self.updateWeekMode()
     }
     
-    // 날짜 업데이트 (halfMonth, fullMonth 모드)
-    func updateMonthMode() {
+    private func updateTitle() {
+        let date = self.dateFormatter.string(from: self.calendarDate)
+        self.titleLabel.text = date
+    }
+    
+    private func updateMonthMode() {
         self.daysMonthMode.removeAll()
         let startDayOfTheWeek = self.startDayOfTheWeek()
         let totalDays = startDayOfTheWeek + self.endDate()
         
-        // 만약에 1일이 화요일부터 시작된다고 하면 ["", "", "1", "2" ....] 이런식으로 저장됨
         for day in Int()..<totalDays {
             if day < startDayOfTheWeek {
-                self.daysMonthMode.append("")
+                self.daysMonthMode.append(String())
                 continue
             }
-            //1, 2, 3 같은 한자리수를 01, 02, 03으로 바꿔줌
-            self.daysMonthMode.append("\(String(format: "%02d", day - startDayOfTheWeek + 1))")
+            self.daysMonthMode.append("\(day - startDayOfTheWeek + 1)")
         }
         
         self.calendarView.reloadData()
     }
     
-    // 현재 날짜가 있는 showIndex 구하기
-    func findcurrentIndex() {
-        print("현재날짜 index 구해짐")
-        if let firstIndex = self.daysMonthMode.firstIndex(of: String(dayDate)) {
-            self.showIndex = firstIndex / 7
-        }
-    }
-    
-    // 날짜 업데이트 (week 모드)
-    func updateWeekMode() {
+    private func updateWeekMode() {
         print("updateWeekMode 실행1")
         self.daysWeekMode.removeAll()
         
@@ -448,75 +203,100 @@ extension SecondTabbarViewController {
         self.calendarView.reloadData()
     }
     
-    // 달력 업데이트
-    func updateCalendar() {
-        self.updateTitle()
-        self.updateMonthMode()
-        self.updateWeekMode()
+    private func findcurrentIndex() {
+        print("현재날짜 index 구해짐")
+        if let firstIndex = self.daysMonthMode.firstIndex(of: String(dayDate)) {
+            self.showIndex = firstIndex / 7
+        }
     }
     
-    // 이전 달 이동
-    func minusMonth() {
-        
-        switch calendarMode {
-            
-        case .fullMonth, .halfMonth:
-            self.calendarDate = self.calendar.date(byAdding: DateComponents(month: -1), to: self.calendarDate) ?? Date()
-            
-        case .week:
-            
-            if self.showIndex > 0 {
-                self.showIndex -= 1
-            } else {
-                self.calendarDate = self.calendar.date(byAdding: DateComponents(month: -1), to: self.calendarDate) ?? Date()
-                print(daysWeekMode,"daysWeekMode")
-                self.updateCalendar()
-                self.showIndex = self.daysWeekMode.count - 1
-            }
-        }
-        
+    private func minusMonth() {
+        self.calendarDate = self.calendar.date(byAdding: DateComponents(month: -1), to: self.calendarDate) ?? Date()
         self.updateCalendar()
     }
     
-    // 다음 달 이동
-    func plusMonth() {
-        switch calendarMode {
-            
-        case .fullMonth, .halfMonth:
-            self.calendarDate = self.calendar.date(byAdding: DateComponents(month: 1), to: self.calendarDate) ?? Date()
-            
-        case .week:
-           
-            if daysWeekMode.count - 1 > self.showIndex {
-                self.showIndex += 1
-            } else {
-                self.calendarDate = self.calendar.date(byAdding: DateComponents(month: 1), to: self.calendarDate) ?? Date()
-                self.showIndex = 0
-            }
-        }
-        
+    private func plusMonth() {
+        self.calendarDate = self.calendar.date(byAdding: DateComponents(month: 1), to: self.calendarDate) ?? Date()
         self.updateCalendar()
-        
     }
+    
+    private func today() {
+        let components = self.calendar.dateComponents([.year, .month], from: Date())
+        self.calendarDate = self.calendar.date(from: components) ?? Date()
+        print(calendarDate,"오늘")
+        self.updateCalendar()
+    }
+    
+
+    
 }
 
-// MARK: - scheduleView
+/// @objc 함수
 extension SecondTabbarViewController {
     
-    private func configureScheduleView() {
-        
-        self.scheduleView.collectionViewLayout = UICollectionViewFlowLayout()
-        self.scheduleView.delegate = self
-        self.scheduleView.dataSource = self
-        
-        // scheduleView nib 설정
-        let scheduleViewCellNib = UINib(nibName: "ScheduleCell", bundle: nil)
-        self.scheduleView.register(scheduleViewCellNib, forCellWithReuseIdentifier: "ScheduleCell")
-        
+    @objc private func didPreviousButtonTouched(_ sender: UIButton) {
+        self.minusMonth()
     }
+    
+    @objc private func didNextButtonTouched(_ sender: UIButton) {
+        self.plusMonth()
+    }
+    
+    @objc private func didTodayButtonTouched(_ sender: UIButton) {
+        self.today()
+    }
+    
+    // swipe시 생기는 이벤트(up, down)
+    @objc func swipeEvent(_ swipe: UISwipeGestureRecognizer) {
+        
+        if swipe.direction == .up, self.calendarMode == .halfMonth {
+            print("week 모드")
+            self.calendarMode = .week
+            //self.updateWeekMode()
+            
+        } else if swipe.direction == .up, self.calendarMode == .fullMonth {
+            print("half 모드")
+            self.calendarMode = .halfMonth
+
+        } else if swipe.direction == .down, self.calendarMode == .week {
+            print("half 모드")
+            self.calendarMode = .halfMonth
+
+        }  else if swipe.direction == .down, self.calendarMode == .halfMonth {
+            print("full 모드")
+            self.calendarMode = .fullMonth
+
+        } else if swipe.direction == .up, self.calendarMode == .week {
+            return
+        } else if swipe.direction == .down, self.calendarMode == .fullMonth {
+            return
+        }
+        
+        self.updateCalendar()
+        self.moveView(self.calendarMode)
+        
+        DispatchQueue.main.async {
+            self.calendarView.reloadData()
+            self.view.setNeedsLayout()
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    // swipe시 달 바뀜 (left, right)
+    @objc func changeMonth(_ swipe: UISwipeGestureRecognizer) {
+        if swipe.direction == .left {
+            print("left swipe")
+            self.plusMonth()
+            
+        } else {
+            print("right swipe")
+            self.minusMonth()
+        }
+    }
+    
 }
 
-// MARK: - DB관련
+
 extension SecondTabbarViewController {
     
     private func emailToString(_ email: String) -> String {
@@ -572,10 +352,9 @@ extension SecondTabbarViewController {
                     }
                 }
             }
-            print(self.projectContent,"확인용용")
             
-            self.changeProjectTitleLabel(id)
-            self.organizeProjectContent()
+//            self.changeProjectTitleLabel(id)
+//            self.organizeProjectContent()
             
             DispatchQueue.main.async {
                 self.scheduleView.reloadData()
@@ -587,46 +366,193 @@ extension SecondTabbarViewController {
             print(error.localizedDescription)
         }
     }
-    
-    // popup창에서 받아온 id값으로 title값 저장 후 projectTitle Label 변경
-    private func changeProjectTitleLabel(_ id: String) {
-        
-        if let projectTitle = self.project.first(where: {$0.id == id}) {
-           // it exists, do something
-            print("projectTitle이 변경되었습니다.")
-            projectTitie.text = projectTitle.projectTitle
-            
-        } else {
-            print("id값이 존재하지 않습니다.")
-            return
-        }
-    }
-    
-    // scheduleCollectionView에 projectContent값을 적용시키기 위해 projectContent 구조체를 하나의 배열로 정제
-    private func organizeProjectContent() {
-        print("organizeProjectcontent가 실행됨")
-        
-        self.scheduleProjectContent.removeAll()
 
-        for projectContent in self.projectContent {
-            let listTitle = projectContent.listTitle
+    
+    private func moveView(_ calendarMode: CalendarMode) {
+    
+        
+        
+        switch calendarMode {
             
-            for detailContent in projectContent.detailContent {
-                let cardName = detailContent.cardName ?? ""
-                let startTime = detailContent.startTime ?? ""
-                let endTime = detailContent.endTime ?? ""
-                print(Schedule(list: listTitle, card: cardName, startTime: startTime, endTime: endTime),"엥?")
-                self.scheduleProjectContent.append(Schedule(list: listTitle, card: cardName, startTime: startTime, endTime: endTime))
-            }
+        case .fullMonth:
+            self.betweenImageView.isHidden = true
+            NSLayoutConstraint.activate([
+                self.calendarView.heightAnchor.constraint(equalToConstant: 500)
+            ])
+            
+        case .halfMonth:
+            self.betweenImageView.isHidden = false
+            NSLayoutConstraint.activate([
+                self.calendarView.heightAnchor.constraint(equalToConstant: 200)
+            ])
+
+            
+        case .week:
+            self.betweenImageView.isHidden = false
+            NSLayoutConstraint.activate([
+                self.calendarView.heightAnchor.constraint(equalToConstant: 50)
+            ])
         }
+    
     }
     
 }
 
-extension SecondTabbarViewController: SelectIdDelegate {
+
+// 뷰 관련 함수
+extension SecondTabbarViewController {
     
-    // popup창에서 id값 받아오기
-    func sendId(_ id: String) {
-        self.readProjectContent(id)
+    private func configure() {
+        self.configureScrollView()
+        self.configureContentView()
+        self.configureTitleLabel()
+        self.configurePreviousButton()
+        self.configureNextButton()
+        self.configureTodayButton()
+        self.configureWeekStackView()
+        self.configureCollectionView()
+        self.configureCalendar()
+        self.configureImageView()
+        self.findcurrentIndex()
     }
+    
+    private func configureScrollView() {
+        self.view.addSubview(self.scrollView)
+        self.scrollView.translatesAutoresizingMaskIntoConstraints = false
+        self.scrollView.isPagingEnabled = true
+        self.scrollView.showsVerticalScrollIndicator = false
+
+        self.scrollView.contentOffset = CGPoint(x: 0, y: 20)
+        self.scrollView.backgroundColor = .blue
+        NSLayoutConstraint.activate([
+//            self.scrollView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+            self.scrollView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
+            self.scrollView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor),
+            self.scrollView.heightAnchor.constraint(equalToConstant: 1000)
+//            self.scrollView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor)
+        ])
+    }
+    
+    private func configureContentView() {
+        self.scrollView.addSubview(self.contentView)
+        self.contentView.translatesAutoresizingMaskIntoConstraints = false
+        self.contentView.backgroundColor = .green
+        NSLayoutConstraint.activate([
+            self.contentView.topAnchor.constraint(equalTo: self.scrollView.topAnchor),
+            self.contentView.leadingAnchor.constraint(equalTo: self.scrollView.leadingAnchor),
+            self.contentView.trailingAnchor.constraint(equalTo: self.scrollView.trailingAnchor),
+            self.contentView.bottomAnchor.constraint(equalTo: self.scrollView.bottomAnchor),
+            self.contentView.widthAnchor.constraint(equalTo: self.scrollView.widthAnchor)
+        ])
+    }
+
+    
+    private func configureTitleLabel() {
+        self.contentView.addSubview(self.titleLabel)
+        self.titleLabel.text = "2000년 01월"
+        self.titleLabel.font = .monospacedSystemFont(ofSize: 18, weight: .bold)
+        self.titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            self.titleLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 10),
+            self.titleLabel.heightAnchor.constraint(equalToConstant: 44),
+            self.titleLabel.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor)
+        ])
+    }
+    
+    private func configurePreviousButton() {
+        self.contentView.addSubview(self.previousButton)
+        self.previousButton.tintColor = .label
+        self.previousButton.setImage(UIImage(systemName: "chevron.left"), for: .normal)
+        self.previousButton.addTarget(self, action: #selector(self.didPreviousButtonTouched), for: .touchUpInside)
+        self.previousButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            self.previousButton.widthAnchor.constraint(equalToConstant: 44),
+            self.previousButton.heightAnchor.constraint(equalToConstant: 44),
+            self.previousButton.trailingAnchor.constraint(equalTo: self.titleLabel.leadingAnchor, constant: -5),
+            self.previousButton.centerYAnchor.constraint(equalTo: self.titleLabel.centerYAnchor)
+        ])
+    }
+    
+    private func configureNextButton() {
+        self.contentView.addSubview(self.nextButton)
+        self.nextButton.tintColor = .label
+        self.nextButton.setImage(UIImage(systemName: "chevron.right"), for: .normal)
+        self.nextButton.addTarget(self, action: #selector(self.didNextButtonTouched), for: .touchUpInside)
+        self.nextButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            self.nextButton.widthAnchor.constraint(equalToConstant: 44),
+            self.nextButton.heightAnchor.constraint(equalToConstant: 44),
+            self.nextButton.leadingAnchor.constraint(equalTo: self.titleLabel.trailingAnchor, constant: 5),
+            self.nextButton.centerYAnchor.constraint(equalTo: self.titleLabel.centerYAnchor)
+        ])
+    }
+    
+    private func configureTodayButton() {
+        self.contentView.addSubview(self.todayButton)
+        self.todayButton.setTitle("Today", for: .normal)
+        self.todayButton.setTitleColor(.systemBackground, for: .normal)
+        self.todayButton.backgroundColor = .label
+        self.todayButton.layer.cornerRadius = 5
+        self.todayButton.addTarget(self, action: #selector(self.didTodayButtonTouched), for: .touchUpInside)
+        self.todayButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            self.todayButton.widthAnchor.constraint(equalToConstant: 60),
+            self.todayButton.heightAnchor.constraint(equalToConstant: 30),
+            self.todayButton.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -10),
+            self.todayButton.centerYAnchor.constraint(equalTo: self.titleLabel.centerYAnchor)
+        ])
+    }
+    
+    private func configureWeekStackView() {
+        self.contentView.addSubview(self.weekStackView)
+        self.weekStackView.distribution = .fillEqually
+        self.weekStackView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            self.weekStackView.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor, constant: 40),
+            self.weekStackView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 5),
+            self.weekStackView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -5),
+            self.weekStackView.heightAnchor.constraint(equalToConstant: 44)
+        ])
+    }
+    
+    private func configureWeekLabel() {
+        let dayOfTheWeek = ["일", "월", "화", "수", "목", "금", "토"]
+        
+        for i in 0..<7 {
+            let label = UILabel()
+            label.text = dayOfTheWeek[i]
+            label.textAlignment = .center
+            self.weekStackView.addArrangedSubview(label)
+        }
+    }
+    
+    private func configureCollectionView() {
+        self.contentView.addSubview(self.calendarView)
+        self.calendarView.dataSource = self
+        self.calendarView.delegate = self
+        self.calendarView.register(DateCollectionViewCell.self, forCellWithReuseIdentifier: DateCollectionViewCell.identifier)
+        self.calendarView.translatesAutoresizingMaskIntoConstraints = false
+        self.calendarView.backgroundColor = .yellow
+        NSLayoutConstraint.activate([
+            self.calendarView.topAnchor.constraint(equalTo: self.weekStackView.bottomAnchor, constant: 10),
+            self.calendarView.leadingAnchor.constraint(equalTo: self.weekStackView.leadingAnchor),
+            self.calendarView.trailingAnchor.constraint(equalTo: self.weekStackView.trailingAnchor),
+            self.calendarView.heightAnchor.constraint(equalToConstant: self.view.frame.width * 5/7)
+        ])
+    }
+    
+    private func configureImageView() {
+        self.contentView.addSubview(self.betweenImageView)
+        self.betweenImageView.translatesAutoresizingMaskIntoConstraints = false
+        self.betweenImageView.backgroundColor = .gray
+        NSLayoutConstraint.activate([
+            self.betweenImageView.topAnchor.constraint(equalTo: calendarView.bottomAnchor, constant: 1),
+            self.betweenImageView.heightAnchor.constraint(equalToConstant: 1),
+            self.betweenImageView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            self.betweenImageView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor)
+        ])
+    }
+    
+    
+    
 }
