@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		930B2BDF28056CBD00CCB0EE /* Pods_CooperationApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0FB3D49C10786D1206783F4 /* Pods_CooperationApp.framework */; };
+		7FDCAE61608D1978DB5621EE /* Pods_ToyProjectManagementApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D7C2F69DF86D86139AB458C /* Pods_ToyProjectManagementApp.framework */; };
 		931F9BB928A7D38B000AFA9E /* ScheduleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 931F9BB828A7D38B000AFA9E /* ScheduleCell.xib */; };
 		931F9BBB28A7D468000AFA9E /* ScheduleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931F9BBA28A7D468000AFA9E /* ScheduleCollectionViewCell.swift */; };
 		93285BEE2801887C00396083 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 93285BED2801887C00396083 /* GoogleService-Info.plist */; };
@@ -55,6 +55,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2D7C2F69DF86D86139AB458C /* Pods_ToyProjectManagementApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ToyProjectManagementApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9040AAC533458F82FCF3EC0A /* Pods-ToyProjectManagementApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToyProjectManagementApp.debug.xcconfig"; path = "Target Support Files/Pods-ToyProjectManagementApp/Pods-ToyProjectManagementApp.debug.xcconfig"; sourceTree = "<group>"; };
 		931F9BB828A7D38B000AFA9E /* ScheduleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScheduleCell.xib; sourceTree = "<group>"; };
 		931F9BBA28A7D468000AFA9E /* ScheduleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleCollectionViewCell.swift; sourceTree = "<group>"; };
 		93285BED2801887C00396083 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -93,7 +95,7 @@
 		93DA8F82282FB0CD00217360 /* ProjectContentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProjectContentCell.xib; sourceTree = "<group>"; };
 		93DA8F85282FB16900217360 /* ProjectContentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectContentTableViewCell.swift; sourceTree = "<group>"; };
 		93DA8F87282FC1A200217360 /* ProjectContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectContent.swift; sourceTree = "<group>"; };
-		93DEFA8227FAFF1600827C79 /* CooperationApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CooperationApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		93DEFA8227FAFF1600827C79 /* ToyProjectManagementApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToyProjectManagementApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		93DEFA8527FAFF1600827C79 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		93DEFA8727FAFF1600827C79 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		93DEFA8F27FAFF1600827C79 /* CooperationApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CooperationApp.xcdatamodel; sourceTree = "<group>"; };
@@ -101,9 +103,7 @@
 		93DEFA9427FAFF1700827C79 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		93DEFA9627FAFF1700827C79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		93F8E4C0282BBE8800F888F0 /* ProjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectViewController.swift; sourceTree = "<group>"; };
-		A5311CEE6F1050F23A02B091 /* Pods-CooperationApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CooperationApp.debug.xcconfig"; path = "Target Support Files/Pods-CooperationApp/Pods-CooperationApp.debug.xcconfig"; sourceTree = "<group>"; };
-		B4A1AF8A17CFCEBC490BF037 /* Pods-CooperationApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CooperationApp.release.xcconfig"; path = "Target Support Files/Pods-CooperationApp/Pods-CooperationApp.release.xcconfig"; sourceTree = "<group>"; };
-		C0FB3D49C10786D1206783F4 /* Pods_CooperationApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CooperationApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF4E6BEC848B616B6A4E3389 /* Pods-ToyProjectManagementApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToyProjectManagementApp.release.xcconfig"; path = "Target Support Files/Pods-ToyProjectManagementApp/Pods-ToyProjectManagementApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,7 +111,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				930B2BDF28056CBD00CCB0EE /* Pods_CooperationApp.framework in Frameworks */,
+				7FDCAE61608D1978DB5621EE /* Pods_ToyProjectManagementApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -121,8 +121,8 @@
 		68BFDA4782678AAFA159C129 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				A5311CEE6F1050F23A02B091 /* Pods-CooperationApp.debug.xcconfig */,
-				B4A1AF8A17CFCEBC490BF037 /* Pods-CooperationApp.release.xcconfig */,
+				9040AAC533458F82FCF3EC0A /* Pods-ToyProjectManagementApp.debug.xcconfig */,
+				EF4E6BEC848B616B6A4E3389 /* Pods-ToyProjectManagementApp.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -270,7 +270,7 @@
 		93DEFA7927FAFF1500827C79 = {
 			isa = PBXGroup;
 			children = (
-				93DEFA8427FAFF1600827C79 /* CooperationApp */,
+				93DEFA8427FAFF1600827C79 /* ToyProjectManagementApp */,
 				93DEFA8327FAFF1600827C79 /* Products */,
 				68BFDA4782678AAFA159C129 /* Pods */,
 				B5A5F429AAC48C2B322E7B29 /* Frameworks */,
@@ -280,12 +280,12 @@
 		93DEFA8327FAFF1600827C79 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				93DEFA8227FAFF1600827C79 /* CooperationApp.app */,
+				93DEFA8227FAFF1600827C79 /* ToyProjectManagementApp.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		93DEFA8427FAFF1600827C79 /* CooperationApp */ = {
+		93DEFA8427FAFF1600827C79 /* ToyProjectManagementApp */ = {
 			isa = PBXGroup;
 			children = (
 				9301D3082803513E0010191F /* Assets */,
@@ -301,7 +301,7 @@
 				93DEFA9627FAFF1700827C79 /* Info.plist */,
 				93DEFA8E27FAFF1600827C79 /* CooperationApp.xcdatamodeld */,
 			);
-			path = CooperationApp;
+			path = ToyProjectManagementApp;
 			sourceTree = "<group>";
 		};
 		93F8E4BF282BB8F400F888F0 /* ProjectContent */ = {
@@ -320,7 +320,7 @@
 		B5A5F429AAC48C2B322E7B29 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C0FB3D49C10786D1206783F4 /* Pods_CooperationApp.framework */,
+				2D7C2F69DF86D86139AB458C /* Pods_ToyProjectManagementApp.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -328,9 +328,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		93DEFA8127FAFF1600827C79 /* CooperationApp */ = {
+		93DEFA8127FAFF1600827C79 /* ToyProjectManagementApp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 93DEFA9927FAFF1700827C79 /* Build configuration list for PBXNativeTarget "CooperationApp" */;
+			buildConfigurationList = 93DEFA9927FAFF1700827C79 /* Build configuration list for PBXNativeTarget "ToyProjectManagementApp" */;
 			buildPhases = (
 				5368219C207F4A025DF30B8B /* [CP] Check Pods Manifest.lock */,
 				93DEFA7E27FAFF1600827C79 /* Sources */,
@@ -343,9 +343,9 @@
 			);
 			dependencies = (
 			);
-			name = CooperationApp;
+			name = ToyProjectManagementApp;
 			productName = CooperationApp;
-			productReference = 93DEFA8227FAFF1600827C79 /* CooperationApp.app */;
+			productReference = 93DEFA8227FAFF1600827C79 /* ToyProjectManagementApp.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -363,7 +363,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 93DEFA7D27FAFF1500827C79 /* Build configuration list for PBXProject "CooperationApp" */;
+			buildConfigurationList = 93DEFA7D27FAFF1500827C79 /* Build configuration list for PBXProject "ToyProjectManagementApp" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -376,7 +376,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				93DEFA8127FAFF1600827C79 /* CooperationApp */,
+				93DEFA8127FAFF1600827C79 /* ToyProjectManagementApp */,
 			);
 		};
 /* End PBXProject section */
@@ -415,15 +415,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CooperationApp/Pods-CooperationApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-ToyProjectManagementApp/Pods-ToyProjectManagementApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CooperationApp/Pods-CooperationApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-ToyProjectManagementApp/Pods-ToyProjectManagementApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CooperationApp/Pods-CooperationApp-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ToyProjectManagementApp/Pods-ToyProjectManagementApp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		5368219C207F4A025DF30B8B /* [CP] Check Pods Manifest.lock */ = {
@@ -441,7 +441,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-CooperationApp-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-ToyProjectManagementApp-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -454,15 +454,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CooperationApp/Pods-CooperationApp-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-ToyProjectManagementApp/Pods-ToyProjectManagementApp-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CooperationApp/Pods-CooperationApp-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-ToyProjectManagementApp/Pods-ToyProjectManagementApp-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CooperationApp/Pods-CooperationApp-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ToyProjectManagementApp/Pods-ToyProjectManagementApp-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -636,7 +636,7 @@
 		};
 		93DEFA9A27FAFF1700827C79 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A5311CEE6F1050F23A02B091 /* Pods-CooperationApp.debug.xcconfig */;
+			baseConfigurationReference = 9040AAC533458F82FCF3EC0A /* Pods-ToyProjectManagementApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -644,7 +644,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4J3RK7L42Z;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = CooperationApp/Info.plist;
+				INFOPLIST_FILE = ToyProjectManagementApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -655,7 +655,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Acho.CooperationApp;
+				PRODUCT_BUNDLE_IDENTIFIER = Acho.ToyProjectManagementApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -665,7 +665,7 @@
 		};
 		93DEFA9B27FAFF1700827C79 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B4A1AF8A17CFCEBC490BF037 /* Pods-CooperationApp.release.xcconfig */;
+			baseConfigurationReference = EF4E6BEC848B616B6A4E3389 /* Pods-ToyProjectManagementApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -673,7 +673,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4J3RK7L42Z;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = CooperationApp/Info.plist;
+				INFOPLIST_FILE = ToyProjectManagementApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -685,7 +685,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = Acho.CooperationApp;
+				PRODUCT_BUNDLE_IDENTIFIER = Acho.ToyProjectManagementApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -696,7 +696,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		93DEFA7D27FAFF1500827C79 /* Build configuration list for PBXProject "CooperationApp" */ = {
+		93DEFA7D27FAFF1500827C79 /* Build configuration list for PBXProject "ToyProjectManagementApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				93DEFA9727FAFF1700827C79 /* Debug */,
@@ -705,7 +705,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		93DEFA9927FAFF1700827C79 /* Build configuration list for PBXNativeTarget "CooperationApp" */ = {
+		93DEFA9927FAFF1700827C79 /* Build configuration list for PBXNativeTarget "ToyProjectManagementApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				93DEFA9A27FAFF1700827C79 /* Debug */,

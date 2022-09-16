@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1240"
+   LastUpgradeVersion = "1340"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7BD1E0FA693167239A6EE0E1973E608C"
-               BuildableName = "Pods_CooperationApp.framework"
-               BlueprintName = "Pods-CooperationApp"
-               ReferencedContainer = "container:Pods.xcodeproj">
+               BlueprintIdentifier = "93DEFA8127FAFF1600827C79"
+               BuildableName = "ToyProjectManagementApp.app"
+               BlueprintName = "ToyProjectManagementApp"
+               ReferencedContainer = "container:ToyProjectManagementApp.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
