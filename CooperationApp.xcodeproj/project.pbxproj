@@ -31,6 +31,8 @@
 		936F8E972897B5E800897316 /* ProjectSideBarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936F8E962897B5E800897316 /* ProjectSideBarTableViewCell.swift */; };
 		936F8E992897BB8D00897316 /* ProjectContentSideBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 936F8E982897BB8D00897316 /* ProjectContentSideBar.xib */; };
 		936F8E9D2898F96700897316 /* CustomSideMenuNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936F8E9C2898F96700897316 /* CustomSideMenuNavigation.swift */; };
+		93722CED28D31880007E1132 /* ExtensionUIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93722CEC28D31880007E1132 /* ExtensionUIColor.swift */; };
+		93722CF028D4551D007E1132 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93722CEF28D4551D007E1132 /* CustomButton.swift */; };
 		937CC55928002F1400F18553 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 937CC55828002F1400F18553 /* Main.storyboard */; };
 		937CC55B2800304400F18553 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937CC55A2800304400F18553 /* LoginViewController.swift */; };
 		937CC55D2800377600F18553 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937CC55C2800377600F18553 /* SignUpViewController.swift */; };
@@ -76,6 +78,8 @@
 		936F8E962897B5E800897316 /* ProjectSideBarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectSideBarTableViewCell.swift; sourceTree = "<group>"; };
 		936F8E982897BB8D00897316 /* ProjectContentSideBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProjectContentSideBar.xib; sourceTree = "<group>"; };
 		936F8E9C2898F96700897316 /* CustomSideMenuNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSideMenuNavigation.swift; sourceTree = "<group>"; };
+		93722CEC28D31880007E1132 /* ExtensionUIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionUIColor.swift; sourceTree = "<group>"; };
+		93722CEF28D4551D007E1132 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		937CC55828002F1400F18553 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		937CC55A2800304400F18553 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		937CC55C2800377600F18553 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -150,8 +154,8 @@
 		9301D307280351200010191F /* AppDelegates */ = {
 			isa = PBXGroup;
 			children = (
-				93DEFA8527FAFF1600827C79 /* AppDelegate.swift */,
 				93DEFA8727FAFF1600827C79 /* SceneDelegate.swift */,
+				93DEFA8527FAFF1600827C79 /* AppDelegate.swift */,
 			);
 			path = AppDelegates;
 			sourceTree = "<group>";
@@ -159,7 +163,6 @@
 		9301D3082803513E0010191F /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				93DEFA9127FAFF1700827C79 /* Assets.xcassets */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
@@ -237,6 +240,22 @@
 			path = User;
 			sourceTree = "<group>";
 		};
+		93722CEB28D31862007E1132 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				93722CEC28D31880007E1132 /* ExtensionUIColor.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		93722CEE28D453E0007E1132 /* CustomUI */ = {
+			isa = PBXGroup;
+			children = (
+				93722CEF28D4551D007E1132 /* CustomButton.swift */,
+			);
+			path = CustomUI;
+			sourceTree = "<group>";
+		};
 		93DA8F84282FB0FB00217360 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -269,10 +288,13 @@
 		93DEFA8427FAFF1600827C79 /* CooperationApp */ = {
 			isa = PBXGroup;
 			children = (
+				9301D3082803513E0010191F /* Assets */,
+				93DEFA9127FAFF1700827C79 /* Assets.xcassets */,
+				9301D307280351200010191F /* AppDelegates */,
+				93722CEE28D453E0007E1132 /* CustomUI */,
+				93722CEB28D31862007E1132 /* Extension */,
 				9340E476285204E100338790 /* Fonts */,
 				935CBC8C2806AE3B00759A24 /* Model */,
-				9301D3082803513E0010191F /* Assets */,
-				9301D307280351200010191F /* AppDelegates */,
 				9301D306280350C60010191F /* ViewControllers */,
 				9301D3052803504A0010191F /* Views */,
 				93285BED2801887C00396083 /* GoogleService-Info.plist */,
@@ -452,6 +474,7 @@
 			files = (
 				937CC55B2800304400F18553 /* LoginViewController.swift in Sources */,
 				93DA8F86282FB16900217360 /* ProjectContentTableViewCell.swift in Sources */,
+				93722CF028D4551D007E1132 /* CustomButton.swift in Sources */,
 				93AFDAA228B4D69F009E815F /* ProjectIDCollectionViewCell.swift in Sources */,
 				93DEFA8627FAFF1600827C79 /* AppDelegate.swift in Sources */,
 				935CBC862806A1C300759A24 /* MainTabbarViewController.swift in Sources */,
@@ -475,6 +498,7 @@
 				936F8E9D2898F96700897316 /* CustomSideMenuNavigation.swift in Sources */,
 				93DEFA9027FAFF1600827C79 /* CooperationApp.xcdatamodeld in Sources */,
 				9340E46B2851D29E00338790 /* DetailContentViewController.swift in Sources */,
+				93722CED28D31880007E1132 /* ExtensionUIColor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

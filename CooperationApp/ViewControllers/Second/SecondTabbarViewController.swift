@@ -21,6 +21,7 @@ class SecondTabbarViewController: UIViewController {
     
     private lazy var scrollView = UIScrollView()
     private lazy var contentView = UIView()
+    private lazy var collectionView = UIView()
     private lazy var titleLabel = UILabel()
     private lazy var previousButton = UIButton()
     private lazy var nextButton = UIButton()
@@ -50,15 +51,26 @@ class SecondTabbarViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = .systemBackground
         self.configure() // 뷰 구성
-        self.configureWeekLabel()
+        self.configureWeekLabel() // weekStackView에 월~일 label 넣기
         self.swipeView()
         
     }
+    
+    override func viewWillLayoutSubviews() {
+        // viewWillLayourSubviews
+    }
+    
     
 }
 
 //collectionView 함수
 extension SecondTabbarViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    
+
+
+//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        <#code#>
+//    }
     
     
     
@@ -99,6 +111,9 @@ extension SecondTabbarViewController: UICollectionViewDataSource, UICollectionVi
     
 }
 
+extension SecondTabbarViewController: UIScrollViewDelegate {
+    
+}
 
 // update 함수
 extension SecondTabbarViewController {
@@ -399,7 +414,7 @@ extension SecondTabbarViewController {
 }
 
 
-// 뷰 관련 함수
+// MARK: - 뷰 구성
 extension SecondTabbarViewController {
     
     private func configure() {
@@ -410,43 +425,26 @@ extension SecondTabbarViewController {
         self.configureNextButton()
         self.configureTodayButton()
         self.configureWeekStackView()
-        self.configureCollectionView()
+        self.configureCalendarView()
         self.configureCalendar()
         self.configureImageView()
         self.findcurrentIndex()
     }
     
-    private func configureScrollView() {
-        self.view.addSubview(self.scrollView)
-        self.scrollView.translatesAutoresizingMaskIntoConstraints = false
-        self.scrollView.isPagingEnabled = true
-        self.scrollView.showsVerticalScrollIndicator = false
-
-        self.scrollView.contentOffset = CGPoint(x: 0, y: 20)
-        self.scrollView.backgroundColor = .blue
-        NSLayoutConstraint.activate([
-//            self.scrollView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
-            self.scrollView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
-            self.scrollView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor),
-            self.scrollView.heightAnchor.constraint(equalToConstant: 1000)
-//            self.scrollView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor)
-        ])
-    }
-    
+    // titleLabe, previousButton, nextButton, weekStackView가 포함된 뷰
     private func configureContentView() {
-        self.scrollView.addSubview(self.contentView)
+        self.view.addSubview(self.contentView)
         self.contentView.translatesAutoresizingMaskIntoConstraints = false
         self.contentView.backgroundColor = .green
         NSLayoutConstraint.activate([
-            self.contentView.topAnchor.constraint(equalTo: self.scrollView.topAnchor),
-            self.contentView.leadingAnchor.constraint(equalTo: self.scrollView.leadingAnchor),
-            self.contentView.trailingAnchor.constraint(equalTo: self.scrollView.trailingAnchor),
-            self.contentView.bottomAnchor.constraint(equalTo: self.scrollView.bottomAnchor),
-            self.contentView.widthAnchor.constraint(equalTo: self.scrollView.widthAnchor)
+            self.contentView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+            self.contentView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
+            self.contentView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor),
+            self.contentView.heightAnchor.constraint(equalToConstant: 200)
         ])
     }
-
     
+    // 현재 날자 표시 label
     private func configureTitleLabel() {
         self.contentView.addSubview(self.titleLabel)
         self.titleLabel.text = "2000년 01월"
@@ -454,11 +452,11 @@ extension SecondTabbarViewController {
         self.titleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             self.titleLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 10),
-            self.titleLabel.heightAnchor.constraint(equalToConstant: 44),
             self.titleLabel.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor)
         ])
     }
     
+    // 전 달로 이동
     private func configurePreviousButton() {
         self.contentView.addSubview(self.previousButton)
         self.previousButton.tintColor = .label
@@ -473,6 +471,7 @@ extension SecondTabbarViewController {
         ])
     }
     
+    // 다음 달로 이동
     private func configureNextButton() {
         self.contentView.addSubview(self.nextButton)
         self.nextButton.tintColor = .label
@@ -526,33 +525,85 @@ extension SecondTabbarViewController {
         }
     }
     
+    // calendarView, scheduleView 포함
+    private func configureScrollView() {
+        self.view.addSubview(self.scrollView)
+        self.scrollView.translatesAutoresizingMaskIntoConstraints = false
+        self.scrollView.isPagingEnabled = true
+        self.scrollView.showsVerticalScrollIndicator = false
+
+        self.scrollView.contentOffset = CGPoint(x: 0, y: 20)
+        self.scrollView.backgroundColor = .blue
+        NSLayoutConstraint.activate([
+//            self.scrollView.topAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: 15),
+            self.scrollView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
+            self.scrollView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor),
+            self.scrollView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor)
+
+        ])
+    }
+
     private func configureCollectionView() {
-        self.contentView.addSubview(self.calendarView)
+        self.scrollView.addSubview(self.collectionView)
+        self.collectionView.translatesAutoresizingMaskIntoConstraints = false
+        self.collectionView.backgroundColor = .brown
+        NSLayoutConstraint.activate([
+            self.collectionView.topAnchor.constraint(equalTo: self.scrollView.topAnchor, constant: 15),
+            self.collectionView.leadingAnchor.constraint(equalTo: self.scrollView.leadingAnchor),
+            self.collectionView.trailingAnchor.constraint(equalTo: self.scrollView.trailingAnchor),
+            self.collectionView.widthAnchor.constraint(equalTo: self.scrollView.widthAnchor),
+            self.collectionView.bottomAnchor.constraint(equalTo: self.scrollView.bottomAnchor, constant: 15)
+        ])
+    }
+    
+    private func configureCalendarView() {
+        self.collectionView.addSubview(self.calendarView)
         self.calendarView.dataSource = self
         self.calendarView.delegate = self
         self.calendarView.register(DateCollectionViewCell.self, forCellWithReuseIdentifier: DateCollectionViewCell.identifier)
         self.calendarView.translatesAutoresizingMaskIntoConstraints = false
         self.calendarView.backgroundColor = .yellow
         NSLayoutConstraint.activate([
-            self.calendarView.topAnchor.constraint(equalTo: self.weekStackView.bottomAnchor, constant: 10),
-            self.calendarView.leadingAnchor.constraint(equalTo: self.weekStackView.leadingAnchor),
-            self.calendarView.trailingAnchor.constraint(equalTo: self.weekStackView.trailingAnchor),
+            self.calendarView.topAnchor.constraint(equalTo: self.collectionView.topAnchor, constant: 10),
+            self.calendarView.leadingAnchor.constraint(equalTo: self.collectionView.leadingAnchor),
+            self.calendarView.trailingAnchor.constraint(equalTo: self.collectionView.trailingAnchor),
             self.calendarView.heightAnchor.constraint(equalToConstant: self.view.frame.width * 5/7)
         ])
     }
     
     private func configureImageView() {
-        self.contentView.addSubview(self.betweenImageView)
+        self.collectionView.addSubview(self.betweenImageView)
         self.betweenImageView.translatesAutoresizingMaskIntoConstraints = false
         self.betweenImageView.backgroundColor = .gray
         NSLayoutConstraint.activate([
             self.betweenImageView.topAnchor.constraint(equalTo: calendarView.bottomAnchor, constant: 1),
             self.betweenImageView.heightAnchor.constraint(equalToConstant: 1),
-            self.betweenImageView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-            self.betweenImageView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor)
+            self.betweenImageView.trailingAnchor.constraint(equalTo: self.collectionView.trailingAnchor),
+            self.betweenImageView.leadingAnchor.constraint(equalTo: self.collectionView.leadingAnchor)
         ])
     }
     
+}
+
+#if DEBUG
+
+import SwiftUI
+
+struct ViewControllerPresentable: UIViewControllerRepresentable {
+    func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
+    }
+    
+    func makeUIViewController(context: Context) -> some UIViewController {
+        SecondTabbarViewController()
+    }
     
     
 }
+
+struct ViewControllerPrepresentable_PreviewProvider: PreviewProvider {
+    static var previews: some View {
+        ViewControllerPresentable()
+    }
+}
+
+#endif

@@ -16,8 +16,8 @@ class LoginViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        //Navigation bar 숨기기
-        navigationController?.navigationBar.isHidden = true
+        self.configureNavigationView()
+        self.configureBackGroundView()
         
         //Google Sign In
         GIDSignIn.sharedInstance().presentingViewController = self
@@ -27,11 +27,7 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        [signInLoginButton, googleLoginButton, appleLoginButton].forEach {
-            $0?.layer.borderWidth = 1
-            $0?.layer.borderColor = UIColor.black.cgColor
-            $0?.layer.cornerRadius = 30
-        }
+        
     }
     
     
@@ -45,4 +41,22 @@ class LoginViewController: UIViewController {
     }
     
     
+}
+
+extension LoginViewController {
+    
+    // configure navigationBar View
+    private func configureNavigationView() {
+        //Navigation bar 숨기기
+        navigationController?.navigationBar.isHidden = true
+    }
+    
+    // configure backgroud View
+    private func configureBackGroundView() {
+//        self.view.backgroundColor = .primaryColor
+    }
+    
+    private func configureLoginButton() {
+        
+    }
 }

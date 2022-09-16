@@ -9,8 +9,7 @@ target 'CooperationApp' do
   pod 'FirebaseUI'
   pod 'Firebase/Database', '~> 8.0.0'
   pod 'SideMenu'
-  pod 'FSCalendar'
-  pod 'FirebaseFirestore'
+  pod 'KakaoSDK'
   
   # Pods for CooperationApp
 
