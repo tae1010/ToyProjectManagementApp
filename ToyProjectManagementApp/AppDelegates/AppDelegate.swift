@@ -6,11 +6,11 @@
 //
 
 import UIKit
-import CoreData
-import Firebase
-import GoogleSignIn
-import FirebaseAuthUI
 import FirebaseCore
+import GoogleSignIn
+import FirebaseAuth
+import CoreData
+
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
@@ -55,7 +55,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
          application to it. This property is optional since there are legitimate
          error conditions that could cause the creation of the store to fail.
         */
-        let container = NSPersistentContainer(name: "CooperationApp")
+        let container = NSPersistentContainer(name: "ToyProjectManagementApp")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 // Replace this implementation with code to handle the error appropriately.
@@ -94,12 +94,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 }
 
 extension AppDelegate {
-    //구글 로그인 값을 처리하는 부분
+    
+    // Google 로그인 인증 후 전달된 값 처리하기
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if let error = error {
             print("ERROR GOOGLE SIGN IN \(error.localizedDescription)")
             return
         }
+        // 사용자 인증값 가져오기
         guard let authentication = user.authentication else { return }
         let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
         

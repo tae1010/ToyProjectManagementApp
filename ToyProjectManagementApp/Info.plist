@@ -2,13 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>UIAppFonts</key>
-	<array>
-		<string>NanumGothicLight.otf</string>
-		<string>NanumGothicExtraBold.otf</string>
-		<string>NanumGothicBold.otf</string>
-		<string>NanumGothic.otf</string>
-	</array>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -19,6 +12,17 @@
 				<string>com.googleusercontent.apps.943038616556-kj8p4qnpci01ivmtul51si2a0fl9evqe</string>
 			</array>
 		</dict>
+	</array>
+	<key>UIAppFonts</key>
+	<array>
+		<string>GodoB.otf</string>
+		<string>GodoM.otf</string>
+		<string>godoRoundedL.ttf</string>
+		<string>godoRoundedR.ttf</string>
+		<string>NanumGothicLight.otf</string>
+		<string>NanumGothicExtraBold.otf</string>
+		<string>NanumGothicBold.otf</string>
+		<string>NanumGothic.otf</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>

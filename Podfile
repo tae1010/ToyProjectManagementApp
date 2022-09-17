@@ -9,7 +9,6 @@ target 'ToyProjectManagementApp' do
   pod 'FirebaseUI'
   pod 'Firebase/Database', '~> 8.0.0'
   pod 'SideMenu'
-  pod 'KakaoSDK'
   
   # Pods for ToyProjectManagementApp
 

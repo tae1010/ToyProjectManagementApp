@@ -20,7 +20,7 @@ class MainTabbarViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.isHidden = true
+        
         self.configureView()
     }
     
@@ -112,6 +112,7 @@ extension MainTabbarViewController {
     
     //db값을 읽어서 projectList에 db값을 넣어준 뒤 collectionview 업데이트 해주는 함수
     private func readDB() {
+        print("MainTabbar readDB실행")
         self.projectList.removeAll()
         let email = self.emailToString(Auth.auth().currentUser?.email ?? "고객")
 
@@ -130,8 +131,9 @@ extension MainTabbarViewController {
                 self.projectList.append(pro)
             }
             //날짜 순서대로 정렬
-            self.projectList = self.projectList.sorted(by: {$0.currentTime > $1.currentTime})
-            print("MainTabbar readDB실행")
+            self.sortProjectList()
+            
+            
             DispatchQueue.main.async {
                 self.projectCollectionView.reloadData()
             }
@@ -139,6 +141,10 @@ extension MainTabbarViewController {
         }) { error in
           print(error.localizedDescription)
         }
+    }
+    
+    private func sortProjectList(){
+        self.projectList = self.projectList.sorted(by: {$0.currentTime > $1.currentTime})
     }
     
     //db는 .을 저장할 수 없기때문에 이메일에 들어간 .를 ,으로 변환시켜주는 함수
@@ -149,6 +155,7 @@ extension MainTabbarViewController {
     
     //네비게이션뷰 숨기기, 컬렉션뷰 사이즈 생성해주는 함수
     private func configureView() {
+//        self.navigationController?.navigationBar.isHidden = true
         self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
         
         self.projectCollectionView.collectionViewLayout = UICollectionViewFlowLayout()

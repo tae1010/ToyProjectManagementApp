@@ -8,12 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		7FDCAE61608D1978DB5621EE /* Pods_ToyProjectManagementApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D7C2F69DF86D86139AB458C /* Pods_ToyProjectManagementApp.framework */; };
+		9303413328D47EE900722FF8 /* FirebaseFacebookAuthUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9303413228D47EE900722FF8 /* FirebaseFacebookAuthUI.framework */; };
 		931F9BB928A7D38B000AFA9E /* ScheduleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 931F9BB828A7D38B000AFA9E /* ScheduleCell.xib */; };
 		931F9BBB28A7D468000AFA9E /* ScheduleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931F9BBA28A7D468000AFA9E /* ScheduleCollectionViewCell.swift */; };
 		93285BEE2801887C00396083 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 93285BED2801887C00396083 /* GoogleService-Info.plist */; };
+		932B5EF428D4B255004CD1E8 /* godoRoundedL.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 932B5EF228D4B252004CD1E8 /* godoRoundedL.ttf */; };
+		932B5EF528D4B255004CD1E8 /* godoRoundedR.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 932B5EF328D4B255004CD1E8 /* godoRoundedR.ttf */; };
 		9333CC47285C6B6F005C0262 /* projectCollectionViewPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9333CC46285C6B6E005C0262 /* projectCollectionViewPopup.xib */; };
 		9333CC49285C7173005C0262 /* ProjectPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9333CC48285C7173005C0262 /* ProjectPopupViewController.swift */; };
 		9333CC4B285CA310005C0262 /* ProjectInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9333CC4A285CA310005C0262 /* ProjectInfoView.xib */; };
+		9340DE7E28D4D8EC00B1CEB2 /* GodoB.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9340DE7C28D4D8EB00B1CEB2 /* GodoB.otf */; };
+		9340DE7F28D4D8EC00B1CEB2 /* GodoM.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9340DE7D28D4D8EC00B1CEB2 /* GodoM.otf */; };
+		9340DE8128D4DA8900B1CEB2 /* LogoStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9340DE8028D4DA8900B1CEB2 /* LogoStackView.swift */; };
+		9340DE8528D4DEF700B1CEB2 /* LogoImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9340DE8428D4DEF700B1CEB2 /* LogoImageView.swift */; };
+		9340DE8728D4DF0A00B1CEB2 /* LogoLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9340DE8628D4DF0A00B1CEB2 /* LogoLabel.swift */; };
 		9340E46B2851D29E00338790 /* DetailContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9340E46A2851D29D00338790 /* DetailContentViewController.swift */; };
 		9340E47B2852050700338790 /* NanumGothicExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9340E4772852050700338790 /* NanumGothicExtraBold.otf */; };
 		9340E47C2852050700338790 /* NanumGothic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9340E4782852050700338790 /* NanumGothic.otf */; };
@@ -57,12 +65,20 @@
 /* Begin PBXFileReference section */
 		2D7C2F69DF86D86139AB458C /* Pods_ToyProjectManagementApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ToyProjectManagementApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9040AAC533458F82FCF3EC0A /* Pods-ToyProjectManagementApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToyProjectManagementApp.debug.xcconfig"; path = "Target Support Files/Pods-ToyProjectManagementApp/Pods-ToyProjectManagementApp.debug.xcconfig"; sourceTree = "<group>"; };
+		9303413228D47EE900722FF8 /* FirebaseFacebookAuthUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseFacebookAuthUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		931F9BB828A7D38B000AFA9E /* ScheduleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScheduleCell.xib; sourceTree = "<group>"; };
 		931F9BBA28A7D468000AFA9E /* ScheduleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleCollectionViewCell.swift; sourceTree = "<group>"; };
 		93285BED2801887C00396083 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		932B5EF228D4B252004CD1E8 /* godoRoundedL.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = godoRoundedL.ttf; sourceTree = "<group>"; };
+		932B5EF328D4B255004CD1E8 /* godoRoundedR.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = godoRoundedR.ttf; sourceTree = "<group>"; };
 		9333CC46285C6B6E005C0262 /* projectCollectionViewPopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = projectCollectionViewPopup.xib; sourceTree = "<group>"; };
 		9333CC48285C7173005C0262 /* ProjectPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectPopupViewController.swift; sourceTree = "<group>"; };
 		9333CC4A285CA310005C0262 /* ProjectInfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProjectInfoView.xib; sourceTree = "<group>"; };
+		9340DE7C28D4D8EB00B1CEB2 /* GodoB.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GodoB.otf; sourceTree = "<group>"; };
+		9340DE7D28D4D8EC00B1CEB2 /* GodoM.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GodoM.otf; sourceTree = "<group>"; };
+		9340DE8028D4DA8900B1CEB2 /* LogoStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoStackView.swift; sourceTree = "<group>"; };
+		9340DE8428D4DEF700B1CEB2 /* LogoImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoImageView.swift; sourceTree = "<group>"; };
+		9340DE8628D4DF0A00B1CEB2 /* LogoLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoLabel.swift; sourceTree = "<group>"; };
 		9340E46A2851D29D00338790 /* DetailContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailContentViewController.swift; sourceTree = "<group>"; };
 		9340E4772852050700338790 /* NanumGothicExtraBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumGothicExtraBold.otf; sourceTree = "<group>"; };
 		9340E4782852050700338790 /* NanumGothic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumGothic.otf; sourceTree = "<group>"; };
@@ -111,6 +127,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9303413328D47EE900722FF8 /* FirebaseFacebookAuthUI.framework in Frameworks */,
 				7FDCAE61608D1978DB5621EE /* Pods_ToyProjectManagementApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -154,8 +171,8 @@
 		9301D307280351200010191F /* AppDelegates */ = {
 			isa = PBXGroup;
 			children = (
-				93DEFA8727FAFF1600827C79 /* SceneDelegate.swift */,
 				93DEFA8527FAFF1600827C79 /* AppDelegate.swift */,
+				93DEFA8727FAFF1600827C79 /* SceneDelegate.swift */,
 			);
 			path = AppDelegates;
 			sourceTree = "<group>";
@@ -170,6 +187,10 @@
 		9340E476285204E100338790 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				9340DE7C28D4D8EB00B1CEB2 /* GodoB.otf */,
+				9340DE7D28D4D8EC00B1CEB2 /* GodoM.otf */,
+				932B5EF228D4B252004CD1E8 /* godoRoundedL.ttf */,
+				932B5EF328D4B255004CD1E8 /* godoRoundedR.ttf */,
 				9340E4782852050700338790 /* NanumGothic.otf */,
 				9340E4792852050700338790 /* NanumGothicBold.otf */,
 				9340E4772852050700338790 /* NanumGothicExtraBold.otf */,
@@ -252,6 +273,9 @@
 			isa = PBXGroup;
 			children = (
 				93722CEF28D4551D007E1132 /* CustomButton.swift */,
+				9340DE8028D4DA8900B1CEB2 /* LogoStackView.swift */,
+				9340DE8428D4DEF700B1CEB2 /* LogoImageView.swift */,
+				9340DE8628D4DF0A00B1CEB2 /* LogoLabel.swift */,
 			);
 			path = CustomUI;
 			sourceTree = "<group>";
@@ -288,12 +312,12 @@
 		93DEFA8427FAFF1600827C79 /* ToyProjectManagementApp */ = {
 			isa = PBXGroup;
 			children = (
+				9340E476285204E100338790 /* Fonts */,
 				9301D3082803513E0010191F /* Assets */,
 				93DEFA9127FAFF1700827C79 /* Assets.xcassets */,
 				9301D307280351200010191F /* AppDelegates */,
 				93722CEE28D453E0007E1132 /* CustomUI */,
 				93722CEB28D31862007E1132 /* Extension */,
-				9340E476285204E100338790 /* Fonts */,
 				935CBC8C2806AE3B00759A24 /* Model */,
 				9301D306280350C60010191F /* ViewControllers */,
 				9301D3052803504A0010191F /* Views */,
@@ -320,6 +344,7 @@
 		B5A5F429AAC48C2B322E7B29 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9303413228D47EE900722FF8 /* FirebaseFacebookAuthUI.framework */,
 				2D7C2F69DF86D86139AB458C /* Pods_ToyProjectManagementApp.framework */,
 			);
 			name = Frameworks;
@@ -336,8 +361,8 @@
 				93DEFA7E27FAFF1600827C79 /* Sources */,
 				93DEFA7F27FAFF1600827C79 /* Frameworks */,
 				93DEFA8027FAFF1600827C79 /* Resources */,
-				2930CED67C220EAF36C66EE6 /* [CP] Embed Pods Frameworks */,
-				F5D42289CEA12C3AAACCD7A0 /* [CP] Copy Pods Resources */,
+				8CE481FEC075C011497EB00C /* [CP] Embed Pods Frameworks */,
+				0F6C7F276997CC33BBD3B727 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -389,19 +414,23 @@
 				9340E47D2852050700338790 /* NanumGothicBold.otf in Resources */,
 				93DA8F83282FB0CD00217360 /* ProjectContentCell.xib in Resources */,
 				93AFDA9C28B4CE1B009E815F /* ProjectIdPopup.xib in Resources */,
+				9340DE7E28D4D8EC00B1CEB2 /* GodoB.otf in Resources */,
 				936F8E992897BB8D00897316 /* ProjectContentSideBar.xib in Resources */,
 				93AFDAA028B4D5FD009E815F /* ProjectIDCell.xib in Resources */,
 				9340E47C2852050700338790 /* NanumGothic.otf in Resources */,
 				9333CC4B285CA310005C0262 /* ProjectInfoView.xib in Resources */,
 				936F8E932897AF0700897316 /* ProjectContentSideMenu.storyboard in Resources */,
 				937CC55928002F1400F18553 /* Main.storyboard in Resources */,
+				932B5EF428D4B255004CD1E8 /* godoRoundedL.ttf in Resources */,
 				93285BEE2801887C00396083 /* GoogleService-Info.plist in Resources */,
 				93DEFA9527FAFF1700827C79 /* LaunchScreen.storyboard in Resources */,
 				93DEFA9227FAFF1700827C79 /* Assets.xcassets in Resources */,
+				932B5EF528D4B255004CD1E8 /* godoRoundedR.ttf in Resources */,
 				93C1C5DC289A8F1B00B4D5EE /* SecondTabbar.storyboard in Resources */,
 				9333CC47285C6B6F005C0262 /* projectCollectionViewPopup.xib in Resources */,
 				9340E47B2852050700338790 /* NanumGothicExtraBold.otf in Resources */,
 				931F9BB928A7D38B000AFA9E /* ScheduleCell.xib in Resources */,
+				9340DE7F28D4D8EC00B1CEB2 /* GodoM.otf in Resources */,
 				9340E47E2852050700338790 /* NanumGothicLight.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -409,21 +438,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2930CED67C220EAF36C66EE6 /* [CP] Embed Pods Frameworks */ = {
+		0F6C7F276997CC33BBD3B727 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ToyProjectManagementApp/Pods-ToyProjectManagementApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-ToyProjectManagementApp/Pods-ToyProjectManagementApp-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Embed Pods Frameworks";
+			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ToyProjectManagementApp/Pods-ToyProjectManagementApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-ToyProjectManagementApp/Pods-ToyProjectManagementApp-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ToyProjectManagementApp/Pods-ToyProjectManagementApp-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ToyProjectManagementApp/Pods-ToyProjectManagementApp-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		5368219C207F4A025DF30B8B /* [CP] Check Pods Manifest.lock */ = {
@@ -448,21 +477,21 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		F5D42289CEA12C3AAACCD7A0 /* [CP] Copy Pods Resources */ = {
+		8CE481FEC075C011497EB00C /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ToyProjectManagementApp/Pods-ToyProjectManagementApp-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-ToyProjectManagementApp/Pods-ToyProjectManagementApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Copy Pods Resources";
+			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ToyProjectManagementApp/Pods-ToyProjectManagementApp-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-ToyProjectManagementApp/Pods-ToyProjectManagementApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ToyProjectManagementApp/Pods-ToyProjectManagementApp-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ToyProjectManagementApp/Pods-ToyProjectManagementApp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -484,6 +513,7 @@
 				936F8E952897B54C00897316 /* ProjectSideBarViewController.swift in Sources */,
 				9333CC49285C7173005C0262 /* ProjectPopupViewController.swift in Sources */,
 				936F8E972897B5E800897316 /* ProjectSideBarTableViewCell.swift in Sources */,
+				9340DE8128D4DA8900B1CEB2 /* LogoStackView.swift in Sources */,
 				935CBC882806AD7900759A24 /* ProjectCell.swift in Sources */,
 				93DA8F88282FC1A200217360 /* ProjectContent.swift in Sources */,
 				93DEFA8827FAFF1600827C79 /* SceneDelegate.swift in Sources */,
@@ -496,9 +526,11 @@
 				931F9BBB28A7D468000AFA9E /* ScheduleCollectionViewCell.swift in Sources */,
 				9380D24A27FF1196000DC92E /* SecondTabbarViewController.swift in Sources */,
 				936F8E9D2898F96700897316 /* CustomSideMenuNavigation.swift in Sources */,
+				9340DE8528D4DEF700B1CEB2 /* LogoImageView.swift in Sources */,
 				93DEFA9027FAFF1600827C79 /* CooperationApp.xcdatamodeld in Sources */,
 				9340E46B2851D29E00338790 /* DetailContentViewController.swift in Sources */,
 				93722CED28D31880007E1132 /* ExtensionUIColor.swift in Sources */,
+				9340DE8728D4DF0A00B1CEB2 /* LogoLabel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -655,6 +687,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = Acho.ToyProjectManagementApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

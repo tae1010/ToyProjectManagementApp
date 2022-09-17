@@ -19,6 +19,10 @@ class SignInViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        //navigatioin bar 보이기
+//        navigationController?.navigationBar.isHidden = false
+        
         guard let emailData = userDefaults.object(forKey: "email") else { return }
         
         emailTextFiled.text = emailData as? String
@@ -29,8 +33,7 @@ class SignInViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        //navigatioin bar 보이기
-        navigationController?.navigationBar.isHidden = false
+        
     }
     
     
