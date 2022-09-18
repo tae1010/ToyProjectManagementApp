@@ -14,12 +14,13 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var signInLoginButton: UIButton!
     @IBOutlet weak var googleLoginButton: GIDSignInButton!
     @IBOutlet weak var appleLoginButton: UIButton!
-    @IBOutlet weak var logoTitleLabel: UILabel!
-    @IBOutlet weak var logoImageView: UIImageView!
     
-    let logoStackView = LogoStackView()
+    @IBOutlet weak var logoImageView: LogoImageView!
+    @IBOutlet weak var logoLabel: LogoLabel!
+    @IBOutlet weak var logoStackView: UIStackView!
     
-    
+    @IBOutlet weak var emailTextField: CustomTextField!
+    @IBOutlet weak var passwordTextField: CustomTextField!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -31,11 +32,7 @@ class LoginViewController: UIViewController {
         // Google Sign In
         GIDSignIn.sharedInstance().presentingViewController = self
         
-        self.configureNavigationView()
-        self.configureBackGroundView()
-        self.configureLogoTitleLabel()
-        self.configureLogoImageView()
-        configureStackView()
+        self.configure()
     }
     
     
@@ -48,43 +45,28 @@ class LoginViewController: UIViewController {
         //Firebase 인증
     }
     
-    
+ 
 }
 
+// MARK: - view configure
 extension LoginViewController {
     
-    // configure navigationBar View
-    private func configureNavigationView() {
-        //Navigation bar 숨기기
-        navigationController?.navigationBar.isHidden = true
-    }
-    
-    // configure backgroud View
-    private func configureBackGroundView() {
-//        self.view.backgroundColor = .primaryColor
-    }
-    
-    private func configureStackView() {
-        logoStackView.translatesAutoresizingMaskIntoConstraints = false
-        
-        logoStackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
-        logoStackView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor
-        ).isActive = true
-    }
-    
-    private func configureLoginButton() {
-        
+    private func configure() {
+        self.configureLogoImageView()
+        self.configureEmailTextField()
+        self.configurePasswordTextField()
     }
     
     private func configureLogoImageView() {
         self.logoImageView.layer.cornerRadius = 10
     }
+
+    private func configureEmailTextField() {
+        self.emailTextField.textFieldPlaceholder = "이메일을 입력해주세요"
+    }
     
-    private func configureLogoTitleLabel() {
-        self.logoTitleLabel.font = UIFont(name: "glogo", size: 40)
-        self.logoTitleLabel.text = "Toy"
-        self.logoTitleLabel.textColor = .primaryColor
-        
+    private func configurePasswordTextField() {
+        self.passwordTextField.textFieldPlaceholder = "비밀번호를 입력해주세요"
     }
     
     private func login(){
@@ -113,3 +95,5 @@ extension LoginViewController {
         navigationController?.show(mainTabbarViewController, sender: nil)
     }
 }
+
+

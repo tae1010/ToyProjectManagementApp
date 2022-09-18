@@ -12,5 +12,6 @@ extension UIColor {
 
     // Primary color - (186, 153, 255, 100%)
     class var primaryColor: UIColor? { return UIColor(named: "primaryColor") }
+    class var primaryCGColor: CGColor { return UIColor.primaryColor!.cgColor }
 
 }

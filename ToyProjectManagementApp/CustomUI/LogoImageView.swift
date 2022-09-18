@@ -10,8 +10,22 @@ import UIKit
 
 class LogoImageView: UILabel {
     
-//    override init(frame: CGRect) {
-//        <#code#>
-//    }
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        self.initializeImageView()
+    }
     
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.initializeImageView()
+    }
+    
+    private func initializeImageView() {
+        
+        self.layer.cornerRadius = 10
+        NSLayoutConstraint.activate([
+            self.widthAnchor.constraint(equalToConstant: 50),
+            self.heightAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1)
+        ])
+    }
 }
