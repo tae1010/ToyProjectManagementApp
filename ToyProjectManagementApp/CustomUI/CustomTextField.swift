@@ -28,18 +28,21 @@ class CustomTextField: UITextField {
         
         self.translatesAutoresizingMaskIntoConstraints = false
 
+        // textfield border style
         self.borderStyle = .none
         self.layer.cornerRadius = 8.0
         self.layer.borderWidth = 1
         self.layer.borderColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1).cgColor // border color
         
+        // text color
         self.textColor = UIColor.gray
         self.font = UIFont(name: "NanumGothicOTF", size: 14)
         self.textColor = UIColor(red: 0.3, green: 0.3, blue: 0.3, alpha: 1) // text color
         
+        // placeholder font, color
         self.attributedPlaceholder = NSAttributedString(string: textFieldPlaceholder, attributes: [NSAttributedString.Key.foregroundColor: UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1)]) // placeholder color
 
-        
+        // textfield leftview
         self.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: self.frame.height))
         self.leftViewMode = .always
     }
@@ -49,7 +52,7 @@ class CustomTextField: UITextField {
 // MARK: - textfield click delegate
 extension CustomTextField: UITextFieldDelegate {
     
-    // textview click
+    // textfield click
     func textFieldDidBeginEditing(_ textField: UITextField) {
         print("textfield 선택")
         textField.becomeFirstResponder()
@@ -57,6 +60,7 @@ extension CustomTextField: UITextFieldDelegate {
         textField.tintColor = UIColor.primaryColor
     }
     
+    // textfield
     func textFieldDidEndEditing(_ textField: UITextField) {
         self.layer.borderColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1).cgColor
     }

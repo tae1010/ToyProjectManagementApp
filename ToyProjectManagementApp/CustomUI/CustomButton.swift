@@ -10,23 +10,27 @@ import UIKit
 
 class CustomButton: UIButton {
     
-    init(inputLabelText: String) {
-        self.init()
-        self.initializeLabel()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-    
+    // 메모리에 올라갈때 실행
     override init(frame: CGRect) {
         super.init(frame: frame)
+        print(#fileID, #function, #line, "- ")
     }
     
-    private func initializeLabel() {
-        
-        
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+    }
+    
+    
+    convenience init(title: String = "no title", bgColor: UIColor? = .primaryColor, tintColor: UIColor = .white, cornerRadius: CGFloat = 8) {
+        self.init(type: .system)
+        self.setTitle(title, for: .normal)
+        self.backgroundColor = bgColor
+        self.tintColor = tintColor
+        self.layer.cornerRadius = cornerRadius
+    }
     
 }

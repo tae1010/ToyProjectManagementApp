@@ -17,7 +17,6 @@ class SignUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.nextButton.layer.cornerRadius = 30
         self.nextButton.isEnabled = false
         
         self.emailTextField.delegate = self
