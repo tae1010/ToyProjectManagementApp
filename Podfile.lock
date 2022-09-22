@@ -835,6 +835,7 @@ PODS:
     - SDWebImage/Core (= 5.13.2)
   - SDWebImage/Core (5.13.2)
   - SideMenu (6.5.0)
+  - Toast-Swift (5.0.1)
 
 DEPENDENCIES:
   - Firebase/Auth
@@ -842,6 +843,7 @@ DEPENDENCIES:
   - FirebaseUI
   - GoogleSignIn (~> 5.0.2)
   - SideMenu
+  - Toast-Swift (~> 5.0.1)
 
 SPEC REPOS:
   trunk:
@@ -883,6 +885,7 @@ SPEC REPOS:
     - PromisesObjC
     - SDWebImage
     - SideMenu
+    - Toast-Swift
 
 SPEC CHECKSUMS:
   abseil: ebe5b5529fb05d93a8bdb7951607be08b7fa71bc
@@ -923,7 +926,8 @@ SPEC CHECKSUMS:
   PromisesObjC: ab77feca74fa2823e7af4249b8326368e61014cb
   SDWebImage: 72f86271a6f3139cc7e4a89220946489d4b9a866
   SideMenu: f583187d21c5b1dd04c72002be544b555a2627a2
+  Toast-Swift: 9b6a70f28b3bf0b96c40d46c0c4b9d6639846711
 
-PODFILE CHECKSUM: db2f2b7b40d473cca06d690c0690df254da41788
+PODFILE CHECKSUM: a5ea0a74be3b81026fe23236a791d47c82934c3b
 
 COCOAPODS: 1.11.3

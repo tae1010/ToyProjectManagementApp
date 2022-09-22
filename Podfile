@@ -9,6 +9,7 @@ target 'ToyProjectManagementApp' do
   pod 'FirebaseUI'
   pod 'Firebase/Database', '~> 8.0.0'
   pod 'SideMenu'
+  pod 'Toast-Swift', '~> 5.0.1'
   
   # Pods for ToyProjectManagementApp
 
