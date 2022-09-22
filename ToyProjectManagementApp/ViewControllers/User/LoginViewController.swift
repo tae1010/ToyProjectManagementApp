@@ -12,15 +12,11 @@ import FirebaseAuth
 
 class LoginViewController: UIViewController {
     
-    @IBOutlet weak var logoImageView: LogoImageView!
-    @IBOutlet weak var logoLabel: LogoLabel!
-    @IBOutlet weak var logoStackView: UIStackView!
     
     @IBOutlet weak var emailTextField: CustomTextField!
     @IBOutlet weak var passwordTextField: CustomTextField!
     
     @IBOutlet weak var loginButton: UIButton!
-    @IBOutlet weak var signUpButton: UIButton!
     
     @IBOutlet weak var appleLoginImageView: UIImageView!
     @IBOutlet weak var googleLoginImageView: UIImageView!
@@ -47,22 +43,13 @@ class LoginViewController: UIViewController {
     }
     
     
+    @IBAction func tapBackButton(_ sender: UIButton) {
+        self.navigationController?.popViewController(animated: false)
+    }
+    
+    
     @IBAction func loginButtonTapped(_ sender: UIButton) {
         self.login()
-    }
-    
-    @IBAction func signUpButtonTapped(_ sender: UIButton) {
-        let vc = SignUpViewController()
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
-    
-    @IBAction func googleLoginButtonTapped(_ sender: UIButton) {
-        //Firebase 인증
-        
-    }
-    
-    @IBAction func appleLogingButtonTapped(_ sender: UIButton) {
-        //Firebase 인증
     }
     
  
@@ -72,15 +59,9 @@ class LoginViewController: UIViewController {
 extension LoginViewController {
     
     private func configure() {
-        self.configureLogoImageView()
         self.configureEmailTextField()
         self.configurePasswordTextField()
         self.configurelLoginButton()
-        self.configureSignUpButton()
-    }
-    
-    private func configureLogoImageView() {
-        self.logoImageView.layer.cornerRadius = 10
     }
 
     private func configureEmailTextField() {
@@ -90,7 +71,7 @@ extension LoginViewController {
     private func configurePasswordTextField() {
         self.passwordTextField.textFieldPlaceholder = "비밀번호를 입력해주세요"
         self.passwordTextField.isSecureTextEntry = true
-        let rightButton = UIButton(frame: CGRect(x: 0, y: 0, width: 15, height: passwordTextField.frame.height))
+        let rightButton = UIButton(frame: CGRect(x: 0, y: -1, width: 15, height: passwordTextField.frame.height))
         rightButton.setImage(UIImage(systemName: "eye"), for: .normal)
         rightButton.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         
@@ -107,10 +88,6 @@ extension LoginViewController {
         self.loginButton.titleLabel?.font = UIFont(name: "NanumGothicOTF", size: 15)
     }
     
-    private func configureSignUpButton() {
-        self.signUpButton.layer.cornerRadius = 8
-        self.signUpButton.titleLabel?.font = UIFont(name: "NanumGothicOTF", size: 15)
-    }
     
     private func configureForgotPassword() {
         self.forgotPasswordButton.titleLabel?.font = UIFont(name: "NanumGothicOTF", size: 13)

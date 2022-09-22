@@ -23,6 +23,8 @@
 		9340DE8728D4DF0A00B1CEB2 /* LogoLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9340DE8628D4DF0A00B1CEB2 /* LogoLabel.swift */; };
 		9340DE8928D6E8C700B1CEB2 /* LogoStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9340DE8828D6E8C700B1CEB2 /* LogoStackView.swift */; };
 		9340DE8B28D6FB4A00B1CEB2 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9340DE8A28D6FB4A00B1CEB2 /* CustomTextField.swift */; };
+		9340DE8D28DB80B300B1CEB2 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9340DE8C28DB80B300B1CEB2 /* StartViewController.swift */; };
+		9340DE8F28DC666A00B1CEB2 /* ExtensionViewControllerToastMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9340DE8E28DC666A00B1CEB2 /* ExtensionViewControllerToastMessage.swift */; };
 		9340E46B2851D29E00338790 /* DetailContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9340E46A2851D29D00338790 /* DetailContentViewController.swift */; };
 		9340E47B2852050700338790 /* NanumGothicExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9340E4772852050700338790 /* NanumGothicExtraBold.otf */; };
 		9340E47C2852050700338790 /* NanumGothic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9340E4782852050700338790 /* NanumGothic.otf */; };
@@ -80,6 +82,8 @@
 		9340DE8628D4DF0A00B1CEB2 /* LogoLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoLabel.swift; sourceTree = "<group>"; };
 		9340DE8828D6E8C700B1CEB2 /* LogoStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoStackView.swift; sourceTree = "<group>"; };
 		9340DE8A28D6FB4A00B1CEB2 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		9340DE8C28DB80B300B1CEB2 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
+		9340DE8E28DC666A00B1CEB2 /* ExtensionViewControllerToastMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionViewControllerToastMessage.swift; sourceTree = "<group>"; };
 		9340E46A2851D29D00338790 /* DetailContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailContentViewController.swift; sourceTree = "<group>"; };
 		9340E4772852050700338790 /* NanumGothicExtraBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumGothicExtraBold.otf; sourceTree = "<group>"; };
 		9340E4782852050700338790 /* NanumGothic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumGothic.otf; sourceTree = "<group>"; };
@@ -256,6 +260,7 @@
 			children = (
 				937CC55A2800304400F18553 /* LoginViewController.swift */,
 				937CC55C2800377600F18553 /* SignUpViewController.swift */,
+				9340DE8C28DB80B300B1CEB2 /* StartViewController.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -263,6 +268,7 @@
 		93722CEB28D31862007E1132 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				9340DE8E28DC666A00B1CEB2 /* ExtensionViewControllerToastMessage.swift */,
 				93722CEC28D31880007E1132 /* ExtensionUIColor.swift */,
 			);
 			path = Extension;
@@ -501,6 +507,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9340DE8D28DB80B300B1CEB2 /* StartViewController.swift in Sources */,
 				937CC55B2800304400F18553 /* LoginViewController.swift in Sources */,
 				93DA8F86282FB16900217360 /* ProjectContentTableViewCell.swift in Sources */,
 				93722CF028D4551D007E1132 /* CustomButton.swift in Sources */,
@@ -529,6 +536,7 @@
 				9340DE8528D4DEF700B1CEB2 /* LogoImageView.swift in Sources */,
 				93DEFA9027FAFF1600827C79 /* CooperationApp.xcdatamodeld in Sources */,
 				9340E46B2851D29E00338790 /* DetailContentViewController.swift in Sources */,
+				9340DE8F28DC666A00B1CEB2 /* ExtensionViewControllerToastMessage.swift in Sources */,
 				93722CED28D31880007E1132 /* ExtensionUIColor.swift in Sources */,
 				9340DE8728D4DF0A00B1CEB2 /* LogoLabel.swift in Sources */,
 			);

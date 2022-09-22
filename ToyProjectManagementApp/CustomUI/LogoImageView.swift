@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class LogoImageView: UILabel {
+class LogoImageView: UIImageView {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
