@@ -25,6 +25,8 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var socialLoginStackView: UIStackView!
     @IBOutlet weak var forgotPasswordButton: UIButton!
     
+    var iconClick = true
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
@@ -71,16 +73,24 @@ extension LoginViewController {
     private func configurePasswordTextField() {
         self.passwordTextField.textFieldPlaceholder = "비밀번호를 입력해주세요"
         self.passwordTextField.isSecureTextEntry = true
-        let rightButton = UIButton(frame: CGRect(x: 0, y: -1, width: 15, height: passwordTextField.frame.height))
-        rightButton.setImage(UIImage(systemName: "eye"), for: .normal)
-        rightButton.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
-        
-        self.passwordTextField.rightView = rightButton
-        passwordTextField.rightViewMode = .always
     }
     
     @objc func buttonAction(sender: UIButton!) {
-        sender.setImage(UIImage(systemName: "eye.fill"), for: .normal)
+        
+        let rightButton = UIButton(frame: CGRect(x: 0, y: 0, width: 15, height: passwordTextField.frame.height))
+        print("icon 클릭 \(iconClick)")
+        
+        if iconClick {
+            rightButton.setImage(UIImage(systemName: "eye"), for: .normal)
+            self.passwordTextField.rightView = rightButton
+            passwordTextField.isSecureTextEntry = false
+        } else {
+            rightButton.setImage(UIImage(systemName: "eye.fill"), for: .normal)
+            self.passwordTextField.rightView = rightButton
+            passwordTextField.isSecureTextEntry = true
+        }
+        
+        iconClick.toggle()
     }
     
     private func configurelLoginButton() {
@@ -104,14 +114,27 @@ extension LoginViewController {
         guard let password = self.passwordTextField.text else { return }
 
         UserDefaults.standard.set(email, forKey: "email")
+        
+        
 
         Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
-            if user != nil{
+            
+            if let error = error {
+                let code = (error as NSError).code
+                print(error, "에러")
+                switch code {
+                case 17008:
+                    self.view.makeToast("이메일이 주소 형식이 아닙니다")
+                case 17009:
+                    self.view.makeToast("비밀번호가 틀렸습니다.")
+                case 17011:
+                    self.view.makeToast("등록되어 있지 않습니다.")
+                default:
+                    self.view.makeToast("\(error.localizedDescription)")
+                }
+            } else {
                 print("login success")
                 self.showMainViewController()
-            }
-            else {
-                print("login fail")
 
             }
         }
@@ -121,6 +144,8 @@ extension LoginViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let mainTabbarViewController = storyboard.instantiateViewController(withIdentifier: "MainTabbar")
         mainTabbarViewController.modalPresentationStyle = .fullScreen
+        mainTabbarViewController.modalTransitionStyle = .crossDissolve
+        
         navigationController?.show(mainTabbarViewController, sender: nil)
     }
     

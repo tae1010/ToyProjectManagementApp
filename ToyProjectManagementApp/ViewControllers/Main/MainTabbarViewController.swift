@@ -16,6 +16,9 @@ class MainTabbarViewController: UIViewController {
     
     var ref: DatabaseReference! = Database.database().reference()
     
+    @IBOutlet weak var logoImageView: LogoImageView!
+    @IBOutlet weak var logoLabel: LogoLabel!
+    @IBOutlet weak var prograssLabel: UILabel!
     @IBOutlet weak var projectCollectionView: UICollectionView!
     
     override func viewDidLoad() {
@@ -156,12 +159,21 @@ extension MainTabbarViewController {
     //네비게이션뷰 숨기기, 컬렉션뷰 사이즈 생성해주는 함수
     private func configureView() {
 //        self.navigationController?.navigationBar.isHidden = true
+        
+        self.configurePrograssLabel()
         self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
         
         self.projectCollectionView.collectionViewLayout = UICollectionViewFlowLayout()
-        self.projectCollectionView.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        self.projectCollectionView.contentInset = UIEdgeInsets(top: 0, left: 10, bottom: 10, right: 10)
         self.projectCollectionView.delegate = self
         self.projectCollectionView.dataSource = self
+    }
+    
+    private func configurePrograssLabel() {
+
+        if self.prograssLabel != nil {
+            self.prograssLabel.font = UIFont(name: "NanumGothicOTFExtraBold", size: 14)
+        }
     }
 }
 
@@ -180,6 +192,7 @@ extension MainTabbarViewController: UICollectionViewDelegate {
 }
 
 extension MainTabbarViewController: UICollectionViewDataSource {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return projectList.count
     }
@@ -189,15 +202,44 @@ extension MainTabbarViewController: UICollectionViewDataSource {
         
         let project = projectList[indexPath.row]
         cell.projectTitleLabel.text = project.projectTitle
-        cell.userLabel.text = "일단 임시로 ㄱ"
+        cell.dateLabel.text = String(self.projectList[indexPath.row].currentTime)
+
+        let importImageView = UITapGestureRecognizer(target: self, action: #selector(tabImageViewSelector))
+        cell.importantImageView.isUserInteractionEnabled = true
+        cell.importantImageView.addGestureRecognizer(importImageView)
         
         return cell
     }
+    
+    @objc func tabImageViewSelector(sender: UITapGestureRecognizer) {
+        let imgView = sender.view as! UIImageView
+        
+        
+        
+        
+    }
+    
+    func sendSender(index: Int, tag: Int) {
+        let email = self.emailToString(Auth.auth().currentUser?.email ?? "고객")
+        let id = projectList[index].id
+        // tag1 : 정보보기, tag2 : 삭제하기
+        if tag == 1 {
+            print("정보보기 클릭", index ,tag)
+
+        } else {
+            print("삭제하기 클릭", index ,tag)
+            projectList.remove(at: index) //배열에서 삭제
+            
+            projectCollectionView.deleteItems(at: [[0, index]])
+            self.ref.child("\(email)/\(id)/").removeValue()
+        }
+    }
+    
 }
 
 extension MainTabbarViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: (UIScreen.main.bounds.width / 2) - 20, height: (UIScreen.main.bounds.width / 2) - 50)
+        return CGSize(width: (UIScreen.main.bounds.width / 2) - 20, height: (UIScreen.main.bounds.width / 2) - 80)
     }
     
     
@@ -218,5 +260,23 @@ extension MainTabbarViewController: SendButtonTagDelegate {
             projectCollectionView.deleteItems(at: [[0, index]])
             self.ref.child("\(email)/\(id)/").removeValue()
         }
+    }
+}
+
+extension MainTabbarViewController: ImportantCheckDelegate {
+    
+    func imporantButtonTap(cell: UICollectionViewCell) {
+        print(#fileID, #function, #line, "- cell 버튼 클릭")
+        guard let indexPath = self.projectCollectionView.indexPath(for: cell) else {return}
+        
+        var projectList = projectList[indexPath.row]
+        
+        projectList.important.toggle()
+        self.projectList[indexPath.row] = projectList // 변경된값을 projectList배열에 저장
+        
+        DispatchQueue.main.async {
+            self.projectCollectionView.reloadItems(at: [indexPath])
+        }
+        
     }
 }

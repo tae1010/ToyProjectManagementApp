@@ -7,12 +7,12 @@
 
 import UIKit
 import FirebaseAuth
+import Toast_Swift
 
 class SignUpViewController: UIViewController {
     
     @IBOutlet weak var emailTextField: CustomTextField!
     @IBOutlet weak var passwordTextField: CustomTextField!
-    @IBOutlet weak var errorMessageLabel: UILabel!
     @IBOutlet weak var nextButton: UIButton!
     
     override func viewDidLoad() {
@@ -56,28 +56,19 @@ class SignUpViewController: UIViewController {
                 switch code {
                 case 17007: //이미 가입한 계정일때
                     //로그인하기
-                    self.showToast(message: "이미 가입한 계정입니다.")
-                    self.errorMessageLabel.text = error.localizedDescription
+                    self.view.makeToast("이미 가입한 계정입니다.")
                     
                 case 17008: // 이메일 주소형식이 아닐때
-                    self.showToast(message: "이메일 주소 형식이 다릅니다.")
-                    self.errorMessageLabel.text = error.localizedDescription
+                    self.view.makeToast("이메일 주소 형식이 다릅니다.")
+                    
+                case 17026: // 비밀번호 6자리 이하일때
+                    self.view.makeToast("비밀번호는 6자리 이상이어야 됩니다.")
+                    
+                case 17034: // 이메일 주소가 빈칸일때
+                    self.view.makeToast("이메일 주소를 적어주십시오.")
                 default:
-                    self.showToast(message: "\(error.localizedDescription)")
-                    self.errorMessageLabel.text = error.localizedDescription
+                    self.view.makeToast("\(error.localizedDescription) 에러")
                 }
-            } else {
-                self.showMainViewController()
-            }
-        }
-    }
-    
-    private func loginUser(withEmail email: String, password: String) {
-        Auth.auth().signIn(withEmail: email, password: password) { [weak self] _, error in
-            guard let self = self else { return }
-            
-            if let error = error {
-                self.errorMessageLabel.text = error.localizedDescription
             } else {
                 self.showMainViewController()
             }
@@ -93,7 +84,6 @@ class SignUpViewController: UIViewController {
 }
 
 extension SignUpViewController: UITextFieldDelegate {
-    
     
     //이메일과 비밀번호가 입력한값이 다 있으면 다음 버튼 활성화
     func textFieldDidEndEditing(_ textField: UITextField) {

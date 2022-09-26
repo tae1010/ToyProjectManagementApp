@@ -7,22 +7,63 @@
 
 import UIKit
 
+protocol ImportantCheckDelegate: AnyObject {
+    func imporantButtonTap(cell: UICollectionViewCell)
+}
+
 class ProjectCell: UICollectionViewCell {
     
     @IBOutlet weak var projectTitleLabel: UILabel!
-    @IBOutlet weak var userLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var importantImageView: UIImageView!
     
-    let r : CGFloat = CGFloat.random(in: 0.7...1)
-    let g : CGFloat = CGFloat.random(in: 0.7...1)
-    let b : CGFloat = CGFloat.random(in: 0.7...1)
+//    var cellDelegate: ImportantCheckDelegate? // important button delegate
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        // initialize what is needed
+        
+    }
     
     //cell 모양 설정(랜덤으로 샐의 색을 바뀌게 함)
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        self.contentView.layer.backgroundColor = UIColor(red: r, green: g, blue: b, alpha: 0.2).cgColor
-        self.contentView.layer.cornerRadius = 5.0
+        
+        self.configureProjectTitleLabel()
+        self.configureDateLabel()
+        self.contentView.layer.backgroundColor = UIColor(red: 0.98, green: 0.98, blue: 0.98, alpha: 1).cgColor
+        self.contentView.layer.cornerRadius = 8.0
         self.contentView.layer.borderWidth = 1.0
-        self.contentView.layer.borderColor = UIColor(red: r, green: g, blue: b, alpha: 1).cgColor
+        self.contentView.layer.borderColor = UIColor(red: 0.95, green: 0.95, blue: 0.95, alpha: 1).cgColor
+
     }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+//        self.tapImageView()
+    }
+    
+    private func configureProjectTitleLabel() {
+        if self.projectTitleLabel != nil {
+            self.projectTitleLabel.font = UIFont(name: "NanumGothicOTFBold", size: 14)
+        }
+    }
+    
+    private func configureDateLabel() {
+        if self.dateLabel != nil {
+            self.dateLabel.font = UIFont(name: "NanumGothicOTFLigit", size: 12)
+        }
+    }
+    
+//    private func tapImageView() {
+//        let importImageView = UITapGestureRecognizer(target: self, action: #selector(tabImageViewSelector))
+//        self.importantImageView.addGestureRecognizer(importImageView)
+//
+//    }
+//
+//    @objc func tabImageViewSelector(sender: UITapGestureRecognizer) {
+//        self.cellDelegate?.imporantButtonTap(cell: self)
+//    }
 
 }
