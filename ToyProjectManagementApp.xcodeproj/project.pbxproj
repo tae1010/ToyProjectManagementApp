@@ -30,6 +30,7 @@
 		9340E47C2852050700338790 /* NanumGothic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9340E4782852050700338790 /* NanumGothic.otf */; };
 		9340E47D2852050700338790 /* NanumGothicBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9340E4792852050700338790 /* NanumGothicBold.otf */; };
 		9340E47E2852050700338790 /* NanumGothicLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9340E47A2852050700338790 /* NanumGothicLight.otf */; };
+		9342D1C328E455CD00FD3EED /* ProjectCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9342D1C228E455CD00FD3EED /* ProjectCollectionReusableView.swift */; };
 		935145EF289D2057009B1DEF /* projectDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935145EE289D2057009B1DEF /* projectDate.swift */; };
 		935145F328A1222F009B1DEF /* DateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935145F228A1222F009B1DEF /* DateCollectionViewCell.swift */; };
 		9353E3C1287D809700C63681 /* DetailColorContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9353E3C0287D809700C63681 /* DetailColorContent.swift */; };
@@ -89,6 +90,7 @@
 		9340E4782852050700338790 /* NanumGothic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumGothic.otf; sourceTree = "<group>"; };
 		9340E4792852050700338790 /* NanumGothicBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumGothicBold.otf; sourceTree = "<group>"; };
 		9340E47A2852050700338790 /* NanumGothicLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumGothicLight.otf; sourceTree = "<group>"; };
+		9342D1C228E455CD00FD3EED /* ProjectCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCollectionReusableView.swift; sourceTree = "<group>"; };
 		935145EE289D2057009B1DEF /* projectDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = projectDate.swift; sourceTree = "<group>"; };
 		935145F228A1222F009B1DEF /* DateCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCollectionViewCell.swift; sourceTree = "<group>"; };
 		9353E3C0287D809700C63681 /* DetailColorContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailColorContent.swift; sourceTree = "<group>"; };
@@ -220,6 +222,7 @@
 				935CBC852806A1C300759A24 /* MainTabbarViewController.swift */,
 				9333CC48285C7173005C0262 /* ProjectPopupViewController.swift */,
 				935CBC872806AD7900759A24 /* ProjectCell.swift */,
+				9342D1C228E455CD00FD3EED /* ProjectCollectionReusableView.swift */,
 				93F8E4BF282BB8F400F888F0 /* ProjectContent */,
 			);
 			path = Main;
@@ -537,6 +540,7 @@
 				93DEFA9027FAFF1600827C79 /* CooperationApp.xcdatamodeld in Sources */,
 				9340E46B2851D29E00338790 /* DetailContentViewController.swift in Sources */,
 				9340DE8F28DC666A00B1CEB2 /* ExtensionViewControllerToastMessage.swift in Sources */,
+				9342D1C328E455CD00FD3EED /* ProjectCollectionReusableView.swift in Sources */,
 				93722CED28D31880007E1132 /* ExtensionUIColor.swift in Sources */,
 				9340DE8728D4DF0A00B1CEB2 /* LogoLabel.swift in Sources */,
 			);

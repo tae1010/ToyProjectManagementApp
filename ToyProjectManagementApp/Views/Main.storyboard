@@ -945,12 +945,6 @@
                                     </label>
                                 </subviews>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="진행중" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d3r-Ye-AgI">
-                                <rect key="frame" x="14" y="126" width="44.5" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hLH-5K-JDZ">
                                 <rect key="frame" x="353.5" y="55" width="46.5" height="34"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -960,17 +954,17 @@
                                 </connections>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="dyl-vv-GWe">
-                                <rect key="frame" x="0.0" y="160.5" width="414" height="652.5"/>
+                                <rect key="frame" x="0.0" y="105" width="414" height="708"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="jhv-Qh-fW1">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="jhv-Qh-fW1">
                                     <size key="itemSize" width="180" height="200"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="headerReferenceSize" width="50" height="50"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ProjectCell" id="p7o-Mb-uWI" customClass="ProjectCell" customModule="ToyProjectManagementApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="180" height="100"/>
+                                        <rect key="frame" x="0.0" y="50" width="180" height="100"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="LYR-s9-Zko">
                                             <rect key="frame" x="0.0" y="0.0" width="180" height="100"/>
@@ -982,11 +976,11 @@
                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="nWA-jj-tdp">
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="top" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="nWA-jj-tdp">
                                                     <rect key="frame" x="14" y="14" width="152" height="20"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="project Title" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eVv-ZC-13t">
-                                                            <rect key="frame" x="0.0" y="2" width="132" height="16"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="129" height="16"/>
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
                                                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
@@ -1017,6 +1011,25 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="projectSessionHeader" reuseIdentifier="projectSessionHeader" id="LR6-JP-wfw" customClass="ProjectCollectionReusableView" customModule="ToyProjectManagementApp" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iOe-7N-i6H">
+                                            <rect key="frame" x="8" y="15" width="41.5" height="20.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="iOe-7N-i6H" firstAttribute="centerY" secondItem="LR6-JP-wfw" secondAttribute="centerY" id="6UJ-aq-Cmc"/>
+                                        <constraint firstItem="iOe-7N-i6H" firstAttribute="leading" secondItem="LR6-JP-wfw" secondAttribute="leadingMargin" id="ngt-4D-gDa"/>
+                                    </constraints>
+                                    <connections>
+                                        <outlet property="sectionHeaderLabel" destination="iOe-7N-i6H" id="ngT-hl-1vH"/>
+                                    </connections>
+                                </collectionReusableView>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="n1B-ub-unC" appends="YES" id="HIv-6N-LVX"/>
                                 </connections>
@@ -1025,23 +1038,20 @@
                         <viewLayoutGuide key="safeArea" id="0rg-By-3Cb"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="d3r-Ye-AgI" firstAttribute="leading" secondItem="iJn-vt-GFO" secondAttribute="leading" id="2OC-WB-Jab"/>
                             <constraint firstItem="0rg-By-3Cb" firstAttribute="trailing" secondItem="hLH-5K-JDZ" secondAttribute="trailing" constant="14" id="DoI-xE-Cxq"/>
                             <constraint firstItem="dyl-vv-GWe" firstAttribute="leading" secondItem="0rg-By-3Cb" secondAttribute="leading" id="IC9-Fs-CuS"/>
-                            <constraint firstItem="dyl-vv-GWe" firstAttribute="top" secondItem="d3r-Ye-AgI" secondAttribute="bottom" constant="14" id="NG0-1C-h0D"/>
                             <constraint firstItem="dyl-vv-GWe" firstAttribute="bottom" secondItem="0rg-By-3Cb" secondAttribute="bottom" id="QdL-bz-Kvg"/>
                             <constraint firstItem="dyl-vv-GWe" firstAttribute="trailing" secondItem="0rg-By-3Cb" secondAttribute="trailing" id="R7v-73-kgb"/>
                             <constraint firstItem="hLH-5K-JDZ" firstAttribute="top" secondItem="iJn-vt-GFO" secondAttribute="top" id="ULP-lA-UdU"/>
                             <constraint firstItem="iJn-vt-GFO" firstAttribute="top" secondItem="0rg-By-3Cb" secondAttribute="top" constant="7" id="Z0I-5s-kUL"/>
                             <constraint firstItem="iJn-vt-GFO" firstAttribute="leading" secondItem="0rg-By-3Cb" secondAttribute="leading" constant="14" id="bGC-3L-9Q0"/>
-                            <constraint firstItem="d3r-Ye-AgI" firstAttribute="top" secondItem="iJn-vt-GFO" secondAttribute="bottom" constant="21" id="fhQ-9h-tuH"/>
+                            <constraint firstItem="dyl-vv-GWe" firstAttribute="top" secondItem="iJn-vt-GFO" secondAttribute="bottom" id="j4j-iE-yKg"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" tag="2" title="" image="square.grid.2x2" catalog="system" selectedImage="square.grid.2x2.fill" id="Nwg-c4-cJg"/>
                     <connections>
                         <outlet property="logoImageView" destination="jEn-Ky-Ar7" id="xmY-z5-ZtI"/>
                         <outlet property="logoLabel" destination="hCk-kG-M0m" id="hK6-fq-PR4"/>
-                        <outlet property="prograssLabel" destination="d3r-Ye-AgI" id="0me-CQ-va1"/>
                         <outlet property="projectCollectionView" destination="dyl-vv-GWe" id="cyB-B6-Kl6"/>
                     </connections>
                 </viewController>

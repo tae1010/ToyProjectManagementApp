@@ -29,7 +29,7 @@ class ProjectCell: UICollectionViewCell {
     //cell 모양 설정(랜덤으로 샐의 색을 바뀌게 함)
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        
+        self.configureImageView()
         self.configureProjectTitleLabel()
         self.configureDateLabel()
         self.contentView.layer.backgroundColor = UIColor(red: 0.98, green: 0.98, blue: 0.98, alpha: 1).cgColor
@@ -53,6 +53,12 @@ class ProjectCell: UICollectionViewCell {
     private func configureDateLabel() {
         if self.dateLabel != nil {
             self.dateLabel.font = UIFont(name: "NanumGothicOTFLigit", size: 12)
+        }
+    }
+    
+    private func configureImageView() {
+        if let imageView = self.importantImageView {
+            imageView.image = UIImage(named: "customStar")
         }
     }
     

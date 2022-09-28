@@ -333,8 +333,10 @@ extension SecondTabbarViewController {
                 guard let projectTitle = val["projectTitle"] as? String else { return }
                 guard let important = val["important"] as? Bool else { return }
                 guard let currentTime = val["currentTime"] as? Int else { return }
+                guard let prograss = val["prograss"] as? Bool else { return }
                 
-                let p_id = Project(id: id, projectTitle: projectTitle, important: important, currentTime: currentTime)
+                let p_id = Project(id: id, projectTitle: projectTitle, important: important, currentTime: currentTime, prograss: prograss)
+                
                 self.project.append(p_id)
             }
             
@@ -584,26 +586,3 @@ extension SecondTabbarViewController {
     }
     
 }
-
-#if DEBUG
-
-import SwiftUI
-
-struct ViewControllerPresentable: UIViewControllerRepresentable {
-    func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
-    }
-    
-    func makeUIViewController(context: Context) -> some UIViewController {
-        SecondTabbarViewController()
-    }
-    
-    
-}
-
-struct ViewControllerPrepresentable_PreviewProvider: PreviewProvider {
-    static var previews: some View {
-        ViewControllerPresentable()
-    }
-}
-
-#endif

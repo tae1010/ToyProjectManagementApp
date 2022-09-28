@@ -12,4 +12,5 @@ struct Project {
     var projectTitle: String // 프로젝트 제목
     var important: Bool // 프로젝트 중요도 표시
     var currentTime: Int // 프로젝트 생성일/수정일
+    var prograss: Bool // 프로젝트 완료 여부 (완료했으면 true)
 }
