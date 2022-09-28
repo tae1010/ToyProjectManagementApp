@@ -258,17 +258,22 @@ extension MainTabbarViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
         if let sectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "projectSessionHeader", for: indexPath) as? ProjectCollectionReusableView{
-            
             sectionHeader.sectionHeaderLabel.text = indexPath.section == 0 ? "진행중": "완료"
             sectionHeader.sectionHeaderLabel.font = UIFont(name: "NanumGothicOTFBold", size: 14)
-
-                return sectionHeader
-            }
+            
+            return sectionHeader
+        }
         return UICollectionReusableView()
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: self.view.frame.width, height: 40)
+        
+        if section == 0 {
+            return self.projectListPrograssTrue.isEmpty ? CGSize(width: self.view.frame.width, height: 0) : CGSize(width: self.view.frame.width, height: 40)
+        } else {
+            return self.projectListPrograssFalse.isEmpty ? CGSize(width: self.view.frame.width, height: 0) : CGSize(width: self.view.frame.width, height: 40)
+        }
+
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -373,13 +378,9 @@ extension MainTabbarViewController: SendButtonTagDelegate {
         case 0:
             let id = self.projectListPrograssTrue[index].id
             self.popUpTag(tag: tag, index: index, id: id, session: session)
-            self.projectListPrograssTrue.remove(at: index)
-            
         case 1:
             let id = self.projectListPrograssFalse[index].id
             self.popUpTag(tag: tag, index: index, id: id, session: session)
-            self.projectListPrograssFalse.remove(at: index)
-
         default:
             print("?")
         }
@@ -395,12 +396,18 @@ extension MainTabbarViewController: SendButtonTagDelegate {
     private func popUpTag(tag: Int, index: Int, id: String, session: Int) {
         
         if tag == 1 {
-            print("정보보기 클릭", index ,tag)
+            print(#fileID, #function, #line, "- 정보보기 클릭")
             
         } else {
-            print("삭제하기 클릭", index ,tag)
+            print(#fileID, #function, #line, "- 삭제하기 클릭")
             projectCollectionView.deleteItems(at: [[session, index]])
             self.ref.child("\(email)/\(id)/").removeValue()
+            
+            if session == 0 {
+                self.projectListPrograssTrue.remove(at: index)
+            } else {
+                self.projectListPrograssFalse.remove(at: index)
+            }
 
         }
         

@@ -31,6 +31,8 @@
 		9340E47D2852050700338790 /* NanumGothicBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9340E4792852050700338790 /* NanumGothicBold.otf */; };
 		9340E47E2852050700338790 /* NanumGothicLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9340E47A2852050700338790 /* NanumGothicLight.otf */; };
 		9342D1C328E455CD00FD3EED /* ProjectCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9342D1C228E455CD00FD3EED /* ProjectCollectionReusableView.swift */; };
+		9342D1C528E4657D00FD3EED /* ProjectInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9342D1C428E4657D00FD3EED /* ProjectInfoViewController.swift */; };
+		9342D1C728E4662000FD3EED /* ProjectInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9342D1C628E4662000FD3EED /* ProjectInfo.storyboard */; };
 		935145EF289D2057009B1DEF /* projectDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935145EE289D2057009B1DEF /* projectDate.swift */; };
 		935145F328A1222F009B1DEF /* DateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935145F228A1222F009B1DEF /* DateCollectionViewCell.swift */; };
 		9353E3C1287D809700C63681 /* DetailColorContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9353E3C0287D809700C63681 /* DetailColorContent.swift */; };
@@ -91,6 +93,8 @@
 		9340E4792852050700338790 /* NanumGothicBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumGothicBold.otf; sourceTree = "<group>"; };
 		9340E47A2852050700338790 /* NanumGothicLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumGothicLight.otf; sourceTree = "<group>"; };
 		9342D1C228E455CD00FD3EED /* ProjectCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCollectionReusableView.swift; sourceTree = "<group>"; };
+		9342D1C428E4657D00FD3EED /* ProjectInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectInfoViewController.swift; sourceTree = "<group>"; };
+		9342D1C628E4662000FD3EED /* ProjectInfo.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProjectInfo.storyboard; sourceTree = "<group>"; };
 		935145EE289D2057009B1DEF /* projectDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = projectDate.swift; sourceTree = "<group>"; };
 		935145F228A1222F009B1DEF /* DateCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCollectionViewCell.swift; sourceTree = "<group>"; };
 		9353E3C0287D809700C63681 /* DetailColorContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailColorContent.swift; sourceTree = "<group>"; };
@@ -157,6 +161,7 @@
 				936F8E922897AF0700897316 /* ProjectContentSideMenu.storyboard */,
 				93DEFA9327FAFF1700827C79 /* LaunchScreen.storyboard */,
 				93C1C5DB289A8F1B00B4D5EE /* SecondTabbar.storyboard */,
+				9342D1C628E4662000FD3EED /* ProjectInfo.storyboard */,
 				9349948D2850905800AAD69B /* Popup */,
 				93DA8F84282FB0FB00217360 /* Cell */,
 			);
@@ -223,6 +228,7 @@
 				9333CC48285C7173005C0262 /* ProjectPopupViewController.swift */,
 				935CBC872806AD7900759A24 /* ProjectCell.swift */,
 				9342D1C228E455CD00FD3EED /* ProjectCollectionReusableView.swift */,
+				9342D1C428E4657D00FD3EED /* ProjectInfoViewController.swift */,
 				93F8E4BF282BB8F400F888F0 /* ProjectContent */,
 			);
 			path = Main;
@@ -432,6 +438,7 @@
 				937CC55928002F1400F18553 /* Main.storyboard in Resources */,
 				932B5EF428D4B255004CD1E8 /* godoRoundedL.ttf in Resources */,
 				93285BEE2801887C00396083 /* GoogleService-Info.plist in Resources */,
+				9342D1C728E4662000FD3EED /* ProjectInfo.storyboard in Resources */,
 				93DEFA9527FAFF1700827C79 /* LaunchScreen.storyboard in Resources */,
 				93DEFA9227FAFF1700827C79 /* Assets.xcassets in Resources */,
 				932B5EF528D4B255004CD1E8 /* godoRoundedR.ttf in Resources */,
@@ -515,6 +522,7 @@
 				93DA8F86282FB16900217360 /* ProjectContentTableViewCell.swift in Sources */,
 				93722CF028D4551D007E1132 /* CustomButton.swift in Sources */,
 				93AFDAA228B4D69F009E815F /* ProjectIDCollectionViewCell.swift in Sources */,
+				9342D1C528E4657D00FD3EED /* ProjectInfoViewController.swift in Sources */,
 				93DEFA8627FAFF1600827C79 /* AppDelegate.swift in Sources */,
 				935CBC862806A1C300759A24 /* MainTabbarViewController.swift in Sources */,
 				93AFDA9E28B4CFCE009E815F /* ProjectIDPopupViewController.swift in Sources */,
