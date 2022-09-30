@@ -17,6 +17,10 @@
 		9333CC47285C6B6F005C0262 /* projectCollectionViewPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9333CC46285C6B6E005C0262 /* projectCollectionViewPopup.xib */; };
 		9333CC49285C7173005C0262 /* ProjectPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9333CC48285C7173005C0262 /* ProjectPopupViewController.swift */; };
 		9333CC4B285CA310005C0262 /* ProjectInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9333CC4A285CA310005C0262 /* ProjectInfoView.xib */; };
+		933BAEDA28E5A49A003DDFCF /* ReallyCheckPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933BAED928E5A49A003DDFCF /* ReallyCheckPopupViewController.swift */; };
+		933BAEDE28E5AD04003DDFCF /* ReallyCheckPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 933BAEDD28E5AD04003DDFCF /* ReallyCheckPopup.xib */; };
+		933BAEE028E6EFFE003DDFCF /* CreateProjectPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 933BAEDF28E6EFFE003DDFCF /* CreateProjectPopup.xib */; };
+		933BAEE228E6F025003DDFCF /* CreateProjectPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933BAEE128E6F025003DDFCF /* CreateProjectPopupViewController.swift */; };
 		9340DE7E28D4D8EC00B1CEB2 /* GodoB.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9340DE7C28D4D8EB00B1CEB2 /* GodoB.otf */; };
 		9340DE7F28D4D8EC00B1CEB2 /* GodoM.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9340DE7D28D4D8EC00B1CEB2 /* GodoM.otf */; };
 		9340DE8528D4DEF700B1CEB2 /* LogoImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9340DE8428D4DEF700B1CEB2 /* LogoImageView.swift */; };
@@ -79,6 +83,10 @@
 		9333CC46285C6B6E005C0262 /* projectCollectionViewPopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = projectCollectionViewPopup.xib; sourceTree = "<group>"; };
 		9333CC48285C7173005C0262 /* ProjectPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectPopupViewController.swift; sourceTree = "<group>"; };
 		9333CC4A285CA310005C0262 /* ProjectInfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProjectInfoView.xib; sourceTree = "<group>"; };
+		933BAED928E5A49A003DDFCF /* ReallyCheckPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReallyCheckPopupViewController.swift; sourceTree = "<group>"; };
+		933BAEDD28E5AD04003DDFCF /* ReallyCheckPopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReallyCheckPopup.xib; sourceTree = "<group>"; };
+		933BAEDF28E6EFFE003DDFCF /* CreateProjectPopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateProjectPopup.xib; sourceTree = "<group>"; };
+		933BAEE128E6F025003DDFCF /* CreateProjectPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProjectPopupViewController.swift; sourceTree = "<group>"; };
 		9340DE7C28D4D8EB00B1CEB2 /* GodoB.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GodoB.otf; sourceTree = "<group>"; };
 		9340DE7D28D4D8EC00B1CEB2 /* GodoM.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GodoM.otf; sourceTree = "<group>"; };
 		9340DE8428D4DEF700B1CEB2 /* LogoImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoImageView.swift; sourceTree = "<group>"; };
@@ -217,6 +225,8 @@
 				9333CC46285C6B6E005C0262 /* projectCollectionViewPopup.xib */,
 				9333CC4A285CA310005C0262 /* ProjectInfoView.xib */,
 				93AFDA9B28B4CE1B009E815F /* ProjectIdPopup.xib */,
+				933BAEDD28E5AD04003DDFCF /* ReallyCheckPopup.xib */,
+				933BAEDF28E6EFFE003DDFCF /* CreateProjectPopup.xib */,
 			);
 			path = Popup;
 			sourceTree = "<group>";
@@ -226,9 +236,11 @@
 			children = (
 				935CBC852806A1C300759A24 /* MainTabbarViewController.swift */,
 				9333CC48285C7173005C0262 /* ProjectPopupViewController.swift */,
+				933BAED928E5A49A003DDFCF /* ReallyCheckPopupViewController.swift */,
 				935CBC872806AD7900759A24 /* ProjectCell.swift */,
 				9342D1C228E455CD00FD3EED /* ProjectCollectionReusableView.swift */,
 				9342D1C428E4657D00FD3EED /* ProjectInfoViewController.swift */,
+				933BAEE128E6F025003DDFCF /* CreateProjectPopupViewController.swift */,
 				93F8E4BF282BB8F400F888F0 /* ProjectContent */,
 			);
 			path = Main;
@@ -443,10 +455,12 @@
 				93DEFA9227FAFF1700827C79 /* Assets.xcassets in Resources */,
 				932B5EF528D4B255004CD1E8 /* godoRoundedR.ttf in Resources */,
 				93C1C5DC289A8F1B00B4D5EE /* SecondTabbar.storyboard in Resources */,
+				933BAEDE28E5AD04003DDFCF /* ReallyCheckPopup.xib in Resources */,
 				9333CC47285C6B6F005C0262 /* projectCollectionViewPopup.xib in Resources */,
 				9340E47B2852050700338790 /* NanumGothicExtraBold.otf in Resources */,
 				931F9BB928A7D38B000AFA9E /* ScheduleCell.xib in Resources */,
 				9340DE7F28D4D8EC00B1CEB2 /* GodoM.otf in Resources */,
+				933BAEE028E6EFFE003DDFCF /* CreateProjectPopup.xib in Resources */,
 				9340E47E2852050700338790 /* NanumGothicLight.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -526,7 +540,9 @@
 				93DEFA8627FAFF1600827C79 /* AppDelegate.swift in Sources */,
 				935CBC862806A1C300759A24 /* MainTabbarViewController.swift in Sources */,
 				93AFDA9E28B4CFCE009E815F /* ProjectIDPopupViewController.swift in Sources */,
+				933BAEDA28E5A49A003DDFCF /* ReallyCheckPopupViewController.swift in Sources */,
 				93F8E4C1282BBE8800F888F0 /* ProjectViewController.swift in Sources */,
+				933BAEE228E6F025003DDFCF /* CreateProjectPopupViewController.swift in Sources */,
 				9340DE8928D6E8C700B1CEB2 /* LogoStackView.swift in Sources */,
 				9353E3C1287D809700C63681 /* DetailColorContent.swift in Sources */,
 				936F8E952897B54C00897316 /* ProjectSideBarViewController.swift in Sources */,

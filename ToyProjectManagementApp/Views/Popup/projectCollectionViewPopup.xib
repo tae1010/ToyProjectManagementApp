@@ -12,6 +12,9 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProjectPopupViewController" customModule="ToyProjectManagementApp" customModuleProvider="target">
             <connections>
                 <outlet property="backGroundView" destination="iN0-l3-epB" id="6KL-zA-JnY"/>
+                <outlet property="deleteButton" destination="ihz-Dj-ooG" id="08e-wp-JBV"/>
+                <outlet property="infoButton" destination="I7N-ds-50Q" id="1mC-bA-8ez"/>
+                <outlet property="popUpView" destination="F3H-E8-17G" id="spJ-4p-hTc"/>
                 <outlet property="view" destination="iN0-l3-epB" id="ZXm-Ys-GVO"/>
             </connections>
         </placeholder>
@@ -29,7 +32,7 @@
                                 <button opaque="NO" tag="1" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I7N-ds-50Q">
                                     <rect key="frame" x="0.0" y="0.0" width="200" height="46"/>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                    <state key="normal" title="프로젝트 정보보기">
+                                    <state key="normal" title="프로젝트 완료하기">
                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
                                     <connections>
@@ -61,7 +64,7 @@
                 </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.35784871688741721" colorSpace="custom" customColorSpace="displayP3"/>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.19026800496688742" colorSpace="custom" customColorSpace="displayP3"/>
             <constraints>
                 <constraint firstItem="F3H-E8-17G" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="EvM-Xp-pb3"/>
                 <constraint firstItem="F3H-E8-17G" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="wgP-ev-Zv1"/>

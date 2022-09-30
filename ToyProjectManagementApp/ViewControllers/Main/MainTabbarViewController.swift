@@ -32,6 +32,7 @@ class MainTabbarViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        print("mainttabbarview이동")
         self.readDB()
     }
     
@@ -80,17 +81,23 @@ class MainTabbarViewController: UIViewController {
         
         let longPressedPoint = sender.location(in: projectCollectionView)
         guard let indexPath = projectCollectionView.indexPathForItem(at: longPressedPoint)?.row else { return }
-        guard let session = projectCollectionView.indexPathForItem(at: longPressedPoint)?.section else { return }
+        guard let section = projectCollectionView.indexPathForItem(at: longPressedPoint)?.section else { return }
+        
+        let prograss = section == 0 ? projectListPrograssTrue[indexPath].prograss : projectListPrograssFalse[indexPath].prograss
         
         switch sender.state {
         case .began:
-            
             let projectPopup = ProjectPopupViewController(nibName: "projectCollectionViewPopup", bundle: nil)
+            let reallyCheckPopup = ReallyCheckPopupViewController(nibName: "ReallyCheckPopup", bundle: nil)
+            
+            reallyCheckPopup.deleteCellDelegate = self
             projectPopup.cellIndex = indexPath
-            projectPopup.session = session
-            projectPopup.sendTagDelegate = self
+            projectPopup.section = section
+            projectPopup.prograss = prograss
+            
             projectPopup.modalPresentationStyle = .overCurrentContext
             projectPopup.modalTransitionStyle = .crossDissolve // 뷰가 투명해지면서 넘어가는 애니메이션
+            
             self.present(projectPopup, animated: false, completion: nil)
             
         case .ended:
@@ -371,16 +378,17 @@ extension MainTabbarViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-extension MainTabbarViewController: SendButtonTagDelegate {
+extension MainTabbarViewController: DeleteProjectDelegate {
     
-    func sendSender(index: Int, session: Int, tag: Int) {
-        switch session {
+    func deleteProject(index: Int, section: Int, tag: Int) {
+        print(#fileID, #function, #line, "- deleteCell 실행")
+        switch section {
         case 0:
             let id = self.projectListPrograssTrue[index].id
-            self.popUpTag(tag: tag, index: index, id: id, session: session)
+            self.popUpTag(tag: tag, index: index, id: id, session: section)
         case 1:
             let id = self.projectListPrograssFalse[index].id
-            self.popUpTag(tag: tag, index: index, id: id, session: session)
+            self.popUpTag(tag: tag, index: index, id: id, session: section)
         default:
             print("?")
         }
@@ -388,8 +396,6 @@ extension MainTabbarViewController: SendButtonTagDelegate {
         DispatchQueue.main.async {
             self.projectCollectionView.reloadData()
         }
-        
-        
     }
     
     // 팝업창 메뉴(tag)에 따른 기능 / tag1 : 정보보기, tag2 : 삭제하기
