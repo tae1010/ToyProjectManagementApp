@@ -21,6 +21,7 @@
 		933BAEDE28E5AD04003DDFCF /* ReallyCheckPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 933BAEDD28E5AD04003DDFCF /* ReallyCheckPopup.xib */; };
 		933BAEE028E6EFFE003DDFCF /* CreateProjectPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 933BAEDF28E6EFFE003DDFCF /* CreateProjectPopup.xib */; };
 		933BAEE228E6F025003DDFCF /* CreateProjectPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933BAEE128E6F025003DDFCF /* CreateProjectPopupViewController.swift */; };
+		933BAEE628E81110003DDFCF /* ExtensionNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933BAEE528E81110003DDFCF /* ExtensionNotification.swift */; };
 		9340DE7E28D4D8EC00B1CEB2 /* GodoB.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9340DE7C28D4D8EB00B1CEB2 /* GodoB.otf */; };
 		9340DE7F28D4D8EC00B1CEB2 /* GodoM.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9340DE7D28D4D8EC00B1CEB2 /* GodoM.otf */; };
 		9340DE8528D4DEF700B1CEB2 /* LogoImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9340DE8428D4DEF700B1CEB2 /* LogoImageView.swift */; };
@@ -87,6 +88,7 @@
 		933BAEDD28E5AD04003DDFCF /* ReallyCheckPopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReallyCheckPopup.xib; sourceTree = "<group>"; };
 		933BAEDF28E6EFFE003DDFCF /* CreateProjectPopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateProjectPopup.xib; sourceTree = "<group>"; };
 		933BAEE128E6F025003DDFCF /* CreateProjectPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProjectPopupViewController.swift; sourceTree = "<group>"; };
+		933BAEE528E81110003DDFCF /* ExtensionNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionNotification.swift; sourceTree = "<group>"; };
 		9340DE7C28D4D8EB00B1CEB2 /* GodoB.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GodoB.otf; sourceTree = "<group>"; };
 		9340DE7D28D4D8EC00B1CEB2 /* GodoM.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GodoM.otf; sourceTree = "<group>"; };
 		9340DE8428D4DEF700B1CEB2 /* LogoImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoImageView.swift; sourceTree = "<group>"; };
@@ -292,6 +294,7 @@
 			children = (
 				9340DE8E28DC666A00B1CEB2 /* ExtensionViewControllerToastMessage.swift */,
 				93722CEC28D31880007E1132 /* ExtensionUIColor.swift */,
+				933BAEE528E81110003DDFCF /* ExtensionNotification.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -538,6 +541,7 @@
 				93AFDAA228B4D69F009E815F /* ProjectIDCollectionViewCell.swift in Sources */,
 				9342D1C528E4657D00FD3EED /* ProjectInfoViewController.swift in Sources */,
 				93DEFA8627FAFF1600827C79 /* AppDelegate.swift in Sources */,
+				933BAEE628E81110003DDFCF /* ExtensionNotification.swift in Sources */,
 				935CBC862806A1C300759A24 /* MainTabbarViewController.swift in Sources */,
 				93AFDA9E28B4CFCE009E815F /* ProjectIDPopupViewController.swift in Sources */,
 				933BAEDA28E5A49A003DDFCF /* ReallyCheckPopupViewController.swift in Sources */,

@@ -8,11 +8,6 @@
 import Foundation
 import UIKit
 
-// projectCollectionView 팝업창 버튼 delegate
-protocol DeleteProjectDelegate : AnyObject{
-    func deleteProject(index: Int, section: Int, tag: Int)
-}
-
 class ReallyCheckPopupViewController: UIViewController {
     
     @IBOutlet var backGroundView: UIView!
@@ -21,17 +16,12 @@ class ReallyCheckPopupViewController: UIViewController {
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var deleteButton: UIButton!
     
-    weak var deleteCellDelegate: DeleteProjectDelegate?
-    
-    var cellIndex: Int = 0
-    var section: Int = 0
-    var tag: Int = 0
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configure()
         self.touchBackGround()
     }
+    
     
     @IBAction func tapCancelButton(_ sender: UIButton) {
         
@@ -39,10 +29,9 @@ class ReallyCheckPopupViewController: UIViewController {
     }
     
     @IBAction func tapDeleteButton(_ sender: UIButton) {
-        print(cellIndex, section, tag)
-        self.deleteCellDelegate?.deleteProject(index: cellIndex, section: section, tag: tag)
-        
-        self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
+        // deleteProjectNotification 실행
+        NotificationCenter.default.post(name: .deleteProjectNotification, object: nil, userInfo: nil)
+        self.dismiss(animated: true)
     }
     
     private func touchBackGround() {
@@ -55,8 +44,6 @@ class ReallyCheckPopupViewController: UIViewController {
     @objc func tabBackGroundSelector(sender: UITapGestureRecognizer) {
         self.dismiss(animated: true)
     }
-    
-    
 }
 
 extension ReallyCheckPopupViewController {
@@ -84,3 +71,4 @@ extension ReallyCheckPopupViewController {
         self.deleteButton.titleLabel?.font = UIFont(name: "NanumGothicOTF", size: 14)
     }
 }
+

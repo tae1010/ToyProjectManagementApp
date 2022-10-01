@@ -17,6 +17,9 @@ class MainTabbarViewController: UIViewController {
     var projectListPrograssFalse = [Project]() // prograss가 false일때 section1에 저장
     
     var ref: DatabaseReference! = Database.database().reference()
+
+    var deleteCellIndex: Int? // 삭제할 cell의 index
+    var deleteCellSection: Int? // 삭제할 cell의 section
     
     var email = " " // 사용자 id
     
@@ -26,6 +29,7 @@ class MainTabbarViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(deleteProjectNotification), name: .deleteProjectNotification, object: nil)
         self.email = self.emailToString(Auth.auth().currentUser?.email ?? "고객")
         self.configureView()
     }
@@ -42,38 +46,43 @@ class MainTabbarViewController: UIViewController {
     
     //프로젝트 collection 추가
     @IBAction func addProjectButtonTap(_ sender: UIButton) {
-        //alert창 생성 textfield, ok/cancel 버튼
-        let alert = UIAlertController(title: "프로젝트명", message: nil, preferredStyle: UIAlertController.Style.alert)
         
-        let okAction = UIAlertAction(title: "만들기", style: .default, handler: { [weak self] _ in
-            guard let self = self, let title = alert.textFields?[0].text else { return }
-            let id = UUID().uuidString
-            let email = self.emailToString(Auth.auth().currentUser?.email ?? "고객")
-            let project = Project(id: id, projectTitle: title, important: false, currentTime: self.koreanDate(), prograss: false)
-            self.projectListPrograssTrue.insert(project, at: 0)
-            
-            //firebase에 데이터 입력
-            self.ref.child("\(email)/\(id)").updateChildValues(["important": false])
-            self.ref.child("\(email)/\(id)").updateChildValues(["projectTitle": title])
-            self.ref.child("\(email)/\(id)").updateChildValues(["currentTime": self.koreanDate()!])
-            self.ref.child("\(email)/\(id)").updateChildValues(["prograss": true])
-            self.ref.child("\(email)/\(id)/content/0/리스트 이름을 정해주세요/0").updateChildValues(["cardName": "카드를 추가해주세요", "color": "", "startTime": "", "endTime": ""])
-            
-            DispatchQueue.main.async {
-                self.projectCollectionView.reloadData()
-            }
-        })
+        let createProjectPopup = CreateProjectPopupViewController(nibName: "CreateProjectPopup", bundle: nil)
         
-        let cancelAction = UIAlertAction(title: "취소하기", style: .default, handler: nil)
+        self.present(createProjectPopup, animated: true, completion: nil)
         
-        alert.addTextField(configurationHandler: { textfield in
-            textfield.placeholder = "프로젝트명을 입력해주세요."
-        })
+//        //alert창 생성 textfield, ok/cancel 버튼
+//        let alert = UIAlertController(title: "프로젝트명", message: nil, preferredStyle: UIAlertController.Style.alert)
+//
+//        let okAction = UIAlertAction(title: "만들기", style: .default, handler: { [weak self] _ in
+//            guard let self = self, let title = alert.textFields?[0].text else { return }
+//            let id = UUID().uuidString
+//            let email = self.emailToString(Auth.auth().currentUser?.email ?? "고객")
+//            let project = Project(id: id, projectTitle: title, important: false, currentTime: self.koreanDate(), prograss: false)
+//            self.projectListPrograssTrue.insert(project, at: 0)
+//
+//            //firebase에 데이터 입력
+//            self.ref.child("\(email)/\(id)").updateChildValues(["important": false])
+//            self.ref.child("\(email)/\(id)").updateChildValues(["projectTitle": title])
+//            self.ref.child("\(email)/\(id)").updateChildValues(["currentTime": self.koreanDate()!])
+//            self.ref.child("\(email)/\(id)").updateChildValues(["prograss": true])
+//            self.ref.child("\(email)/\(id)/content/0/리스트 이름을 정해주세요/0").updateChildValues(["cardName": "카드를 추가해주세요", "color": "", "startTime": "", "endTime": ""])
+//
+//            DispatchQueue.main.async {
+//                self.projectCollectionView.reloadData()
+//            }
+//        })
+//
+//        let cancelAction = UIAlertAction(title: "취소하기", style: .default, handler: nil)
+//
+//        alert.addTextField(configurationHandler: { textfield in
+//            textfield.placeholder = "프로젝트명을 입력해주세요."
+//        })
+//
+//        alert.addAction(okAction)
+//        alert.addAction(cancelAction)
         
-        alert.addAction(okAction)
-        alert.addAction(cancelAction)
-        
-        self.present(alert, animated: true, completion: nil)
+//        self.present(alert, animated: true, completion: nil)
     }
     
     
@@ -83,17 +92,14 @@ class MainTabbarViewController: UIViewController {
         guard let indexPath = projectCollectionView.indexPathForItem(at: longPressedPoint)?.row else { return }
         guard let section = projectCollectionView.indexPathForItem(at: longPressedPoint)?.section else { return }
         
+        self.deleteCellIndex = indexPath
+        self.deleteCellSection = section
+        
         let prograss = section == 0 ? projectListPrograssTrue[indexPath].prograss : projectListPrograssFalse[indexPath].prograss
         
         switch sender.state {
         case .began:
             let projectPopup = ProjectPopupViewController(nibName: "projectCollectionViewPopup", bundle: nil)
-            let reallyCheckPopup = ReallyCheckPopupViewController(nibName: "ReallyCheckPopup", bundle: nil)
-            
-            reallyCheckPopup.deleteCellDelegate = self
-            projectPopup.cellIndex = indexPath
-            projectPopup.section = section
-            projectPopup.prograss = prograss
             
             projectPopup.modalPresentationStyle = .overCurrentContext
             projectPopup.modalTransitionStyle = .crossDissolve // 뷰가 투명해지면서 넘어가는 애니메이션
@@ -109,6 +115,7 @@ class MainTabbarViewController: UIViewController {
     }
 }
 
+// MARK: - function
 extension MainTabbarViewController {
     
     //현재 시간을 int값으로 반환시켜주는 함수
@@ -220,6 +227,33 @@ extension MainTabbarViewController {
         return emailToString
     }
     
+    // 20200101111111 -> 2020-01-01
+    private func changeDateLabel(indexPath: IndexPath) -> String {
+        var dateText = indexPath.section == 0 ? String(self.projectListPrograssTrue[indexPath.row].currentTime) : String(self.projectListPrograssFalse[indexPath.row].currentTime)
+        
+        dateText.insert("-", at: dateText.index(dateText.startIndex, offsetBy: 4))
+        dateText.insert("-", at: dateText.index(dateText.startIndex, offsetBy: 7))
+        
+        let result = String(dateText.dropLast(6))
+
+        return result
+    }
+    
+    // 팝업창 메뉴(tag)에 따른 기능 / tag1 : 정보보기, tag2 : 삭제하기
+    private func deleteProject(index: Int, id: String, section: Int) {
+        
+        print(#fileID, #function, #line, "- 삭제하기 클릭")
+        projectCollectionView.deleteItems(at: [[section, index]])
+        self.ref.child("\(email)/\(id)/").removeValue()
+        
+        if section == 0 {
+            self.projectListPrograssTrue.remove(at: index)
+        } else {
+            self.projectListPrograssFalse.remove(at: index)
+        }
+    }
+    
+
     //네비게이션뷰 숨기기, 컬렉션뷰 사이즈 생성해주는 함수
     private func configureView() {
         self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
@@ -232,6 +266,7 @@ extension MainTabbarViewController {
     }
 }
 
+// MARK: - CollectionView delegate, datasource,
 extension MainTabbarViewController: UICollectionViewDelegate {
     //셀 클릭시 작용
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -321,6 +356,21 @@ extension MainTabbarViewController: UICollectionViewDataSource {
         return cell
     }
     
+    
+    
+
+}
+
+extension MainTabbarViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: (UIScreen.main.bounds.width / 2) - 20, height: (UIScreen.main.bounds.width / 2) - 80)
+    }
+}
+
+// MARK: - selector
+extension MainTabbarViewController {
+    
     // 진행중 section에 있는 important image 클릭시 selector
     @objc func tabFirstSectionImageViewSelector(sender: UITapGestureRecognizer) {
         let imgView = sender.view as! UIImageView
@@ -357,38 +407,19 @@ extension MainTabbarViewController: UICollectionViewDataSource {
 
     }
     
-    // 20200101111111 -> 2020-01-01
-    private func changeDateLabel(indexPath: IndexPath) -> String {
-        var dateText = indexPath.section == 0 ? String(self.projectListPrograssTrue[indexPath.row].currentTime) : String(self.projectListPrograssFalse[indexPath.row].currentTime)
+    @objc func deleteProjectNotification() {
+        print(#fileID, #function, #line, "- deleteNotification")
         
-        dateText.insert("-", at: dateText.index(dateText.startIndex, offsetBy: 4))
-        dateText.insert("-", at: dateText.index(dateText.startIndex, offsetBy: 7))
+        guard let index  = self.deleteCellIndex else { return }
+        guard let section = self.deleteCellSection else { return }
         
-        let result = String(dateText.dropLast(6))
-
-        return result
-
-    }
-}
-
-extension MainTabbarViewController: UICollectionViewDelegateFlowLayout {
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: (UIScreen.main.bounds.width / 2) - 20, height: (UIScreen.main.bounds.width / 2) - 80)
-    }
-}
-
-extension MainTabbarViewController: DeleteProjectDelegate {
-    
-    func deleteProject(index: Int, section: Int, tag: Int) {
-        print(#fileID, #function, #line, "- deleteCell 실행")
         switch section {
         case 0:
             let id = self.projectListPrograssTrue[index].id
-            self.popUpTag(tag: tag, index: index, id: id, session: section)
+            self.deleteProject(index: index, id: id, section: section)
         case 1:
             let id = self.projectListPrograssFalse[index].id
-            self.popUpTag(tag: tag, index: index, id: id, session: section)
+            self.deleteProject(index: index, id: id, section: section)
         default:
             print("?")
         }
@@ -397,25 +428,7 @@ extension MainTabbarViewController: DeleteProjectDelegate {
             self.projectCollectionView.reloadData()
         }
     }
-    
-    // 팝업창 메뉴(tag)에 따른 기능 / tag1 : 정보보기, tag2 : 삭제하기
-    private func popUpTag(tag: Int, index: Int, id: String, session: Int) {
-        
-        if tag == 1 {
-            print(#fileID, #function, #line, "- 정보보기 클릭")
-            
-        } else {
-            print(#fileID, #function, #line, "- 삭제하기 클릭")
-            projectCollectionView.deleteItems(at: [[session, index]])
-            self.ref.child("\(email)/\(id)/").removeValue()
-            
-            if session == 0 {
-                self.projectListPrograssTrue.remove(at: index)
-            } else {
-                self.projectListPrograssFalse.remove(at: index)
-            }
-
-        }
-        
-    }
 }
+
+
+

@@ -14,10 +14,6 @@ class ProjectPopupViewController: UIViewController {
     
     @IBOutlet weak var infoButton: UIButton!
     @IBOutlet weak var deleteButton: UIButton!
-
-    var cellIndex: Int = 0
-    var section: Int = 0
-    var prograss: Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,19 +56,12 @@ class ProjectPopupViewController: UIViewController {
 
         let reallyCheckPopup = ReallyCheckPopupViewController(nibName: "ReallyCheckPopup", bundle: nil)
         
-        reallyCheckPopup.cellIndex = self.cellIndex
-        reallyCheckPopup.section = self.section
-        reallyCheckPopup.tag = sender.tag
-        
         reallyCheckPopup.modalPresentationStyle = .overCurrentContext
         reallyCheckPopup.modalTransitionStyle = .crossDissolve // 뷰가 투명해지면서 넘어가는 애니메이션
-        self.present(reallyCheckPopup, animated: true, completion: nil)
-//        pvc.present(reallyCheckPopup, animated: true, completion: nil)
 
-//        // 기존팝업창은 지우고 reallyCheckPopup창을 띄움
-//        self.dismiss(animated: true) {
-//
-//
-//        }
+        // 기존팝업창은 지우고 reallyCheckPopup창을 띄움
+        self.dismiss(animated: true) {
+            pvc.present(reallyCheckPopup, animated: true, completion: nil)
+        }
     }
 }
