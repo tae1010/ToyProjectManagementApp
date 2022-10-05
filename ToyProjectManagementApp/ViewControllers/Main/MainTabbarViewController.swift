@@ -267,6 +267,7 @@ extension MainTabbarViewController {
             self.projectListPrograssTrue[index].prograss = prograss
             self.ref.child("\(email)/\(id)").updateChildValues(["prograss": prograss])
             
+            // projectListPrograssFalse에 projectListPrograssTrue에 있던 배열을 넣어주고 projectListPrograssTrue 인덱스 삭제
             self.projectListPrograssFalse.append(self.projectListPrograssTrue[index])
             self.projectListPrograssTrue.remove(at: index)
         } else {
@@ -460,7 +461,7 @@ extension MainTabbarViewController {
     @objc func changePrograssProjectNotification(_ notification: Notification) {
         
         let getValue = notification.object as! Bool
-        
+        print(getValue)
         print(#fileID, #function, #line, "- changePrograssNotification")
         
         guard let index  = self.longPressCellIndex else { return }
@@ -469,10 +470,19 @@ extension MainTabbarViewController {
         switch section {
         case 0:
             let id = self.projectListPrograssTrue[index].id
-            self.changePrograssProject(index: index, id: id, section: section, prograss: getValue)
+            
+            // prograss가 바뀌었으면 chagnePrograssProject 실행
+            if getValue != self.projectListPrograssTrue[index].prograss {
+                self.changePrograssProject(index: index, id: id, section: section, prograss: getValue)
+            }
         case 1:
             let id = self.projectListPrograssFalse[index].id
-            self.changePrograssProject(index: index, id: id, section: section, prograss: getValue)
+    
+            // prograss가 바뀌었으면 chagnePrograssProject 실행
+            if getValue != self.projectListPrograssFalse[index].prograss {
+                self.changePrograssProject(index: index, id: id, section: section, prograss: getValue)
+            }
+            
         default:
             print("?")
         }

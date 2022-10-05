@@ -26,10 +26,14 @@ class ChangeProjectPrograssViewController: UIViewController {
     }
     
     @IBAction func changePrograssSwitch(_ sender: UISwitch) {
-        if sender.isOn { self.statusPrograssLabel.text = "진행중" }
-        else { self.statusPrograssLabel.text = "완료" }
-        
-        self.projectPrograss?.toggle()
+        if sender.isOn {
+            self.statusPrograssLabel.text = "진행중"
+            self.projectPrograss = true
+        }
+        else {
+            self.statusPrograssLabel.text = "완료"
+            self.projectPrograss = false
+        }
     }
     
     
