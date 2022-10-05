@@ -8,6 +8,7 @@
 import UIKit
 import FirebaseAuth
 import FirebaseDatabase
+import MaterialComponents.MaterialBottomSheet
 
 class MainTabbarViewController: UIViewController {
 
@@ -49,8 +50,16 @@ class MainTabbarViewController: UIViewController {
     @IBAction func addProjectButtonTap(_ sender: UIButton) {
         
         let createProjectPopup = CreateProjectPopupViewController(nibName: "CreateProjectPopup", bundle: nil)
+        createProjectPopup.view.clipsToBounds = false
+        createProjectPopup.view.layer.cornerRadius = 20
+        createProjectPopup.createProjectDelegate = self
         
-        self.present(createProjectPopup, animated: true, completion: nil)
+        let bottomSheet: MDCBottomSheetController = MDCBottomSheetController(contentViewController: createProjectPopup)
+        bottomSheet.mdc_bottomSheetPresentationController?.preferredSheetHeight = self.view.bounds.size.height * 0.3
+        
+        
+        self.present(bottomSheet, animated: true)
+
         
 //        //alert창 생성 textfield, ok/cancel 버튼
 //        let alert = UIAlertController(title: "프로젝트명", message: nil, preferredStyle: UIAlertController.Style.alert)
@@ -221,8 +230,6 @@ extension MainTabbarViewController {
         
         self.projectListPrograssFalse = projectListImportantTrue + projectListImportantFalse
     }
-    
-
     
     //db는 .을 저장할 수 없기때문에 이메일에 들어간 .를 ,으로 변환시켜주는 함수
     private func emailToString(_ email: String) -> String {
@@ -486,8 +493,30 @@ extension MainTabbarViewController {
         default:
             print("?")
         }
+    }
+}
+
+extension MainTabbarViewController: CreateProjectDelegate {
+    
+    func createProject(title: String?) {
         
+        let id = UUID().uuidString
+        let email = self.emailToString(Auth.auth().currentUser?.email ?? "고객")
+        let project = Project(id: id, projectTitle: title ?? "", important: false, currentTime: self.koreanDate(), prograss: false)
+        self.projectListPrograssTrue.insert(project, at: 0)
         
+        self.sortFirstSection()
+        
+        //firebase에 데이터 입력
+        self.ref.child("\(email)/\(id)").updateChildValues(["important": false])
+        self.ref.child("\(email)/\(id)").updateChildValues(["projectTitle": title ?? ""])
+        self.ref.child("\(email)/\(id)").updateChildValues(["currentTime": self.koreanDate()!])
+        self.ref.child("\(email)/\(id)").updateChildValues(["prograss": true])
+        self.ref.child("\(email)/\(id)/content/0/리스트 이름을 정해주세요/0").updateChildValues(["cardName": "카드를 추가해주세요", "color": "", "startTime": "", "endTime": ""])
+        
+        DispatchQueue.main.async {
+            self.projectCollectionView.reloadData()
+        }
     }
 }
 
