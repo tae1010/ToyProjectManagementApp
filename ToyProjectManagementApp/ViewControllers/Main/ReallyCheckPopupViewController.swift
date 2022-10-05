@@ -22,9 +22,7 @@ class ReallyCheckPopupViewController: UIViewController {
         self.touchBackGround()
     }
     
-    
     @IBAction func tapCancelButton(_ sender: UIButton) {
-        
         self.dismiss(animated: true)
     }
     

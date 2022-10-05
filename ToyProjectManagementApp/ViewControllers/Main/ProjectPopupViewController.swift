@@ -12,8 +12,11 @@ class ProjectPopupViewController: UIViewController {
     @IBOutlet weak var popUpView: UIView!
     @IBOutlet var backGroundView: UIView!
     
-    @IBOutlet weak var infoButton: UIButton!
+    @IBOutlet weak var changePrograssButton: UIButton!
     @IBOutlet weak var deleteButton: UIButton!
+    
+    var projectPrograss: Bool?
+    var projectTitle: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +30,7 @@ class ProjectPopupViewController: UIViewController {
     }
     
     private func configureButton() {
-        self.infoButton.titleLabel?.font = UIFont(name: "NanumGothicOTF", size: 14)
+        self.changePrograssButton.titleLabel?.font = UIFont(name: "NanumGothicOTF", size: 14)
         self.deleteButton.titleLabel?.font = UIFont(name: "NanumGothicOTF", size: 14)
         self.deleteButton.setTitleColor(.red, for: .normal)
     }
@@ -44,14 +47,23 @@ class ProjectPopupViewController: UIViewController {
         self.dismiss(animated: true)
     }
     
-    @IBAction func cellInfo(_ sender: UIButton) {
-        print(sender.tag)
-//        self.sendTagDelegate?.sendSender(index: cellIndex, session: session, tag: sender.tag)
-        self.dismiss(animated: true)
+    @IBAction func cellChangePrograss(_ sender: UIButton) {
+        guard let pvc = self.presentingViewController else { return } // maintabbarViewController
+
+        let changeProjectPrograssPopup = ChangeProjectPrograssViewController(nibName: "ChangeProjectPrograssPopup", bundle: nil)
+        
+        changeProjectPrograssPopup.modalPresentationStyle = .overCurrentContext
+        changeProjectPrograssPopup.modalTransitionStyle = .crossDissolve // 뷰가 투명해지면서 넘어가는 애니메이션
+        changeProjectPrograssPopup.projectPrograss = projectPrograss
+        changeProjectPrograssPopup.projectTitle = projectTitle
+
+        // 기존팝업창은 지우고 reallyCheckPopup창을 띄움
+        self.dismiss(animated: true) {
+            pvc.present(changeProjectPrograssPopup, animated: true, completion: nil)
+        }
     }
     
     @IBAction func cellDelete(_ sender: UIButton) {
-
         guard let pvc = self.presentingViewController else { return } // maintabbarViewController
 
         let reallyCheckPopup = ReallyCheckPopupViewController(nibName: "ReallyCheckPopup", bundle: nil)
@@ -64,4 +76,5 @@ class ProjectPopupViewController: UIViewController {
             pvc.present(reallyCheckPopup, animated: true, completion: nil)
         }
     }
+
 }

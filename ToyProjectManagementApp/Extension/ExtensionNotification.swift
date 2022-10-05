@@ -8,7 +8,12 @@
 import Foundation
 import UIKit
 
-// project 삭제 notification (reallyCheckPopupViewController에서 post를 하면 MainTabbar에서 deleteProject함수 실행)
+
 extension Notification.Name {
+    
+    // project 삭제 notification (reallyCheckPopupViewController에서 post를 하면 MainTabbar에서 deleteProject함수 실행)
     static let deleteProjectNotification = Notification.Name("deleteProjectNotification")
+    
+    // project 완료 여부 notofication (reallyCheckPopupViewController에서 post를 하면 MainTabbar에서 changePrograssProject함수 실행)
+    static let changePrograssProjectNotification = Notification.Name("changePrograssProjectNotification")
 }

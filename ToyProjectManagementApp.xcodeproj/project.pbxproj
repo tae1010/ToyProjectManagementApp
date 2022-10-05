@@ -16,12 +16,13 @@
 		932B5EF528D4B255004CD1E8 /* godoRoundedR.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 932B5EF328D4B255004CD1E8 /* godoRoundedR.ttf */; };
 		9333CC47285C6B6F005C0262 /* projectCollectionViewPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9333CC46285C6B6E005C0262 /* projectCollectionViewPopup.xib */; };
 		9333CC49285C7173005C0262 /* ProjectPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9333CC48285C7173005C0262 /* ProjectPopupViewController.swift */; };
-		9333CC4B285CA310005C0262 /* ProjectInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9333CC4A285CA310005C0262 /* ProjectInfoView.xib */; };
 		933BAEDA28E5A49A003DDFCF /* ReallyCheckPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933BAED928E5A49A003DDFCF /* ReallyCheckPopupViewController.swift */; };
 		933BAEDE28E5AD04003DDFCF /* ReallyCheckPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 933BAEDD28E5AD04003DDFCF /* ReallyCheckPopup.xib */; };
 		933BAEE028E6EFFE003DDFCF /* CreateProjectPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 933BAEDF28E6EFFE003DDFCF /* CreateProjectPopup.xib */; };
 		933BAEE228E6F025003DDFCF /* CreateProjectPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933BAEE128E6F025003DDFCF /* CreateProjectPopupViewController.swift */; };
 		933BAEE628E81110003DDFCF /* ExtensionNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933BAEE528E81110003DDFCF /* ExtensionNotification.swift */; };
+		933BAEE828E8965A003DDFCF /* ChangeProjectPrograssViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933BAEE728E89659003DDFCF /* ChangeProjectPrograssViewController.swift */; };
+		933BAEEA28E896BD003DDFCF /* ChangeProjectPrograssPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 933BAEE928E896BC003DDFCF /* ChangeProjectPrograssPopup.xib */; };
 		9340DE7E28D4D8EC00B1CEB2 /* GodoB.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9340DE7C28D4D8EB00B1CEB2 /* GodoB.otf */; };
 		9340DE7F28D4D8EC00B1CEB2 /* GodoM.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9340DE7D28D4D8EC00B1CEB2 /* GodoM.otf */; };
 		9340DE8528D4DEF700B1CEB2 /* LogoImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9340DE8428D4DEF700B1CEB2 /* LogoImageView.swift */; };
@@ -36,7 +37,6 @@
 		9340E47D2852050700338790 /* NanumGothicBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9340E4792852050700338790 /* NanumGothicBold.otf */; };
 		9340E47E2852050700338790 /* NanumGothicLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9340E47A2852050700338790 /* NanumGothicLight.otf */; };
 		9342D1C328E455CD00FD3EED /* ProjectCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9342D1C228E455CD00FD3EED /* ProjectCollectionReusableView.swift */; };
-		9342D1C528E4657D00FD3EED /* ProjectInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9342D1C428E4657D00FD3EED /* ProjectInfoViewController.swift */; };
 		9342D1C728E4662000FD3EED /* ProjectInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9342D1C628E4662000FD3EED /* ProjectInfo.storyboard */; };
 		935145EF289D2057009B1DEF /* projectDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935145EE289D2057009B1DEF /* projectDate.swift */; };
 		935145F328A1222F009B1DEF /* DateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935145F228A1222F009B1DEF /* DateCollectionViewCell.swift */; };
@@ -83,12 +83,13 @@
 		932B5EF328D4B255004CD1E8 /* godoRoundedR.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = godoRoundedR.ttf; sourceTree = "<group>"; };
 		9333CC46285C6B6E005C0262 /* projectCollectionViewPopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = projectCollectionViewPopup.xib; sourceTree = "<group>"; };
 		9333CC48285C7173005C0262 /* ProjectPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectPopupViewController.swift; sourceTree = "<group>"; };
-		9333CC4A285CA310005C0262 /* ProjectInfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProjectInfoView.xib; sourceTree = "<group>"; };
 		933BAED928E5A49A003DDFCF /* ReallyCheckPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReallyCheckPopupViewController.swift; sourceTree = "<group>"; };
 		933BAEDD28E5AD04003DDFCF /* ReallyCheckPopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReallyCheckPopup.xib; sourceTree = "<group>"; };
 		933BAEDF28E6EFFE003DDFCF /* CreateProjectPopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateProjectPopup.xib; sourceTree = "<group>"; };
 		933BAEE128E6F025003DDFCF /* CreateProjectPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProjectPopupViewController.swift; sourceTree = "<group>"; };
 		933BAEE528E81110003DDFCF /* ExtensionNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionNotification.swift; sourceTree = "<group>"; };
+		933BAEE728E89659003DDFCF /* ChangeProjectPrograssViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeProjectPrograssViewController.swift; sourceTree = "<group>"; };
+		933BAEE928E896BC003DDFCF /* ChangeProjectPrograssPopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChangeProjectPrograssPopup.xib; sourceTree = "<group>"; };
 		9340DE7C28D4D8EB00B1CEB2 /* GodoB.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GodoB.otf; sourceTree = "<group>"; };
 		9340DE7D28D4D8EC00B1CEB2 /* GodoM.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GodoM.otf; sourceTree = "<group>"; };
 		9340DE8428D4DEF700B1CEB2 /* LogoImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoImageView.swift; sourceTree = "<group>"; };
@@ -103,7 +104,6 @@
 		9340E4792852050700338790 /* NanumGothicBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumGothicBold.otf; sourceTree = "<group>"; };
 		9340E47A2852050700338790 /* NanumGothicLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumGothicLight.otf; sourceTree = "<group>"; };
 		9342D1C228E455CD00FD3EED /* ProjectCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCollectionReusableView.swift; sourceTree = "<group>"; };
-		9342D1C428E4657D00FD3EED /* ProjectInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectInfoViewController.swift; sourceTree = "<group>"; };
 		9342D1C628E4662000FD3EED /* ProjectInfo.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProjectInfo.storyboard; sourceTree = "<group>"; };
 		935145EE289D2057009B1DEF /* projectDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = projectDate.swift; sourceTree = "<group>"; };
 		935145F228A1222F009B1DEF /* DateCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -225,9 +225,9 @@
 			isa = PBXGroup;
 			children = (
 				9333CC46285C6B6E005C0262 /* projectCollectionViewPopup.xib */,
-				9333CC4A285CA310005C0262 /* ProjectInfoView.xib */,
 				93AFDA9B28B4CE1B009E815F /* ProjectIdPopup.xib */,
 				933BAEDD28E5AD04003DDFCF /* ReallyCheckPopup.xib */,
+				933BAEE928E896BC003DDFCF /* ChangeProjectPrograssPopup.xib */,
 				933BAEDF28E6EFFE003DDFCF /* CreateProjectPopup.xib */,
 			);
 			path = Popup;
@@ -239,9 +239,9 @@
 				935CBC852806A1C300759A24 /* MainTabbarViewController.swift */,
 				9333CC48285C7173005C0262 /* ProjectPopupViewController.swift */,
 				933BAED928E5A49A003DDFCF /* ReallyCheckPopupViewController.swift */,
+				933BAEE728E89659003DDFCF /* ChangeProjectPrograssViewController.swift */,
 				935CBC872806AD7900759A24 /* ProjectCell.swift */,
 				9342D1C228E455CD00FD3EED /* ProjectCollectionReusableView.swift */,
-				9342D1C428E4657D00FD3EED /* ProjectInfoViewController.swift */,
 				933BAEE128E6F025003DDFCF /* CreateProjectPopupViewController.swift */,
 				93F8E4BF282BB8F400F888F0 /* ProjectContent */,
 			);
@@ -442,13 +442,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				9340E47D2852050700338790 /* NanumGothicBold.otf in Resources */,
+				933BAEEA28E896BD003DDFCF /* ChangeProjectPrograssPopup.xib in Resources */,
 				93DA8F83282FB0CD00217360 /* ProjectContentCell.xib in Resources */,
 				93AFDA9C28B4CE1B009E815F /* ProjectIdPopup.xib in Resources */,
 				9340DE7E28D4D8EC00B1CEB2 /* GodoB.otf in Resources */,
 				936F8E992897BB8D00897316 /* ProjectContentSideBar.xib in Resources */,
 				93AFDAA028B4D5FD009E815F /* ProjectIDCell.xib in Resources */,
 				9340E47C2852050700338790 /* NanumGothic.otf in Resources */,
-				9333CC4B285CA310005C0262 /* ProjectInfoView.xib in Resources */,
 				936F8E932897AF0700897316 /* ProjectContentSideMenu.storyboard in Resources */,
 				937CC55928002F1400F18553 /* Main.storyboard in Resources */,
 				932B5EF428D4B255004CD1E8 /* godoRoundedL.ttf in Resources */,
@@ -539,7 +539,6 @@
 				93DA8F86282FB16900217360 /* ProjectContentTableViewCell.swift in Sources */,
 				93722CF028D4551D007E1132 /* CustomButton.swift in Sources */,
 				93AFDAA228B4D69F009E815F /* ProjectIDCollectionViewCell.swift in Sources */,
-				9342D1C528E4657D00FD3EED /* ProjectInfoViewController.swift in Sources */,
 				93DEFA8627FAFF1600827C79 /* AppDelegate.swift in Sources */,
 				933BAEE628E81110003DDFCF /* ExtensionNotification.swift in Sources */,
 				935CBC862806A1C300759A24 /* MainTabbarViewController.swift in Sources */,
@@ -554,6 +553,7 @@
 				936F8E972897B5E800897316 /* ProjectSideBarTableViewCell.swift in Sources */,
 				935CBC882806AD7900759A24 /* ProjectCell.swift in Sources */,
 				93DA8F88282FC1A200217360 /* ProjectContent.swift in Sources */,
+				933BAEE828E8965A003DDFCF /* ChangeProjectPrograssViewController.swift in Sources */,
 				93DEFA8827FAFF1600827C79 /* SceneDelegate.swift in Sources */,
 				935145F328A1222F009B1DEF /* DateCollectionViewCell.swift in Sources */,
 				9380D24C27FF13D9000DC92E /* ThirdTabbarViewController.swift in Sources */,

@@ -18,8 +18,8 @@ class MainTabbarViewController: UIViewController {
     
     var ref: DatabaseReference! = Database.database().reference()
 
-    var deleteCellIndex: Int? // 삭제할 cell의 index
-    var deleteCellSection: Int? // 삭제할 cell의 section
+    var longPressCellIndex: Int? // longpress한 cell의 index
+    var longPressCellSection: Int? // longpress한 cell의 section
     
     var email = " " // 사용자 id
     
@@ -30,6 +30,7 @@ class MainTabbarViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(deleteProjectNotification), name: .deleteProjectNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(changePrograssProjectNotification), name: .changePrograssProjectNotification, object: nil)
         self.email = self.emailToString(Auth.auth().currentUser?.email ?? "고객")
         self.configureView()
     }
@@ -92,10 +93,11 @@ class MainTabbarViewController: UIViewController {
         guard let indexPath = projectCollectionView.indexPathForItem(at: longPressedPoint)?.row else { return }
         guard let section = projectCollectionView.indexPathForItem(at: longPressedPoint)?.section else { return }
         
-        self.deleteCellIndex = indexPath
-        self.deleteCellSection = section
+        self.longPressCellIndex = indexPath
+        self.longPressCellSection = section
         
         let prograss = section == 0 ? projectListPrograssTrue[indexPath].prograss : projectListPrograssFalse[indexPath].prograss
+        let projectTitle = section == 0 ? projectListPrograssTrue[indexPath].projectTitle : projectListPrograssFalse[indexPath].projectTitle
         
         switch sender.state {
         case .began:
@@ -103,7 +105,8 @@ class MainTabbarViewController: UIViewController {
             
             projectPopup.modalPresentationStyle = .overCurrentContext
             projectPopup.modalTransitionStyle = .crossDissolve // 뷰가 투명해지면서 넘어가는 애니메이션
-            
+            projectPopup.projectPrograss = prograss
+            projectPopup.projectTitle = projectTitle
             self.present(projectPopup, animated: false, completion: nil)
             
         case .ended:
@@ -251,9 +254,38 @@ extension MainTabbarViewController {
         } else {
             self.projectListPrograssFalse.remove(at: index)
         }
+        
+        DispatchQueue.main.async {
+            self.projectCollectionView.reloadData()
+        }
     }
     
-
+    private func changePrograssProject(index: Int, id: String, section: Int, prograss: Bool) {
+        
+        print(#fileID, #function, #line, "- 변경하기 클릭")
+        if section == 0 {
+            self.projectListPrograssTrue[index].prograss = prograss
+            self.ref.child("\(email)/\(id)").updateChildValues(["prograss": prograss])
+            
+            self.projectListPrograssFalse.append(self.projectListPrograssTrue[index])
+            self.projectListPrograssTrue.remove(at: index)
+        } else {
+            
+            self.projectListPrograssFalse[index].prograss = prograss
+            self.ref.child("\(email)/\(id)").updateChildValues(["prograss": prograss])
+            
+            self.projectListPrograssTrue.append(self.projectListPrograssFalse[index])
+            self.projectListPrograssFalse.remove(at: index)
+        }
+        
+        self.sortFirstSection()
+        self.sortSecondSection()
+        
+        self.projectCollectionView.performBatchUpdates({
+            self.projectCollectionView.reloadSections(NSIndexSet(index: section) as IndexSet)
+        }, completion: { (finished:Bool) -> Void in })
+    }
+    
     //네비게이션뷰 숨기기, 컬렉션뷰 사이즈 생성해주는 함수
     private func configureView() {
         self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
@@ -310,12 +342,12 @@ extension MainTabbarViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         
+        // 진행중/ 완료 배열이 비워져있으면 header 높이를 0으로 값이 있으면 40
         if section == 0 {
             return self.projectListPrograssTrue.isEmpty ? CGSize(width: self.view.frame.width, height: 0) : CGSize(width: self.view.frame.width, height: 40)
         } else {
             return self.projectListPrograssFalse.isEmpty ? CGSize(width: self.view.frame.width, height: 0) : CGSize(width: self.view.frame.width, height: 40)
         }
-
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -355,10 +387,6 @@ extension MainTabbarViewController: UICollectionViewDataSource {
         
         return cell
     }
-    
-    
-    
-
 }
 
 extension MainTabbarViewController: UICollectionViewDelegateFlowLayout {
@@ -410,8 +438,8 @@ extension MainTabbarViewController {
     @objc func deleteProjectNotification() {
         print(#fileID, #function, #line, "- deleteNotification")
         
-        guard let index  = self.deleteCellIndex else { return }
-        guard let section = self.deleteCellSection else { return }
+        guard let index  = self.longPressCellIndex else { return }
+        guard let section = self.longPressCellSection else { return }
         
         switch section {
         case 0:
@@ -427,6 +455,29 @@ extension MainTabbarViewController {
         DispatchQueue.main.async {
             self.projectCollectionView.reloadData()
         }
+    }
+    
+    @objc func changePrograssProjectNotification(_ notification: Notification) {
+        
+        let getValue = notification.object as! Bool
+        
+        print(#fileID, #function, #line, "- changePrograssNotification")
+        
+        guard let index  = self.longPressCellIndex else { return }
+        guard let section = self.longPressCellSection else { return }
+        
+        switch section {
+        case 0:
+            let id = self.projectListPrograssTrue[index].id
+            self.changePrograssProject(index: index, id: id, section: section, prograss: getValue)
+        case 1:
+            let id = self.projectListPrograssFalse[index].id
+            self.changePrograssProject(index: index, id: id, section: section, prograss: getValue)
+        default:
+            print("?")
+        }
+        
+        
     }
 }
 

@@ -43,10 +43,7 @@ class ThirdTabbarViewController: UIViewController {
         
         do {
             try firebaseAuth.signOut()
-            //로그아웃을 하면 projectList값 초기화
-            
             self.navigationController?.popToRootViewController(animated: true)
-            
             
         } catch let sighOutError as NSError {
             print("Error signout \(sighOutError.localizedDescription)")
