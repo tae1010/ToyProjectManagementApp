@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddCardListPopupViewController" customModule="ToyProjectManagementApp" customModuleProvider="target">
+            <connections>
+                <outlet property="addCardButton" destination="hxJ-Dh-R8j" id="JYe-WO-Oev"/>
+                <outlet property="addListButton" destination="I71-Ug-ZUb" id="qHx-iS-jdP"/>
+                <outlet property="backgroundView" destination="iN0-l3-epB" id="Xqa-WC-ltf"/>
+                <outlet property="popUpView" destination="Uyr-MZ-9e7" id="81h-BP-wme"/>
+                <outlet property="view" destination="iN0-l3-epB" id="hVi-ES-JmZ"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uyr-MZ-9e7">
+                    <rect key="frame" x="95" y="372" width="200" height="100"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="KLU-FM-lcp">
+                            <rect key="frame" x="0.0" y="0.0" width="200" height="100"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hxJ-Dh-R8j">
+                                    <rect key="frame" x="0.0" y="0.0" width="200" height="50"/>
+                                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <state key="normal" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="plain" title="카드 추가하기"/>
+                                    <connections>
+                                        <action selector="tapAddCardButton:" destination="-1" eventType="touchUpInside" id="eAd-lP-ceD"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I71-Ug-ZUb">
+                                    <rect key="frame" x="0.0" y="50" width="200" height="50"/>
+                                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <state key="normal" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="plain" title="리스트 추가하기"/>
+                                    <connections>
+                                        <action selector="tapAddListbutton:" destination="-1" eventType="touchUpInside" id="PO5-2S-Vtx"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="200" id="06A-Uq-TB6"/>
+                        <constraint firstItem="KLU-FM-lcp" firstAttribute="leading" secondItem="Uyr-MZ-9e7" secondAttribute="leading" id="9gb-P3-yp4"/>
+                        <constraint firstAttribute="bottom" secondItem="KLU-FM-lcp" secondAttribute="bottom" id="TW0-Tp-Qoh"/>
+                        <constraint firstAttribute="trailing" secondItem="KLU-FM-lcp" secondAttribute="trailing" id="obn-eZ-b1h"/>
+                        <constraint firstItem="KLU-FM-lcp" firstAttribute="top" secondItem="Uyr-MZ-9e7" secondAttribute="top" id="qxY-T0-MxV"/>
+                        <constraint firstAttribute="height" constant="100" id="uGX-dQ-EyC"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="displayP3"/>
+            <constraints>
+                <constraint firstItem="Uyr-MZ-9e7" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="C6h-I4-GQd"/>
+                <constraint firstItem="Uyr-MZ-9e7" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Q5r-Oy-Mfu"/>
+            </constraints>
+            <point key="canvasLocation" x="-102" y="50"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

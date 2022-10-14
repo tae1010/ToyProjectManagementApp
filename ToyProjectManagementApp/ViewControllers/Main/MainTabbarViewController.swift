@@ -57,42 +57,7 @@ class MainTabbarViewController: UIViewController {
         let bottomSheet: MDCBottomSheetController = MDCBottomSheetController(contentViewController: createProjectPopup)
         bottomSheet.mdc_bottomSheetPresentationController?.preferredSheetHeight = self.view.bounds.size.height * 0.3
         
-        
         self.present(bottomSheet, animated: true)
-
-        
-//        //alert창 생성 textfield, ok/cancel 버튼
-//        let alert = UIAlertController(title: "프로젝트명", message: nil, preferredStyle: UIAlertController.Style.alert)
-//
-//        let okAction = UIAlertAction(title: "만들기", style: .default, handler: { [weak self] _ in
-//            guard let self = self, let title = alert.textFields?[0].text else { return }
-//            let id = UUID().uuidString
-//            let email = self.emailToString(Auth.auth().currentUser?.email ?? "고객")
-//            let project = Project(id: id, projectTitle: title, important: false, currentTime: self.koreanDate(), prograss: false)
-//            self.projectListPrograssTrue.insert(project, at: 0)
-//
-//            //firebase에 데이터 입력
-//            self.ref.child("\(email)/\(id)").updateChildValues(["important": false])
-//            self.ref.child("\(email)/\(id)").updateChildValues(["projectTitle": title])
-//            self.ref.child("\(email)/\(id)").updateChildValues(["currentTime": self.koreanDate()!])
-//            self.ref.child("\(email)/\(id)").updateChildValues(["prograss": true])
-//            self.ref.child("\(email)/\(id)/content/0/리스트 이름을 정해주세요/0").updateChildValues(["cardName": "카드를 추가해주세요", "color": "", "startTime": "", "endTime": ""])
-//
-//            DispatchQueue.main.async {
-//                self.projectCollectionView.reloadData()
-//            }
-//        })
-//
-//        let cancelAction = UIAlertAction(title: "취소하기", style: .default, handler: nil)
-//
-//        alert.addTextField(configurationHandler: { textfield in
-//            textfield.placeholder = "프로젝트명을 입력해주세요."
-//        })
-//
-//        alert.addAction(okAction)
-//        alert.addAction(cancelAction)
-        
-//        self.present(alert, animated: true, completion: nil)
     }
     
     
@@ -311,14 +276,17 @@ extension MainTabbarViewController: UICollectionViewDelegate {
     //셀 클릭시 작용
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let email = self.emailToString(Auth.auth().currentUser?.email ?? "고객")
+        let projectContentStroyboard = UIStoryboard.init(name: "ProjectContent", bundle: nil)
         
-        guard let projectViewController = self.storyboard?.instantiateViewController(withIdentifier: "ProjectViewController") as? ProjectViewController else { return }
-        projectViewController.email = email
-        projectViewController.id = indexPath.section == 0 ? projectListPrograssTrue[indexPath.row].id : projectListPrograssFalse[indexPath.row].id
-        projectViewController.projectTitle = indexPath.section == 0 ? projectListPrograssTrue[indexPath.row].projectTitle : projectListPrograssFalse[indexPath.row].projectTitle
-        projectViewController.modalPresentationStyle = .fullScreen
-        self.present(projectViewController, animated: false, completion: nil)
+        guard let projectContentViewController = projectContentStroyboard.instantiateViewController(withIdentifier: "ProjectContentViewController") as? ProjectContentViewController else { return }
+        
+        projectContentViewController.email = email
+        projectContentViewController.id = indexPath.section == 0 ? projectListPrograssTrue[indexPath.row].id : projectListPrograssFalse[indexPath.row].id
+        projectContentViewController.projectTitle = indexPath.section == 0 ? projectListPrograssTrue[indexPath.row].projectTitle : projectListPrograssFalse[indexPath.row].projectTitle
+        projectContentViewController.modalPresentationStyle = .fullScreen
+        self.present(projectContentViewController, animated: false, completion: nil)
     }
+    
 }
 
 extension MainTabbarViewController: UICollectionViewDataSource {
@@ -512,7 +480,7 @@ extension MainTabbarViewController: CreateProjectDelegate {
         self.ref.child("\(email)/\(id)").updateChildValues(["projectTitle": title ?? ""])
         self.ref.child("\(email)/\(id)").updateChildValues(["currentTime": self.koreanDate()!])
         self.ref.child("\(email)/\(id)").updateChildValues(["prograss": true])
-        self.ref.child("\(email)/\(id)/content/0/리스트 이름을 정해주세요/0").updateChildValues(["cardName": "카드를 추가해주세요", "color": "", "startTime": "", "endTime": ""])
+        self.ref.child("\(email)/\(id)/content/0/리스트 이름을 정해주세요/0").updateChildValues(["cardName": "카드를 추가해주세요", "color": [], "startTime": "", "endTime": ""])
         
         DispatchQueue.main.async {
             self.projectCollectionView.reloadData()

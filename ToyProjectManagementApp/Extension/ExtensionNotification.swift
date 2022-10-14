@@ -14,6 +14,13 @@ extension Notification.Name {
     // project 삭제 notification (reallyCheckPopupViewController에서 post를 하면 MainTabbar에서 deleteProject함수 실행)
     static let deleteProjectNotification = Notification.Name("deleteProjectNotification")
     
-    // project 완료 여부 notofication (reallyCheckPopupViewController에서 post를 하면 MainTabbar에서 changePrograssProject함수 실행)
+    // project 완료 여부 notification (reallyCheckPopupViewController에서 post를 하면 MainTabbar에서 changePrograssProject함수 실행)
     static let changePrograssProjectNotification = Notification.Name("changePrograssProjectNotification")
+    
+    // 리스트 추가 notification
+    static let addListNotificaton = Notification.Name("addListNotificaton")
+    
+    // 카드 추가 notification
+    static let addCardNotificaton = Notification.Name("addCardNotificaton")
+    
 }

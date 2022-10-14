@@ -20,20 +20,6 @@
                ReferencedContainer = "container:ToyProjectManagementApp.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A303CFFC3F889597468BCF70D176BDD2"
-               BuildableName = "FirebaseFacebookAuthUI.framework"
-               BlueprintName = "FirebaseFacebookAuthUI"
-               ReferencedContainer = "container:Pods/Pods.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction

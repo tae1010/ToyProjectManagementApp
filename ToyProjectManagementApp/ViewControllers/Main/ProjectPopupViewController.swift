@@ -25,16 +25,6 @@ class ProjectPopupViewController: UIViewController {
         self.configureButton()
     }
     
-    private func configurePopUpView() {
-        self.popUpView.layer.cornerRadius = 8
-    }
-    
-    private func configureButton() {
-        self.changePrograssButton.titleLabel?.font = UIFont(name: "NanumGothicOTF", size: 14)
-        self.deleteButton.titleLabel?.font = UIFont(name: "NanumGothicOTF", size: 14)
-        self.deleteButton.setTitleColor(.red, for: .normal)
-    }
-    
     // 백 그라운드 클릭
     private func touchBackGround() {
         let tabBackGroundView = UITapGestureRecognizer(target: self, action: #selector(tabBackGroundSelector))
@@ -77,4 +67,18 @@ class ProjectPopupViewController: UIViewController {
         }
     }
 
+}
+
+extension ProjectPopupViewController {
+    
+    private func configurePopUpView() {
+        self.popUpView.layer.cornerRadius = 8
+    }
+    
+    private func configureButton() {
+        self.changePrograssButton.titleLabel?.font = UIFont(name: "NanumGothicOTF", size: 14)
+        self.deleteButton.titleLabel?.font = UIFont(name: "NanumGothicOTF", size: 14)
+        self.deleteButton.setTitleColor(.red, for: .normal)
+    }
+    
 }

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddListPopupViewController" customModule="ToyProjectManagementApp" customModuleProvider="target">
+            <connections>
+                <outlet property="addListButton" destination="een-TC-GeY" id="yEc-5r-rZz"/>
+                <outlet property="addListTextField" destination="HNH-yF-rr4" id="GJY-HZ-rsw"/>
+                <outlet property="cancelButton" destination="aRz-YJ-BFE" id="uB8-Lt-5lu"/>
+                <outlet property="popupTitleLabel" destination="Svy-OA-XPx" id="9ml-hn-r8o"/>
+                <outlet property="view" destination="iN0-l3-epB" id="8l9-m8-tm3"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HNH-yF-rr4" customClass="CustomTextField" customModule="ToyProjectManagementApp" customModuleProvider="target">
+                    <rect key="frame" x="14" y="95.333333333333329" width="362" height="49.999999999999986"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="z3T-2g-Tef"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="XXp-ge-eCn">
+                    <rect key="frame" x="14" y="159.33333333333334" width="362" height="45"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aRz-YJ-BFE">
+                            <rect key="frame" x="0.0" y="0.0" width="176" height="45"/>
+                            <color key="backgroundColor" name="primaryColor"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="45" id="Flp-7c-exr"/>
+                            </constraints>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain" title="취소"/>
+                            <connections>
+                                <action selector="tapCancelButton:" destination="-1" eventType="touchUpInside" id="61a-8T-tbt"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="een-TC-GeY">
+                            <rect key="frame" x="186" y="0.0" width="176" height="45"/>
+                            <color key="backgroundColor" name="primaryColor"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain" title="생성하기"/>
+                            <connections>
+                                <action selector="tapAddListButton:" destination="-1" eventType="touchUpInside" id="U56-dg-zKu"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                </stackView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="리스트 생성" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Svy-OA-XPx">
+                    <rect key="frame" x="14" y="61.000000000000007" width="78" height="20.333333333333336"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="XXp-ge-eCn" firstAttribute="trailing" secondItem="HNH-yF-rr4" secondAttribute="trailing" id="5SS-nv-hpk"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="HNH-yF-rr4" secondAttribute="trailing" constant="14" id="7mL-nh-Kpm"/>
+                <constraint firstItem="XXp-ge-eCn" firstAttribute="top" secondItem="HNH-yF-rr4" secondAttribute="bottom" constant="14" id="Aes-E8-fKr"/>
+                <constraint firstItem="HNH-yF-rr4" firstAttribute="top" secondItem="Svy-OA-XPx" secondAttribute="bottom" constant="14" id="QRE-Ud-To7"/>
+                <constraint firstItem="Svy-OA-XPx" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="14" id="XhA-Rw-TI0"/>
+                <constraint firstItem="HNH-yF-rr4" firstAttribute="leading" secondItem="Svy-OA-XPx" secondAttribute="leading" id="a1o-HM-NaW"/>
+                <constraint firstItem="Svy-OA-XPx" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="14" id="mL8-dE-1tY"/>
+                <constraint firstItem="XXp-ge-eCn" firstAttribute="leading" secondItem="HNH-yF-rr4" secondAttribute="leading" id="tqn-Nl-z11"/>
+            </constraints>
+            <point key="canvasLocation" x="-103.07692307692308" y="49.763033175355446"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="primaryColor">
+            <color red="0.72941176470588232" green="0.59999999999999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
