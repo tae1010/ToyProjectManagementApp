@@ -43,13 +43,17 @@ class ProjectContentViewController: UIViewController {
     
     // MARK: - LifeCycle
     override func viewDidLoad() {
-
-        self.cardTableView.delegate = self
-        self.cardTableView.dataSource = self
-
+        
+        super.viewDidLoad()
         //collectionview cell 등록
         let tableViewNib = UINib(nibName: "ProjectCardCell", bundle: nil)
         self.cardTableView.register(tableViewNib, forCellReuseIdentifier: "ProjectCardCell")
+        
+        self.cardTableView.rowHeight = UITableView.automaticDimension
+        self.cardTableView.estimatedRowHeight = 100
+        
+        self.cardTableView.delegate = self
+        self.cardTableView.dataSource = self
         
         let tabTitleLabel = UITapGestureRecognizer(target: self, action: #selector(tabContentTitleLabel))
         self.contentTitleLabel.isUserInteractionEnabled = true
@@ -58,8 +62,7 @@ class ProjectContentViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(addCardNotification), name: .addCardNotificaton, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(addListNotification), name: .addListNotificaton, object: nil)
         
-        self.cardTableView.rowHeight = UITableView.automaticDimension;
-        self.cardTableView.estimatedRowHeight = 95.0;
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -77,30 +80,6 @@ class ProjectContentViewController: UIViewController {
     /// 뒤로가기 버튼(Maintabbarview로 돌아감)
     @IBAction func backButton(_ sender: UIButton) {
         dismiss(animated: false)
-    }
-    
-    // MARK: - 상단 button 이벤트
-    
-    /// cell 수정모드
-    @IBAction func cardEditButton(_ sender: UIButton) {
-        switch self.mode {
-        case .normal:
-            DispatchQueue.main.async {
-                self.addListButton.isHidden = true
-                self.editButton.setImage(UIImage(systemName: "checkmark"), for: .normal)
-                self.cardTableView.reloadData()
-                self.mode = .edit
-            }
-
-        //편집모드일때
-        default:
-            DispatchQueue.main.async {
-                self.addListButton.isHidden = false
-                self.editButton.setImage(UIImage(systemName: "pencil"), for: .normal)
-                self.cardTableView.reloadData()
-                self.mode = .normal
-            }
-        }
     }
     
     /// list 추가
@@ -206,6 +185,7 @@ class ProjectContentViewController: UIViewController {
         switch sender.state {
         case .began:
             BeforeIndexPath.value = indexPath
+            print("눌림?")
         case .changed:
             if let beforeIndexPath = BeforeIndexPath.value, beforeIndexPath != indexPath {
 
@@ -327,22 +307,13 @@ extension ProjectContentViewController {
 
 // MARK: - tableview
 extension ProjectContentViewController: UITableViewDelegate {
-
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        print("1")
-        
-        return 95
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = UIView.init(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 10))
-        view.backgroundColor = .clear
-        
-        return view
-    }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 10.0
+        return 5.0
+    }
+
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 5.0
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -353,20 +324,27 @@ extension ProjectContentViewController: UITableViewDelegate {
 
 extension ProjectContentViewController: UITableViewDataSource {
     
-    
     // row는 section마다 1개씩
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
     
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
+        headerView.backgroundColor = UIColor.clear
+        return headerView
+    }
+
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let footerView = UIView()
+        footerView.backgroundColor = UIColor.clear
+        return footerView
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = cardTableView.dequeueReusableCell(withIdentifier: "ProjectCardCell", for: indexPath) as? ProjectContentTableViewCell else { return UITableViewCell() }
+        let cell = cardTableView.dequeueReusableCell(withIdentifier: "ProjectCardCell", for: indexPath) as! ProjectContentTableViewCell
         
         cell.moveContentDelegate = self
-        
-        cell.backgroundColor = UIColor.white
-        cell.layer.cornerRadius = 8
-        cell.clipsToBounds = true
         
         let cardColor: UIColor = {
             switch projectContent[self.currentPage].detailContent[indexPath.section].color {
@@ -385,9 +363,9 @@ extension ProjectContentViewController: UITableViewDataSource {
 
             DispatchQueue.main.async {
                 cell.contentLabel.isHidden = false
-                cell.cardColor.isHidden = cardColor == UIColor.lightGray ? true : false
+                cell.cardColor.layer.borderWidth = cardColor == UIColor.lightGray ? 1 : 0
                 cell.contentLabel.text = self.projectContent[self.currentPage].detailContent[indexPath.section].cardName
-                cell.cardColor.backgroundColor = cardColor
+                cell.cardColor.backgroundColor = cardColor == UIColor.lightGray ? .white : cardColor
             }
             
         // 편집모드 일때
