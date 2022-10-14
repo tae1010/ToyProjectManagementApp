@@ -360,13 +360,12 @@ extension ProjectContentViewController: UITableViewDataSource {
         switch self.mode {
         // 편집모드가 아닐때
         case .normal:
-
-            DispatchQueue.main.async {
-                cell.contentLabel.isHidden = false
-                cell.cardColor.layer.borderWidth = cardColor == UIColor.lightGray ? 1 : 0
-                cell.contentLabel.text = self.projectContent[self.currentPage].detailContent[indexPath.section].cardName
-                cell.cardColor.backgroundColor = cardColor == UIColor.lightGray ? .white : cardColor
-            }
+            
+            cell.contentLabel.isHidden = false
+            cell.cardColor.layer.borderColor = cardColor == UIColor.lightGray ? UIColor.lightGray.cgColor : UIColor.clear.cgColor
+            cell.cardColor.layer.borderWidth = cardColor == UIColor.lightGray ? 2 : 0
+            cell.contentLabel.text = self.projectContent[self.currentPage].detailContent[indexPath.section].cardName
+            cell.cardColor.backgroundColor = cardColor == UIColor.lightGray ? .white : cardColor
             
         // 편집모드 일때
         default:
