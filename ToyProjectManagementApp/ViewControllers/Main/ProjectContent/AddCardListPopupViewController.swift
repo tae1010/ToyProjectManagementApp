@@ -22,6 +22,7 @@ class AddCardListPopupViewController: UIViewController {
         self.touchBackGround()
         self.configureAddCardButton()
         self.configureAddListButton()
+        self.configurePopupView()
     }
     
     @IBAction func tapAddCardButton(_ sender: UIButton) {
@@ -64,6 +65,10 @@ class AddCardListPopupViewController: UIViewController {
 
 
 extension AddCardListPopupViewController {
+    
+    private func configurePopupView() {
+        self.popUpView.layer.cornerRadius = 8
+    }
     
     private func configureAddCardButton() {
         self.addCardButton.titleLabel?.font = UIFont(name: "NanumGothicOTF", size: 14)

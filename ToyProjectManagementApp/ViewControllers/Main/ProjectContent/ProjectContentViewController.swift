@@ -33,18 +33,29 @@ class ProjectContentViewController: UIViewController {
     var currentTitle: String = "이름없음" // 현제 페이지의 title
     var projectTitle: String = ""
     
-    @IBOutlet weak var editButton: UIButton!
+    @IBOutlet weak var headerView: ProjectHeaderView!
+    @IBOutlet weak var stickyHeaderview: ProjectStickyHeaderView!
+    
     @IBOutlet weak var addListButton: UIButton!
     @IBOutlet weak var contentTitleLabel: UILabel!
+    @IBOutlet weak var listTitleLabel: UILabel!
     @IBOutlet weak var cardTableView: UITableView!
-
+    @IBOutlet weak var projectTitleLabel: UILabel!
+    
     @IBOutlet weak var moveLeftButton: UIButton!
     @IBOutlet weak var moveRightButton: UIButton!
+    
+    @IBOutlet weak var headerViewHeightAnchor: NSLayoutConstraint!
+    @IBOutlet weak var stickyHeaderViewHeightAnchor: NSLayoutConstraint!
+    @IBOutlet weak var stickyHeaderViewTopAnchor: NSLayoutConstraint!
+    @IBOutlet weak var headerViewTopAnchor: NSLayoutConstraint!
     
     // MARK: - LifeCycle
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        self.configureLabel()
         //collectionview cell 등록
         let tableViewNib = UINib(nibName: "ProjectCardCell", bundle: nil)
         self.cardTableView.register(tableViewNib, forCellReuseIdentifier: "ProjectCardCell")
@@ -61,8 +72,6 @@ class ProjectContentViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(addCardNotification), name: .addCardNotificaton, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(addListNotification), name: .addListNotificaton, object: nil)
-        
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -288,6 +297,7 @@ extension ProjectContentViewController {
     private func changeListName() {
         self.currentTitle = self.projectContent[currentPage].listTitle
         self.contentTitleLabel.text = currentTitle
+        self.listTitleLabel.text = currentTitle
     }
     
     private func koreanDate() -> Int!{
@@ -356,29 +366,13 @@ extension ProjectContentViewController: UITableViewDataSource {
             default: return UIColor.lightGray
             }
         }()
-
-        switch self.mode {
-        // 편집모드가 아닐때
-        case .normal:
-            
-            cell.contentLabel.isHidden = false
-            cell.cardColor.layer.borderColor = cardColor == UIColor.lightGray ? UIColor.lightGray.cgColor : UIColor.clear.cgColor
-            cell.cardColor.layer.borderWidth = cardColor == UIColor.lightGray ? 2 : 0
-            cell.contentLabel.text = self.projectContent[self.currentPage].detailContent[indexPath.section].cardName
-            cell.cardColor.backgroundColor = cardColor == UIColor.lightGray ? .white : cardColor
-            
-        // 편집모드 일때
-        default:
-            DispatchQueue.main.async {
-                cell.contentLabel.isHidden = true
-
-                cell.cardColor.isHidden = true
-
-                cell.cardColor.backgroundColor = cardColor
-            }
-            
-        }
-        print("cell이 리턴됨")
+        
+        cell.contentLabel.isHidden = false
+        cell.cardColor.layer.borderColor = cardColor == UIColor.lightGray ? UIColor.lightGray.cgColor : UIColor.clear.cgColor
+        cell.cardColor.layer.borderWidth = cardColor == UIColor.lightGray ? 2 : 0
+        cell.contentLabel.text = self.projectContent[self.currentPage].detailContent[indexPath.section].cardName
+        cell.cardColor.backgroundColor = cardColor == UIColor.lightGray ? .white : cardColor
+        
         return cell
     }
     
@@ -447,7 +441,7 @@ extension ProjectContentViewController: MoveContentDelegate {
             
             self.projectContent[self.currentPage].detailContent.remove(at: indexPath.section)
             self.ref.child("\(email)/\(id)/content/\(currentPage)/\(self.currentTitle)").removeValue()
-            print(count,"@@111111111111")
+            
             for i in self.projectContent[self.currentPage].detailContent {
 
                 let cardName = i.cardName ?? ""

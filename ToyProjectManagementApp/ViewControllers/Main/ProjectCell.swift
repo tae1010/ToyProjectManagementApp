@@ -25,8 +25,7 @@ class ProjectCell: UICollectionViewCell {
         // initialize what is needed
         
     }
-    
-    //cell 모양 설정(랜덤으로 샐의 색을 바뀌게 함)
+
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         self.configureImageView()

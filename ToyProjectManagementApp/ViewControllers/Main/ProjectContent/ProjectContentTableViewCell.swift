@@ -12,6 +12,8 @@ protocol MoveContentDelegate: AnyObject {
 }
 
 class ProjectContentTableViewCell: UITableViewCell {
+    
+    
 
     @IBOutlet weak var cardColor: UIButton!
     @IBOutlet weak var contentLabel: UILabel!
@@ -31,18 +33,22 @@ class ProjectContentTableViewCell: UITableViewCell {
         print("2")
     }
     
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+    
 //    @IBAction func moveContentLeftButton(_ sender: UIButton) {
 //        self.moveContentDelegate?.moveContentTapButton(cell: self, tag: sender.tag)
 //    }
 }
 
+// MARK: - configuration
 extension ProjectContentTableViewCell {
     
     private func configureContentView() {
-        self.layer.shadowOffset = CGSizeMake(0, 0)
-        self.layer.shadowColor = UIColor.black.cgColor
-        self.layer.shadowOpacity = 0.23
-        self.layer.shadowRadius = 4
+        self.layer.masksToBounds = true
+        self.layer.borderWidth = 0.2
+        self.layer.borderColor = UIColor.lightGray.cgColor
     }
     
     private func configureCardColor() {
@@ -51,7 +57,7 @@ extension ProjectContentTableViewCell {
     }
     
     private func configureContentLabel() {
-        self.contentLabel.font = UIFont(name: "NanumGothicOTFBold", size: 16)
+        self.contentLabel.font = UIFont(name: "NanumGothicOTFExtraBold", size: 16)
     }
     
     private func configureTimeLabel() {
