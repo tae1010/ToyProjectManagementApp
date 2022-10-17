@@ -11,6 +11,7 @@ target 'ToyProjectManagementApp' do
   pod 'SideMenu'
   pod 'Toast-Swift', '~> 5.0.1'
   pod 'MaterialComponents/BottomSheet'
+  pod 'DropDown'
 
   # Pods for ToyProjectManagementApp
 

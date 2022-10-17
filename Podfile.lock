@@ -5,6 +5,7 @@ PODS:
   - AppAuth/Core (1.5.0)
   - AppAuth/ExternalUserAgent (1.5.0):
     - AppAuth/Core
+  - DropDown (2.3.13)
   - Firebase/Auth (8.0.0):
     - Firebase/CoreOnly
     - FirebaseAuth (~> 8.0.0)
@@ -97,6 +98,7 @@ PODS:
   - Toast-Swift (5.0.1)
 
 DEPENDENCIES:
+  - DropDown
   - Firebase/Auth
   - Firebase/Database (~> 8.0.0)
   - GoogleSignIn (~> 5.0.2)
@@ -107,6 +109,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - AppAuth
+    - DropDown
     - Firebase
     - FirebaseAuth
     - FirebaseCore
@@ -126,6 +129,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   AppAuth: 80317d99ac7ff2801a2f18ff86b48cd315ed465d
+  DropDown: 8a2116376c1981888557f72ec2ffc9a5e0e456ec
   Firebase: 73c3e3b216ec1ecbc54d2ffdd4670c65c749edb1
   FirebaseAuth: b8cd992fca5b53dc6eec09e873a3f375f000c5a1
   FirebaseCore: 3f09591d51292843e2a46f18358d60bf4e996255
@@ -143,6 +147,6 @@ SPEC CHECKSUMS:
   SideMenu: f583187d21c5b1dd04c72002be544b555a2627a2
   Toast-Swift: 9b6a70f28b3bf0b96c40d46c0c4b9d6639846711
 
-PODFILE CHECKSUM: 2d3454533d2c597c9a5e2dff160cc530b6af7b13
+PODFILE CHECKSUM: 4b2c66987deec3f8bbb6ee6e59a37916d61dfb47
 
 COCOAPODS: 1.11.3
