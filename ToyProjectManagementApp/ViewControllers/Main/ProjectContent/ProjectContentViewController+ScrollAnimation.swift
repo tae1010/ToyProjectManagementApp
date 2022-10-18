@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 let stretchedHeight: CGFloat = 230.0
-let huggedHeight: CGFloat = 110.0
+let huggedHeight: CGFloat = 120.0
 let bgHeight: CGFloat = 350.0
 
 extension ProjectContentViewController: UIScrollViewDelegate {
@@ -59,14 +59,13 @@ extension ProjectContentViewController: UIScrollViewDelegate {
             self.contentTitleLabel.alpha = offsetProgress
             self.listTitleLabel.alpha = 1.0 - offsetProgress
         }
-        
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         let offsetY = scrollView.contentOffset.y
         scrollDidEnd(offsetY: offsetY)
     }
-    
+
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
         scrollDidEnd(offsetY: offsetY)
@@ -101,9 +100,7 @@ extension ProjectContentViewController: UIScrollViewDelegate {
             })
         }
     }
-    
-    
-    
+
 }
 
 
@@ -112,14 +109,14 @@ extension ProjectContentViewController {
     
     func configureLabel() {
         
-        self.contentTitleLabel.font = UIFont(name: "NanumGothicOTFBold", size: 16)
+        self.contentTitleLabel.font = UIFont(name: "NanumGothicOTFBold", size: 18)
         self.contentTitleLabel.textColor = .white
         
         self.projectTitleLabel.font = UIFont(name: "NanumGothicOTFBold", size: 28)
         self.projectTitleLabel.textColor = .white
         self.projectTitleLabel.text = projectTitle
         
-        self.listTitleLabel.font = UIFont(name: "NanumGothicOTFBold", size: 16)
+        self.listTitleLabel.font = UIFont(name: "NanumGothicOTFBold", size: 18)
         self.listTitleLabel.textColor = .white
     }
     
@@ -128,6 +125,7 @@ extension ProjectContentViewController {
         self.listTitleLabel.alpha = 0
         self.projectTitleLabel.alpha = 1
         self.contentTitleLabel.alpha = 1
+        self.titleStackView.isHidden = false
     }
     
     // 스크롤뷰가 내려가면 보이는 뷰
@@ -135,6 +133,13 @@ extension ProjectContentViewController {
         self.listTitleLabel.alpha = 1
         self.projectTitleLabel.alpha = 0
         self.contentTitleLabel.alpha = 0
+        self.titleStackView.isHidden = true
+    }
+    
+    func hiddenStatus() {
+        self.listTitleLabel.isHidden = listTitleLabel.alpha == 0 ? true : false
+        self.projectTitleLabel.isHidden = projectTitleLabel.alpha == 0 ? true: false
+        self.contentTitleLabel.isHidden = contentTitleLabel.alpha == 0 ? true: false
     }
 
 }

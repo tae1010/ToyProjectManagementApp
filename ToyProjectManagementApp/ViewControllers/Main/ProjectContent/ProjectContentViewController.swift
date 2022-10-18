@@ -11,6 +11,7 @@ import FirebaseAuth
 import FirebaseDatabase
 import SideMenu
 import MaterialComponents.MaterialBottomSheet
+import Toast_Swift
 
 // cell편집모드(cell 내용 수정, cell 양옆(다른 currentPage로 이동))
 enum Mode {
@@ -45,6 +46,7 @@ class ProjectContentViewController: UIViewController {
     @IBOutlet weak var moveLeftButton: UIButton!
     @IBOutlet weak var moveRightButton: UIButton!
     
+    @IBOutlet weak var titleStackView: UIStackView! // projectTitle, listTitle
     @IBOutlet weak var headerViewHeightAnchor: NSLayoutConstraint!
     @IBOutlet weak var stickyHeaderViewHeightAnchor: NSLayoutConstraint!
     @IBOutlet weak var stickyHeaderViewTopAnchor: NSLayoutConstraint!
@@ -65,6 +67,11 @@ class ProjectContentViewController: UIViewController {
         
         self.cardTableView.delegate = self
         self.cardTableView.dataSource = self
+        
+        self.cardTableView.layer.shadowColor = UIColor.black.cgColor // any value you want
+        self.cardTableView.layer.shadowOpacity = 0.1 // any value you want
+        self.cardTableView.layer.shadowRadius = 5.0 // any value you want
+        self.cardTableView.layer.shadowOffset = .init(width: 1, height: 1)
         
         let tabTitleLabel = UITapGestureRecognizer(target: self, action: #selector(tabContentTitleLabel))
         self.contentTitleLabel.isUserInteractionEnabled = true
@@ -105,12 +112,7 @@ class ProjectContentViewController: UIViewController {
     
     /// contentTitltLabel 클릭시 일어날 이벤트 작성
     @objc func tabContentTitleLabel(sender: UITapGestureRecognizer) {
-        DispatchQueue.main.async {
-            let title = self.contentTitleLabel.text
-            self.contentTitleLabel.isHidden = true
-            self.moveLeftButton.isEnabled = false
-            self.moveRightButton.isEnabled = false
-        }
+        
     }
     
     /// contentTitle 변경버튼 클릭
@@ -183,9 +185,6 @@ class ProjectContentViewController: UIViewController {
     @IBAction func didLongPressCell(_ sender: UILongPressGestureRecognizer) {
         let longPressedPoint = sender.location(in: cardTableView)
         guard let indexPath = cardTableView.indexPathForRow(at: longPressedPoint) else { return }
-        print(indexPath,"인덱스")
-//        guard let indexSectionPath = cardTableView.indexSection
-//        cardTableView.sectionIndex
 
         struct BeforeIndexPath {
             static var value: IndexPath?
@@ -194,7 +193,7 @@ class ProjectContentViewController: UIViewController {
         switch sender.state {
         case .began:
             BeforeIndexPath.value = indexPath
-            print("눌림?")
+
         case .changed:
             if let beforeIndexPath = BeforeIndexPath.value, beforeIndexPath != indexPath {
 
@@ -205,9 +204,6 @@ class ProjectContentViewController: UIViewController {
 
                 self.projectContent[currentPage].detailContent[beforeIndexPath.section] = afterDetailContent
                 self.projectContent[currentPage].detailContent[indexPath.section] = beforeDetailContent
-                
-                //projectDetailContent[beforeIndexPath.row]
-//                cardTableView.moveRow(at: beforeIndexPath, to: indexPath)
 
                 cardTableView.moveSection(beforeIndexPath.section, toSection: indexPath.section)
 
@@ -233,21 +229,21 @@ class ProjectContentViewController: UIViewController {
     @IBAction func showSideBar(_ sender: UIButton) {
 
         let listTitle = self.projectContent.map({ $0.listTitle })
-        
+
         // sideMenu storyboard
         let projectContentSideMenu = UIStoryboard(name: "ProjectContentSideMenu", bundle: nil)
-        
+
         // sideMenu viewController
         let projectSideBarViewController = projectContentSideMenu.instantiateViewController(withIdentifier: "ProjectSideBarViewController") as! ProjectSideBarViewController
-        
+
         // sideMenu navigationController
         let menu = CustomSideMenuNavigation(rootViewController: projectSideBarViewController)
         projectSideBarViewController.sendPageDelegate = self
-        
+
         projectSideBarViewController.listName = listTitle
         projectSideBarViewController.projectTitle = self.projectTitle
         present(menu, animated: true, completion: nil)
-        
+
     }
 }
 
@@ -265,7 +261,6 @@ extension ProjectContentViewController {
         print("readDB접속")
         self.ref.child("\(email)/\(id)/content").observeSingleEvent(of: .value, with: { snapshot in
             guard let value = snapshot.value as? [[String: Any]] else { return }
-            print(value,"흠")
             
             for list in value {
                 var count = 0
@@ -292,7 +287,6 @@ extension ProjectContentViewController {
         }
     }
 
-    
     /// listTitle 변경
     private func changeListName() {
         self.currentTitle = self.projectContent[currentPage].listTitle
@@ -319,10 +313,12 @@ extension ProjectContentViewController {
 extension ProjectContentViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        
         return 5.0
     }
 
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        
         return 5.0
     }
     
@@ -355,6 +351,7 @@ extension ProjectContentViewController: UITableViewDataSource {
         let cell = cardTableView.dequeueReusableCell(withIdentifier: "ProjectCardCell", for: indexPath) as! ProjectContentTableViewCell
         
         cell.moveContentDelegate = self
+        cell.makeToastMessage = self
         
         let cardColor: UIColor = {
             switch projectContent[self.currentPage].detailContent[indexPath.section].color {
@@ -366,6 +363,8 @@ extension ProjectContentViewController: UITableViewDataSource {
             default: return UIColor.lightGray
             }
         }()
+        
+        cell.projectListArray = projectContent
         
         cell.contentLabel.isHidden = false
         cell.cardColor.layer.borderColor = cardColor == UIColor.lightGray ? UIColor.lightGray.cgColor : UIColor.clear.cgColor
@@ -429,89 +428,56 @@ extension ProjectContentViewController: UITableViewDataSource {
 
 // MARK: - currentPage이동
 extension ProjectContentViewController: MoveContentDelegate {
-    func moveContentTapButton(cell: UITableViewCell, tag: Int) {
-        guard let indexPath = self.cardTableView.indexPath(for: cell) else {return}
-        var count = 0
-        //tag가 1이면 left버튼, 현재 페이지가 0이상일때만, detailContent의 내용이 2개 이상일때만(내용이 1개만 있으면 cell을 삭제할경우 빈배열이 되어 db에 저장이 되지않는다.),(오른쪽 버튼 누를때도 같음)
+    
+    // cell : cell more button / listIndex: 선택된 dropdown
+    func moveContentTapButton(cell: UITableViewCell, listIndex: Int) {
         
-        if tag == 1, currentPage > 0, self.projectContent[self.currentPage].detailContent.count > 1 {
-            //현재 페이지의 content배열에서 삭제 -> projectcontent 배열에 저장 -> 바뀐 projectContent를 db에 저장
-            
-            let moveDetailContent: ProjectDetailContent = self.projectContent[self.currentPage].detailContent[indexPath.section] // 이동시킬 셀 내용
-            
-            self.projectContent[self.currentPage].detailContent.remove(at: indexPath.section)
-            self.ref.child("\(email)/\(id)/content/\(currentPage)/\(self.currentTitle)").removeValue()
-            
-            for i in self.projectContent[self.currentPage].detailContent {
-
-                let cardName = i.cardName ?? ""
-                let color = i.color ?? ""
-                let startTime = i.startTime ?? ""
-                let endTime = i.endTime ?? ""
-
-                self.ref.child("\(email)/\(id)/content/\(currentPage)/\(currentTitle)/\(count)").setValue(["cardName": cardName, "color": color, "startTime": startTime, "endTime": endTime])
-                count += 1
-            }
-            
-            // 현재 페이지를 왼쪽으로 옮김 -> 옮긴 페이지의 listName값을 불러오고 그 detailContent에 위에 삭제시킨 cell을 추가 -> 바뀐 detailContent값을 projectContent에 저장 -> 테이블뷰 새로고침 -> 바뀐 페이지의 내용을 db에 저장
-            self.currentPage -= 1
-            self.changeListName()
-            self.projectContent[self.currentPage].detailContent.insert(moveDetailContent, at: 0)
-            self.cardTableView.reloadData()
-            count = 0
-            
-            self.ref.child("\(email)/\(id)/content/\(currentPage)/\(self.currentTitle)").removeValue()
-            print(count,"@@2222222222")
-            for i in self.projectContent[self.currentPage].detailContent {
-                
-                let cardName = i.cardName ?? ""
-                let color = i.color ?? ""
-                let startTime = i.startTime ?? ""
-                let endTime = i.endTime ?? ""
-                
-                self.ref.child("\(email)/\(id)/content/\(currentPage)/\(currentTitle)/\(count)").setValue(["cardName": cardName, "color": color, "startTime": startTime, "endTime": endTime])
-                count += 1
-            }
-            
+        
+        if currentPage == listIndex {
+            self.view.makeToast("카드는 이미 리스트안에 있습니다")
+            return
         }
         
-        //tag가 2이면 right버튼, 현재 페이지가 projectContent배열 갯수보다 작아야함, 페이지 갯수가 리스트 갯수를 넘으면 안됨
-        if tag == 2, self.projectContent[self.currentPage].detailContent.count > 1, self.projectContent.count - 1 > currentPage {
+        var count = 0
+        
+        // 선택된 section
+        guard let cellIndexPath = self.cardTableView.indexPath(for: cell)?.section else { return }
+        
+        // 선택된 section card
+        let selectCell = self.projectContent[self.currentPage].detailContent[cellIndexPath]
+        
+        // card 삭제
+        self.projectContent[self.currentPage].detailContent.remove(at: cellIndexPath)
+        
+        // 배열 순서를 위해 db에 detailContent 다시저장
+        self.ref.child("\(email)/\(id)/content/\(currentPage)/\(self.currentTitle)").removeValue()
+        for i in self.projectContent[self.currentPage].detailContent {
+            let cardName = i.cardName ?? ""
+            let color = i.color ?? ""
+            let startTime = i.startTime ?? ""
+            let endTime = i.endTime ?? ""
             
-            //현재 페이지의 content배열, projectDetailContent배열에서 삭제 -> projectcontent 배열에 저장 -> 바뀐 내용을 db에 저장
-            let moveDetailContent = self.projectContent[self.currentPage].detailContent[indexPath.section]
-            var count = 0
-            self.projectContent[self.currentPage].detailContent.remove(at: indexPath.section)
+            self.ref.child("\(email)/\(id)/content/\(currentPage)/\(currentTitle)/\(count)").setValue(["cardName": cardName, "color": color, "startTime": startTime, "endTime": endTime])
+            count += 1
+        }
+        
+        self.currentPage = listIndex
+        self.changeListName()
+        self.projectContent[self.currentPage].detailContent.insert(selectCell, at: 0)
+        self.cardTableView.reloadData()
+        self.view.makeToast("card가 이동되었습니다.")
+        
+        count = 0
+        self.ref.child("\(email)/\(id)/content/\(currentPage)/\(self.currentTitle)").removeValue()
+        for i in self.projectContent[self.currentPage].detailContent {
             
-            self.ref.child("\(email)/\(id)/content/\(currentPage)/\(self.currentTitle)").removeValue()
-            for i in self.projectContent[self.currentPage].detailContent {
-                
-                let cardName = i.cardName ?? ""
-                let color = i.color ?? ""
-                let startTime = i.startTime ?? ""
-                let endTime = i.endTime ?? ""
-                
-                self.ref.child("\(email)/\(id)/content/\(currentPage)/\(currentTitle)/\(count)").setValue(["cardName": cardName, "color": color, "startTime": startTime, "endTime": endTime])
-                count += 1
-            }
+            let cardName = i.cardName ?? ""
+            let color = i.color ?? ""
+            let startTime = i.startTime ?? ""
+            let endTime = i.endTime ?? ""
             
-            self.currentPage += 1
-            self.changeListName()
-            self.projectContent[self.currentPage].detailContent.insert(moveDetailContent, at: 0)
-            self.cardTableView.reloadData()
-            
-            self.ref.child("\(email)/\(id)/content/\(currentPage)/\(self.currentTitle)").removeValue()
-            count = 0
-            for i in self.projectContent[self.currentPage].detailContent {
-                
-                let cardName = i.cardName ?? ""
-                let color = i.color ?? ""
-                let startTime = i.startTime ?? ""
-                let endTime = i.endTime ?? ""
-                
-                self.ref.child("\(email)/\(id)/content/\(currentPage)/\(currentTitle)/\(count)").setValue(["cardName": cardName, "color": color, "startTime": startTime, "endTime": endTime])
-                count += 1
-            }
+            self.ref.child("\(email)/\(id)/content/\(currentPage)/\(currentTitle)/\(count)").setValue(["cardName": cardName, "color": color, "startTime": startTime, "endTime": endTime])
+            count += 1
         }
     }
 }
@@ -554,6 +520,13 @@ extension ProjectContentViewController: SendPageDelegate {
             self.changeListName()
             self.cardTableView.reloadData()
         }
+    }
+}
+
+extension ProjectContentViewController: MakeToastMessage {
+    
+    func makeToastMessage() {
+        self.view.makeToast("이동하고 싶은 리스트를 선택하세요")
     }
 }
 

@@ -27,12 +27,6 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mZa-L5-meA" userLabel="headerView" customClass="ProjectHeaderView" customModule="ToyProjectManagementApp" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="390" height="230"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="데이터를 불러오는중...." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gTg-er-ebw">
-                                        <rect key="frame" x="14" y="192" width="362" height="24"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="2EP-nu-2wm">
                                         <rect key="frame" x="14" y="55" width="362" height="30"/>
                                         <subviews>
@@ -49,7 +43,7 @@
                                                     <action selector="backButton:" destination="gsB-19-J9G" eventType="touchUpInside" id="TGC-O0-2zU"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" text="list label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zLu-wq-uwH" userLabel="listTitle Label">
+                                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" verticalHuggingPriority="251" text="list label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zLu-wq-uwH" userLabel="listTitle Label">
                                                 <rect key="frame" x="35" y="0.0" width="287" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
@@ -70,24 +64,32 @@
                                             </button>
                                         </subviews>
                                     </stackView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="lab" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Phz-K8-DhW">
-                                        <rect key="frame" x="14" y="103" width="362" height="31.333333333333343"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="26"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="HwP-l2-alD">
+                                        <rect key="frame" x="14" y="99" width="362" height="117"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="TitleLabel" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Phz-K8-DhW">
+                                                <rect key="frame" x="0.0" y="0.0" width="362" height="73"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="데이터를 불러오는중...." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gTg-er-ebw">
+                                                <rect key="frame" x="0.0" y="93" width="362" height="24"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                                 <color key="backgroundColor" name="primaryColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="gTg-er-ebw" secondAttribute="trailing" constant="14" id="5tN-v9-yrY"/>
-                                    <constraint firstAttribute="bottom" secondItem="gTg-er-ebw" secondAttribute="bottom" constant="14" id="5ti-ps-ONP"/>
-                                    <constraint firstItem="gTg-er-ebw" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Phz-K8-DhW" secondAttribute="bottom" constant="20" id="A9n-Rf-RY9"/>
-                                    <constraint firstItem="Phz-K8-DhW" firstAttribute="top" secondItem="2EP-nu-2wm" secondAttribute="bottom" constant="18" id="F67-cp-xDN"/>
                                     <constraint firstAttribute="height" constant="230" id="HAl-I9-Dys"/>
-                                    <constraint firstAttribute="trailing" secondItem="Phz-K8-DhW" secondAttribute="trailing" constant="14" id="WNo-6p-1Qj"/>
+                                    <constraint firstItem="HwP-l2-alD" firstAttribute="top" relation="lessThanOrEqual" secondItem="2EP-nu-2wm" secondAttribute="bottom" constant="14" id="Paq-8L-5Py"/>
+                                    <constraint firstAttribute="bottom" secondItem="HwP-l2-alD" secondAttribute="bottom" constant="14" id="V9X-Gf-fOg"/>
                                     <constraint firstAttribute="trailing" secondItem="2EP-nu-2wm" secondAttribute="trailing" constant="14" id="amO-nq-Vuz"/>
-                                    <constraint firstItem="gTg-er-ebw" firstAttribute="leading" secondItem="Phz-K8-DhW" secondAttribute="leading" id="hLE-PW-5RC"/>
-                                    <constraint firstItem="Phz-K8-DhW" firstAttribute="leading" secondItem="2EP-nu-2wm" secondAttribute="leading" id="lLM-GE-9jw"/>
+                                    <constraint firstItem="HwP-l2-alD" firstAttribute="trailing" secondItem="2EP-nu-2wm" secondAttribute="trailing" id="eVy-6k-fhE"/>
+                                    <constraint firstItem="HwP-l2-alD" firstAttribute="leading" secondItem="2EP-nu-2wm" secondAttribute="leading" id="stK-Ky-KYn"/>
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="8cM-Lj-T8c">
@@ -136,7 +138,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="JE4-Nm-gh3" firstAttribute="trailing" secondItem="UlV-Wq-1Ov" secondAttribute="trailing" id="1nG-mH-Q9P"/>
+                            <constraint firstItem="mZa-L5-meA" firstAttribute="trailing" secondItem="UlV-Wq-1Ov" secondAttribute="trailing" id="1nG-mH-Q9P"/>
                             <constraint firstItem="mZa-L5-meA" firstAttribute="leading" secondItem="JE4-Nm-gh3" secondAttribute="leading" id="3fT-lK-PNc"/>
                             <constraint firstItem="2EP-nu-2wm" firstAttribute="leading" secondItem="JE4-Nm-gh3" secondAttribute="leading" constant="14" id="A1n-lh-GCz"/>
                             <constraint firstItem="0Rb-YF-Pf6" firstAttribute="leading" secondItem="JE4-Nm-gh3" secondAttribute="leading" id="COY-y4-JLK"/>
@@ -167,6 +169,7 @@
                         <outlet property="stickyHeaderViewHeightAnchor" destination="tlF-zt-VZq" id="hbu-Zf-Vq2"/>
                         <outlet property="stickyHeaderViewTopAnchor" destination="PWj-Ds-p6Q" id="SrL-40-a3h"/>
                         <outlet property="stickyHeaderview" destination="UlV-Wq-1Ov" id="ID2-Wz-a7w"/>
+                        <outlet property="titleStackView" destination="HwP-l2-alD" id="LKn-gr-hgY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MY5-TV-kUu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -176,7 +179,7 @@
                     </connections>
                 </pongPressGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-106" y="599"/>
+            <point key="canvasLocation" x="-106.15384615384615" y="598.57819905213262"/>
         </scene>
     </scenes>
     <resources>

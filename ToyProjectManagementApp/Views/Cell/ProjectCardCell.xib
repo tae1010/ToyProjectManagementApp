@@ -48,9 +48,12 @@
                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <state key="normal" title="Button"/>
                         <buttonConfiguration key="configuration" style="plain" image="ellipsis" catalog="system"/>
+                        <connections>
+                            <action selector="tapMoveCardButton:" destination="HTn-zG-OtX" eventType="touchUpInside" id="Sru-pc-pLm"/>
+                        </connections>
                     </button>
                 </subviews>
-                <color key="backgroundColor" red="0.99481139520202022" green="0.99481139520202022" blue="0.99481139520202022" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="dm6-lY-CN5" firstAttribute="leading" secondItem="sOh-W6-ug4" secondAttribute="leading" id="2H7-2w-D53"/>
                     <constraint firstItem="F5M-O0-onQ" firstAttribute="top" secondItem="XJA-nV-Oq5" secondAttribute="top" constant="14" id="3Qx-0o-m4n"/>
@@ -67,6 +70,7 @@
             <connections>
                 <outlet property="cardColor" destination="F5M-O0-onQ" id="OJr-1C-Zr5"/>
                 <outlet property="contentLabel" destination="sOh-W6-ug4" id="ugx-YR-D1X"/>
+                <outlet property="moveCardButton" destination="jfJ-J4-iUP" id="5Eq-KI-lDX"/>
                 <outlet property="timeLabel" destination="dm6-lY-CN5" id="8UQ-mR-T0e"/>
             </connections>
             <point key="canvasLocation" x="-26.153846153846153" y="-9.5971563981042642"/>
