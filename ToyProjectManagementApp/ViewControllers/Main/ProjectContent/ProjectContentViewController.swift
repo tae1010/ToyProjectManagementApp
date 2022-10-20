@@ -56,7 +56,6 @@ class ProjectContentViewController: UIViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
         self.configureLabel()
         //collectionview cell 등록
         let tableViewNib = UINib(nibName: "ProjectCardCell", bundle: nil)
@@ -77,19 +76,19 @@ class ProjectContentViewController: UIViewController {
         self.contentTitleLabel.isUserInteractionEnabled = true
         self.contentTitleLabel.addGestureRecognizer(tabTitleLabel)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(addCardNotification), name: .addCardNotificaton, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(addListNotification), name: .addListNotificaton, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         print("viewwillappear실행")
+        self.setNotification()
         self.readDB()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
         print("viewwillDisappear실행")
+        self.removeNotification()
         self.projectContent.removeAll()
     }
     
@@ -259,9 +258,10 @@ extension ProjectContentViewController {
     
     private func readDB() {
         print("readDB접속")
-        self.ref.child("\(email)/\(id)/content").observeSingleEvent(of: .value, with: { snapshot in
+        print(id, projectTitle,"이게 문제일듯")
+        self.ref.child("\(email)/\(id)/content").observeSingleEvent(of: .value, with: { [weak self] snapshot in
             guard let value = snapshot.value as? [[String: Any]] else { return }
-            
+            guard let self = self else { return }
             for list in value {
                 var count = 0
                 for (key, val) in list {
@@ -277,6 +277,7 @@ extension ProjectContentViewController {
                 }
             }
             
+            print(self.projectContent, "db잘 읽었나")
             DispatchQueue.main.async {
                 self.cardTableView.reloadData()
                 self.changeListName()
@@ -292,6 +293,7 @@ extension ProjectContentViewController {
         self.currentTitle = self.projectContent[currentPage].listTitle
         self.contentTitleLabel.text = currentTitle
         self.listTitleLabel.text = currentTitle
+        self.view.makeToast("\(currentPage + 1) 페이지", duration: 0.5)
     }
     
     private func koreanDate() -> Int!{
@@ -431,10 +433,8 @@ extension ProjectContentViewController: MoveContentDelegate {
     
     // cell : cell more button / listIndex: 선택된 dropdown
     func moveContentTapButton(cell: UITableViewCell, listIndex: Int) {
-        
-        
         if currentPage == listIndex {
-            self.view.makeToast("카드는 이미 리스트안에 있습니다")
+            self.view.makeToast("카드는 이미 리스트안에 있습니다",duration: 1.5)
             return
         }
         
@@ -465,7 +465,6 @@ extension ProjectContentViewController: MoveContentDelegate {
         self.changeListName()
         self.projectContent[self.currentPage].detailContent.insert(selectCell, at: 0)
         self.cardTableView.reloadData()
-        self.view.makeToast("card가 이동되었습니다.")
         
         count = 0
         self.ref.child("\(email)/\(id)/content/\(currentPage)/\(self.currentTitle)").removeValue()
@@ -479,6 +478,8 @@ extension ProjectContentViewController: MoveContentDelegate {
             self.ref.child("\(email)/\(id)/content/\(currentPage)/\(currentTitle)/\(count)").setValue(["cardName": cardName, "color": color, "startTime": startTime, "endTime": endTime])
             count += 1
         }
+        self.view.makeToast("카드가 이동되었습니다", duration: 1.5)
+            
     }
 }
 
@@ -552,20 +553,30 @@ extension ProjectContentViewController: SideMenuNavigationControllerDelegate {
 // MARK: - notification
 extension ProjectContentViewController {
     
+    private func setNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(addCardNotification), name: .addCardNotificaton, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(addListNotification), name: .addListNotificaton, object: nil)
+    }
+    
+    private func removeNotification() {
+        NotificationCenter.default.removeObserver(self, name: .addCardNotificaton, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .addListNotificaton, object: nil)
+    }
+    
     @objc func addCardNotification(_ notification: Notification) {
-        
+
         let cardTitle = notification.object as! String
         
         //projectDetatailContent에 넣을 변수
         let updateContent = ["cardName": cardTitle, "color": "", "startTime": "", "endTime": ""] as [String: String]
         let updateProjectDetailContent = ProjectDetailContent(cardName: cardTitle, color: "", startTime: "", endTime: "")
+        print(currentPage,projectContent,"현제 페이지11")
         
-        //projectContent[self.currentPage].detailContent
-        // content 값 작성
         self.ref.child("\(self.email)/\(self.id)/content/\(self.currentPage)/\(self.currentTitle)").updateChildValues(["\(self.projectContent[self.currentPage].detailContent.count)": updateContent])
         
         self.projectContent[self.currentPage].detailContent.append(updateProjectDetailContent)
         
+        print(currentPage,projectContent,"현제 페이지22")
         DispatchQueue.main.async {
             self.cardTableView.reloadData()
         }

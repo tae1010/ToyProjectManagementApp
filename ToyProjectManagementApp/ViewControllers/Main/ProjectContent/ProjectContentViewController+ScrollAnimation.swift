@@ -112,7 +112,7 @@ extension ProjectContentViewController {
         self.contentTitleLabel.font = UIFont(name: "NanumGothicOTFBold", size: 18)
         self.contentTitleLabel.textColor = .white
         
-        self.projectTitleLabel.font = UIFont(name: "NanumGothicOTFBold", size: 28)
+        self.projectTitleLabel.font = UIFont(name: "NanumGothicOTFExtraBold", size: 28)
         self.projectTitleLabel.textColor = .white
         self.projectTitleLabel.text = projectTitle
         
