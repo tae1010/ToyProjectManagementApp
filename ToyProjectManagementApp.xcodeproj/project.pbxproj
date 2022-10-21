@@ -344,8 +344,6 @@
 			isa = PBXGroup;
 			children = (
 				9340E46A2851D29D00338790 /* DetailContentViewController.swift */,
-				936F8E942897B54C00897316 /* ProjectSideBarViewController.swift */,
-				936F8E962897B5E800897316 /* ProjectSideBarTableViewCell.swift */,
 			);
 			path = DetailProjectContent;
 			sourceTree = "<group>";
@@ -410,6 +408,8 @@
 				93F9836628F7E76D00033A46 /* AddCardListPopupViewController.swift */,
 				93F9836228F7E59B00033A46 /* AddListPopupViewController.swift */,
 				93F9835C28F7E22D00033A46 /* AddCardPopupViewController.swift */,
+				936F8E942897B54C00897316 /* ProjectSideBarViewController.swift */,
+				936F8E962897B5E800897316 /* ProjectSideBarTableViewCell.swift */,
 				93B6FE3728F5566700181605 /* DetailProjectContent */,
 			);
 			path = ProjectContent;

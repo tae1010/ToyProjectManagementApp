@@ -15,11 +15,11 @@ weak var changeListDelegate: ChangeListDelegate?
 weak var deleteListDelegate: DeleteListDelegate?
 
 extension ProjectContentViewController: DeleteListDelegate {
+    
     func deleteListDelegate(index: IndexPath) {
         
     }
-    
-    
+
 }
 
 extension ProjectContentViewController: ChangeListDelegate {
@@ -66,13 +66,7 @@ extension ProjectContentViewController: ChangeListDelegate {
     
 }
 
-// MARK: - currentPage이동
-extension ProjectContentViewController: MoveListDelegate {
-    func moveListDelegate(index: IndexPath) {
-        
-    }
-    
-    
+extension ProjectContentViewController: MoveContentDelegate {
     // cell : cell more button / listIndex: 선택된 dropdown
     func moveContentTapButton(cell: UITableViewCell, listIndex: Int) {
         if currentPage == listIndex {
@@ -123,6 +117,18 @@ extension ProjectContentViewController: MoveListDelegate {
         self.view.makeToast("카드가 이동되었습니다", duration: 1.5)
             
     }
+}
+
+// MARK: - currentPage이동
+extension ProjectContentViewController: MoveListDelegate {
+    func moveListDelegate(index: IndexPath) {
+        self.currentPage = index.row
+        print(currentPage,"으으으응")
+        DispatchQueue.main.async {
+            self.cardTableView.reloadData()
+        }
+    }
+    
 }
 
 // MARK: - delegate 패턴

@@ -122,7 +122,7 @@ class ProjectContentViewController: UIViewController {
             self.changeListName()
             
             DispatchQueue.main.async {
-                self.contentTitleLabel.text = self.currentTitle
+//                self.contentTitleLabel.text = self.currentTitle
                 self.cardTableView.reloadData()
             }
             print("currentPage는",self.currentPage)
@@ -135,7 +135,7 @@ class ProjectContentViewController: UIViewController {
             self.currentPage += 1
             DispatchQueue.main.async {
                 self.changeListName()
-                self.contentTitleLabel.text = self.currentTitle
+//                self.contentTitleLabel.text = self.currentTitle
                 self.cardTableView.reloadData()
             }
             print("currentPage는",currentPage)
@@ -225,7 +225,6 @@ extension ProjectContentViewController {
     
     private func readDB() {
         print("readDB접속")
-        print(id, projectTitle,"이게 문제일듯")
         self.ref.child("\(email)/\(id)/content").observeSingleEvent(of: .value, with: { [weak self] snapshot in
             guard let value = snapshot.value as? [[String: Any]] else { return }
             guard let self = self else { return }
@@ -329,6 +328,8 @@ extension ProjectContentViewController: UITableViewDataSource {
             default: return UIColor.lightGray
             }
         }()
+        
+        cell.moveContentDelegate = self
         
         cell.projectListArray = projectContent
         

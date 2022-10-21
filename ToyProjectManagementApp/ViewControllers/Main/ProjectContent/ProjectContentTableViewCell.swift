@@ -27,6 +27,7 @@ class ProjectContentTableViewCell: UITableViewCell {
     let dropDown = DropDown() // dropdown 객체
     
     var moveContentDelegate: MoveContentDelegate?
+    
     var makeToastMessage: MakeToastMessage?
     var projectListArray = [ProjectContent]()
     
@@ -60,7 +61,7 @@ class ProjectContentTableViewCell: UITableViewCell {
         // dropdown 위치
         dropDown.anchorView = self.moveCardButton
         dropDown.bottomOffset = CGPoint(x: -40, y:(dropDown.anchorView?.plainView.bounds.height)!)
-        
+        dropDown.width = 150
         dropDown.textColor = UIColor.black
         dropDown.selectedTextColor = UIColor.red
         dropDown.textFont = UIFont(name: "NanumGothicOTF", size: 14) ?? UIFont.systemFont(ofSize: 14)

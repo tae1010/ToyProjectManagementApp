@@ -56,6 +56,7 @@ class ProjectSideBarViewController: UIViewController {
     
     @IBAction func tapMoveListButton(_ sender: Any) {
         guard let clickCellIndexPath = self.clickCellIndexPath else { return }
+        print(clickCellIndexPath,"흐으음?")
         self.moveListDelegate?.moveListDelegate(index: clickCellIndexPath)
         dismiss(animated: true)
     }
