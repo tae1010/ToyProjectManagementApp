@@ -16,7 +16,6 @@ class AddCardPopupViewController: UIViewController {
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var addCardButton: UIButton!
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configure()

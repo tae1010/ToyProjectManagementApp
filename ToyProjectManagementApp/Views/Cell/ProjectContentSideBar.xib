@@ -1,36 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="O0t-6g-6k4" customClass="ProjectSideBarTableViewCell" customModule="CooperationApp" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="187" id="O0t-6g-6k4" customClass="ProjectSideBarTableViewCell" customModule="ToyProjectManagementApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="539" height="187"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="O0t-6g-6k4" id="KAj-2Q-k4q">
-                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                <rect key="frame" x="0.0" y="0.0" width="539" height="187"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="ProjectContentSideBarCell" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ao6-fW-ccq">
-                        <rect key="frame" x="186" y="11.5" width="42" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="fpj-i5-rQZ">
+                        <rect key="frame" x="14" y="14" width="511" height="159"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="lJd-Xp-4Yj">
+                                <rect key="frame" x="0.0" y="75" width="10" height="9"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="10" id="0ld-Ep-aBA"/>
+                                    <constraint firstAttribute="width" secondItem="lJd-Xp-4Yj" secondAttribute="height" id="aTq-5e-nIZ"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="ProjectContentSideBarCell" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ao6-fW-ccq">
+                                <rect key="frame" x="25" y="69.5" width="451" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark.seal.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="WMf-rH-RQ0">
+                                <rect key="frame" x="491" y="68.5" width="20" height="21.5"/>
+                                <color key="tintColor" name="primaryColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="TJe-oK-wK3"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                    </stackView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="Ao6-fW-ccq" firstAttribute="centerX" secondItem="KAj-2Q-k4q" secondAttribute="centerX" id="JeK-BG-0bY"/>
-                    <constraint firstItem="Ao6-fW-ccq" firstAttribute="centerY" secondItem="KAj-2Q-k4q" secondAttribute="centerY" id="iRF-lI-xjz"/>
+                    <constraint firstAttribute="bottom" secondItem="fpj-i5-rQZ" secondAttribute="bottom" constant="14" id="96r-Aa-ws9"/>
+                    <constraint firstAttribute="trailing" secondItem="fpj-i5-rQZ" secondAttribute="trailing" constant="14" id="PNC-Jy-1eo"/>
+                    <constraint firstItem="fpj-i5-rQZ" firstAttribute="leading" secondItem="KAj-2Q-k4q" secondAttribute="leading" constant="14" id="X1V-f4-Qwn"/>
+                    <constraint firstItem="fpj-i5-rQZ" firstAttribute="top" secondItem="KAj-2Q-k4q" secondAttribute="top" constant="14" id="wCW-MR-hFt"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="currentPageCheckImageView" destination="lJd-Xp-4Yj" id="Vej-Bs-xYp"/>
+                <outlet property="selectImageView" destination="WMf-rH-RQ0" id="n6r-zK-jD3"/>
                 <outlet property="sideBarList" destination="Ao6-fW-ccq" id="QjY-aY-q7B"/>
             </connections>
-            <point key="canvasLocation" x="150.72463768115944" y="45.535714285714285"/>
+            <point key="canvasLocation" x="241.30434782608697" y="93.415178571428569"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="checkmark.seal.fill" catalog="system" width="128" height="124"/>
+        <image name="circle.fill" catalog="system" width="128" height="123"/>
+        <namedColor name="primaryColor">
+            <color red="0.72941176470588232" green="0.59999999999999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>

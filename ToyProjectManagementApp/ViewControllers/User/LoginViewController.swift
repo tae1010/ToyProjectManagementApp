@@ -114,8 +114,6 @@ extension LoginViewController {
         guard let password = self.passwordTextField.text else { return }
 
         UserDefaults.standard.set(email, forKey: "email")
-        
-        
 
         Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
             

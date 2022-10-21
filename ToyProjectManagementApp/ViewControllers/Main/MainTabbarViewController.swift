@@ -112,7 +112,6 @@ extension MainTabbarViewController {
     //db값을 읽어서 projectList에 db값을 넣어준 뒤 collectionview 업데이트 해주는 함수
     private func readDB() {
         print(#fileID, #function, #line, "- readDB실행")
-//        self.projectList.removeAll()
         self.projectListPrograssFalse.removeAll()
         self.projectListPrograssTrue.removeAll()
 

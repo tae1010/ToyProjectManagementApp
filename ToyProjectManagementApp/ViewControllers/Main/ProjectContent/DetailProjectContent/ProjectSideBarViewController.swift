@@ -8,35 +8,85 @@
 import UIKit
 
 //sidebar에서 리스트 이름을 클릭하면 그페이지로 이동시키는 delegate
-protocol SendPageDelegate: AnyObject {
-    func sendPage(_ index: IndexPath)
+protocol MoveListDelegate: AnyObject {
+    func moveListDelegate(index: IndexPath)
+}
+
+protocol ChangeListDelegate: AnyObject {
+    func changeListDelegate(index: IndexPath)
+}
+
+protocol DeleteListDelegate: AnyObject {
+    func deleteListDelegate(index: IndexPath)
 }
 
 class ProjectSideBarViewController: UIViewController {
     
     var sectionHeader = [String]()
     var listName = [String]()
-    var listFunc = ["리스트 추가"]
     var projectTitle: String = ""
+    var currentPage: Int = 0
+    var clickCellIndexPath: IndexPath?
     
-    weak var sendPageDelegate: SendPageDelegate?
-
+    weak var moveListDelegate: MoveListDelegate?
+    weak var changeListDelegate: ChangeListDelegate?
+    weak var deleteListDelegate: DeleteListDelegate?
+    
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var sideBarTableView: UITableView!
+    
+    @IBOutlet weak var moveListButton: UIButton!
+    @IBOutlet weak var changeListTitleButton: UIButton!
+    @IBOutlet weak var deleteListButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.sectionHeader.append(projectTitle)
-        self.sectionHeader.append(" ")
-        self.navigationController?.isNavigationBarHidden = true
+        self.configureTitleLabel()
+        self.configureButton()
         
         sideBarTableView.dataSource = self
         sideBarTableView.delegate = self
         let tableViewNib = UINib(nibName: "ProjectContentSideBar", bundle: nil)
         self.sideBarTableView.register(tableViewNib, forCellReuseIdentifier: "ProjectContentSideBar")
-        
-        
     }
-
+    
+    @IBAction func tapBackButton(_ sender: UIButton) {
+        self.dismiss(animated: true)
+    }
+    
+    @IBAction func tapMoveListButton(_ sender: Any) {
+        guard let clickCellIndexPath = self.clickCellIndexPath else { return }
+        self.moveListDelegate?.moveListDelegate(index: clickCellIndexPath)
+        dismiss(animated: true)
+    }
+    
+    @IBAction func tapChangeListTitleButton(_ sender: UIButton) {
+        guard let clickCellIndexPath = self.clickCellIndexPath else { return }
+        self.changeListDelegate?.changeListDelegate(index: clickCellIndexPath)
+        dismiss(animated: true)
+    }
+    
+    @IBAction func tapDeleteListButton(_ sender: UIButton) {
+        guard let clickCellIndexPath = self.clickCellIndexPath else { return }
+        self.deleteListDelegate?.deleteListDelegate(index: clickCellIndexPath)
+        dismiss(animated: true)
+    }
+    
+    private func configureTitleLabel() {
+        self.titleLabel.font = UIFont(name: "NanumGothicOTFBold", size: 28)
+    }
+    
+    private func configureButton() {
+        
+        self.moveListButton.layer.cornerRadius = 8
+        self.changeListTitleButton.layer.cornerRadius = 8
+        self.deleteListButton.layer.cornerRadius = 8
+        
+        [self.moveListButton, self.changeListTitleButton, self.deleteListButton].forEach({
+            $0?.titleLabel?.font = UIFont(name: "NanumGothicOTF", size: 15)
+        })
+    }
+    
 }
 
 extension ProjectSideBarViewController: UITableViewDelegate {
@@ -46,38 +96,22 @@ extension ProjectSideBarViewController: UITableViewDelegate {
 extension ProjectSideBarViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return listName.count
-        } else if section == 1 {
-            return listFunc.count
-        } else {
-            return 0
-        }
+        return listName.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProjectContentSideBar", for: indexPath) as! ProjectSideBarTableViewCell
-        
-        if indexPath.section == 0 {
-            cell.sideBarList.text = listName[indexPath.row]
-        } else if indexPath.section == 1 {
-            cell.sideBarList.text = listFunc[indexPath.row]
-        }
+        cell.selectionStyle = .none
+        cell.sideBarList.text = listName[indexPath.row]
+        cell.currentPageCheckImageView.isHidden = currentPage == indexPath.row ? false : true
+        cell.selectImageView.isHidden = true
         
         return cell
     }
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return sectionHeader.count
-    }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return sectionHeader[section]
-    }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.sendPageDelegate?.sendPage(indexPath)
-        print(indexPath,"됐다")
-        dismiss(animated: true)
+        self.clickCellIndexPath = indexPath
+        self.view.makeToast("\(listName[indexPath.row])", duration: 0.5)
     }
+    
 }

@@ -17,6 +17,7 @@
 		9333CC49285C7173005C0262 /* ProjectPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9333CC48285C7173005C0262 /* ProjectPopupViewController.swift */; };
 		9338C76028FD418A005F6C3B /* ProjectContentViewController+ScrollAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9338C75F28FD418A005F6C3B /* ProjectContentViewController+ScrollAnimation.swift */; };
 		9338C76228FD52D0005F6C3B /* ExtensionUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9338C76128FD52D0005F6C3B /* ExtensionUIView.swift */; };
+		9338C76429014929005F6C3B /* ProjectContentViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9338C76329014929005F6C3B /* ProjectContentViewController+Delegate.swift */; };
 		933BAEDA28E5A49A003DDFCF /* ReallyCheckPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933BAED928E5A49A003DDFCF /* ReallyCheckPopupViewController.swift */; };
 		933BAEDE28E5AD04003DDFCF /* ReallyCheckPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 933BAEDD28E5AD04003DDFCF /* ReallyCheckPopup.xib */; };
 		933BAEE028E6EFFE003DDFCF /* CreateProjectPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 933BAEDF28E6EFFE003DDFCF /* CreateProjectPopup.xib */; };
@@ -50,7 +51,6 @@
 		936F8E952897B54C00897316 /* ProjectSideBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936F8E942897B54C00897316 /* ProjectSideBarViewController.swift */; };
 		936F8E972897B5E800897316 /* ProjectSideBarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936F8E962897B5E800897316 /* ProjectSideBarTableViewCell.swift */; };
 		936F8E992897BB8D00897316 /* ProjectContentSideBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 936F8E982897BB8D00897316 /* ProjectContentSideBar.xib */; };
-		936F8E9D2898F96700897316 /* CustomSideMenuNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936F8E9C2898F96700897316 /* CustomSideMenuNavigation.swift */; };
 		93722CED28D31880007E1132 /* ExtensionUIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93722CEC28D31880007E1132 /* ExtensionUIColor.swift */; };
 		93722CF028D4551D007E1132 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93722CEF28D4551D007E1132 /* CustomButton.swift */; };
 		937CC55928002F1400F18553 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 937CC55828002F1400F18553 /* Main.storyboard */; };
@@ -96,6 +96,7 @@
 		9333CC48285C7173005C0262 /* ProjectPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectPopupViewController.swift; sourceTree = "<group>"; };
 		9338C75F28FD418A005F6C3B /* ProjectContentViewController+ScrollAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProjectContentViewController+ScrollAnimation.swift"; sourceTree = "<group>"; };
 		9338C76128FD52D0005F6C3B /* ExtensionUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionUIView.swift; sourceTree = "<group>"; };
+		9338C76329014929005F6C3B /* ProjectContentViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProjectContentViewController+Delegate.swift"; sourceTree = "<group>"; };
 		933BAED928E5A49A003DDFCF /* ReallyCheckPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReallyCheckPopupViewController.swift; sourceTree = "<group>"; };
 		933BAEDD28E5AD04003DDFCF /* ReallyCheckPopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReallyCheckPopup.xib; sourceTree = "<group>"; };
 		933BAEDF28E6EFFE003DDFCF /* CreateProjectPopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateProjectPopup.xib; sourceTree = "<group>"; };
@@ -129,7 +130,6 @@
 		936F8E942897B54C00897316 /* ProjectSideBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectSideBarViewController.swift; sourceTree = "<group>"; };
 		936F8E962897B5E800897316 /* ProjectSideBarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectSideBarTableViewCell.swift; sourceTree = "<group>"; };
 		936F8E982897BB8D00897316 /* ProjectContentSideBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProjectContentSideBar.xib; sourceTree = "<group>"; };
-		936F8E9C2898F96700897316 /* CustomSideMenuNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSideMenuNavigation.swift; sourceTree = "<group>"; };
 		93722CEC28D31880007E1132 /* ExtensionUIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionUIColor.swift; sourceTree = "<group>"; };
 		93722CEF28D4551D007E1132 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		937CC55828002F1400F18553 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -345,7 +345,6 @@
 			children = (
 				9340E46A2851D29D00338790 /* DetailContentViewController.swift */,
 				936F8E942897B54C00897316 /* ProjectSideBarViewController.swift */,
-				936F8E9C2898F96700897316 /* CustomSideMenuNavigation.swift */,
 				936F8E962897B5E800897316 /* ProjectSideBarTableViewCell.swift */,
 			);
 			path = DetailProjectContent;
@@ -403,6 +402,7 @@
 			children = (
 				9350DB1528F41A2700646C42 /* ProjectContentViewController.swift */,
 				9338C75F28FD418A005F6C3B /* ProjectContentViewController+ScrollAnimation.swift */,
+				9338C76329014929005F6C3B /* ProjectContentViewController+Delegate.swift */,
 				93DA8F85282FB16900217360 /* ProjectContentTableViewCell.swift */,
 				93E18D2628F42851003AE3C5 /* ProjectHeaderView.swift */,
 				93B6FE3A28F5ACB400181605 /* ProjectStickyHeaderView.swift */,
@@ -595,6 +595,7 @@
 				933BAEE628E81110003DDFCF /* ExtensionNotification.swift in Sources */,
 				9338C76228FD52D0005F6C3B /* ExtensionUIView.swift in Sources */,
 				935CBC862806A1C300759A24 /* MainTabbarViewController.swift in Sources */,
+				9338C76429014929005F6C3B /* ProjectContentViewController+Delegate.swift in Sources */,
 				93AFDA9E28B4CFCE009E815F /* ProjectIDPopupViewController.swift in Sources */,
 				933BAEDA28E5A49A003DDFCF /* ReallyCheckPopupViewController.swift in Sources */,
 				9350DB1628F41A2700646C42 /* ProjectContentViewController.swift in Sources */,
@@ -619,7 +620,6 @@
 				935145EF289D2057009B1DEF /* projectDate.swift in Sources */,
 				931F9BBB28A7D468000AFA9E /* ScheduleCollectionViewCell.swift in Sources */,
 				9380D24A27FF1196000DC92E /* SecondTabbarViewController.swift in Sources */,
-				936F8E9D2898F96700897316 /* CustomSideMenuNavigation.swift in Sources */,
 				9340DE8528D4DEF700B1CEB2 /* LogoImageView.swift in Sources */,
 				93DEFA9027FAFF1600827C79 /* CooperationApp.xcdatamodeld in Sources */,
 				9340E46B2851D29E00338790 /* DetailContentViewController.swift in Sources */,
