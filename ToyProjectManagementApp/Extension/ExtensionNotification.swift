@@ -8,7 +8,6 @@
 import Foundation
 import UIKit
 
-
 extension Notification.Name {
     
     // project 삭제 notification (reallyCheckPopupViewController에서 post를 하면 MainTabbar에서 deleteProject함수 실행)
@@ -22,5 +21,8 @@ extension Notification.Name {
     
     // 카드 추가 notification
     static let addCardNotificaton = Notification.Name("addCardNotificaton")
+    
+    // 카드 이름 변경
+    static let changeCardTitleNotification = Notification.Name("changeCardTitleNotification")
     
 }

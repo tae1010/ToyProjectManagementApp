@@ -9,11 +9,18 @@ import Foundation
 import UIKit
 import SideMenu
 
+// MARK: - currentPage이동
+extension ProjectContentViewController: MoveListDelegate {
+    func moveListDelegate(index: IndexPath) {
+        self.currentPage = index.row
+        DispatchQueue.main.async {
+            self.cardTableView.reloadData()
+        }
+    }
+    
+}
 
-weak var moveListDelegate: MoveListDelegate?
-weak var changeListDelegate: ChangeListDelegate?
-weak var deleteListDelegate: DeleteListDelegate?
-
+// MARK: - 카드 삭제
 extension ProjectContentViewController: DeleteListDelegate {
     
     func deleteListDelegate(index: IndexPath) {
@@ -22,50 +29,21 @@ extension ProjectContentViewController: DeleteListDelegate {
 
 }
 
+// MARK: - 카드 이름 변경
 extension ProjectContentViewController: ChangeListDelegate {
     func changeListDelegate(index: IndexPath) {
-        /// contentTitle 변경버튼 클릭
-    //    @IBAction func tabEditContentTitleButton(_ sender: UIButton) {
-    //
-    //        let beforeTitle = self.currentTitle // 변경하기 전 contentTitle
-    //        guard let afterTitle = self.contentTitleTextField.text else { return } // 변경 후 contentTitle
-    //        var count = 0
-    //
-    //        // 변경된 db내용 삭제
-    //        self.ref.child("\(email)/\(id)/content/\(currentPage)").removeValue()
-    //
-    //        //변경된 내용 db저장
-    //        for i in self.projectContent[self.currentPage].detailContent {
-    //            let cardName = i.cardName
-    //            let color = i.color
-    //            let startTime = i.startTime
-    //            let endTime = i.endTime
-    //
-    //            let detailContent = ["cardName": cardName, "color": color, "startTime": startTime, "endTime": endTime]
-    //            let detailContentModel = ProjectDetailContent(cardName: cardName, color: color, startTime: startTime, endTime: endTime)
-    //
-    //            self.ref.child("\(email)/\(id)/content/\(currentPage)/\(afterTitle)/\(count)").setValue(detailContent)
-    //
-    //            self.projectContent[self.currentPage].detailContent.append(detailContentModel)
-    //            count += 1
-    //        }
-    //
-    //        self.projectContent[self.currentPage].listTitle = afterTitle
-    //
-    //        DispatchQueue.main.async {
-    //            self.contentTitleLabel.text = self.contentTitleTextField.text
-    //            self.contentTitleTextField.isHidden = true
-    //            self.editContentTitleButton.isHidden = true
-    //            self.contentTitleLabel.isHidden = false
-    //            self.moveLeftButton.isEnabled = true
-    //            self.moveRightButton.isEnabled = true
-    //        }
-    //    }
+        let changeListPopup = ChangeListTitlePopupViewController(nibName: "ChangeListTitlePopup", bundle: nil)
+        
+        changeListPopup.modalPresentationStyle = .overCurrentContext
+        changeListPopup.modalTransitionStyle = .crossDissolve // 뷰가 투명해지면서 넘어가는 애니메이션
+
+        self.present(changeListPopup, animated: false, completion: nil)
     }
     
     
 }
 
+// MARK: - projectContentVC에서 dropdown으로 카드 이동
 extension ProjectContentViewController: MoveContentDelegate {
     // cell : cell more button / listIndex: 선택된 dropdown
     func moveContentTapButton(cell: UITableViewCell, listIndex: Int) {
@@ -119,17 +97,7 @@ extension ProjectContentViewController: MoveContentDelegate {
     }
 }
 
-// MARK: - currentPage이동
-extension ProjectContentViewController: MoveListDelegate {
-    func moveListDelegate(index: IndexPath) {
-        self.currentPage = index.row
-        print(currentPage,"으으으응")
-        DispatchQueue.main.async {
-            self.cardTableView.reloadData()
-        }
-    }
-    
-}
+
 
 // MARK: - delegate 패턴
 // detailContentView에서 보낸 값을 db에 저장하고 테이블 reload

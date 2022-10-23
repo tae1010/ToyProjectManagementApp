@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Project Side Bar View Controller-->
+        <!--Project List Management View Controller-->
         <scene sceneID="KIw-bS-D4o">
             <objects>
-                <viewController storyboardIdentifier="ProjectSideBarViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ayF-Af-GzK" customClass="ProjectSideBarViewController" customModule="ToyProjectManagementApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProjectSideBarViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ayF-Af-GzK" customClass="ProjectListManagementViewController" customModule="ToyProjectManagementApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="x2G-wz-0u7">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

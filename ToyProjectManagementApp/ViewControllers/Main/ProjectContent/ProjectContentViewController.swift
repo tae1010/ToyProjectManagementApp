@@ -196,7 +196,7 @@ class ProjectContentViewController: UIViewController {
         let projectContentSideMenu = UIStoryboard(name: "ProjectContentSideMenu", bundle: nil)
 
         // sideMenu viewController
-        let projectSideBarViewController = projectContentSideMenu.instantiateViewController(withIdentifier: "ProjectSideBarViewController") as! ProjectSideBarViewController
+        let projectSideBarViewController = projectContentSideMenu.instantiateViewController(withIdentifier: "ProjectSideBarViewController") as! ProjectListManagementViewController
 
         projectSideBarViewController.listName = listTitle
         projectSideBarViewController.projectTitle = self.projectTitle
