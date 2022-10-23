@@ -7,9 +7,9 @@
 
 import UIKit
 
-class ProjectSideBarTableViewCell: UITableViewCell {
+class ProjectListManagementCell: UITableViewCell {
 
-    @IBOutlet weak var sideBarList: UILabel!
+    @IBOutlet weak var listTitle: UILabel!
     @IBOutlet weak var currentPageCheckImageView: UIImageView!
     @IBOutlet weak var selectImageView: UIImageView!
     
@@ -30,7 +30,7 @@ class ProjectSideBarTableViewCell: UITableViewCell {
 
 }
 
-extension ProjectSideBarTableViewCell {
+extension ProjectListManagementCell {
     private func configureListLabel() {
         
     }

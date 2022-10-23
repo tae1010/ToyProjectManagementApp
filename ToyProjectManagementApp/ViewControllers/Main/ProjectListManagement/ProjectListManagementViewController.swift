@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import MaterialComponents.MaterialBottomSheet
 
 //sidebar에서 리스트 이름을 클릭하면 그페이지로 이동시키는 delegate
 protocol MoveListDelegate: AnyObject {
@@ -20,7 +21,7 @@ protocol DeleteListDelegate: AnyObject {
     func deleteListDelegate(index: IndexPath)
 }
 
-class ProjectSideBarViewController: UIViewController {
+class ProjectListManagementViewController: UIViewController {
     
     var sectionHeader = [String]()
     var listName = [String]()
@@ -63,8 +64,17 @@ class ProjectSideBarViewController: UIViewController {
     
     @IBAction func tapChangeListTitleButton(_ sender: UIButton) {
         guard let clickCellIndexPath = self.clickCellIndexPath else { return }
-        self.changeListDelegate?.changeListDelegate(index: clickCellIndexPath)
-        dismiss(animated: true)
+//        self.changeListDelegate?.changeListDelegate(index: clickCellIndexPath)
+        
+        let changeListPopup = ChangeListTitlePopupViewController(nibName: "ChangeListTitlePopup", bundle: nil)
+        
+        changeListPopup.view.clipsToBounds = false
+        changeListPopup.view.layer.cornerRadius = 20
+        
+        let bottomSheet: MDCBottomSheetController = MDCBottomSheetController(contentViewController: changeListPopup)
+        bottomSheet.mdc_bottomSheetPresentationController?.preferredSheetHeight = self.view.bounds.size.height * 0.3
+
+        self.present(bottomSheet, animated: false, completion: nil)
     }
     
     @IBAction func tapDeleteListButton(_ sender: UIButton) {
@@ -90,20 +100,20 @@ class ProjectSideBarViewController: UIViewController {
     
 }
 
-extension ProjectSideBarViewController: UITableViewDelegate {
+extension ProjectListManagementViewController: UITableViewDelegate {
     
 }
 
-extension ProjectSideBarViewController: UITableViewDataSource {
+extension ProjectListManagementViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return listName.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ProjectContentSideBar", for: indexPath) as! ProjectSideBarTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ProjectContentSideBar", for: indexPath) as! ProjectListManagementCell
         cell.selectionStyle = .none
-        cell.sideBarList.text = listName[indexPath.row]
+        cell.listTitle.text = listName[indexPath.row]
         cell.currentPageCheckImageView.isHidden = currentPage == indexPath.row ? false : true
         cell.selectImageView.isHidden = true
         
