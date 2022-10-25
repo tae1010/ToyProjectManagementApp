@@ -201,10 +201,13 @@ class ProjectContentViewController: UIViewController {
         projectSideBarViewController.listName = listTitle
         projectSideBarViewController.projectTitle = self.projectTitle
         projectSideBarViewController.currentPage = self.currentPage
+        projectSideBarViewController.projectContent = self.projectContent
+        projectSideBarViewController.email = self.email
+        projectSideBarViewController.id = self.id
         
         projectSideBarViewController.moveListDelegate = self
         projectSideBarViewController.deleteListDelegate = self
-        projectSideBarViewController.changeListDelegate = self
+        
         
         projectSideBarViewController.modalPresentationStyle = .fullScreen
         
@@ -330,6 +333,7 @@ extension ProjectContentViewController: UITableViewDataSource {
         }()
         
         cell.moveContentDelegate = self
+        cell.makeToastMessage = self
         
         cell.projectListArray = projectContent
         
@@ -401,11 +405,18 @@ extension ProjectContentViewController {
     fileprivate func setNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(addCardNotification), name: .addCardNotificaton, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(addListNotification), name: .addListNotificaton, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(changeCardTitleNotification), name: .changeCardTitleNotification, object: nil)
     }
     
     fileprivate func removeNotification() {
         NotificationCenter.default.removeObserver(self, name: .addCardNotificaton, object: nil)
         NotificationCenter.default.removeObserver(self, name: .addListNotificaton, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .changeCardTitleNotification, object: nil)
+    }
+    
+    @objc func changeCardTitleNotification(_ notification: Notification) {
+        
+        
     }
     
     @objc func addCardNotification(_ notification: Notification) {

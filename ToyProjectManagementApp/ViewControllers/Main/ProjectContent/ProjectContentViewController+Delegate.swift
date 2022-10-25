@@ -12,35 +12,22 @@ import SideMenu
 // MARK: - currentPage이동
 extension ProjectContentViewController: MoveListDelegate {
     func moveListDelegate(index: IndexPath) {
+        
         self.currentPage = index.row
+        
         DispatchQueue.main.async {
             self.cardTableView.reloadData()
         }
     }
-    
 }
 
-// MARK: - 카드 삭제
+// MARK: - 리스트 삭제
 extension ProjectContentViewController: DeleteListDelegate {
     
     func deleteListDelegate(index: IndexPath) {
         
     }
 
-}
-
-// MARK: - 카드 이름 변경
-extension ProjectContentViewController: ChangeListDelegate {
-    func changeListDelegate(index: IndexPath) {
-        let changeListPopup = ChangeListTitlePopupViewController(nibName: "ChangeListTitlePopup", bundle: nil)
-        
-        changeListPopup.modalPresentationStyle = .overCurrentContext
-        changeListPopup.modalTransitionStyle = .crossDissolve // 뷰가 투명해지면서 넘어가는 애니메이션
-
-        self.present(changeListPopup, animated: false, completion: nil)
-    }
-    
-    
 }
 
 // MARK: - projectContentVC에서 dropdown으로 카드 이동
@@ -98,8 +85,6 @@ extension ProjectContentViewController: MoveContentDelegate {
 }
 
 
-
-// MARK: - delegate 패턴
 // detailContentView에서 보낸 값을 db에 저장하고 테이블 reload
 extension ProjectContentViewController: SendContentDelegate {
     func sendContent(_ name: String, _ index: Int, _ color: String, _ startTime: String, _ endTime: String) {

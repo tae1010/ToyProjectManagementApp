@@ -8,6 +8,10 @@
 import Foundation
 import UIKit
 
+protocol ChangeListTitleDelegate: AnyObject {
+    func changeListTitleDelegate(index: IndexPath, listTitle: String)
+}
+
 class ChangeListTitlePopupViewController: UIViewController {
     
     @IBOutlet weak var popupTitleLabel: UILabel!
@@ -15,6 +19,9 @@ class ChangeListTitlePopupViewController: UIViewController {
     @IBOutlet weak var changeListTitleButton: UIButton!
     
     @IBOutlet weak var changeListTitleTextField: CustomTextField!
+    
+    var clickListTitle: IndexPath?
+    weak var changeListTitleDelegate: ChangeListTitleDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,10 +36,12 @@ class ChangeListTitlePopupViewController: UIViewController {
         if changeListTitleTextField.text == "" {
             self.view.makeToast("리스트 내용을 입력해주세요")
         } else {
+            guard let changeListTitleTextField = self.changeListTitleTextField.text else { return }
+            guard let clickListTitle = self.clickListTitle else { return }
+            self.changeListTitleDelegate?.changeListTitleDelegate(index: clickListTitle, listTitle: changeListTitleTextField)
             self.dismiss(animated: true)
         }
     }
-    
 }
 
 extension ChangeListTitlePopupViewController {

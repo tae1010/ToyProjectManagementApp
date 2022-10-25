@@ -53,7 +53,7 @@
                             <color key="backgroundColor" name="primaryColor"/>
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="plain" title="생성하기"/>
+                            <buttonConfiguration key="configuration" style="plain" title="변경하기"/>
                             <connections>
                                 <action selector="tapChangelistTitleButton:" destination="-1" eventType="touchUpInside" id="pnV-L7-pXM"/>
                             </connections>

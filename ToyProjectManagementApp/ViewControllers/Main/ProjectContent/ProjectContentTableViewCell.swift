@@ -50,7 +50,7 @@ class ProjectContentTableViewCell: UITableViewCell {
 
         dropDown.selectionAction = { [unowned self] (index: Int, item: String) in
             self.moveContentDelegate?.moveContentTapButton(cell: self, listIndex: index)
-            
+            self.makeToast("카드를 이동하고 싶은 리스트를 선택하세요 ")
             self.dropDown.clearSelection()
         }
     }
