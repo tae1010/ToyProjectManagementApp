@@ -81,8 +81,8 @@ class ProjectContentViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         print("viewwillappear실행")
-        self.setNotification()
         self.readDB()
+        self.setNotification()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -206,8 +206,7 @@ class ProjectContentViewController: UIViewController {
         projectSideBarViewController.id = self.id
         
         projectSideBarViewController.moveListDelegate = self
-        projectSideBarViewController.deleteListDelegate = self
-        
+        projectSideBarViewController.changeCurrentPageDelegate = self
         
         projectSideBarViewController.modalPresentationStyle = .fullScreen
         
@@ -228,6 +227,7 @@ extension ProjectContentViewController {
     
     private func readDB() {
         print("readDB접속")
+        
         self.ref.child("\(email)/\(id)/content").observeSingleEvent(of: .value, with: { [weak self] snapshot in
             guard let value = snapshot.value as? [[String: Any]] else { return }
             guard let self = self else { return }
@@ -265,6 +265,10 @@ extension ProjectContentViewController {
         self.view.makeToast("\(currentPage + 1) 페이지", duration: 0.5)
     }
     
+    func changeCurrentPage(currentpPage: Int) {
+        self.currentPage = currentpPage
+    }
+    
     private func koreanDate() -> Int!{
         let current = Date()
         
@@ -284,12 +288,10 @@ extension ProjectContentViewController {
 extension ProjectContentViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        
         return 5.0
     }
 
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        
         return 5.0
     }
     
@@ -321,6 +323,11 @@ extension ProjectContentViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = cardTableView.dequeueReusableCell(withIdentifier: "ProjectCardCell", for: indexPath) as! ProjectContentTableViewCell
         
+        let startTime = self.projectContent[self.currentPage].detailContent[indexPath.section].startTime ?? "        "
+        
+        let endTime = self.projectContent[self.currentPage].detailContent[indexPath.section].endTime ?? "        "
+        
+        
         let cardColor: UIColor = {
             switch projectContent[self.currentPage].detailContent[indexPath.section].color {
             case "blue": return UIColor.blue
@@ -342,6 +349,8 @@ extension ProjectContentViewController: UITableViewDataSource {
         cell.cardColor.layer.borderWidth = cardColor == UIColor.lightGray ? 2 : 0
         cell.contentLabel.text = self.projectContent[self.currentPage].detailContent[indexPath.section].cardName
         cell.cardColor.backgroundColor = cardColor == UIColor.lightGray ? .white : cardColor
+        
+        cell.timeLabel.text = "\(startTime) ~ \(endTime)"
         
         return cell
     }
@@ -382,19 +391,19 @@ extension ProjectContentViewController: UITableViewDataSource {
         self.ref.child("\(email)/\(id)/content/\(currentPage)/\(self.currentTitle)").removeValue()
         //배열 중간값이 삭제될수 있기 떄문에 db배열을 갱신해줘야함
         var count = 0
+        
         for i in self.projectContent[self.currentPage].detailContent {
             let cardName = i.cardName
             let color = i.color
             let startTime = i.startTime
             let endTime = i.endTime
-
+            
             let detailContent = ["cardName": cardName, "color": color, "startTime": startTime, "endTime": endTime]
             
             self.ref.child("\(email)/\(id)/content/\(currentPage)/\(self.currentTitle)/\(count)").setValue(detailContent)
             count += 1
         }
     }
-    
 }
 
 
@@ -405,19 +414,13 @@ extension ProjectContentViewController {
     fileprivate func setNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(addCardNotification), name: .addCardNotificaton, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(addListNotification), name: .addListNotificaton, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(changeCardTitleNotification), name: .changeCardTitleNotification, object: nil)
     }
     
     fileprivate func removeNotification() {
         NotificationCenter.default.removeObserver(self, name: .addCardNotificaton, object: nil)
         NotificationCenter.default.removeObserver(self, name: .addListNotificaton, object: nil)
-        NotificationCenter.default.removeObserver(self, name: .changeCardTitleNotification, object: nil)
     }
-    
-    @objc func changeCardTitleNotification(_ notification: Notification) {
-        
-        
-    }
+
     
     @objc func addCardNotification(_ notification: Notification) {
 

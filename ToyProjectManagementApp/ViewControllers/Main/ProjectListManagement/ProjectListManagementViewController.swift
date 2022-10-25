@@ -10,13 +10,13 @@ import FirebaseDatabase
 import MaterialComponents.MaterialBottomSheet
 import Toast_Swift
 
+protocol ChangeCurrentPageDelegate: AnyObject {
+    func changeCurrentPage(currentPage: Int)
+}
+
 //sidebar에서 리스트 이름을 클릭하면 그페이지로 이동시키는 delegate
 protocol MoveListDelegate: AnyObject {
     func moveListDelegate(index: IndexPath)
-}
-
-protocol DeleteListDelegate: AnyObject {
-    func deleteListDelegate(index: IndexPath)
 }
 
 class ProjectListManagementViewController: UIViewController {
@@ -32,7 +32,7 @@ class ProjectListManagementViewController: UIViewController {
     var ref: DatabaseReference! = Database.database().reference() // realtime DB
     
     weak var moveListDelegate: MoveListDelegate?
-    weak var deleteListDelegate: DeleteListDelegate?
+    weak var changeCurrentPageDelegate: ChangeCurrentPageDelegate?
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var sideBarTableView: UITableView!
@@ -51,8 +51,13 @@ class ProjectListManagementViewController: UIViewController {
         let tableViewNib = UINib(nibName: "ProjectContentSideBar", bundle: nil)
         self.sideBarTableView.register(tableViewNib, forCellReuseIdentifier: "ProjectContentSideBar")
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        print("다시 켜졌나")
+    }
 
     @IBAction func tapBackButton(_ sender: UIButton) {
+        self.changeCurrentPageDelegate?.changeCurrentPage(currentPage: 0)
         self.dismiss(animated: true)
     }
     
@@ -63,7 +68,6 @@ class ProjectListManagementViewController: UIViewController {
             self.view.makeToast("리스트를 선택해주세요")
             return
         }
-        
         self.moveListDelegate?.moveListDelegate(index: clickCellIndexPath)
         dismiss(animated: true)
     }
@@ -92,10 +96,20 @@ class ProjectListManagementViewController: UIViewController {
     // 리스트 삭제
     @IBAction func tapDeleteListButton(_ sender: UIButton) {
         
-        guard let clickCellIndexPath = self.clickCellIndexPath else { return }
+        guard let clickCellIndexPath = self.clickCellIndexPath else {
+            self.view.makeToast("리스트를 선택해주세요")
+            return
+        }
         
-        self.deleteListDelegate?.deleteListDelegate(index: clickCellIndexPath)
-        dismiss(animated: true)
+        let deleteListPopup = DeleteListPopupViewController(nibName: "DeleteListPopup", bundle: nil)
+        deleteListPopup.index = clickCellIndexPath
+        
+        deleteListPopup.deleteListDelegate = self
+        
+        deleteListPopup.modalPresentationStyle = .overCurrentContext
+        deleteListPopup.modalTransitionStyle = .crossDissolve // 뷰가 투명해지면서 넘어가는 애니메이션
+        
+        self.present(deleteListPopup, animated: true, completion: nil)
     }
 
 }
@@ -146,6 +160,7 @@ extension ProjectListManagementViewController: UITableViewDataSource {
     
 }
 
+// MARK: - 리스트 title 변경
 extension ProjectListManagementViewController: ChangeListTitleDelegate {
     func changeListTitleDelegate(index: IndexPath, listTitle: String) {
         
@@ -166,7 +181,6 @@ extension ProjectListManagementViewController: ChangeListTitleDelegate {
             let endTime = i.endTime
 
             let detailContent = ["cardName": cardName, "color": color, "startTime": startTime, "endTime": endTime]
-            let detailContentModel = ProjectDetailContent(cardName: cardName, color: color, startTime: startTime, endTime: endTime)
 
             self.ref.child("\(email)/\(id)/content/\(index.row)/\(listTitle)/\(count)").setValue(detailContent)
 
@@ -175,8 +189,50 @@ extension ProjectListManagementViewController: ChangeListTitleDelegate {
         
         DispatchQueue.main.async {
             self.sideBarTableView.reloadData()
-
         }
+        self.clickCellIndexPath = nil
     }
     
+}
+
+// MARK: - list 삭제
+extension ProjectListManagementViewController: DeleteListDelegate {
+    
+    func deleteListDelegate(index: IndexPath) {
+        
+        // index.row = 선택된 리스트
+        self.ref.child("\(email)/\(id)/content").removeValue()
+        
+        self.projectContent.remove(at: index.row)
+        self.listName.remove(at: index.row)
+        var listCount = 0
+        // 변경된 내용 db저장
+        for i in self.projectContent{
+            
+            var listTitle = i.listTitle
+            var cardCount = 0
+            
+            for j in i.detailContent {
+                
+                let cardName = j.cardName
+                let color = j.color
+                let startTime = j.startTime
+                let endTime = j.endTime
+                
+                let detailContent = ["cardName": cardName, "color": color, "startTime": startTime, "endTime": endTime]
+                
+                self.ref.child("\(email)/\(id)/content/\(listCount)/\(listTitle)/\(cardCount)").setValue(detailContent)
+                
+                cardCount += 1
+            }
+            
+            listCount += 1
+        }
+        
+        DispatchQueue.main.async {
+            self.sideBarTableView.reloadData()
+        }
+        
+        self.clickCellIndexPath = nil
+    }
 }

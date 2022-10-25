@@ -20,6 +20,8 @@
 		9338C76429014929005F6C3B /* ProjectContentViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9338C76329014929005F6C3B /* ProjectContentViewController+Delegate.swift */; };
 		9338C7662902EA2A005F6C3B /* ChangeListTitlePopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9338C7652902EA2A005F6C3B /* ChangeListTitlePopup.xib */; };
 		9338C7682902EA92005F6C3B /* ChangeListTitlePopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9338C7672902EA92005F6C3B /* ChangeListTitlePopupViewController.swift */; };
+		9338C76C2907F4D8005F6C3B /* DeleteListPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9338C76B2907F4D8005F6C3B /* DeleteListPopup.xib */; };
+		9338C76E2907F506005F6C3B /* DeleteListPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9338C76D2907F506005F6C3B /* DeleteListPopupViewController.swift */; };
 		933BAEDA28E5A49A003DDFCF /* ReallyCheckPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933BAED928E5A49A003DDFCF /* ReallyCheckPopupViewController.swift */; };
 		933BAEDE28E5AD04003DDFCF /* ReallyCheckPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 933BAEDD28E5AD04003DDFCF /* ReallyCheckPopup.xib */; };
 		933BAEE028E6EFFE003DDFCF /* CreateProjectPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 933BAEDF28E6EFFE003DDFCF /* CreateProjectPopup.xib */; };
@@ -101,6 +103,8 @@
 		9338C76329014929005F6C3B /* ProjectContentViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProjectContentViewController+Delegate.swift"; sourceTree = "<group>"; };
 		9338C7652902EA2A005F6C3B /* ChangeListTitlePopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChangeListTitlePopup.xib; sourceTree = "<group>"; };
 		9338C7672902EA92005F6C3B /* ChangeListTitlePopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeListTitlePopupViewController.swift; sourceTree = "<group>"; };
+		9338C76B2907F4D8005F6C3B /* DeleteListPopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeleteListPopup.xib; sourceTree = "<group>"; };
+		9338C76D2907F506005F6C3B /* DeleteListPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteListPopupViewController.swift; sourceTree = "<group>"; };
 		933BAED928E5A49A003DDFCF /* ReallyCheckPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReallyCheckPopupViewController.swift; sourceTree = "<group>"; };
 		933BAEDD28E5AD04003DDFCF /* ReallyCheckPopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReallyCheckPopup.xib; sourceTree = "<group>"; };
 		933BAEDF28E6EFFE003DDFCF /* CreateProjectPopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateProjectPopup.xib; sourceTree = "<group>"; };
@@ -239,6 +243,7 @@
 			isa = PBXGroup;
 			children = (
 				9338C7672902EA92005F6C3B /* ChangeListTitlePopupViewController.swift */,
+				9338C76D2907F506005F6C3B /* DeleteListPopupViewController.swift */,
 				93F9836628F7E76D00033A46 /* AddCardListPopupViewController.swift */,
 				93F9836228F7E59B00033A46 /* AddListPopupViewController.swift */,
 				93F9835C28F7E22D00033A46 /* AddCardPopupViewController.swift */,
@@ -282,6 +287,7 @@
 				93F9835E28F7E28300033A46 /* AddCardPopup.xib */,
 				93F9836028F7E50100033A46 /* AddListPopup.xib */,
 				9338C7652902EA2A005F6C3B /* ChangeListTitlePopup.xib */,
+				9338C76B2907F4D8005F6C3B /* DeleteListPopup.xib */,
 			);
 			path = Popup;
 			sourceTree = "<group>";
@@ -512,6 +518,7 @@
 				9340E47D2852050700338790 /* NanumGothicBold.otf in Resources */,
 				933BAEEA28E896BD003DDFCF /* ChangeProjectPrograssPopup.xib in Resources */,
 				93AFDA9C28B4CE1B009E815F /* ProjectIdPopup.xib in Resources */,
+				9338C76C2907F4D8005F6C3B /* DeleteListPopup.xib in Resources */,
 				93B6FE3928F56AC200181605 /* ProjectCardCell.xib in Resources */,
 				9340DE7E28D4D8EC00B1CEB2 /* GodoB.otf in Resources */,
 				93F9836128F7E50100033A46 /* AddListPopup.xib in Resources */,
@@ -626,6 +633,7 @@
 				9340DE8928D6E8C700B1CEB2 /* LogoStackView.swift in Sources */,
 				9353E3C1287D809700C63681 /* DetailColorContent.swift in Sources */,
 				936F8E952897B54C00897316 /* ProjectListManagementViewController.swift in Sources */,
+				9338C76E2907F506005F6C3B /* DeleteListPopupViewController.swift in Sources */,
 				9333CC49285C7173005C0262 /* ProjectPopupViewController.swift in Sources */,
 				936F8E972897B5E800897316 /* ProjectListManagementCell.swift in Sources */,
 				93B6FE3B28F5ACB500181605 /* ProjectStickyHeaderView.swift in Sources */,

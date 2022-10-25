@@ -106,7 +106,7 @@ extension ProjectContentTableViewCell {
     }
     
     private func configureTimeLabel() {
-        self.timeLabel.font = UIFont(name: "NanumGothicOTFLight", size: 14)
+        self.timeLabel.font = UIFont(name: "NanumGothicOTFLight", size: 12)
     }
     
 }

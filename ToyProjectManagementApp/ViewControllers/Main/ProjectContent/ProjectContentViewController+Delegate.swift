@@ -7,9 +7,8 @@
 
 import Foundation
 import UIKit
-import SideMenu
 
-// MARK: - currentPage이동
+// MARK: - 이동하기 버튼 클릭시 currentPage로 이동
 extension ProjectContentViewController: MoveListDelegate {
     func moveListDelegate(index: IndexPath) {
         
@@ -19,15 +18,6 @@ extension ProjectContentViewController: MoveListDelegate {
             self.cardTableView.reloadData()
         }
     }
-}
-
-// MARK: - 리스트 삭제
-extension ProjectContentViewController: DeleteListDelegate {
-    
-    func deleteListDelegate(index: IndexPath) {
-        
-    }
-
 }
 
 // MARK: - projectContentVC에서 dropdown으로 카드 이동
@@ -85,11 +75,11 @@ extension ProjectContentViewController: MoveContentDelegate {
 }
 
 
-// detailContentView에서 보낸 값을 db에 저장하고 테이블 reload
+// MARK: - detailContentView에서 보낸 값을 db에 저장하고 테이블 reload
 extension ProjectContentViewController: SendContentDelegate {
     func sendContent(_ name: String, _ index: Int, _ color: String, _ startTime: String, _ endTime: String) {
         
-        // realtime DB작성
+        // DB작성
         self.projectContent[self.currentPage].detailContent[index].cardName = name
         self.projectContent[self.currentPage].detailContent[index].startTime = startTime
         self.projectContent[self.currentPage].detailContent[index].endTime = endTime
@@ -97,14 +87,10 @@ extension ProjectContentViewController: SendContentDelegate {
         
         self.cardTableView.reloadRows(at: [[index,0]], with: .automatic) // 선택된 cell 갱신
         self.ref.child("\(email)/\(id)/content/\(currentPage)/\(currentTitle)/\(index)").updateChildValues(["cardName": name, "color": color, "startTime": startTime, "endTime": endTime])
-        
-        // firestore DB작성
-        
-        
     }
 }
 
-// card 지우기
+// MARK: - detailContentView에서 삭제버튼 누르면 card 지우기
 extension ProjectContentViewController: DeleteCellDelegate {
     func sendCellIndex(_ index: IndexPath) {
         self.deleteCell(index.section)
@@ -115,17 +101,7 @@ extension ProjectContentViewController: DeleteCellDelegate {
     }
 }
 
-//extension ProjectContentViewController: SendPageDelegate {
-//    func sendPage(_ index: IndexPath) {
-//        self.currentPage = index.section
-//        
-//        DispatchQueue.main.async {
-//            self.changeListName()
-//            self.cardTableView.reloadData()
-//        }
-//    }
-//}
-
+// MARK: - cell 메뉴 클릭시(dropdown) 토스트 메시지
 extension ProjectContentViewController: MakeToastMessage {
     
     func makeToastMessage() {
@@ -133,21 +109,8 @@ extension ProjectContentViewController: MakeToastMessage {
     }
 }
 
-
-extension ProjectContentViewController: SideMenuNavigationControllerDelegate {
-
-    func sideMenuWillAppear(menu: SideMenuNavigationController, animated: Bool) {
-        print("willAppear")
-    }
-
-    func sideMenuDidAppear(menu: SideMenuNavigationController, animated: Bool) {
-
-    }
-
-    func sideMenuWillDisappear(menu: SideMenuNavigationController, animated: Bool) {
-    }
-
-    func sideMenuDidDisappear(menu: SideMenuNavigationController, animated: Bool) {
-
+extension ProjectContentViewController: ChangeCurrentPageDelegate {
+    func changeCurrentPage(currentPage: Int) {
+        self.currentPage = currentPage
     }
 }
