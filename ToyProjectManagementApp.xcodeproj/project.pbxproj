@@ -22,6 +22,7 @@
 		9338C7682902EA92005F6C3B /* ChangeListTitlePopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9338C7672902EA92005F6C3B /* ChangeListTitlePopupViewController.swift */; };
 		9338C76C2907F4D8005F6C3B /* DeleteListPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9338C76B2907F4D8005F6C3B /* DeleteListPopup.xib */; };
 		9338C76E2907F506005F6C3B /* DeleteListPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9338C76D2907F506005F6C3B /* DeleteListPopupViewController.swift */; };
+		9338C770290817C7005F6C3B /* ProjectDetailContent.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9338C76F290817C7005F6C3B /* ProjectDetailContent.storyboard */; };
 		933BAEDA28E5A49A003DDFCF /* ReallyCheckPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933BAED928E5A49A003DDFCF /* ReallyCheckPopupViewController.swift */; };
 		933BAEDE28E5AD04003DDFCF /* ReallyCheckPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 933BAEDD28E5AD04003DDFCF /* ReallyCheckPopup.xib */; };
 		933BAEE028E6EFFE003DDFCF /* CreateProjectPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 933BAEDF28E6EFFE003DDFCF /* CreateProjectPopup.xib */; };
@@ -105,6 +106,7 @@
 		9338C7672902EA92005F6C3B /* ChangeListTitlePopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeListTitlePopupViewController.swift; sourceTree = "<group>"; };
 		9338C76B2907F4D8005F6C3B /* DeleteListPopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeleteListPopup.xib; sourceTree = "<group>"; };
 		9338C76D2907F506005F6C3B /* DeleteListPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteListPopupViewController.swift; sourceTree = "<group>"; };
+		9338C76F290817C7005F6C3B /* ProjectDetailContent.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProjectDetailContent.storyboard; sourceTree = "<group>"; };
 		933BAED928E5A49A003DDFCF /* ReallyCheckPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReallyCheckPopupViewController.swift; sourceTree = "<group>"; };
 		933BAEDD28E5AD04003DDFCF /* ReallyCheckPopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReallyCheckPopup.xib; sourceTree = "<group>"; };
 		933BAEDF28E6EFFE003DDFCF /* CreateProjectPopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateProjectPopup.xib; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 				937CC55828002F1400F18553 /* Main.storyboard */,
 				93E18D2A28F4298E003AE3C5 /* ProjectContent.storyboard */,
 				936F8E922897AF0700897316 /* ProjectContentSideMenu.storyboard */,
+				9338C76F290817C7005F6C3B /* ProjectDetailContent.storyboard */,
 				93DEFA9327FAFF1700827C79 /* LaunchScreen.storyboard */,
 				93C1C5DB289A8F1B00B4D5EE /* SecondTabbar.storyboard */,
 				9342D1C628E4662000FD3EED /* ProjectInfo.storyboard */,
@@ -527,6 +530,7 @@
 				9340E47C2852050700338790 /* NanumGothic.otf in Resources */,
 				93E18D2B28F4298E003AE3C5 /* ProjectContent.storyboard in Resources */,
 				936F8E932897AF0700897316 /* ProjectContentSideMenu.storyboard in Resources */,
+				9338C770290817C7005F6C3B /* ProjectDetailContent.storyboard in Resources */,
 				937CC55928002F1400F18553 /* Main.storyboard in Resources */,
 				93F9836528F7E69400033A46 /* AddCardListPopup.xib in Resources */,
 				932B5EF428D4B255004CD1E8 /* godoRoundedL.ttf in Resources */,

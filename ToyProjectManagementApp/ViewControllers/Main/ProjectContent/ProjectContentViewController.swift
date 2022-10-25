@@ -356,7 +356,9 @@ extension ProjectContentViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let detailContentViewController = self.storyboard?.instantiateViewController(withIdentifier: "DetailContentViewController") as? DetailContentViewController else { return }
+        
+        let storyboard = UIStoryboard(name: "ProjectDetailContent", bundle: Bundle.main)
+        guard let detailContentViewController = storyboard.instantiateViewController(withIdentifier: "DetailContentViewController") as? DetailContentViewController else { return }
         
         detailContentViewController.sendCellIndexDelegate = self
         detailContentViewController.sendContentDelegate = self
