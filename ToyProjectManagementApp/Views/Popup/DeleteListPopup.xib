@@ -11,6 +11,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DeleteListPopupViewController" customModule="ToyProjectManagementApp" customModuleProvider="target">
             <connections>
+                <outlet property="cancelButton" destination="zQq-Hf-R07" id="W84-OV-gzT"/>
+                <outlet property="listDeleteButton" destination="EQj-fj-q8F" id="335-c2-GaZ"/>
+                <outlet property="popupView" destination="UqZ-Vh-VxG" id="fXr-Rh-bix"/>
                 <outlet property="view" destination="7ZH-ev-Vlu" id="63q-9F-go2"/>
             </connections>
         </placeholder>

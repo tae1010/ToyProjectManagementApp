@@ -323,9 +323,9 @@ extension ProjectContentViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = cardTableView.dequeueReusableCell(withIdentifier: "ProjectCardCell", for: indexPath) as! ProjectContentTableViewCell
         
-        let startTime = self.projectContent[self.currentPage].detailContent[indexPath.section].startTime ?? "        "
+        let startTime = self.projectContent[self.currentPage].detailContent[indexPath.section].startTime ?? ""
         
-        let endTime = self.projectContent[self.currentPage].detailContent[indexPath.section].endTime ?? "        "
+        let endTime = self.projectContent[self.currentPage].detailContent[indexPath.section].endTime ?? ""
         
         
         let cardColor: UIColor = {

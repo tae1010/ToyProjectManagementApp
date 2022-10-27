@@ -63,7 +63,7 @@ class AddCardListPopupViewController: UIViewController {
 
 }
 
-
+// MARK: - configure
 extension AddCardListPopupViewController {
     
     private func configurePopupView() {

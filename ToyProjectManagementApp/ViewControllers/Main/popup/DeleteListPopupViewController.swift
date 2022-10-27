@@ -14,12 +14,18 @@ protocol DeleteListDelegate: AnyObject {
 
 class DeleteListPopupViewController: UIViewController {
     
+    @IBOutlet weak var popupView: UIView!
+    @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var listDeleteButton: UIButton!
+    
+    
     weak var deleteListDelegate: DeleteListDelegate?
     
     var index: IndexPath?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.configure()
     }
     
     @IBAction func tapDeleteListButton(_ sender: UIButton) {
@@ -33,4 +39,26 @@ class DeleteListPopupViewController: UIViewController {
         self.dismiss(animated: true)
     }
     
+}
+
+// MARK: - configure
+extension DeleteListPopupViewController {
+    
+    private func configure() {
+        self.configurePopupView()
+        self.configureAddCardButton()
+        self.configureAddListButton()
+    }
+    
+    private func configurePopupView() {
+        self.popupView.layer.cornerRadius = 8
+    }
+    
+    private func configureAddCardButton() {
+        self.cancelButton.titleLabel?.font = UIFont(name: "NanumGothicOTF", size: 14)
+    }
+    
+    private func configureAddListButton() {
+        self.listDeleteButton.titleLabel?.font = UIFont(name: "NanumGothicOTF", size: 14)
+    }
 }

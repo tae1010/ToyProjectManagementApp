@@ -14,7 +14,7 @@ protocol DeleteCellDelegate: AnyObject {
     func sendCellIndex(_ index: IndexPath)
 }
 
-//변경된 카드 내용 전달 delegate
+// 변경된 카드 내용 전달 delegate
 protocol SendContentDelegate: AnyObject{
     func sendContent(_ name: String, _ index: Int, _ color: String, _ startTime: String, _ endTime: String)
 }
@@ -51,9 +51,6 @@ class DetailContentViewController: UIViewController {
     lazy var originConstraints = [
         dateStackView.topAnchor.constraint(equalTo: cardColorStackView.bottomAnchor, constant: 24),
     ]
-    lazy var updatedConstraints = [
-        dateStackView.topAnchor.constraint(equalTo: cardColorDetailStackView.bottomAnchor, constant: 24),
-    ]
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var detailView: UIView!
@@ -64,25 +61,11 @@ class DetailContentViewController: UIViewController {
     
     @IBOutlet weak var showDetailColorButton: UIButton!
     @IBOutlet weak var blueButton: UIButton!
-    @IBOutlet weak var greenButton: UIButton!
-    @IBOutlet weak var orangeButton: UIButton!
-    @IBOutlet weak var purpleButton: UIButton!
-    @IBOutlet weak var yellowButton: UIButton!
+//    @IBOutlet weak var greenButton: UIButton!
+//    @IBOutlet weak var orangeButton: UIButton!
+//    @IBOutlet weak var purpleButton: UIButton!
+//    @IBOutlet weak var yellowButton: UIButton!
     
-    @IBOutlet weak var cardColorDetailStackView: UIStackView!
-    //detail Color Iamage
-    @IBOutlet weak var detailBlueImage: UIButton!
-    @IBOutlet weak var detailGreenImage: UIButton!
-    @IBOutlet weak var detailOrangeImage: UIButton!
-    @IBOutlet weak var detailPurpleImage: UIButton!
-    @IBOutlet weak var detailYellowImage: UIButton!
-    
-    //detail color TextField
-    @IBOutlet weak var detailBlueTextField: UITextField!
-    @IBOutlet weak var detailGreenTextField: UITextField!
-    @IBOutlet weak var detailOrangeTextField: UITextField!
-    @IBOutlet weak var detailPurpleTextField: UITextField!
-    @IBOutlet weak var detailYellowTextField: UITextField!
     
     @IBOutlet weak var dateStackView: UIStackView!
     @IBOutlet weak var startLabel: UILabel! // 달력에서 선택된 시작시간
@@ -94,7 +77,6 @@ class DetailContentViewController: UIViewController {
     @IBOutlet weak var endTimeStackView: UIStackView!
     
     @IBOutlet weak var buttonStackView: UIStackView!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -109,6 +91,7 @@ class DetailContentViewController: UIViewController {
         self.endTimeStackView.addGestureRecognizer(tabEndTimeLabel)
 
     }
+    
     //시작시간 stackview클릭시 발생
     @objc func tabStartLabelSelector(sender: UITapGestureRecognizer) {
         
@@ -142,7 +125,6 @@ class DetailContentViewController: UIViewController {
                 self.scrollView.contentSize.height = 800
                 self.detailView.frame.size.height = 800
                 self.showDetailColorButton.setImage(UIImage(systemName: "plus"), for: .normal)
-                self.cardColorDetailStackView.alpha = 0
 
                 self.dateStackView.transform = CGAffineTransform(translationX: 0, y: -200)
                 self.startTimeStackView.transform = CGAffineTransform(translationX: 0, y: -200)
@@ -155,7 +137,6 @@ class DetailContentViewController: UIViewController {
                 self.scrollView.contentSize.height = 1000
                 self.detailView.frame.size.height = 1000
                 self.showDetailColorButton.setImage(UIImage(systemName: "minus"), for: .normal)
-                self.cardColorDetailStackView.alpha = 1
 
                 self.dateStackView.transform = CGAffineTransform(translationX: 0, y: 0)
                 self.startTimeStackView.transform = CGAffineTransform(translationX: 0, y: 0)
@@ -169,55 +150,35 @@ class DetailContentViewController: UIViewController {
     }
     
     
-    //카드 색 설정
-    @IBAction func tabCardColorButton(_ sender: UIButton) {
-        if sender == self.blueButton {
-            self.cardColor = "blue"
-            changeCardColor(color: "blue")
-        } else if sender == self.greenButton {
-            self.cardColor = "green"
-            changeCardColor(color: "green")
-        } else if sender == self.orangeButton {
-            self.cardColor = "orange"
-            changeCardColor(color: "orange")
-        } else if sender == self.purpleButton {
-            self.cardColor = "purple"
-            changeCardColor(color: "purple")
-        } else {
-            self.cardColor = "yellow"
-            changeCardColor(color: "yellow")
-        }
-    }
+//    //카드 색 설정
+//    @IBAction func tabCardColorButton(_ sender: UIButton) {
+//        if sender == self.blueButton {
+//            self.cardColor = "blue"
+//            changeCardColor(color: "blue")
+//        } else if sender == self.greenButton {
+//            self.cardColor = "green"
+//            changeCardColor(color: "green")
+//        } else if sender == self.orangeButton {
+//            self.cardColor = "orange"
+//            changeCardColor(color: "orange")
+//        } else if sender == self.purpleButton {
+//            self.cardColor = "purple"
+//            changeCardColor(color: "purple")
+//        } else {
+//            self.cardColor = "yellow"
+//            changeCardColor(color: "yellow")
+//        }
+//    }
     
     //카드 색 alpha값 조정
     private func changeCardColor(color: String){
         self.blueButton.alpha = color == "blue" ? 1 : 0.2
-        self.greenButton.alpha = color == "green" ? 1 : 0.2
-        self.orangeButton.alpha = color == "orange" ? 1 : 0.2
-        self.purpleButton.alpha = color == "purple" ? 1 : 0.2
-        self.yellowButton.alpha = color == "yellow" ? 1 : 0.2
+//        self.greenButton.alpha = color == "green" ? 1 : 0.2
+//        self.orangeButton.alpha = color == "orange" ? 1 : 0.2
+//        self.purpleButton.alpha = color == "purple" ? 1 : 0.2
+//        self.yellowButton.alpha = color == "yellow" ? 1 : 0.2
     }
-    
-    //detailColorContent 변경하기
-    @IBAction func changeDetailColorContent(_ sender: UIButton) {
-        
-        let userDefaults = UserDefaults.standard
-        let encoder = JSONEncoder()
-        
-        let blueContent = self.detailBlueTextField.text ?? ""
-        let greenContent = self.detailGreenTextField.text ?? ""
-        let orangeContent = self.detailOrangeTextField.text ?? ""
-        let purpleContent = self.detailPurpleTextField.text ?? ""
-        let yellowContent = self.detailYellowTextField.text ?? ""
-        
-        let colorContent = DetailColorContent(blueContent: blueContent, greenContent: greenContent, orangeContent: orangeContent, purpleContent: purpleContent, yellowContent: yellowContent)
-        
-        let colorContentEncoder = try? encoder.encode(colorContent)
-        
-        userDefaults.set(colorContentEncoder, forKey: "detailColorContent")
-        print("변경되었다")
-    }
-    
+
     //userDefault 불러오기
     func loadUserDefault() {
         let userDefaults = UserDefaults.standard
@@ -225,12 +186,7 @@ class DetailContentViewController: UIViewController {
         guard let data = userDefaults.object(forKey: "detailColorContent") else { return }
         
         let colorContentDecoder = try? decoder.decode(DetailColorContent.self, from: data as! Data)
-        
-        self.detailBlueTextField.text =  colorContentDecoder?.blueContent
-        self.detailGreenTextField.text = colorContentDecoder?.greenContent
-        self.detailOrangeTextField.text = colorContentDecoder?.orangeContent
-        self.detailPurpleTextField.text = colorContentDecoder?.purpleContent
-        self.detailYellowTextField.text = colorContentDecoder?.yellowContent
+    
     }
     
     //날짜 정하기 설정
@@ -259,18 +215,10 @@ class DetailContentViewController: UIViewController {
             self.contentTextView.text = self.projectDetailContent.cardName
             self.startTimeLabel.text = self.projectDetailContent.startTime
             self.endTimeLabel.text = self.projectDetailContent.endTime
-            self.contentTextView.translatesAutoresizingMaskIntoConstraints = false //
+            self.contentTextView.translatesAutoresizingMaskIntoConstraints = false
             
-            self.scrollView.contentSize.height = 800
-            self.detailView.bounds.size.height = 800
-            
-            self.detailBlueImage.layer.cornerRadius = 10
-            self.detailGreenImage.layer.cornerRadius = 10
-            self.detailOrangeImage.layer.cornerRadius = 10
-            self.detailPurpleImage.layer.cornerRadius = 10
-            self.detailYellowImage.layer.cornerRadius = 10
-            
-            self.cardColorDetailStackView.alpha = 0
+//            self.scrollView.contentSize.height = 800
+//            self.detailView.bounds.size.height = 800
             
             self.dateStackView.transform = CGAffineTransform(translationX: 0, y: -200)
             self.startTimeStackView.transform = CGAffineTransform(translationX: 0, y: -200)
