@@ -45,29 +45,25 @@ class DetailContentViewController: UIViewController {
     var showColorDetailViewMode: ShowColorDetailViewMode = .notShow // 처음에 color detail label 스택뷰는 안보이기
     var startTime: String = ""
     var endTime: String = ""
+    
     weak var sendContentDelegate: SendContentDelegate?
     weak var sendCellIndexDelegate: DeleteCellDelegate?
     
-    lazy var originConstraints = [
-        dateStackView.topAnchor.constraint(equalTo: cardColorStackView.bottomAnchor, constant: 24),
-    ]
-    
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var detailView: UIView!
-    
+    @IBOutlet weak var cardTitleLabel: UILabel!
     @IBOutlet weak var contentTextView: UITextView!
     
-    @IBOutlet weak var cardColorStackView: UIStackView!
-    
+    @IBOutlet weak var cardColorLabel: UILabel!
     @IBOutlet weak var showDetailColorButton: UIButton!
-    @IBOutlet weak var blueButton: UIButton!
-//    @IBOutlet weak var greenButton: UIButton!
-//    @IBOutlet weak var orangeButton: UIButton!
-//    @IBOutlet weak var purpleButton: UIButton!
-//    @IBOutlet weak var yellowButton: UIButton!
     
+    @IBOutlet weak var cardColorView: UIView!
+    @IBOutlet weak var cardColorContentLabel: UILabel!
     
+    @IBOutlet weak var detailColorView: DetailColorView!
+    
+    @IBOutlet weak var chooseDateLabel: UILabel!
+    @IBOutlet weak var dateStackViewTopAnchor: NSLayoutConstraint!
     @IBOutlet weak var dateStackView: UIStackView!
+    
     @IBOutlet weak var startLabel: UILabel! // 달력에서 선택된 시작시간
     @IBOutlet weak var endLabel: UILabel! // 달력에서 선택된 종료시간
     @IBOutlet weak var startTimeLabel: UILabel! // 시작시간 Label
@@ -76,13 +72,16 @@ class DetailContentViewController: UIViewController {
     @IBOutlet weak var startTimeStackView: UIStackView!
     @IBOutlet weak var endTimeStackView: UIStackView!
     
-    @IBOutlet weak var buttonStackView: UIStackView!
+    @IBOutlet weak var cardFixButton: UIButton!
+    @IBOutlet weak var cardDeleteButton: UIButton!
+    @IBOutlet weak var cardCancelButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.configure()
         guard let color = self.projectDetailContent.color else { return }
         self.changeCardColor(color: color)
-        self.configureView()
+//        self.configureView()
         self.loadUserDefault()
         
         let tabStartTimeLabel = UITapGestureRecognizer(target: self, action: #selector(tabStartLabelSelector))
@@ -92,61 +91,41 @@ class DetailContentViewController: UIViewController {
 
     }
     
-    //시작시간 stackview클릭시 발생
-    @objc func tabStartLabelSelector(sender: UITapGestureRecognizer) {
-        
-        self.timeSelectMode = .startTime
-        DispatchQueue.main.async {
-            self.startLabel.font = UIFont.boldSystemFont(ofSize: 18)
-            self.endLabel.font = UIFont.systemFont(ofSize: 17)
-//            self.endTimeLabel.backgroundColor = .white
-//            self.startTimeLabel.backgroundColor = .gray
-        }
-    }
-    
-    //종료시간 stackview클릭시 발생
-    @objc func tabEndLabelSelector(sender: UITapGestureRecognizer) {
-        
-        self.timeSelectMode = .endTime
-        DispatchQueue.main.async {
-            self.endLabel.font = UIFont.boldSystemFont(ofSize: 18)
-            self.startLabel.font = UIFont.systemFont(ofSize: 17)
-//            self.endTimeLabel.backgroundColor = .gray
-//            self.startTimeLabel.backgroundColor = .white
-        }
-    }
+
     
     @IBAction func showDetailColorStackView(_ sender: UIButton) {
         print("버튼이 클릭되었습니다.")
-        UIView.animate(withDuration: 0.5, animations: {
+        
+        switch self.showColorDetailViewMode {
+        case .show:
+    
+            self.dateStackViewTopAnchor.constant = 388
             
-            switch self.showColorDetailViewMode {
-            case .show:
-                self.scrollView.contentSize.height = 800
-                self.detailView.frame.size.height = 800
-                self.showDetailColorButton.setImage(UIImage(systemName: "plus"), for: .normal)
+            UIView.animate(withDuration: 0.5, animations: {
+                self.detailColorView.alpha = 1
+                self.view.layoutIfNeeded()
+            })
+            
+            self.showDetailColorButton.setImage(UIImage(systemName: "plus"), for: .normal)
+            self.showColorDetailViewMode = .notShow
+            
+        case .notShow:
+            
+            
+            self.dateStackViewTopAnchor.constant = 24
+            
+            
+            UIView.animate(withDuration: 0.5, animations: {
+                self.detailColorView.alpha = 0
+                self.view.layoutIfNeeded()
+            })
+            
+            self.showDetailColorButton.setImage(UIImage(systemName: "minus"), for: .normal)
+            self.showColorDetailViewMode = .show
+        }
+        
+        
 
-                self.dateStackView.transform = CGAffineTransform(translationX: 0, y: -200)
-                self.startTimeStackView.transform = CGAffineTransform(translationX: 0, y: -200)
-                self.endTimeStackView.transform = CGAffineTransform(translationX: 0, y: -200)
-                self.buttonStackView.transform = CGAffineTransform(translationX: 0, y: -200)
-
-                self.showColorDetailViewMode = .notShow
-                
-            case .notShow:
-                self.scrollView.contentSize.height = 1000
-                self.detailView.frame.size.height = 1000
-                self.showDetailColorButton.setImage(UIImage(systemName: "minus"), for: .normal)
-
-                self.dateStackView.transform = CGAffineTransform(translationX: 0, y: 0)
-                self.startTimeStackView.transform = CGAffineTransform(translationX: 0, y: 0)
-                self.endTimeStackView.transform = CGAffineTransform(translationX: 0, y: 0)
-                self.buttonStackView.transform = CGAffineTransform(translationX: 0, y: 0)
-                
-                self.showColorDetailViewMode = .show
-                
-            }
-        })
     }
     
     
@@ -172,11 +151,7 @@ class DetailContentViewController: UIViewController {
     
     //카드 색 alpha값 조정
     private func changeCardColor(color: String){
-        self.blueButton.alpha = color == "blue" ? 1 : 0.2
-//        self.greenButton.alpha = color == "green" ? 1 : 0.2
-//        self.orangeButton.alpha = color == "orange" ? 1 : 0.2
-//        self.purpleButton.alpha = color == "purple" ? 1 : 0.2
-//        self.yellowButton.alpha = color == "yellow" ? 1 : 0.2
+//        self.blueButton.alpha = color == "blue" ? 1 : 0.2
     }
 
     //userDefault 불러오기
@@ -203,29 +178,7 @@ class DetailContentViewController: UIViewController {
         }
     }
 
-    // 화면 구성
-    func configureView() {
-        
-        if let color = self.projectDetailContent.color {
-            self.cardColor = color
-        }
-        
-        DispatchQueue.main.async {
-            
-            self.contentTextView.text = self.projectDetailContent.cardName
-            self.startTimeLabel.text = self.projectDetailContent.startTime
-            self.endTimeLabel.text = self.projectDetailContent.endTime
-            self.contentTextView.translatesAutoresizingMaskIntoConstraints = false
-            
-//            self.scrollView.contentSize.height = 800
-//            self.detailView.bounds.size.height = 800
-            
-            self.dateStackView.transform = CGAffineTransform(translationX: 0, y: -200)
-            self.startTimeStackView.transform = CGAffineTransform(translationX: 0, y: -200)
-            self.endTimeStackView.transform = CGAffineTransform(translationX: 0, y: -200)
-            self.buttonStackView.transform = CGAffineTransform(translationX: 0, y: -200)
-        }
-    }
+    
     
     // cell 안에 내용 수정
     @IBAction func fixButton(_ sender: UIButton) {
@@ -243,4 +196,108 @@ class DetailContentViewController: UIViewController {
         self.dismiss(animated: true)
     }
     
+}
+
+// MARK: - configure
+extension DetailContentViewController {
+    
+
+//@IBOutlet weak var cardColorView: UIView!
+//@IBOutlet weak var cardColorContentLabel: UILabel!
+//@IBOutlet weak var detailColorView: DetailColorView!
+
+//@IBOutlet weak var chooseDateLabel: UILabel!
+//@IBOutlet weak var dateStackViewTopAnchor: NSLayoutConstraint!
+//@IBOutlet weak var dateStackView: UIStackView!
+//
+//@IBOutlet weak var startLabel: UILabel! // 달력에서 선택된 시작시간
+//@IBOutlet weak var endLabel: UILabel! // 달력에서 선택된 종료시간
+//@IBOutlet weak var startTimeLabel: UILabel! // 시작시간 Label
+//@IBOutlet weak var endTimeLabel: UILabel! // 종료시간 Label
+//
+//@IBOutlet weak var startTimeStackView: UIStackView!
+//@IBOutlet weak var endTimeStackView: UIStackView!
+//
+//@IBOutlet weak var cardFixButton: UIButton!
+//@IBOutlet weak var cardDeleteButton: UIButton!
+//@IBOutlet weak var cardCancelButton: UIButton!
+    
+    private func configure() {
+        self.configureView()
+        self.configureCardColor()
+        self.configureCardTitle()
+        self.configureChooseDate()
+        self.configureDate()
+        self.configureButton()
+    }
+    
+    // 화면 구성
+    func configureView() {
+        
+        if let color = self.projectDetailContent.color {
+            self.cardColor = color
+        }
+
+        self.contentTextView.text = self.projectDetailContent.cardName
+        self.startTimeLabel.text = self.projectDetailContent.startTime
+        self.endTimeLabel.text = self.projectDetailContent.endTime
+    }
+    
+    private func configureCardTitle() {
+        self.cardTitleLabel.font = UIFont(name: "NanumGothicOTFExtraBold", size: 16)
+        self.contentTextView.font = UIFont(name: "NanumGothicOTFBold", size: 14)
+    }
+    
+    private func configureCardColor() {
+        self.cardColorLabel.font = UIFont(name: "NanumGothicOTFExtraBold", size: 16)
+        
+    }
+    
+    private func configureChooseDate() {
+        self.chooseDateLabel.font = UIFont(name: "NanumGothicOTFExtraBold", size: 16)
+    }
+    
+    private func configureDate() {
+        self.startLabel.font = UIFont(name: "NanumGothicOTFExtraBold", size: 16)
+        self.endLabel.font = UIFont(name: "NanumGothicOTFExtraBold", size: 16)
+        
+        self.startTimeLabel.font = UIFont(name: "NanumGothicOTF", size: 14)
+        self.endTimeLabel.font = UIFont(name: "NanumGothicOTF", size: 14)
+    }
+    
+    private func configureButton() {
+        self.cardFixButton.titleLabel?.font = UIFont(name: "NanumGothicOTF", size: 14)
+        self.cardDeleteButton.titleLabel?.font = UIFont(name: "NanumGothicOTF", size: 14)
+        self.cardCancelButton.titleLabel?.font = UIFont(name: "NanumGothicOTF", size: 14)
+    }
+    
+}
+
+
+// MARK: - selector
+extension DetailContentViewController {
+    
+    //시작시간 stackview클릭시 발생
+    @objc func tabStartLabelSelector(sender: UITapGestureRecognizer) {
+        
+        self.timeSelectMode = .startTime
+        DispatchQueue.main.async {
+            self.startLabel.font = UIFont.boldSystemFont(ofSize: 18)
+            self.endLabel.font = UIFont.systemFont(ofSize: 17)
+//            self.endTimeLabel.backgroundColor = .white
+//            self.startTimeLabel.backgroundColor = .gray
+        }
+    }
+    
+    //종료시간 stackview클릭시 발생
+    @objc func tabEndLabelSelector(sender: UITapGestureRecognizer) {
+        
+        self.timeSelectMode = .endTime
+        DispatchQueue.main.async {
+            self.endLabel.font = UIFont.boldSystemFont(ofSize: 18)
+            self.startLabel.font = UIFont.systemFont(ofSize: 17)
+//            self.endTimeLabel.backgroundColor = .gray
+//            self.startTimeLabel.backgroundColor = .white
+        }
+    }
 }

@@ -11,10 +11,10 @@ import UIKit
 class ColorView: UIView {
     
     let radius = 8.0
-
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        self.layer.cornerRadius = radius
     }
     
 }

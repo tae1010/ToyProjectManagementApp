@@ -13,4 +13,5 @@ class DetailColorView: UIView {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
+    
 }

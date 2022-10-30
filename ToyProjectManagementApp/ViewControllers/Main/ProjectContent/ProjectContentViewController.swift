@@ -111,6 +111,7 @@ class ProjectContentViewController: UIViewController {
     
     /// contentTitltLabel 클릭시 일어날 이벤트 작성
     @objc func tabContentTitleLabel(sender: UITapGestureRecognizer) {
+        self.view.hideAllToasts()
         self.view.makeToast("\(currentTitle)")
     }
     
@@ -262,6 +263,7 @@ extension ProjectContentViewController {
         self.currentTitle = self.projectContent[currentPage].listTitle
         self.contentTitleLabel.text = currentTitle
         self.listTitleLabel.text = currentTitle
+        self.view.hideAllToasts()
         self.view.makeToast("\(currentPage + 1) 페이지", duration: 0.5)
     }
     

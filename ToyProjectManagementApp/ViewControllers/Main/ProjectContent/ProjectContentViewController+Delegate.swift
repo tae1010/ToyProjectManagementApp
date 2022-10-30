@@ -24,8 +24,18 @@ extension ProjectContentViewController: MoveListDelegate {
 extension ProjectContentViewController: MoveContentDelegate {
     // cell : cell more button / listIndex: 선택된 dropdown
     func moveContentTapButton(cell: UITableViewCell, listIndex: Int) {
+        
+        // 카드를 같은 리스트로 옮기려 할때
         if currentPage == listIndex {
-            self.view.makeToast("카드는 이미 리스트안에 있습니다",duration: 1.5)
+            self.view.hideAllToasts()
+            self.view.makeToast("카드는 이미 리스트안에 있습니다",duration: 0.5)
+            return
+        }
+        
+        // 리스트 안에 카드가 한개 밖에 없을 때
+        if self.projectContent[currentPage].detailContent.count == 1  {
+            self.view.hideAllToasts()
+            self.view.makeToast("리스트 안에 카드가 1개 이상 있어야 합니다.", duration: 0.5)
             return
         }
         
@@ -69,7 +79,8 @@ extension ProjectContentViewController: MoveContentDelegate {
             self.ref.child("\(email)/\(id)/content/\(currentPage)/\(currentTitle)/\(count)").setValue(["cardName": cardName, "color": color, "startTime": startTime, "endTime": endTime])
             count += 1
         }
-        self.view.makeToast("카드가 이동되었습니다", duration: 1.5)
+        self.view.hideAllToasts()
+        self.view.makeToast("카드가 이동되었습니다", duration: 0.5)
             
     }
 }
@@ -105,7 +116,8 @@ extension ProjectContentViewController: DeleteCellDelegate {
 extension ProjectContentViewController: MakeToastMessage {
     
     func makeToastMessage() {
-        self.view.makeToast("이동하고 싶은 리스트를 선택하세요")
+        self.view.hideAllToasts()
+        self.view.makeToast("이동하고 싶은 리스트를 선택하세요", duration: 1.0)
     }
 }
 
