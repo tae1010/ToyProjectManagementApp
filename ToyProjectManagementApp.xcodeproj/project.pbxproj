@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		7FDCAE61608D1978DB5621EE /* Pods_ToyProjectManagementApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D7C2F69DF86D86139AB458C /* Pods_ToyProjectManagementApp.framework */; };
+		9315079B290FC88C000DD700 /* DetailContentColorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9315079A290FC88C000DD700 /* DetailContentColorCell.swift */; };
+		9315079D290FC8D5000DD700 /* DetailContentColorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9315079C290FC8D5000DD700 /* DetailContentColorCell.xib */; };
 		931F9BB928A7D38B000AFA9E /* ScheduleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 931F9BB828A7D38B000AFA9E /* ScheduleCell.xib */; };
 		931F9BBB28A7D468000AFA9E /* ScheduleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931F9BBA28A7D468000AFA9E /* ScheduleCollectionViewCell.swift */; };
 		93285BEE2801887C00396083 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 93285BED2801887C00396083 /* GoogleService-Info.plist */; };
@@ -24,8 +26,6 @@
 		9338C76E2907F506005F6C3B /* DeleteListPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9338C76D2907F506005F6C3B /* DeleteListPopupViewController.swift */; };
 		9338C770290817C7005F6C3B /* ProjectDetailContent.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9338C76F290817C7005F6C3B /* ProjectDetailContent.storyboard */; };
 		9338C772290A85DC005F6C3B /* CardColorUIView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9338C771290A85DC005F6C3B /* CardColorUIView.xib */; };
-		9338C774290A8635005F6C3B /* ColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9338C773290A8635005F6C3B /* ColorView.swift */; };
-		9338C777290A89BB005F6C3B /* DetailColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9338C776290A89BB005F6C3B /* DetailColorView.swift */; };
 		9338C779290AA161005F6C3B /* ProjectCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9338C778290AA161005F6C3B /* ProjectCollectionReusableView.swift */; };
 		933BAEDA28E5A49A003DDFCF /* ReallyCheckPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933BAED928E5A49A003DDFCF /* ReallyCheckPopupViewController.swift */; };
 		933BAEDE28E5AD04003DDFCF /* ReallyCheckPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 933BAEDD28E5AD04003DDFCF /* ReallyCheckPopup.xib */; };
@@ -34,6 +34,10 @@
 		933BAEE628E81110003DDFCF /* ExtensionNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933BAEE528E81110003DDFCF /* ExtensionNotification.swift */; };
 		933BAEE828E8965A003DDFCF /* ChangeProjectPrograssViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933BAEE728E89659003DDFCF /* ChangeProjectPrograssViewController.swift */; };
 		933BAEEA28E896BD003DDFCF /* ChangeProjectPrograssPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 933BAEE928E896BC003DDFCF /* ChangeProjectPrograssPopup.xib */; };
+		933CD6CF2911051C00B5065B /* ProjectContentColor.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 933CD6CE2911051C00B5065B /* ProjectContentColor.storyboard */; };
+		933CD6D12911099200B5065B /* ProjectColorContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933CD6D02911099200B5065B /* ProjectColorContentViewController.swift */; };
+		933CD6D329110B9500B5065B /* ProjectColorContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933CD6D229110B9500B5065B /* ProjectColorContentCell.swift */; };
+		933CD6D52911312900B5065B /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933CD6D42911312900B5065B /* UserDefault.swift */; };
 		9340DE7E28D4D8EC00B1CEB2 /* GodoB.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9340DE7C28D4D8EB00B1CEB2 /* GodoB.otf */; };
 		9340DE7F28D4D8EC00B1CEB2 /* GodoM.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9340DE7D28D4D8EC00B1CEB2 /* GodoM.otf */; };
 		9340DE8528D4DEF700B1CEB2 /* LogoImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9340DE8428D4DEF700B1CEB2 /* LogoImageView.swift */; };
@@ -95,6 +99,8 @@
 		2D7C2F69DF86D86139AB458C /* Pods_ToyProjectManagementApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ToyProjectManagementApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9040AAC533458F82FCF3EC0A /* Pods-ToyProjectManagementApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToyProjectManagementApp.debug.xcconfig"; path = "Target Support Files/Pods-ToyProjectManagementApp/Pods-ToyProjectManagementApp.debug.xcconfig"; sourceTree = "<group>"; };
 		9303413228D47EE900722FF8 /* FirebaseFacebookAuthUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseFacebookAuthUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9315079A290FC88C000DD700 /* DetailContentColorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailContentColorCell.swift; sourceTree = "<group>"; };
+		9315079C290FC8D5000DD700 /* DetailContentColorCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailContentColorCell.xib; sourceTree = "<group>"; };
 		931F9BB828A7D38B000AFA9E /* ScheduleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScheduleCell.xib; sourceTree = "<group>"; };
 		931F9BBA28A7D468000AFA9E /* ScheduleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleCollectionViewCell.swift; sourceTree = "<group>"; };
 		93285BED2801887C00396083 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -111,8 +117,6 @@
 		9338C76D2907F506005F6C3B /* DeleteListPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteListPopupViewController.swift; sourceTree = "<group>"; };
 		9338C76F290817C7005F6C3B /* ProjectDetailContent.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProjectDetailContent.storyboard; sourceTree = "<group>"; };
 		9338C771290A85DC005F6C3B /* CardColorUIView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardColorUIView.xib; sourceTree = "<group>"; };
-		9338C773290A8635005F6C3B /* ColorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorView.swift; sourceTree = "<group>"; };
-		9338C776290A89BB005F6C3B /* DetailColorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailColorView.swift; sourceTree = "<group>"; };
 		9338C778290AA161005F6C3B /* ProjectCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCollectionReusableView.swift; sourceTree = "<group>"; };
 		933BAED928E5A49A003DDFCF /* ReallyCheckPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReallyCheckPopupViewController.swift; sourceTree = "<group>"; };
 		933BAEDD28E5AD04003DDFCF /* ReallyCheckPopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReallyCheckPopup.xib; sourceTree = "<group>"; };
@@ -121,6 +125,10 @@
 		933BAEE528E81110003DDFCF /* ExtensionNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionNotification.swift; sourceTree = "<group>"; };
 		933BAEE728E89659003DDFCF /* ChangeProjectPrograssViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeProjectPrograssViewController.swift; sourceTree = "<group>"; };
 		933BAEE928E896BC003DDFCF /* ChangeProjectPrograssPopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChangeProjectPrograssPopup.xib; sourceTree = "<group>"; };
+		933CD6CE2911051C00B5065B /* ProjectContentColor.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProjectContentColor.storyboard; sourceTree = "<group>"; };
+		933CD6D02911099200B5065B /* ProjectColorContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectColorContentViewController.swift; sourceTree = "<group>"; };
+		933CD6D229110B9500B5065B /* ProjectColorContentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectColorContentCell.swift; sourceTree = "<group>"; };
+		933CD6D42911312900B5065B /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
 		9340DE7C28D4D8EB00B1CEB2 /* GodoB.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GodoB.otf; sourceTree = "<group>"; };
 		9340DE7D28D4D8EC00B1CEB2 /* GodoM.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GodoM.otf; sourceTree = "<group>"; };
 		9340DE8428D4DEF700B1CEB2 /* LogoImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoImageView.swift; sourceTree = "<group>"; };
@@ -209,6 +217,7 @@
 			children = (
 				937CC55828002F1400F18553 /* Main.storyboard */,
 				93E18D2A28F4298E003AE3C5 /* ProjectContent.storyboard */,
+				933CD6CE2911051C00B5065B /* ProjectContentColor.storyboard */,
 				936F8E922897AF0700897316 /* ProjectContentSideMenu.storyboard */,
 				9338C76F290817C7005F6C3B /* ProjectDetailContent.storyboard */,
 				93DEFA9327FAFF1700827C79 /* LaunchScreen.storyboard */,
@@ -247,6 +256,15 @@
 				93DEFA9127FAFF1700827C79 /* Assets.xcassets */,
 			);
 			path = Assets;
+			sourceTree = "<group>";
+		};
+		9315079E291100F9000DD700 /* ProjectColorContent */ = {
+			isa = PBXGroup;
+			children = (
+				933CD6D02911099200B5065B /* ProjectColorContentViewController.swift */,
+				933CD6D229110B9500B5065B /* ProjectColorContentCell.swift */,
+			);
+			path = ProjectColorContent;
 			sourceTree = "<group>";
 		};
 		9338C76929041C24005F6C3B /* popup */ = {
@@ -314,6 +332,7 @@
 				935CBC872806AD7900759A24 /* ProjectCell.swift */,
 				93F8E4BF282BB8F400F888F0 /* ProjectContent */,
 				93B6FE3728F5566700181605 /* DetailProjectContent */,
+				9315079E291100F9000DD700 /* ProjectColorContent */,
 				9338C76A290421AB005F6C3B /* ProjectListManagement */,
 				9338C76929041C24005F6C3B /* popup */,
 			);
@@ -343,6 +362,7 @@
 		935CBC8C2806AE3B00759A24 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				933CD6D42911312900B5065B /* UserDefault.swift */,
 				935CBC8D2806AE5100759A24 /* Project.swift */,
 				93DA8F87282FC1A200217360 /* ProjectContent.swift */,
 				935145EE289D2057009B1DEF /* projectDate.swift */,
@@ -388,8 +408,7 @@
 			isa = PBXGroup;
 			children = (
 				9340E46A2851D29D00338790 /* DetailContentViewController.swift */,
-				9338C776290A89BB005F6C3B /* DetailColorView.swift */,
-				9338C773290A8635005F6C3B /* ColorView.swift */,
+				9315079A290FC88C000DD700 /* DetailContentColorCell.swift */,
 			);
 			path = DetailProjectContent;
 			sourceTree = "<group>";
@@ -401,6 +420,7 @@
 				936F8E982897BB8D00897316 /* ProjectContentSideBar.xib */,
 				931F9BB828A7D38B000AFA9E /* ScheduleCell.xib */,
 				93AFDA9F28B4D5FD009E815F /* ProjectIDCell.xib */,
+				9315079C290FC8D5000DD700 /* DetailContentColorCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -555,7 +575,9 @@
 				933BAEDE28E5AD04003DDFCF /* ReallyCheckPopup.xib in Resources */,
 				9333CC47285C6B6F005C0262 /* projectCollectionViewPopup.xib in Resources */,
 				9340E47B2852050700338790 /* NanumGothicExtraBold.otf in Resources */,
+				933CD6CF2911051C00B5065B /* ProjectContentColor.storyboard in Resources */,
 				931F9BB928A7D38B000AFA9E /* ScheduleCell.xib in Resources */,
+				9315079D290FC8D5000DD700 /* DetailContentColorCell.xib in Resources */,
 				9340DE7F28D4D8EC00B1CEB2 /* GodoM.otf in Resources */,
 				933BAEE028E6EFFE003DDFCF /* CreateProjectPopup.xib in Resources */,
 				9340E47E2852050700338790 /* NanumGothicLight.otf in Resources */,
@@ -639,7 +661,6 @@
 				933BAEE628E81110003DDFCF /* ExtensionNotification.swift in Sources */,
 				9338C76228FD52D0005F6C3B /* ExtensionUIView.swift in Sources */,
 				935CBC862806A1C300759A24 /* MainTabbarViewController.swift in Sources */,
-				9338C777290A89BB005F6C3B /* DetailColorView.swift in Sources */,
 				9338C76429014929005F6C3B /* ProjectContentViewController+Delegate.swift in Sources */,
 				93AFDA9E28B4CFCE009E815F /* ProjectIDPopupViewController.swift in Sources */,
 				933BAEDA28E5A49A003DDFCF /* ReallyCheckPopupViewController.swift in Sources */,
@@ -658,6 +679,7 @@
 				933BAEE828E8965A003DDFCF /* ChangeProjectPrograssViewController.swift in Sources */,
 				93DEFA8827FAFF1600827C79 /* SceneDelegate.swift in Sources */,
 				935145F328A1222F009B1DEF /* DateCollectionViewCell.swift in Sources */,
+				933CD6D52911312900B5065B /* UserDefault.swift in Sources */,
 				9380D24C27FF13D9000DC92E /* ThirdTabbarViewController.swift in Sources */,
 				9340DE8B28D6FB4A00B1CEB2 /* CustomTextField.swift in Sources */,
 				93F9836328F7E59B00033A46 /* AddListPopupViewController.swift in Sources */,
@@ -666,12 +688,14 @@
 				937CC55D2800377600F18553 /* SignUpViewController.swift in Sources */,
 				935145EF289D2057009B1DEF /* projectDate.swift in Sources */,
 				931F9BBB28A7D468000AFA9E /* ScheduleCollectionViewCell.swift in Sources */,
-				9338C774290A8635005F6C3B /* ColorView.swift in Sources */,
 				9380D24A27FF1196000DC92E /* SecondTabbarViewController.swift in Sources */,
 				9340DE8528D4DEF700B1CEB2 /* LogoImageView.swift in Sources */,
+				933CD6D329110B9500B5065B /* ProjectColorContentCell.swift in Sources */,
 				93DEFA9027FAFF1600827C79 /* CooperationApp.xcdatamodeld in Sources */,
 				9340E46B2851D29E00338790 /* DetailContentViewController.swift in Sources */,
+				933CD6D12911099200B5065B /* ProjectColorContentViewController.swift in Sources */,
 				9340DE8F28DC666A00B1CEB2 /* ExtensionViewControllerToastMessage.swift in Sources */,
+				9315079B290FC88C000DD700 /* DetailContentColorCell.swift in Sources */,
 				9338C7682902EA92005F6C3B /* ChangeListTitlePopupViewController.swift in Sources */,
 				93722CED28D31880007E1132 /* ExtensionUIColor.swift in Sources */,
 				93B6FE3628F54E2E00181605 /* ProjectContentCollectionViewCell.swift in Sources */,

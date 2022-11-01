@@ -30,6 +30,7 @@ class MainTabbarViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        hideKeyboardWhenTappedAround() // 화면 클릭시 키보드 내림
         NotificationCenter.default.addObserver(self, selector: #selector(deleteProjectNotification), name: .deleteProjectNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(changePrograssProjectNotification), name: .changePrograssProjectNotification, object: nil)
         self.email = self.emailToString(Auth.auth().currentUser?.email ?? "고객")
@@ -285,7 +286,6 @@ extension MainTabbarViewController: UICollectionViewDelegate {
         projectContentViewController.modalPresentationStyle = .fullScreen
         self.present(projectContentViewController, animated: false, completion: nil)
     }
-    
 }
 
 extension MainTabbarViewController: UICollectionViewDataSource {

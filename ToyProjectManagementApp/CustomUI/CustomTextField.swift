@@ -45,6 +45,7 @@ class CustomTextField: UITextField {
         // textfield leftview
         self.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: self.frame.height))
         self.leftViewMode = .always
+        self.autocorrectionType = .no
     }
 
 }

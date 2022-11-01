@@ -22,6 +22,7 @@ class ProjectStickyHeaderView: UIView {
     
     func configureView() {
         self.layer.cornerRadius = 20
+        self.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
     }
     
 }

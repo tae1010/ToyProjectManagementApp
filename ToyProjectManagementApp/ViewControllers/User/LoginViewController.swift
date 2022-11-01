@@ -29,6 +29,7 @@ class LoginViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        hideKeyboardWhenTappedAround() // 화면 클릭시 키보드 내림
     }
     
     override func viewDidLoad() {
@@ -75,29 +76,28 @@ extension LoginViewController {
         self.passwordTextField.isSecureTextEntry = true
     }
     
-    @objc func buttonAction(sender: UIButton!) {
-        
-        let rightButton = UIButton(frame: CGRect(x: 0, y: 0, width: 15, height: passwordTextField.frame.height))
-        print("icon 클릭 \(iconClick)")
-        
-        if iconClick {
-            rightButton.setImage(UIImage(systemName: "eye"), for: .normal)
-            self.passwordTextField.rightView = rightButton
-            passwordTextField.isSecureTextEntry = false
-        } else {
-            rightButton.setImage(UIImage(systemName: "eye.fill"), for: .normal)
-            self.passwordTextField.rightView = rightButton
-            passwordTextField.isSecureTextEntry = true
-        }
-        
-        iconClick.toggle()
-    }
+//    @objc func buttonAction(sender: UIButton!) {
+//
+//        let rightButton = UIButton(frame: CGRect(x: 0, y: 0, width: 15, height: passwordTextField.frame.height))
+//        print("icon 클릭 \(iconClick)")
+//
+//        if iconClick {
+//            rightButton.setImage(UIImage(systemName: "eye"), for: .normal)
+//            self.passwordTextField.rightView = rightButton
+//            passwordTextField.isSecureTextEntry = false
+//        } else {
+//            rightButton.setImage(UIImage(systemName: "eye.fill"), for: .normal)
+//            self.passwordTextField.rightView = rightButton
+//            passwordTextField.isSecureTextEntry = true
+//        }
+//
+//        iconClick.toggle()
+//    }
     
     private func configurelLoginButton() {
         self.loginButton.layer.cornerRadius = 8
         self.loginButton.titleLabel?.font = UIFont(name: "NanumGothicOTF", size: 15)
     }
-    
     
     private func configureForgotPassword() {
         self.forgotPasswordButton.titleLabel?.font = UIFont(name: "NanumGothicOTF", size: 13)

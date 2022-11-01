@@ -56,6 +56,7 @@ class ProjectContentViewController: UIViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        hideKeyboardWhenTappedAround() // 화면 클릭시 키보드 내림
         self.configureLabel()
         //collectionview cell 등록
         let tableViewNib = UINib(nibName: "ProjectCardCell", bundle: nil)
@@ -214,6 +215,20 @@ class ProjectContentViewController: UIViewController {
         present(projectSideBarViewController, animated: true, completion: nil)
 
     }
+    
+    @IBAction func tabProjectColorCotentButton(_ sender: UIButton) {
+        
+        // sideMenu storyboard
+        let projectColorContentStoryBoard = UIStoryboard(name: "ProjectContentColor", bundle: nil)
+
+        // sideMenu viewController
+        let projectColorContentViewController = projectColorContentStoryBoard.instantiateViewController(withIdentifier: "ProjectColorContentViewController") as! ProjectColorContentViewController
+        
+        projectColorContentViewController.modalPresentationStyle = .fullScreen
+        
+        present(projectColorContentViewController, animated: true, completion: nil)
+    }
+    
 }
 
 // 이메일을 string값으로 변환 시켜주는 메소드
@@ -329,17 +344,11 @@ extension ProjectContentViewController: UITableViewDataSource {
         
         let endTime = self.projectContent[self.currentPage].detailContent[indexPath.section].endTime ?? ""
         
+        let cardColor = self.projectContent[self.currentPage].detailContent[indexPath.section].color ?? ""
         
-        let cardColor: UIColor = {
-            switch projectContent[self.currentPage].detailContent[indexPath.section].color {
-            case "blue": return UIColor.blue
-            case "green": return UIColor.green
-            case "orange": return UIColor.orange
-            case "purple": return UIColor.purple
-            case "yellow": return UIColor.yellow
-            default: return UIColor.lightGray
-            }
-        }()
+        let color = Color(rawValue: cardColor)
+        let colorSelected = color?.create
+
         
         cell.moveContentDelegate = self
         cell.makeToastMessage = self
@@ -347,13 +356,19 @@ extension ProjectContentViewController: UITableViewDataSource {
         cell.projectListArray = projectContent
         
         cell.contentLabel.isHidden = false
-        cell.cardColor.layer.borderColor = cardColor == UIColor.lightGray ? UIColor.lightGray.cgColor : UIColor.clear.cgColor
-        cell.cardColor.layer.borderWidth = cardColor == UIColor.lightGray ? 2 : 0
         cell.contentLabel.text = self.projectContent[self.currentPage].detailContent[indexPath.section].cardName
-        cell.cardColor.backgroundColor = cardColor == UIColor.lightGray ? .white : cardColor
         
-        cell.timeLabel.text = "\(startTime) ~ \(endTime)"
+        cell.cardColor.layer.borderColor = cardColor == "" ? UIColor.lightGray.cgColor : UIColor.clear.cgColor
+        cell.cardColor.layer.borderWidth = cardColor == "" ? 2 : 0
+        cell.cardColor.backgroundColor = colorSelected
         
+        if startTime == "" && endTime == "" {
+            cell.timeLabel.isHidden = true
+        } else {
+            cell.timeLabel.isHidden = false
+            cell.timeLabel.text = "\(startTime) ~ \(endTime)"
+        }
+
         return cell
     }
     

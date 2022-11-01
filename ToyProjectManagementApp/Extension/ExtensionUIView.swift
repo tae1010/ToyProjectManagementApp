@@ -18,4 +18,19 @@ extension UIView {
             animations: animations,
             completion: completion)
     }
+    
+    
+    func loadXib() {
+        // 1
+        let identifier = String(describing: type(of: self))
+        // 2
+        let nibs = Bundle.main.loadNibNamed(identifier, owner: self, options: nil)
+        // 3
+        guard let customView = nibs?.first as? UIView else { return }
+        // 4
+        customView.frame = self.bounds
+        // 5
+        self.addSubview(customView)
+    }
 }
+

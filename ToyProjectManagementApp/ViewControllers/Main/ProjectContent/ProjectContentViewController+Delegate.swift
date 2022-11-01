@@ -106,9 +106,7 @@ extension ProjectContentViewController: DeleteCellDelegate {
     func sendCellIndex(_ index: IndexPath) {
         self.deleteCell(index.section)
         
-        DispatchQueue.main.async {
-            self.cardTableView.deleteRows(at: [index], with: .automatic)
-        }
+        self.cardTableView.reloadData()
     }
 }
 

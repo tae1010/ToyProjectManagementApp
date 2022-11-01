@@ -43,6 +43,7 @@ class ProjectListManagementViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        hideKeyboardWhenTappedAround() // 화면 클릭시 키보드 내림
         self.configureTitleLabel()
         self.configureButton()
         
