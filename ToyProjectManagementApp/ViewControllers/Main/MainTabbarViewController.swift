@@ -472,6 +472,8 @@ extension MainTabbarViewController: CreateProjectDelegate {
         let project = Project(id: id, projectTitle: title ?? "", important: false, currentTime: self.koreanDate(), prograss: false)
         self.projectListPrograssTrue.insert(project, at: 0)
         
+        var colorContent = [String](repeating: "", count: 16) // color content
+        
         self.sortFirstSection()
         
         //firebase에 데이터 입력
@@ -480,6 +482,8 @@ extension MainTabbarViewController: CreateProjectDelegate {
         self.ref.child("\(email)/\(id)").updateChildValues(["currentTime": self.koreanDate()!])
         self.ref.child("\(email)/\(id)").updateChildValues(["prograss": true])
         self.ref.child("\(email)/\(id)/content/0/리스트 이름을 정해주세요/0").updateChildValues(["cardName": "카드를 추가해주세요", "color": [], "startTime": "", "endTime": ""])
+        
+        self.ref.child("\(email)/\(id)").updateChildValues(["colorContent": colorContent])
         
         DispatchQueue.main.async {
             self.projectCollectionView.reloadData()

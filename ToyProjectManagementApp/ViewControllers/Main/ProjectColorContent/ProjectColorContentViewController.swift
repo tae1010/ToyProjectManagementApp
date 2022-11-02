@@ -7,6 +7,8 @@
 
 import Foundation
 import UIKit
+import FirebaseDatabase
+import FirebaseAuth
 
 class ProjectColorContentViewController: UIViewController {
     
@@ -17,13 +19,15 @@ class ProjectColorContentViewController: UIViewController {
     @IBOutlet weak var removeColorButton: UIButton!
     @IBOutlet weak var changeColorContentbutton: UIButton!
     
-    var currentStringColor: Int?
-    var colorContent = [String](repeating: "", count: 16)
+    var ref: DatabaseReference! = Database.database().reference() // realtime DB
+    
+    var currentStringColor: Int? // 선택한 색(string)
+    var colorContent = [String](repeating: "", count: 16) // color content값들이 들어있는 16칸 배열
+    var email = ""
+    var id = ""
     
     let detailCGColor: [CGColor] = [UIColor.color0CGColor, UIColor.color1CGColor, UIColor.color2CGColor, UIColor.color3CGColor, UIColor.color4CGColor, UIColor.color5CGColor, UIColor.color6CGColor, UIColor.color7CGColor, UIColor.color8CGColor, UIColor.color9CGColor, UIColor.color10CGColor, UIColor.color11CGColor, UIColor.color12CGColor, UIColor.color13CGColor, UIColor.color14CGColor, UIColor.color15CGColor]
     
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
         hideKeyboardWhenTappedAround() // 화면 클릭시 키보드 내림
@@ -32,8 +36,7 @@ class ProjectColorContentViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.colorContent = UserDefault().loadUserdefault()
-        print(colorContent)
+        self.readDB()
     }
     
     @IBAction func backButton(_ sender: UIButton) {
@@ -47,23 +50,24 @@ class ProjectColorContentViewController: UIViewController {
         self.cardContentTextField.layer.cornerRadius = 8.0
         self.cardContentTextField.layer.borderWidth = 1
         self.cardContentTextField.layer.borderColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1).cgColor
+        self.cardContentTextField.text = nil
     }
     
     @IBAction func tabChangeColorContentbutton(_ sender: UIButton) {
         
         guard let currentColor = self.currentStringColor else {
+            self.view.hideAllToasts()
             self.view.makeToast("라벨 색을 선택해 주세요", duration: 0.5)
             return
         }
         
-        guard let cardContentText = self.cardContentTextField.text else {
-            self.view.makeToast("라벨 내용을 적어 주세요", duration: 0.5)
-            return
-        }
+        let cardContentText = self.cardContentTextField.text ?? ""
         
         self.colorContent[currentColor] = cardContentText
         
-        UserDefault().saveColorContentUserdefault(colorContent: self.colorContent)
+        self.ref.child("\(email)/\(id)/colorContent/\(currentColor)").setValue(cardContentText)
+        self.view.hideAllToasts()
+        self.view.makeToast("변경되었습니다", duration: 0.5)
     }
     
 }
@@ -165,4 +169,31 @@ extension ProjectColorContentViewController {
         self.changeColorContentbutton.layer.cornerRadius = 8
         self.changeColorContentbutton.titleLabel?.font = UIFont(name: "NanumGothicOTF", size: 15)
     }
+}
+
+// MARK: - DB
+extension ProjectColorContentViewController {
+    
+    private func readDB() {
+        print(#fileID, #function, #line, "- ProjectColorContentViewController readDB실행")
+        self.colorContent.removeAll()
+        
+        ref.child("\(email)/\(id)/colorContent").observeSingleEvent(of: .value, with: { snapshot in
+          // Get user value
+
+            guard let value = snapshot.value as? [String?] else { return }
+            var colors = [String]()
+            for i in value {
+                guard let color = i else { return }
+                colors.append(color)
+            }
+            
+            self.colorContent = colors
+            
+        }) { error in
+          print(error.localizedDescription)
+        }
+    }
+    
+
 }

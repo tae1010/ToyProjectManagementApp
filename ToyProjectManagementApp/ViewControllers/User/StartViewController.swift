@@ -16,6 +16,8 @@ class StartViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.configureBackGroundView()
+        self.configureButton()
     }
     
     override func viewWillAppear(_ animated: Bool) {

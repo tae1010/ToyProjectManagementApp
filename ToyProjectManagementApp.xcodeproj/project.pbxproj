@@ -374,9 +374,9 @@
 		935CBC8F2806B05F00759A24 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				9340DE8C28DB80B300B1CEB2 /* StartViewController.swift */,
 				937CC55A2800304400F18553 /* LoginViewController.swift */,
 				937CC55C2800377600F18553 /* SignUpViewController.swift */,
-				9340DE8C28DB80B300B1CEB2 /* StartViewController.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";

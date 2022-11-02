@@ -44,7 +44,10 @@ class DetailContentViewController: UIViewController {
     var id: String = "" // project id
     var index = 0
     var cardColor: UIColor = .white
-    var cardColorString: String?
+    var colorIndex: Int?
+    var cardColorString: String? // "color\(index)"
+    var colorContent = [String](repeating: "", count: 16) // color content값들이 들어있는 16칸 배열
+    var email = ""
     
     var timeSelectMode: TimeSelectMode = .startTime // 처음에 시작시간을 입력할수 있게 하기
     var showColorDetailViewMode: ShowColorDetailViewMode = .notShow // 처음에 color detail label 스택뷰는 안보이기
@@ -87,26 +90,26 @@ class DetailContentViewController: UIViewController {
         super.viewDidLoad()
         hideKeyboardWhenTappedAround() // 화면 클릭시 키보드 내림
         self.configure()
-//        self.configureView()
-        self.loadUserDefault()
-        
         
         let tabStartTimeLabel = UITapGestureRecognizer(target: self, action: #selector(tabStartLabelSelector))
         let tabEndTimeLabel = UITapGestureRecognizer(target: self, action: #selector(tabEndLabelSelector))
         
-        
         self.startTimeStackView.addGestureRecognizer(tabStartTimeLabel)
         self.endTimeStackView.addGestureRecognizer(tabEndTimeLabel)
-
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.readDB()
+        
+    }
     
     @IBAction func showDetailColorStackView(_ sender: UIButton) {
         print("버튼이 클릭되었습니다.")
         
         switch self.showColorDetailViewMode {
         case .notShow:
-    
+            
             self.dateStackViewTopAnchor.constant = 236
             
             UIView.animate(withDuration: 0.5, animations: {
@@ -130,17 +133,7 @@ class DetailContentViewController: UIViewController {
         }
         
         self.detailColorCollectionView.reloadData()
-
-    }
-
-
-    //userDefault 불러오기
-    func loadUserDefault() {
-        let userDefaults = UserDefaults.standard
-        let decoder = JSONDecoder()
-        guard let data = userDefaults.object(forKey: "detailColorContent") else { return }
         
-//        let colorContentDecoder = try? decoder.decode(DetailColorContent.self, from: data as! Data)
     }
     
     //날짜 정하기 설정
@@ -159,7 +152,6 @@ class DetailContentViewController: UIViewController {
     
     // cell 안에 내용 수정
     @IBAction func fixButton(_ sender: UIButton) {
-
         self.sendContentDelegate?.sendContent(contentTextView.text, index, self.cardColorString ?? "", startTimeLabel.text ?? "", endTimeLabel.text ?? "")
         self.dismiss(animated: true)
     }
@@ -180,51 +172,54 @@ class DetailContentViewController: UIViewController {
 extension DetailContentViewController {
 
     private func configure() {
-        self.configureView()
-        self.configureCardColor()
         self.configureCardTitle()
         self.configureChooseDate()
-        self.configureDate()
         self.configureButton()
         self.configureDetailColorCollectionView()
-        
     }
-    
-    // 화면 구성
-    private func configureView() {
-        let cardColor = self.projectDetailContent.color ?? ""
-        let color = Color(rawValue: cardColor)
 
-        let colorSelected = color?.create
-        
-        self.cardColor = colorSelected ?? .white
-        
-        self.cardColorContentLabel.text = ""
-        self.contentTextView.text = self.projectDetailContent.cardName
-        self.startTimeLabel.text = self.projectDetailContent.startTime
-        self.endTimeLabel.text = self.projectDetailContent.endTime
-    }
-    
     private func configureCardTitle() {
         self.cardTitleLabel.font = UIFont(name: "NanumGothicOTFBold", size: 14)
         self.contentTextView.font = UIFont(name: "NanumGothicOTFBold", size: 15)
-
     }
     
     private func configureCardColor() {
+          
+        // readDB후에 colorContent(16개 배열) 값이 저장되어 있는 상태
+        
+        if let cardColor = self.projectDetailContent.color {
+            let color = Color(rawValue: cardColor)
+            let colorSelected = color?.create // color UIColor로 변환
+            self.cardColor = colorSelected // UIColor를 cardColor에 저장
+        } else {
+            self.cardColor = .white
+        }
+        
+        guard let currentColor = detailUIColor.firstIndex(of: self.cardColor) else { return }
+        print(currentColor,"asdasdasdasda")
+        self.colorIndex = currentColor
+        
+        print(colorIndex, self.colorContent[currentColor], "??????")
+        
+        self.cardColorContentLabel.text = self.colorContent[currentColor]
+        
         self.cardColorLabel.font = UIFont(name: "NanumGothicOTFBold", size: 14)
+        
         self.cardColorView.layer.cornerRadius = self.cardColorView.frame.width / 2
         self.cardColorView.backgroundColor = self.cardColor
         self.cardColorView.layer.borderWidth = 1
         self.cardColorView.layer.borderColor = UIColor.white.cgColor
-        
+
         self.cardBackgroundColorView.layer.cornerRadius = 8
         self.cardBackgroundColorView.backgroundColor = self.cardColor
         self.cardBackgroundColorView.layer.borderWidth = 1
         self.cardBackgroundColorView.layer.borderColor = UIColor.gray.cgColor
         
-        self.cardColorContentLabel.text = "test"
         self.cardColorContentLabel.font = UIFont(name: "NanumGothicOTFBold", size: 14)
+        self.cardColorContentLabel.textColor = self.cardColor.isLight() ? .black : .white
+        
+        
+        
         
     }
     
@@ -294,28 +289,13 @@ extension DetailContentViewController {
     }
 }
 
-
-//// MARK: - 키보드 관련 함수
-//extension DetailContentViewController {
-//
-//    // 뷰를 클릭하면 키보드가 내려감
-//    func hideKeyboardWhenTappedAround() {
-//        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-//        tap.cancelsTouchesInView = false
-//        view.addGestureRecognizer(tap)
-//    }
-//
-//    @objc func dismissKeyboard() {
-//        view.endEditing(true)
-//    }
-//
-//}
-
 // MARK: - CardColor CollectionView
 extension DetailContentViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.cardColorString = "color\(indexPath.row)"
         self.cardColor = detailUIColor[indexPath.row] ?? .white
+        self.colorIndex = indexPath.row
+        
         self.changeColor()
     }
 }
@@ -333,8 +313,6 @@ extension DetailContentViewController: UICollectionViewDataSource {
 
         return cell
     }
-    
-    
 }
 
 extension DetailContentViewController: UICollectionViewDelegateFlowLayout {
@@ -345,5 +323,36 @@ extension DetailContentViewController: UICollectionViewDelegateFlowLayout {
         let height = width / 2
         
         return CGSize(width: width, height: height)
+    }
+}
+
+extension DetailContentViewController {
+    
+    private func readDB() {
+        print(#fileID, #function, #line, "- ProjectColorContentViewController readDB실행")
+        self.colorContent.removeAll()
+        print(email, id)
+        ref.child("\(email)/\(id)/colorContent").observeSingleEvent(of: .value, with: { snapshot in
+            guard let value = snapshot.value as? [String?] else { return }
+            
+            var colors = [String]()
+            for i in value {
+                guard let color = i else { return }
+                colors.append(color)
+            }
+
+            self.colorContent = colors
+            print(self.colorContent, "가낟")
+            
+            DispatchQueue.main.async {
+                self.contentTextView.text = self.projectDetailContent.cardName
+                self.startTimeLabel.text = self.projectDetailContent.startTime
+                self.endTimeLabel.text = self.projectDetailContent.endTime
+                self.configureCardColor()
+            }
+            
+        }) { error in
+          print(error.localizedDescription)
+        }
     }
 }

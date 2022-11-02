@@ -225,6 +225,8 @@ class ProjectContentViewController: UIViewController {
         let projectColorContentViewController = projectColorContentStoryBoard.instantiateViewController(withIdentifier: "ProjectColorContentViewController") as! ProjectColorContentViewController
         
         projectColorContentViewController.modalPresentationStyle = .fullScreen
+        projectColorContentViewController.id = self.id
+        projectColorContentViewController.email = self.email
         
         present(projectColorContentViewController, animated: true, completion: nil)
     }
@@ -383,6 +385,8 @@ extension ProjectContentViewController: UITableViewDataSource {
         // currentpage에 있는 projectDetailContent 값을 전달
         detailContentViewController.projectDetailContent = self.projectContent[currentPage].detailContent[indexPath.section]
         detailContentViewController.index = indexPath.section
+        detailContentViewController.email = self.email
+        detailContentViewController.id = self.id
         
         self.present(detailContentViewController, animated: true, completion: nil)
     }
