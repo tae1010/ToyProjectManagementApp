@@ -29,12 +29,13 @@ class LoginViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        hideKeyboardWhenTappedAround() // 화면 클릭시 키보드 내림
+        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        print(#fileID, #function, #line, "- ?")
+        hideKeyboardWhenTappedAround() // 화면 클릭시 키보드 내림
         // Google Sign In
         GIDSignIn.sharedInstance().presentingViewController = self
         
@@ -75,24 +76,6 @@ extension LoginViewController {
         self.passwordTextField.textFieldPlaceholder = "비밀번호를 입력해주세요"
         self.passwordTextField.isSecureTextEntry = true
     }
-    
-//    @objc func buttonAction(sender: UIButton!) {
-//
-//        let rightButton = UIButton(frame: CGRect(x: 0, y: 0, width: 15, height: passwordTextField.frame.height))
-//        print("icon 클릭 \(iconClick)")
-//
-//        if iconClick {
-//            rightButton.setImage(UIImage(systemName: "eye"), for: .normal)
-//            self.passwordTextField.rightView = rightButton
-//            passwordTextField.isSecureTextEntry = false
-//        } else {
-//            rightButton.setImage(UIImage(systemName: "eye.fill"), for: .normal)
-//            self.passwordTextField.rightView = rightButton
-//            passwordTextField.isSecureTextEntry = true
-//        }
-//
-//        iconClick.toggle()
-//    }
     
     private func configurelLoginButton() {
         self.loginButton.layer.cornerRadius = 8

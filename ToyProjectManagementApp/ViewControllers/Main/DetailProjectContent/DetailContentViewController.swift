@@ -44,8 +44,7 @@ class DetailContentViewController: UIViewController {
     var id: String = "" // project id
     var index = 0
     var cardColor: UIColor = .white
-    var colorIndex: Int?
-    var cardColorString: String? // "color\(index)"
+    var cardColorString = "" // "color\(index)"
     var colorContent = [String](repeating: "", count: 16) // color content값들이 들어있는 16칸 배열
     var email = ""
     
@@ -63,6 +62,7 @@ class DetailContentViewController: UIViewController {
     @IBOutlet weak var cardColorLabel: UILabel!
     @IBOutlet weak var showDetailColorButton: UIButton!
     
+    @IBOutlet weak var deleteCardColorButton: UIButton!
     @IBOutlet weak var cardBackgroundColorView: UIView!
     @IBOutlet weak var cardColorView: UIView!
     @IBOutlet weak var cardColorContentLabel: UILabel!
@@ -104,6 +104,15 @@ class DetailContentViewController: UIViewController {
         
     }
     
+    
+    @IBAction func tapDeleteCardColorButton(_ sender: UIButton) {
+        self.cardColorString = ""
+        self.cardColor = .white
+        self.cardColorContentLabel.text = ""
+        
+        self.changeColor()
+    }
+    
     @IBAction func showDetailColorStackView(_ sender: UIButton) {
         print("버튼이 클릭되었습니다.")
         
@@ -114,10 +123,13 @@ class DetailContentViewController: UIViewController {
             
             UIView.animate(withDuration: 0.5, animations: {
                 self.detailColorCollectionView.alpha = 1
+                self.deleteCardColorButton.alpha = 1
+//                self.deleteCardColorButton.isHidden = false
                 self.view.layoutIfNeeded()
             })
             
             self.showDetailColorButton.setImage(UIImage(systemName: "minus"), for: .normal)
+            
             self.showColorDetailViewMode = .show
             
         case .show:
@@ -125,10 +137,13 @@ class DetailContentViewController: UIViewController {
             
             UIView.animate(withDuration: 0.5, animations: {
                 self.detailColorCollectionView.alpha = 0
+                self.deleteCardColorButton.alpha = 0
+//                self.deleteCardColorButton.isHidden = true
                 self.view.layoutIfNeeded()
             })
             
             self.showDetailColorButton.setImage(UIImage(systemName: "plus"), for: .normal)
+            
             self.showColorDetailViewMode = .notShow
         }
         
@@ -143,16 +158,30 @@ class DetailContentViewController: UIViewController {
         formatter.dateFormat = "yyyy-MM-dd"
         
         switch self.timeSelectMode {
+            
         case .startTime:
-            startTimeLabel.text = formatter.string(from: datePickerView.date)
+            if endTimeLabel.text != "" && endTimeLabel.text! < formatter.string(from: datePickerView.date) {
+                self.view.hideAllToasts()
+                self.view.makeToast("시작 시간이 종료 시간보다 작아야 합니다.")
+                return
+            } else {
+                startTimeLabel.text = formatter.string(from: datePickerView.date)
+            }
+
         default:
-            endTimeLabel.text = formatter.string(from: datePickerView.date)
+            if startTimeLabel.text != "" && startTimeLabel.text! > formatter.string(from: datePickerView.date) {
+                self.view.hideAllToasts()
+                self.view.makeToast("종료 시간이 시작 시간보다 커야 합니다.")
+                return
+            } else {
+                endTimeLabel.text = formatter.string(from: datePickerView.date)
+            }
         }
     }
     
     // cell 안에 내용 수정
     @IBAction func fixButton(_ sender: UIButton) {
-        self.sendContentDelegate?.sendContent(contentTextView.text, index, self.cardColorString ?? "", startTimeLabel.text ?? "", endTimeLabel.text ?? "")
+        self.sendContentDelegate?.sendContent(contentTextView.text, index, self.cardColorString, startTimeLabel.text ?? "", endTimeLabel.text ?? "")
         self.dismiss(animated: true)
     }
     
@@ -176,6 +205,8 @@ extension DetailContentViewController {
         self.configureChooseDate()
         self.configureButton()
         self.configureDetailColorCollectionView()
+        self.configureDate()
+        self.configureCardColor()
     }
 
     private func configureCardTitle() {
@@ -184,42 +215,41 @@ extension DetailContentViewController {
     }
     
     private func configureCardColor() {
-          
-        // readDB후에 colorContent(16개 배열) 값이 저장되어 있는 상태
-        
-        if let cardColor = self.projectDetailContent.color {
-            let color = Color(rawValue: cardColor)
-            let colorSelected = color?.create // color UIColor로 변환
-            self.cardColor = colorSelected // UIColor를 cardColor에 저장
-        } else {
-            self.cardColor = .white
-        }
-        
-        guard let currentColor = detailUIColor.firstIndex(of: self.cardColor) else { return }
-        print(currentColor,"asdasdasdasda")
-        self.colorIndex = currentColor
-        
-        print(colorIndex, self.colorContent[currentColor], "??????")
-        
-        self.cardColorContentLabel.text = self.colorContent[currentColor]
         
         self.cardColorLabel.font = UIFont(name: "NanumGothicOTFBold", size: 14)
-        
         self.cardColorView.layer.cornerRadius = self.cardColorView.frame.width / 2
-        self.cardColorView.backgroundColor = self.cardColor
+        
         self.cardColorView.layer.borderWidth = 1
         self.cardColorView.layer.borderColor = UIColor.white.cgColor
 
         self.cardBackgroundColorView.layer.cornerRadius = 8
-        self.cardBackgroundColorView.backgroundColor = self.cardColor
+        
         self.cardBackgroundColorView.layer.borderWidth = 1
         self.cardBackgroundColorView.layer.borderColor = UIColor.gray.cgColor
         
         self.cardColorContentLabel.font = UIFont(name: "NanumGothicOTFBold", size: 14)
         self.cardColorContentLabel.textColor = self.cardColor.isLight() ? .black : .white
-        
-        
-        
+
+    }
+    
+    private func configureCardColorData() {
+
+        if let cardColor = self.projectDetailContent.color {
+            self.cardColorString = cardColor
+            // db에 저장되어 있는 color(String)값을 UIColor로 변환후 몇번째 배열인지 찾음
+            let color = Color(rawValue: cardColor)
+            let colorSelected = color?.create // color UIColor로 변환
+            let currentColorIndex = detailUIColor.firstIndex(of: colorSelected) ?? 0
+            
+            // cardColor에 맞게 text값과 배경색을 지정
+            self.cardColor = colorSelected ?? .white // UIColor를 cardColor에 저장
+            self.cardColorView.backgroundColor = self.cardColor
+            self.cardBackgroundColorView.backgroundColor = self.cardColor
+            self.cardColorLabel.font = UIFont(name: "NanumGothicOTFBold", size: 14)
+            self.cardColorContentLabel.text = self.colorContent[currentColorIndex]
+
+        }
+
         
     }
     
@@ -233,9 +263,11 @@ extension DetailContentViewController {
         
         self.startTimeLabel.font = UIFont(name: "NanumGothicOTF", size: 15)
         self.endTimeLabel.font = UIFont(name: "NanumGothicOTF", size: 15)
+        
     }
     
     private func configureButton() {
+        
         self.cardFixButton.titleLabel?.font = UIFont(name: "NanumGothicOTFBold", size: 15)
         self.cardDeleteButton.titleLabel?.font = UIFont(name: "NanumGothicOTFBold", size: 15)
         self.cardCancelButton.titleLabel?.font = UIFont(name: "NanumGothicOTFBold", size: 15)
@@ -294,7 +326,7 @@ extension DetailContentViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.cardColorString = "color\(indexPath.row)"
         self.cardColor = detailUIColor[indexPath.row] ?? .white
-        self.colorIndex = indexPath.row
+        self.cardColorContentLabel.text = self.colorContent[indexPath.row]
         
         self.changeColor()
     }
@@ -332,6 +364,7 @@ extension DetailContentViewController {
         print(#fileID, #function, #line, "- ProjectColorContentViewController readDB실행")
         self.colorContent.removeAll()
         print(email, id)
+        
         ref.child("\(email)/\(id)/colorContent").observeSingleEvent(of: .value, with: { snapshot in
             guard let value = snapshot.value as? [String?] else { return }
             
@@ -349,6 +382,7 @@ extension DetailContentViewController {
                 self.startTimeLabel.text = self.projectDetailContent.startTime
                 self.endTimeLabel.text = self.projectDetailContent.endTime
                 self.configureCardColor()
+                self.configureCardColorData()
             }
             
         }) { error in

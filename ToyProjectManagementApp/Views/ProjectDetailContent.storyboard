@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -40,7 +40,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" restorationIdentifier="cardColorStackView" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="MC0-Xt-gCx" userLabel="cardColorStackView">
                                                 <rect key="frame" x="24" y="114.66666666666666" width="380" height="94"/>
                                                 <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="e3m-xF-3iD">
+                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="e3m-xF-3iD">
                                                         <rect key="frame" x="0.0" y="0.0" width="380" height="43"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="카드 색" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="obY-JJ-491">
@@ -49,15 +49,29 @@
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QrA-S0-GKV">
-                                                                <rect key="frame" x="66.333333333333343" y="0.0" width="313.66666666666663" height="43"/>
-                                                                <color key="tintColor" red="0.36235400880000002" green="0.36235400880000002" blue="0.36235400880000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                                <state key="normal" title="Button"/>
-                                                                <buttonConfiguration key="configuration" style="plain" image="plus" catalog="system"/>
-                                                                <connections>
-                                                                    <action selector="showDetailColorStackView:" destination="H1C-0K-CKN" eventType="touchUpInside" id="Qh2-hj-8kU"/>
-                                                                </connections>
-                                                            </button>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ohv-GY-0xf">
+                                                                <rect key="frame" x="283" y="0.0" width="97" height="43"/>
+                                                                <subviews>
+                                                                    <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nse-pM-bzI">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="43"/>
+                                                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <state key="normal" title="Button"/>
+                                                                        <buttonConfiguration key="configuration" style="plain" image="eraser" catalog="system"/>
+                                                                        <connections>
+                                                                            <action selector="tapDeleteCardColorButton:" destination="H1C-0K-CKN" eventType="touchUpInside" id="fxi-ZM-Loe"/>
+                                                                        </connections>
+                                                                    </button>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QrA-S0-GKV">
+                                                                        <rect key="frame" x="50" y="0.0" width="47" height="43"/>
+                                                                        <color key="tintColor" red="0.36235400880000002" green="0.36235400880000002" blue="0.36235400880000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                        <state key="normal" title="Button"/>
+                                                                        <buttonConfiguration key="configuration" style="plain" image="plus" catalog="system"/>
+                                                                        <connections>
+                                                                            <action selector="showDetailColorStackView:" destination="H1C-0K-CKN" eventType="touchUpInside" id="Qh2-hj-8kU"/>
+                                                                        </connections>
+                                                                    </button>
+                                                                </subviews>
+                                                            </stackView>
                                                         </subviews>
                                                     </stackView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TQQ-VV-s2w">
@@ -183,16 +197,23 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="sio-eO-OvS">
                                                 <rect key="frame" x="24" y="654.66666666666663" width="380" height="170"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="25z-cF-Edj">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="25z-cF-Edj">
                                                         <rect key="frame" x="0.0" y="0.0" width="380" height="50"/>
                                                         <color key="backgroundColor" name="primaryColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="QlA-IO-FKX"/>
                                                         </constraints>
-                                                        <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" title="수정하기">
-                                                            <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        </buttonConfiguration>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                        <state key="normal">
+                                                            <attributedString key="attributedTitle">
+                                                                <fragment content="수정하기">
+                                                                    <attributes>
+                                                                        <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <font key="NSFont" size="15" name="NanumGothicBold"/>
+                                                                    </attributes>
+                                                                </fragment>
+                                                            </attributedString>
+                                                        </state>
                                                         <connections>
                                                             <action selector="fixButton:" destination="H1C-0K-CKN" eventType="touchUpInside" id="5a2-gk-hJe"/>
                                                         </connections>
@@ -289,6 +310,7 @@
                         <outlet property="contentTextView" destination="Bhd-JP-pN3" id="LEW-xT-2VS"/>
                         <outlet property="dateStackView" destination="JDu-45-DXG" id="JWF-QT-atG"/>
                         <outlet property="dateStackViewTopAnchor" destination="PNU-5T-Wdz" id="avP-2Y-h8g"/>
+                        <outlet property="deleteCardColorButton" destination="nse-pM-bzI" id="DV6-mQ-pI2"/>
                         <outlet property="detailColorCollectionView" destination="WCj-P2-bJa" id="Y7Y-0Y-ffY"/>
                         <outlet property="endLabel" destination="2tM-Wx-gho" id="akh-5q-Lso"/>
                         <outlet property="endTimeLabel" destination="QKj-d2-nhq" id="d1V-ZV-RqD"/>
@@ -305,6 +327,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="eraser" catalog="system" width="128" height="119"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <namedColor name="primaryColor">
             <color red="0.72941176470588232" green="0.59999999999999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -54,29 +54,15 @@ class ProjectContentViewController: UIViewController {
     
     // MARK: - LifeCycle
     override func viewDidLoad() {
-        
         super.viewDidLoad()
+        
         hideKeyboardWhenTappedAround() // 화면 클릭시 키보드 내림
         self.configureLabel()
-        //collectionview cell 등록
-        let tableViewNib = UINib(nibName: "ProjectCardCell", bundle: nil)
-        self.cardTableView.register(tableViewNib, forCellReuseIdentifier: "ProjectCardCell")
-        
-        self.cardTableView.rowHeight = UITableView.automaticDimension
-        self.cardTableView.estimatedRowHeight = 100
-        
-        self.cardTableView.delegate = self
-        self.cardTableView.dataSource = self
-        
-        self.cardTableView.layer.shadowColor = UIColor.black.cgColor // any value you want
-        self.cardTableView.layer.shadowOpacity = 0.1 // any value you want
-        self.cardTableView.layer.shadowRadius = 5.0 // any value you want
-        self.cardTableView.layer.shadowOffset = .init(width: 1, height: 1)
+        self.configureCardTableView()
         
         let tabTitleLabel = UITapGestureRecognizer(target: self, action: #selector(tabContentTitleLabel))
         self.contentTitleLabel.isUserInteractionEnabled = true
         self.contentTitleLabel.addGestureRecognizer(tabTitleLabel)
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -121,26 +107,22 @@ class ProjectContentViewController: UIViewController {
     @IBAction func moveLeft(_ sender: UIButton) {
         if currentPage > 0 {
             self.currentPage -= 1
-            self.changeListName()
             
             DispatchQueue.main.async {
-//                self.contentTitleLabel.text = self.currentTitle
+                self.changeListName()
                 self.cardTableView.reloadData()
             }
-            print("currentPage는",self.currentPage)
         }
     }
     
     @IBAction func moveRight(_ sender: UIButton) {
         if self.projectContent.count - 1 > currentPage {
-
             self.currentPage += 1
+            
             DispatchQueue.main.async {
                 self.changeListName()
-//                self.contentTitleLabel.text = self.currentTitle
                 self.cardTableView.reloadData()
             }
-            print("currentPage는",currentPage)
         }
     }
     
@@ -410,6 +392,11 @@ extension ProjectContentViewController: UITableViewDataSource {
     // cell 삭제
     func deleteCell(_ index: Int) {
         // 배열에서 삭제
+        
+        if projectContent[self.currentPage].detailContent.count == 1 {
+            self.view.makeToast("카드가 1개 이상 있어야 합니다")
+            return
+        }
         self.projectContent[self.currentPage].detailContent.remove(at: index)
         self.ref.child("\(email)/\(id)/content/\(currentPage)/\(self.currentTitle)").removeValue()
         //배열 중간값이 삭제될수 있기 떄문에 db배열을 갱신해줘야함

@@ -28,7 +28,7 @@ extension ProjectContentViewController: MoveContentDelegate {
         // 카드를 같은 리스트로 옮기려 할때
         if currentPage == listIndex {
             self.view.hideAllToasts()
-            self.view.makeToast("카드는 이미 리스트안에 있습니다",duration: 0.5)
+            self.view.makeToast("선택한 카드는 이미 리스트안에 있습니다", duration: 0.5)
             return
         }
         

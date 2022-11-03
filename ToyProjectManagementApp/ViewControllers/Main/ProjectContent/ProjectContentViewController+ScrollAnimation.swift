@@ -107,6 +107,24 @@ extension ProjectContentViewController: UIScrollViewDelegate {
 // MARK: - configuration
 extension ProjectContentViewController {
     
+    func configureCardTableView() {
+        
+        // collectionview cell 등록
+        let tableViewNib = UINib(nibName: "ProjectCardCell", bundle: nil)
+        self.cardTableView.register(tableViewNib, forCellReuseIdentifier: "ProjectCardCell")
+        
+        self.cardTableView.rowHeight = UITableView.automaticDimension
+        self.cardTableView.estimatedRowHeight = 100
+        
+        self.cardTableView.delegate = self
+        self.cardTableView.dataSource = self
+        
+        self.cardTableView.layer.shadowColor = UIColor.black.cgColor // any value you want
+        self.cardTableView.layer.shadowOpacity = 0.1 // any value you want
+        self.cardTableView.layer.shadowRadius = 5.0 // any value you want
+        self.cardTableView.layer.shadowOffset = .init(width: 1, height: 1)
+    }
+    
     func configureLabel() {
         
         self.contentTitleLabel.font = UIFont(name: "NanumGothicOTFBold", size: 18)

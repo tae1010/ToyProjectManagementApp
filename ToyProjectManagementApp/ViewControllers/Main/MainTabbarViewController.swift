@@ -434,9 +434,7 @@ extension MainTabbarViewController {
     
     @objc func changePrograssProjectNotification(_ notification: Notification) {
         
-        let getValue = notification.object as! Bool
-        print(getValue)
-        print(#fileID, #function, #line, "- changePrograssNotification")
+        let getValue = notification.object as! Bool // 진행중 / 완료
         
         guard let index  = self.longPressCellIndex else { return }
         guard let section = self.longPressCellSection else { return }
@@ -458,7 +456,7 @@ extension MainTabbarViewController {
             }
             
         default:
-            print("?")
+            print("왜?")
         }
     }
 }

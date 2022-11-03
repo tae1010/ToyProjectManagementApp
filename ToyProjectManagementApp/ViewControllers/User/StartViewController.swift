@@ -16,12 +16,12 @@ class StartViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.configureBackGroundView()
-        self.configureButton()
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        print(#fileID, #function, #line, "- ")
+        super.viewWillAppear(animated)
+        print("viewwillApeearasdasd")
         self.configureBackGroundView()
         self.configureButton()
     }
@@ -41,10 +41,12 @@ class StartViewController: UIViewController {
 extension StartViewController {
     
     private func configureBackGroundView() {
+
         self.view.backgroundColor = .primaryColor
     }
     
     private func configureButton() {
+        
         self.alreadyExistAccountButton.layer.cornerRadius = 8
         self.signUpButton.layer.cornerRadius = 8
         self.alreadyExistAccountButton.titleLabel?.font = UIFont(name: "NanumGothicOTFBold", size: 14)
