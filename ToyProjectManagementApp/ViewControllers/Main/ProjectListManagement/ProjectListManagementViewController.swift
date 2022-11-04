@@ -200,7 +200,10 @@ extension ProjectListManagementViewController: ChangeListTitleDelegate {
 extension ProjectListManagementViewController: DeleteListDelegate {
     
     func deleteListDelegate(index: IndexPath) {
-        
+        if projectContent.count == 1 {
+            self.view.makeToast("리스트가 1개 이상 있어야 합니다.")
+            return
+        }
         // index.row = 선택된 리스트
         self.ref.child("\(email)/\(id)/content").removeValue()
         

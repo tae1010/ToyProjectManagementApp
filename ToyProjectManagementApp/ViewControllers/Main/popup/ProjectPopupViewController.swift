@@ -6,12 +6,14 @@
 //
 
 import UIKit
+import MaterialComponents.MaterialBottomSheet
 
 class ProjectPopupViewController: UIViewController {
 
     @IBOutlet weak var popUpView: UIView!
     @IBOutlet var backGroundView: UIView!
     
+    @IBOutlet weak var changeProjectTitleButton: UIButton!
     @IBOutlet weak var changePrograssButton: UIButton!
     @IBOutlet weak var deleteButton: UIButton!
     
@@ -35,6 +37,23 @@ class ProjectPopupViewController: UIViewController {
     // 백 그라운드 클릭시 팝업창 닫기
     @objc func tabBackGroundSelector(sender: UITapGestureRecognizer) {
         self.dismiss(animated: true)
+    }
+    
+    
+    @IBAction func cellChangeTitle(_ sender: UIButton) {
+        guard let pvc = self.presentingViewController else { return } // maintabbarViewController
+        
+        let changeProjectTitlePopup = ChangeProjectTitlePopupViewController(nibName: "ChangeProjectTitlePopup", bundle: nil)
+        
+        changeProjectTitlePopup.modalPresentationStyle = .overCurrentContext
+        changeProjectTitlePopup.modalTransitionStyle = .crossDissolve // 뷰가 투명해지면서 넘어가는 애니메이션
+
+        let bottomSheet: MDCBottomSheetController = MDCBottomSheetController(contentViewController: changeProjectTitlePopup)
+        bottomSheet.mdc_bottomSheetPresentationController?.preferredSheetHeight = self.view.bounds.size.height * 0.3
+        
+        self.dismiss(animated: true) {
+            pvc.present(bottomSheet, animated: false, completion: nil)
+        }
     }
     
     @IBAction func cellChangePrograss(_ sender: UIButton) {

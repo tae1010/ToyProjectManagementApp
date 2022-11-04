@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -13,6 +13,7 @@
             <connections>
                 <outlet property="backGroundView" destination="iN0-l3-epB" id="6KL-zA-JnY"/>
                 <outlet property="changePrograssButton" destination="I7N-ds-50Q" id="bg2-7V-FYJ"/>
+                <outlet property="changeProjectTitleButton" destination="0FG-pJ-VmF" id="vhU-gm-ElI"/>
                 <outlet property="deleteButton" destination="ihz-Dj-ooG" id="08e-wp-JBV"/>
                 <outlet property="popUpView" destination="F3H-E8-17G" id="spJ-4p-hTc"/>
                 <outlet property="view" destination="iN0-l3-epB" id="ZXm-Ys-GVO"/>
@@ -24,13 +25,23 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F3H-E8-17G">
-                    <rect key="frame" x="107" y="398" width="200" height="100"/>
+                    <rect key="frame" x="107" y="373" width="200" height="150"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="9zH-Hf-MWq">
-                            <rect key="frame" x="0.0" y="0.0" width="200" height="100"/>
+                            <rect key="frame" x="0.0" y="0.0" width="200" height="150"/>
                             <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0FG-pJ-VmF">
+                                    <rect key="frame" x="0.0" y="0.0" width="200" height="45"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" title="프로젝트 이름변경">
+                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="cellChangeTitle:" destination="-1" eventType="touchUpInside" id="s4G-O1-ffc"/>
+                                    </connections>
+                                </button>
                                 <button opaque="NO" tag="1" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I7N-ds-50Q">
-                                    <rect key="frame" x="0.0" y="0.0" width="200" height="46"/>
+                                    <rect key="frame" x="0.0" y="50" width="200" height="45"/>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                     <state key="normal" title="프로젝트 상태변경">
                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -40,7 +51,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" tag="2" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ihz-Dj-ooG">
-                                    <rect key="frame" x="0.0" y="51" width="200" height="49"/>
+                                    <rect key="frame" x="0.0" y="100" width="200" height="50"/>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                     <state key="normal" title="프로젝트 삭제하기">
                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -58,7 +69,7 @@
                         <constraint firstAttribute="trailing" secondItem="9zH-Hf-MWq" secondAttribute="trailing" id="Im7-6O-dko"/>
                         <constraint firstAttribute="bottom" secondItem="9zH-Hf-MWq" secondAttribute="bottom" id="Kl8-Ne-dcc"/>
                         <constraint firstAttribute="width" constant="200" id="PJL-TJ-1L9"/>
-                        <constraint firstAttribute="height" constant="100" id="bAg-3k-dIZ"/>
+                        <constraint firstAttribute="height" constant="150" id="bAg-3k-dIZ"/>
                         <constraint firstItem="9zH-Hf-MWq" firstAttribute="top" secondItem="F3H-E8-17G" secondAttribute="top" id="w0M-My-D31"/>
                     </constraints>
                 </view>

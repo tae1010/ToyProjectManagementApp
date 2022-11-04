@@ -31,20 +31,24 @@ class MainTabbarViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         hideKeyboardWhenTappedAround() // 화면 클릭시 키보드 내림
-        NotificationCenter.default.addObserver(self, selector: #selector(deleteProjectNotification), name: .deleteProjectNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(changePrograssProjectNotification), name: .changePrograssProjectNotification, object: nil)
+        
+        
+        
+        
+        
         self.email = self.emailToString(Auth.auth().currentUser?.email ?? "고객")
         self.configureView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        print("mainttabbarview이동")
         self.readDB()
+        self.setNotification()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
+        self.removeNotification()
     }
     
     //프로젝트 collection 추가
@@ -232,6 +236,21 @@ extension MainTabbarViewController {
         }
     }
     
+    private func changeProjectTitle(index: Int, id: String, section: Int, projectTitle: String) {
+        
+        self.ref.child("\(email)/\(id)").updateChildValues(["projectTitle": projectTitle])
+        
+        if section == 0 {
+            self.projectListPrograssTrue[index].projectTitle = projectTitle
+
+        } else {
+            self.projectListPrograssFalse[index].projectTitle = projectTitle
+        }
+        
+        self.projectCollectionView.reloadData()
+
+    }
+    
     private func changePrograssProject(index: Int, id: String, section: Int, prograss: Bool) {
         
         print(#fileID, #function, #line, "- 변경하기 클릭")
@@ -374,6 +393,19 @@ extension MainTabbarViewController: UICollectionViewDelegateFlowLayout {
 // MARK: - selector
 extension MainTabbarViewController {
     
+    fileprivate func setNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(deleteProjectNotification), name: .deleteProjectNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(changePrograssProjectNotification), name: .changePrograssProjectNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(changeProjectTitleNotification), name: .changeProjectTitleNotification, object: nil)
+    }
+    
+    fileprivate func removeNotification() {
+        NotificationCenter.default.removeObserver(self, name: .deleteProjectNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .changePrograssProjectNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .changeProjectTitleNotification, object: nil)
+    }
+    
+    
     // 진행중 section에 있는 important image 클릭시 selector
     @objc func tabFirstSectionImageViewSelector(sender: UITapGestureRecognizer) {
         let imgView = sender.view as! UIImageView
@@ -459,6 +491,32 @@ extension MainTabbarViewController {
             print("왜?")
         }
     }
+    
+    @objc func changeProjectTitleNotification(_ notification: Notification) {
+        
+        let getValue = notification.object as! String // 변경할 
+        
+        guard let index  = self.longPressCellIndex else { return }
+        guard let section = self.longPressCellSection else { return }
+        
+        switch section {
+        case 0:
+            let id = self.projectListPrograssTrue[index].id
+            self.changeProjectTitle(index: index, id: id, section: section, projectTitle: getValue)
+            
+        case 1:
+            let id = self.projectListPrograssFalse[index].id
+            self.changeProjectTitle(index: index, id: id, section: section, projectTitle: getValue)
+            
+        default:
+            print("?")
+        }
+        
+        self.view.hideAllToasts()
+        self.view.makeToast("변경되었습니다")
+        
+    }
+    
 }
 
 extension MainTabbarViewController: CreateProjectDelegate {
