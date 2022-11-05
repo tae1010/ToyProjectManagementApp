@@ -10,7 +10,6 @@ import FirebaseAuth
 
 class ThirdTabbarViewController: UIViewController {
 
-    @IBOutlet weak var welcomeLabel: UILabel!
     @IBOutlet weak var resetPasswordButton: UIButton!
     
     override func viewDidLoad() {
@@ -27,10 +26,6 @@ class ThirdTabbarViewController: UIViewController {
         
         //email에 유저 email값을 넣고 만약에 값이 없다면 고객이라는 값을 넣는다
         let email = Auth.auth().currentUser?.email ?? "고객"
-        self.welcomeLabel.text = """
-        환영합니다.
-        \(email)님
-        """
         
         let isEmailSignin = Auth.auth().currentUser?.providerData[0].providerID == "password"
         resetPasswordButton.isHidden = !isEmailSignin

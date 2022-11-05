@@ -112,6 +112,9 @@ class ProjectContentViewController: UIViewController {
                 self.changeListName()
                 self.cardTableView.reloadData()
             }
+        } else {
+            self.view.hideToast()
+            self.view.makeToast("첫번째 리스트 입니다.")
         }
     }
     
@@ -123,6 +126,9 @@ class ProjectContentViewController: UIViewController {
                 self.changeListName()
                 self.cardTableView.reloadData()
             }
+        } else {
+            self.view.hideToast()
+            self.view.makeToast("마지막 리스트 입니다.")
         }
     }
     
@@ -377,17 +383,7 @@ extension ProjectContentViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         return true
     }
-    
-    //왼쪽으로 슬라이스 할시 cell삭제
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        
-        //cell삭제 함수
-        self.deleteCell(indexPath.section)
-        
-        DispatchQueue.main.async {
-            tableView.deleteRows(at: [indexPath], with: .automatic)
-        }
-    }
+
     
     // cell 삭제
     func deleteCell(_ index: Int) {
@@ -440,12 +436,20 @@ extension ProjectContentViewController {
         let updateContent = ["cardName": cardTitle, "color": "", "startTime": "", "endTime": ""] as [String: String]
         let updateProjectDetailContent = ProjectDetailContent(cardName: cardTitle, color: "", startTime: "", endTime: "")
         
+        let section = self.cardTableView.numberOfSections - 1
+        let row = self.cardTableView.numberOfRows(inSection: section) - 1
+        
+        let indexPath = IndexPath(row: row, section: section)
+        
         self.ref.child("\(self.email)/\(self.id)/content/\(self.currentPage)/\(self.currentTitle)").updateChildValues(["\(self.projectContent[self.currentPage].detailContent.count)": updateContent])
         
         self.projectContent[self.currentPage].detailContent.append(updateProjectDetailContent)
         
         DispatchQueue.main.async {
             self.cardTableView.reloadData()
+            self.cardTableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+            self.view.hideToast()
+            self.view.makeToast("카드가 생성되었습니다", duration: 0.5)
         }
     }
     
@@ -470,6 +474,9 @@ extension ProjectContentViewController {
             self.currentPage = self.projectContent.count - 1
             self.changeListName()
             self.cardTableView.reloadData()
+            
+            self.view.hideToast()
+            self.view.makeToast("리스트가 생성되었습니다", duration: 0.5)
         }
     }
 }

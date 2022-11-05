@@ -107,6 +107,9 @@ extension ProjectContentViewController: DeleteCellDelegate {
         self.deleteCell(index.section)
         
         self.cardTableView.reloadData()
+        
+        self.view.hideToast()
+        self.view.makeToast("카드가 삭제되었습니다", duration: 0.5)
     }
 }
 

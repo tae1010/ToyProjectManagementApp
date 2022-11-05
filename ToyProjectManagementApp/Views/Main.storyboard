@@ -311,6 +311,25 @@
             </objects>
             <point key="canvasLocation" x="1952" y="37"/>
         </scene>
+        <!--MainTabbar-->
+        <scene sceneID="fuw-rY-1re">
+            <objects>
+                <tabBarController storyboardIdentifier="MainTabbar" title="MainTabbar" useStoryboardIdentifierAsRestorationIdentifier="YES" id="wtq-xT-g7s" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="p90-t9-L1Z">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" name="primaryColor"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="UAM-km-w7Y" kind="relationship" relationship="viewControllers" id="rse-9c-QFi"/>
+                        <segue destination="nbL-Mq-rke" kind="relationship" relationship="viewControllers" id="NTm-M3-0vB"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zZg-qV-He1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3425" y="167"/>
+        </scene>
         <!--Third Tabbar View Controller-->
         <scene sceneID="qFh-wn-izr">
             <objects>
@@ -319,14 +338,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="환영합니다." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KmS-w6-D7p">
-                                <rect key="frame" x="149.5" y="433" width="115" height="30"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
-                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YUW-RL-AV4">
-                                <rect key="frame" x="175.5" y="483" width="63" height="34"/>
+                                <rect key="frame" x="175.5" y="431" width="63" height="34"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="로그아웃">
@@ -337,7 +350,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0S4-At-Z2J">
-                                <rect key="frame" x="148.5" y="537" width="117" height="34.5"/>
+                                <rect key="frame" x="148.5" y="485" width="117" height="34.5"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="비밀번호 변경">
                                     <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -351,23 +364,20 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="0S4-At-Z2J" firstAttribute="centerX" secondItem="mBh-wh-JFA" secondAttribute="centerX" id="4kF-Su-UFl"/>
-                            <constraint firstItem="KmS-w6-D7p" firstAttribute="centerY" secondItem="mBh-wh-JFA" secondAttribute="centerY" id="LSM-Rh-chq"/>
-                            <constraint firstItem="KmS-w6-D7p" firstAttribute="centerX" secondItem="mBh-wh-JFA" secondAttribute="centerX" id="Lto-Dd-13o"/>
-                            <constraint firstItem="YUW-RL-AV4" firstAttribute="top" secondItem="KmS-w6-D7p" secondAttribute="bottom" constant="20" id="OkD-Ps-5d8"/>
+                            <constraint firstItem="YUW-RL-AV4" firstAttribute="centerY" secondItem="mBh-wh-JFA" secondAttribute="centerY" id="9nh-u4-2lV"/>
                             <constraint firstItem="YUW-RL-AV4" firstAttribute="centerX" secondItem="mBh-wh-JFA" secondAttribute="centerX" id="ZOv-oa-Rq6"/>
                             <constraint firstItem="0S4-At-Z2J" firstAttribute="top" secondItem="YUW-RL-AV4" secondAttribute="bottom" constant="20" id="ySw-VI-RIp"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="person" catalog="system" selectedImage="person.fill" id="CrF-EA-S80"/>
+                    <tabBarItem key="tabBarItem" title="" image="profileFill" selectedImage="profileFill" id="CrF-EA-S80"/>
                     <navigationItem key="navigationItem" id="x1l-TW-2yi"/>
                     <connections>
                         <outlet property="resetPasswordButton" destination="0S4-At-Z2J" id="NXe-r7-qZC"/>
-                        <outlet property="welcomeLabel" destination="KmS-w6-D7p" id="uDF-QK-H0Y"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CfZ-LX-oHf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4513" y="834"/>
+            <point key="canvasLocation" x="4494" y="905"/>
         </scene>
         <!--Main Tabbar View Controller-->
         <scene sceneID="ueE-Gr-mSl">
@@ -498,7 +508,9 @@
                             <constraint firstItem="dyl-vv-GWe" firstAttribute="top" secondItem="iJn-vt-GFO" secondAttribute="bottom" id="j4j-iE-yKg"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" tag="2" title="" image="square.grid.2x2" catalog="system" selectedImage="square.grid.2x2.fill" id="Nwg-c4-cJg"/>
+                    <tabBarItem key="tabBarItem" tag="2" title="" image="CategoryFill" selectedImage="CategoryFill" id="Nwg-c4-cJg">
+                        <inset key="largeContentSizeImageInsets" minX="0.0" minY="10" maxX="0.0" maxY="0.0"/>
+                    </tabBarItem>
                     <connections>
                         <outlet property="logoImageView" destination="jEn-Ky-Ar7" id="xmY-z5-ZtI"/>
                         <outlet property="logoLabel" destination="hCk-kG-M0m" id="hK6-fq-PR4"/>
@@ -512,43 +524,19 @@
                     </connections>
                 </pongPressGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2362.3188405797105" y="833.70535714285711"/>
-        </scene>
-        <!--Tab Bar Controller-->
-        <scene sceneID="Vk3-Xo-CxF">
-            <objects>
-                <tabBarController storyboardIdentifier="MainTabbar" id="QZa-Cn-xOg" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="cuh-kS-DSj"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="q4h-Ld-sB0">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="tintColor" red="0.64705882349999999" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="selectedImageTintColor" red="0.64705882349999999" green="0.64705882349999999" blue="0.64705882349999999" alpha="1" colorSpace="calibratedRGB"/>
-                    </tabBar>
-                    <connections>
-                        <segue destination="UAM-km-w7Y" kind="relationship" relationship="viewControllers" id="NCS-70-0xJ"/>
-                        <segue destination="nbL-Mq-rke" kind="relationship" relationship="viewControllers" id="Olv-Jh-Cjb"/>
-                    </connections>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="1cG-Tq-jHf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3561" y="37"/>
+            <point key="canvasLocation" x="3001" y="905"/>
         </scene>
     </scenes>
     <resources>
+        <image name="CategoryFill" width="23.333333969116211" height="23.333333969116211"/>
         <image name="apple" width="1024" height="1024"/>
         <image name="arrow.left" catalog="system" width="128" height="95"/>
         <image name="customStar" width="64" height="64"/>
         <image name="google" width="1024" height="1024"/>
         <image name="kakao 1" width="257" height="246"/>
         <image name="logo" width="1024" height="1024"/>
-        <image name="person" catalog="system" width="128" height="121"/>
-        <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="plus" catalog="system" width="128" height="113"/>
-        <image name="square.grid.2x2" catalog="system" width="128" height="114"/>
-        <image name="square.grid.2x2.fill" catalog="system" width="128" height="114"/>
+        <image name="profileFill" width="23.333333969116211" height="23.333333969116211"/>
         <namedColor name="primaryColor">
             <color red="0.72941176470588232" green="0.59999999999999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

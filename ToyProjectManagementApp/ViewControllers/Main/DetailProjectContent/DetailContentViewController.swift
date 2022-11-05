@@ -245,6 +245,15 @@ extension DetailContentViewController {
             self.cardColor = colorSelected ?? .white // UIColor를 cardColor에 저장
             self.cardColorView.backgroundColor = self.cardColor
             self.cardBackgroundColorView.backgroundColor = self.cardColor
+            
+            if self.cardColor == UIColor.white {
+                print(self.cardColor, "z")
+                self.cardBackgroundColorView.layer.borderColor = UIColor.gray.cgColor
+            } else {
+                print(self.cardColor, "x")
+                self.cardBackgroundColorView.layer.borderColor = self.cardColor.cgColor
+            }
+            
             self.cardColorLabel.font = UIFont(name: "NanumGothicOTFBold", size: 14)
             self.cardColorContentLabel.text = self.colorContent[currentColorIndex]
 
@@ -290,6 +299,15 @@ extension DetailContentViewController {
         UIView.animate(withDuration: 0.2, animations: {
             self.cardColorView.backgroundColor = self.cardColor
             self.cardBackgroundColorView.backgroundColor = self.cardColor
+            
+            if self.cardColor == UIColor.white {
+                print(self.cardColor, "z")
+                self.cardBackgroundColorView.layer.borderColor = UIColor.gray.cgColor
+            } else {
+                print(self.cardColor, "x")
+                self.cardBackgroundColorView.layer.borderColor = self.cardColor.cgColor
+            }
+            
             self.cardColorContentLabel.textColor = self.cardColor.isLight() ? .black : .white
         })
         
@@ -388,5 +406,13 @@ extension DetailContentViewController {
         }) { error in
           print(error.localizedDescription)
         }
+    }
+}
+
+extension DetailContentViewController: UIScrollViewDelegate {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        
     }
 }

@@ -19,7 +19,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="428" height="1200"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BmG-8D-6Jm">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BmG-8D-6Jm">
                                 <rect key="frame" x="0.0" y="47" width="428" height="1119"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" restorationIdentifier="detailview" translatesAutoresizingMaskIntoConstraints="NO" id="QbQ-iG-q8o">

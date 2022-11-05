@@ -213,7 +213,7 @@ extension ProjectListManagementViewController: DeleteListDelegate {
         // 변경된 내용 db저장
         for i in self.projectContent{
             
-            var listTitle = i.listTitle
+            let listTitle = i.listTitle
             var cardCount = 0
             
             for j in i.detailContent {
