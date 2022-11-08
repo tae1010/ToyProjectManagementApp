@@ -63,6 +63,8 @@ extension UIColor {
     class var color15: UIColor? { return UIColor(named: "color15") }
     class var color15CGColor: CGColor { return UIColor.color15!.cgColor }
     
+    class var veryLightGray: UIColor? { return UIColor(named: "veryLightGray") }
+    
     // 밝기 여부 판단
     func isLight() -> Bool {
         guard let components = cgColor.components, components.count > 2 else { return false }

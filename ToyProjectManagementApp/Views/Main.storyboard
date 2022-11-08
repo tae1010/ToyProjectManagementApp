@@ -311,24 +311,46 @@
             </objects>
             <point key="canvasLocation" x="1952" y="37"/>
         </scene>
-        <!--MainTabbar-->
-        <scene sceneID="fuw-rY-1re">
+        <!--Custom Tabbar View Controller-->
+        <scene sceneID="N5H-GC-Jda">
             <objects>
-                <tabBarController storyboardIdentifier="MainTabbar" title="MainTabbar" useStoryboardIdentifierAsRestorationIdentifier="YES" id="wtq-xT-g7s" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="p90-t9-L1Z">
+                <tabBarController storyboardIdentifier="MainTabbar" useStoryboardIdentifierAsRestorationIdentifier="YES" id="oui-By-Icx" customClass="CustomTabbarViewController" customModule="ToyProjectManagementApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="dOg-kW-8Wg">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="selectedImageTintColor" name="primaryColor"/>
                     </tabBar>
                     <connections>
-                        <segue destination="UAM-km-w7Y" kind="relationship" relationship="viewControllers" id="rse-9c-QFi"/>
-                        <segue destination="nbL-Mq-rke" kind="relationship" relationship="viewControllers" id="NTm-M3-0vB"/>
+                        <segue destination="UAM-km-w7Y" kind="relationship" relationship="viewControllers" id="IL1-ie-yBj"/>
+                        <segue destination="xoM-bX-Wbp" kind="relationship" relationship="viewControllers" id="lZC-3p-V3r"/>
+                        <segue destination="4Al-Rr-QWp" kind="relationship" relationship="viewControllers" id="3QS-fK-Qdk"/>
+                        <segue destination="nbL-Mq-rke" kind="relationship" relationship="viewControllers" id="hLK-vQ-Vac"/>
                     </connections>
                 </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="zZg-qV-He1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yd5-oa-YD5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3425" y="167"/>
+            <point key="canvasLocation" x="2886" y="135"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="xvx-vV-fW6">
+            <objects>
+                <viewController id="4Al-Rr-QWp" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JJ4-f6-8vj">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="K28-zx-qBr"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" image="notification" selectedImage="notificataionFill" id="Tbc-Z6-C9T">
+                        <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-10"/>
+                    </tabBarItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JSB-rS-6FL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3349" y="881"/>
         </scene>
         <!--Third Tabbar View Controller-->
         <scene sceneID="qFh-wn-izr">
@@ -369,7 +391,10 @@
                             <constraint firstItem="0S4-At-Z2J" firstAttribute="top" secondItem="YUW-RL-AV4" secondAttribute="bottom" constant="20" id="ySw-VI-RIp"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="profileFill" selectedImage="profileFill" id="CrF-EA-S80"/>
+                    <tabBarItem key="tabBarItem" title="" image="Profile" selectedImage="profileFill" id="CrF-EA-S80">
+                        <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-10"/>
+                        <inset key="largeContentSizeImageInsets" minX="0.0" minY="1" maxX="0.0" maxY="0.0"/>
+                    </tabBarItem>
                     <navigationItem key="navigationItem" id="x1l-TW-2yi"/>
                     <connections>
                         <outlet property="resetPasswordButton" destination="0S4-At-Z2J" id="NXe-r7-qZC"/>
@@ -377,7 +402,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CfZ-LX-oHf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4494" y="905"/>
+            <point key="canvasLocation" x="4258" y="840"/>
         </scene>
         <!--Main Tabbar View Controller-->
         <scene sceneID="ueE-Gr-mSl">
@@ -414,7 +439,7 @@
                                 </connections>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="dyl-vv-GWe">
-                                <rect key="frame" x="0.0" y="105" width="414" height="708"/>
+                                <rect key="frame" x="0.0" y="110" width="414" height="713"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="jhv-Qh-fW1">
                                     <size key="itemSize" width="180" height="200"/>
@@ -500,16 +525,17 @@
                         <constraints>
                             <constraint firstItem="0rg-By-3Cb" firstAttribute="trailing" secondItem="hLH-5K-JDZ" secondAttribute="trailing" constant="14" id="DoI-xE-Cxq"/>
                             <constraint firstItem="dyl-vv-GWe" firstAttribute="leading" secondItem="0rg-By-3Cb" secondAttribute="leading" id="IC9-Fs-CuS"/>
-                            <constraint firstItem="dyl-vv-GWe" firstAttribute="bottom" secondItem="0rg-By-3Cb" secondAttribute="bottom" id="QdL-bz-Kvg"/>
+                            <constraint firstItem="dyl-vv-GWe" firstAttribute="bottom" secondItem="0rg-By-3Cb" secondAttribute="bottom" constant="10" id="QdL-bz-Kvg"/>
                             <constraint firstItem="dyl-vv-GWe" firstAttribute="trailing" secondItem="0rg-By-3Cb" secondAttribute="trailing" id="R7v-73-kgb"/>
                             <constraint firstItem="hLH-5K-JDZ" firstAttribute="top" secondItem="iJn-vt-GFO" secondAttribute="top" id="ULP-lA-UdU"/>
                             <constraint firstItem="iJn-vt-GFO" firstAttribute="top" secondItem="0rg-By-3Cb" secondAttribute="top" constant="7" id="Z0I-5s-kUL"/>
                             <constraint firstItem="iJn-vt-GFO" firstAttribute="leading" secondItem="0rg-By-3Cb" secondAttribute="leading" constant="14" id="bGC-3L-9Q0"/>
-                            <constraint firstItem="dyl-vv-GWe" firstAttribute="top" secondItem="iJn-vt-GFO" secondAttribute="bottom" id="j4j-iE-yKg"/>
+                            <constraint firstItem="dyl-vv-GWe" firstAttribute="top" secondItem="iJn-vt-GFO" secondAttribute="bottom" constant="5" id="j4j-iE-yKg"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" tag="2" title="" image="CategoryFill" selectedImage="CategoryFill" id="Nwg-c4-cJg">
-                        <inset key="largeContentSizeImageInsets" minX="0.0" minY="10" maxX="0.0" maxY="0.0"/>
+                    <tabBarItem key="tabBarItem" tag="2" title="" image="CategoryBlack" selectedImage="CategoryFill" id="Nwg-c4-cJg">
+                        <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-10"/>
+                        <inset key="largeContentSizeImageInsets" minX="0.0" minY="1" maxX="0.0" maxY="0.0"/>
                     </tabBarItem>
                     <connections>
                         <outlet property="logoImageView" destination="jEn-Ky-Ar7" id="xmY-z5-ZtI"/>
@@ -524,17 +550,31 @@
                     </connections>
                 </pongPressGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="3001" y="905"/>
+            <point key="canvasLocation" x="2217" y="841"/>
+        </scene>
+        <!--SecondTabbarViewController-->
+        <scene sceneID="fKY-5l-FjF">
+            <objects>
+                <viewControllerPlaceholder storyboardName="SecondTabbar" referencedIdentifier="SecondTabbarViewController" id="xoM-bX-Wbp" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="Uzh-p6-YO1"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FAw-DS-r2J" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2785" y="660"/>
         </scene>
     </scenes>
     <resources>
+        <image name="CategoryBlack" width="23.333333969116211" height="23.333333969116211"/>
         <image name="CategoryFill" width="23.333333969116211" height="23.333333969116211"/>
+        <image name="Profile" width="23.333333969116211" height="23.333333969116211"/>
         <image name="apple" width="1024" height="1024"/>
         <image name="arrow.left" catalog="system" width="128" height="95"/>
         <image name="customStar" width="64" height="64"/>
         <image name="google" width="1024" height="1024"/>
         <image name="kakao 1" width="257" height="246"/>
         <image name="logo" width="1024" height="1024"/>
+        <image name="notificataionFill" width="23.333333969116211" height="23.333333969116211"/>
+        <image name="notification" width="23.333333969116211" height="23.333333969116211"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="profileFill" width="23.333333969116211" height="23.333333969116211"/>
         <namedColor name="primaryColor">
