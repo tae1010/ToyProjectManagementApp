@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NotificationCell" rowHeight="127" id="QU3-qj-JYH" customClass="NotificationCell" customModule="ToyProjectManagementApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="408" height="127"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="QU3-qj-JYH" id="fIB-O0-zIa">
+                <rect key="frame" x="0.0" y="0.0" width="408" height="127"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="create" translatesAutoresizingMaskIntoConstraints="NO" id="Zeq-xq-YDp">
+                        <rect key="frame" x="14" y="8" width="40" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="40" id="VU6-fL-Xaj"/>
+                            <constraint firstAttribute="height" constant="40" id="pbX-Ev-9te"/>
+                        </constraints>
+                    </imageView>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="j7j-LY-1MM">
+                        <rect key="frame" x="64" y="8" width="330" height="111"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="project Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IcP-Db-JK2">
+                                <rect key="frame" x="0.0" y="0.0" width="330" height="20.333333333333332"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="pui-9P-PlT">
+                                <rect key="frame" x="0.0" y="27.333333333333332" width="330" height="56.333333333333343"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" horizontalCompressionResistancePriority="749" text="projectTitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yx1-in-ymX">
+                                        <rect key="frame" x="0.0" y="0.0" width="85.666666666666671" height="56.333333333333336"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="249" text="content" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WLd-Xq-Wkl">
+                                        <rect key="frame" x="88.666666666666643" y="0.0" width="241.33333333333337" height="56.333333333333336"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fyz-4c-3Mo">
+                                <rect key="frame" x="0.0" y="90.666666666666671" width="330" height="20.333333333333329"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Zeq-xq-YDp" firstAttribute="leading" secondItem="fIB-O0-zIa" secondAttribute="leading" constant="14" id="0vB-xp-bNe"/>
+                    <constraint firstItem="j7j-LY-1MM" firstAttribute="top" secondItem="Zeq-xq-YDp" secondAttribute="top" id="9Kf-Y3-EI9"/>
+                    <constraint firstAttribute="bottom" secondItem="j7j-LY-1MM" secondAttribute="bottom" constant="8" id="9No-h0-zKV"/>
+                    <constraint firstItem="Zeq-xq-YDp" firstAttribute="top" secondItem="fIB-O0-zIa" secondAttribute="top" constant="8" id="GNO-mr-v9i"/>
+                    <constraint firstAttribute="trailing" secondItem="j7j-LY-1MM" secondAttribute="trailing" constant="14" id="Gdj-1F-bMN"/>
+                    <constraint firstItem="j7j-LY-1MM" firstAttribute="leading" secondItem="Zeq-xq-YDp" secondAttribute="trailing" constant="10" id="bcA-Sc-chE"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="notificaionImageView" destination="Zeq-xq-YDp" id="Bh7-GP-3CW"/>
+                <outlet property="notificatioinProjectTitleLabel" destination="IcP-Db-JK2" id="PP3-eC-Jpp"/>
+                <outlet property="notificationContentLabel" destination="WLd-Xq-Wkl" id="rs7-Vu-Zxc"/>
+                <outlet property="notificationDateLabel" destination="fyz-4c-3Mo" id="9Tu-4Q-WEx"/>
+                <outlet property="notificationProjectContentTitleLabel" destination="Yx1-in-ymX" id="um1-H7-6l2"/>
+            </connections>
+            <point key="canvasLocation" x="312.97709923664121" y="-184.1549295774648"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="create" width="23.333333969116211" height="23.333333969116211"/>
+    </resources>
+</document>

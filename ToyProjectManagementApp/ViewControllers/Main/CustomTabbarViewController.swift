@@ -37,5 +37,6 @@ class CustomTabbarViewController: UITabBarController {
         borderView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -1).isActive = true
     }
 
+
     
 }

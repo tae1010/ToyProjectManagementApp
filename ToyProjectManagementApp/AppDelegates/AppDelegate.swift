@@ -10,6 +10,7 @@ import FirebaseCore
 import GoogleSignIn
 import FirebaseAuth
 import CoreData
+import FirebaseDatabase
 
 
 
@@ -120,6 +121,8 @@ extension AppDelegate {
 }
 
 extension UIViewController {
+    
+
     // 뷰를 클릭하면 키보드가 내려감
     func hideKeyboardWhenTappedAround() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
@@ -130,4 +133,19 @@ extension UIViewController {
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
+    
+    func setDBNotificationModel(email: String, id: String, title: String, status: String, content: String, date: Int) {
+        
+        let ref: DatabaseReference! = Database.database().reference()
+        
+        // notification Model
+        ref.child("\(email)/notification").updateChildValues(["projectTitle": title])
+        ref.child("\(email)/notification").updateChildValues(["status": status])
+        ref.child("\(email)/notification").updateChildValues(["content": content])
+        ref.child("\(email)/notification").updateChildValues(["date": date])
+
+    }
+    
+    
+    
 }

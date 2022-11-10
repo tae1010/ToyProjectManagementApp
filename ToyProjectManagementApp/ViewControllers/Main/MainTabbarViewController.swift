@@ -17,6 +17,8 @@ class MainTabbarViewController: UIViewController {
     var projectListPrograssTrue = [Project]() // prograss가 true일때 section0에 저장
     var projectListPrograssFalse = [Project]() // prograss가 false일때 section1에 저장
     
+    var notificationArray = [NotificationModel]() // notification 모델 배열
+    
     var ref: DatabaseReference! = Database.database().reference()
 
     var longPressCellIndex: Int? // longpress한 cell의 index
@@ -111,14 +113,14 @@ extension MainTabbarViewController {
     
     //db값을 읽어서 projectList에 db값을 넣어준 뒤 collectionview 업데이트 해주는 함수
     private func readDB() {
-        print(#fileID, #function, #line, "- readDB실행")
+        
         self.projectListPrograssFalse.removeAll()
         self.projectListPrograssTrue.removeAll()
 
         ref.child(email).observeSingleEvent(of: .value, with: { snapshot in
           // Get user value
             guard let value = snapshot.value as? Dictionary<String, Any> else { return }
-            
+            print(#fileID, #function, #line, "- readDB실행")
             for (key,val) in value {
                 let id = key 
                 guard let val = val as? Dictionary<String, Any> else { return }
@@ -149,6 +151,41 @@ extension MainTabbarViewController {
           print(error.localizedDescription)
         }
     }
+    
+//    private func readNotificationDB() {
+//        self.notificationArray.removeAll()
+//
+//        ref.child("\(email)/notification").observeSingleEvent(of: .value, with: { snapshot in
+//          // Get user value
+//            print(snapshot)
+//            guard let value = snapshot.value as? [[String: Any]] else { return }
+//            print(#fileID, #function, #line, "- ㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇ")
+//            for list in value {
+//                var count = 0
+//                for (key, val) in list {
+//                    let id = key
+//                    guard let val = val as? Dictionary<String, Any> else { return }
+//                    guard let content = val["content"] else { return }
+//                    guard let date = val["date"] else { return }
+//                    guard let projectTitle = val["projectTitle"] else { return }
+//                    guard let status = val["status"] else { return }
+//
+//                    let notificationModel = NotificationModel(projectTitle: projectTitle as! String, status: status as! String, content: content as! String, date: date as! Int)
+//
+//                    self.notificationArray.append(notificationModel)
+//                    count += 1
+//                }
+//
+//            }
+//
+//            NotificationCenter.default.post(name: .postNotificationModelNotification, object: self.notificationArray, userInfo: nil)
+//
+//        }) { error in
+//          print(error.localizedDescription)
+//        }
+//    }
+    
+    
     
     // 메인화면에 보이는 collectionview projectList 정렬
     private func sortFirstSection() {
@@ -217,7 +254,7 @@ extension MainTabbarViewController {
     private func deleteProject(index: Int, id: String, section: Int) {
         
         print(#fileID, #function, #line, "- 삭제하기 클릭")
-        projectCollectionView.deleteItems(at: [[section, index]])
+        
         self.ref.child("\(email)/\(id)/").removeValue()
         
         if section == 0 {
@@ -226,9 +263,9 @@ extension MainTabbarViewController {
             self.projectListPrograssFalse.remove(at: index)
         }
         
-        DispatchQueue.main.async {
-            self.projectCollectionView.reloadData()
-        }
+        self.projectCollectionView.deleteItems(at: [[section, index]])
+        self.projectCollectionView.reloadData()
+
     }
     
     private func changeProjectTitle(index: Int, id: String, section: Int, projectTitle: String) {
@@ -268,9 +305,7 @@ extension MainTabbarViewController {
         self.sortFirstSection()
         self.sortSecondSection()
         
-        self.projectCollectionView.performBatchUpdates({
-            self.projectCollectionView.reloadSections(NSIndexSet(index: section) as IndexSet)
-        }, completion: { (finished:Bool) -> Void in })
+        self.projectCollectionView.reloadData()
     }
     
     //네비게이션뷰 숨기기, 컬렉션뷰 사이즈 생성해주는 함수
@@ -385,7 +420,7 @@ extension MainTabbarViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-// MARK: - selector
+// MARK: - notification, delegate
 extension MainTabbarViewController {
     
     fileprivate func setNotification() {
@@ -446,23 +481,31 @@ extension MainTabbarViewController {
         switch section {
         case 0:
             let id = self.projectListPrograssTrue[index].id
+            
+            UserDefault().notificationModelUserDefault(title: self.projectListPrograssTrue[index].projectTitle, status: "삭제", content: "프로젝트가 삭제되었습니다", date: self.koreanDate())
+            
             self.deleteProject(index: index, id: id, section: section)
+            
         case 1:
             let id = self.projectListPrograssFalse[index].id
+
+            UserDefault().notificationModelUserDefault(title: self.projectListPrograssFalse[index].projectTitle, status: "삭제", content: "프로젝트가 삭제되었습니다", date: self.koreanDate())
+
+
             self.deleteProject(index: index, id: id, section: section)
+            
         default:
             print("?")
         }
-        
-        DispatchQueue.main.async {
-            self.projectCollectionView.reloadData()
-        }
+
+
     }
     
     @objc func changePrograssProjectNotification(_ notification: Notification) {
         
         let getValue = notification.object as! Bool // 진행중 / 완료
-        
+
+
         guard let index  = self.longPressCellIndex else { return }
         guard let section = self.longPressCellSection else { return }
         
@@ -472,6 +515,9 @@ extension MainTabbarViewController {
             
             // prograss가 바뀌었으면 chagnePrograssProject 실행
             if getValue != self.projectListPrograssTrue[index].prograss {
+                
+                UserDefault().notificationModelUserDefault(title: self.projectListPrograssTrue[index].projectTitle, status: "상태변경", content: "프로젝트 상태가 변경되었습니다.", date: self.koreanDate())
+
                 self.changePrograssProject(index: index, id: id, section: section, prograss: getValue)
             }
         case 1:
@@ -479,28 +525,39 @@ extension MainTabbarViewController {
     
             // prograss가 바뀌었으면 chagnePrograssProject 실행
             if getValue != self.projectListPrograssFalse[index].prograss {
+                
+                UserDefault().notificationModelUserDefault(title: self.projectListPrograssFalse[index].projectTitle, status: "상태변경", content: "프로젝트 상태가 변경되었습니다.", date: self.koreanDate())
+                
                 self.changePrograssProject(index: index, id: id, section: section, prograss: getValue)
             }
-            
+
         default:
             print("왜?")
         }
+
     }
     
     @objc func changeProjectTitleNotification(_ notification: Notification) {
         
         let getValue = notification.object as! String // 변경할 
-        
+
         guard let index  = self.longPressCellIndex else { return }
         guard let section = self.longPressCellSection else { return }
         
         switch section {
         case 0:
             let id = self.projectListPrograssTrue[index].id
+            
+            UserDefault().notificationModelUserDefault(title: self.projectListPrograssTrue[index].projectTitle, status: "이름변경", content: "프로젝트 이름이 변경되었습니다.", date: self.koreanDate())
+
+            
             self.changeProjectTitle(index: index, id: id, section: section, projectTitle: getValue)
             
         case 1:
             let id = self.projectListPrograssFalse[index].id
+            
+            UserDefault().notificationModelUserDefault(title: self.projectListPrograssFalse[index].projectTitle, status: "이름변경", content: "프로젝트 이름이 변경되었습니다.", date: self.koreanDate())
+            
             self.changeProjectTitle(index: index, id: id, section: section, projectTitle: getValue)
             
         default:
@@ -517,30 +574,31 @@ extension MainTabbarViewController {
 extension MainTabbarViewController: CreateProjectDelegate {
     
     func createProject(title: String?) {
-        
+        let title = title ?? ""
         let id = UUID().uuidString
         let email = self.emailToString(Auth.auth().currentUser?.email ?? "고객")
-        let project = Project(id: id, projectTitle: title ?? "", important: false, currentTime: self.koreanDate(), prograss: false)
+        let project = Project(id: id, projectTitle: title, important: false, currentTime: self.koreanDate(), prograss: false)
+        
         self.projectListPrograssTrue.insert(project, at: 0)
         
         let colorContent = [String](repeating: "", count: 16) // color content
-        
+
         self.sortFirstSection()
         
         //firebase에 데이터 입력
         self.ref.child("\(email)/\(id)").updateChildValues(["important": false])
-        self.ref.child("\(email)/\(id)").updateChildValues(["projectTitle": title ?? ""])
-        self.ref.child("\(email)/\(id)").updateChildValues(["currentTime": self.koreanDate()!])
+        self.ref.child("\(email)/\(id)").updateChildValues(["projectTitle": title])
+        self.ref.child("\(email)/\(id)").updateChildValues(["currentTime": self.koreanDate() ?? "0"])
         self.ref.child("\(email)/\(id)").updateChildValues(["prograss": true])
         self.ref.child("\(email)/\(id)/content/0/리스트 이름을 정해주세요/0").updateChildValues(["cardName": "카드를 추가해주세요", "color": "", "startTime": "", "endTime": ""])
         
+        // label color content
         self.ref.child("\(email)/\(id)").updateChildValues(["colorContent": colorContent])
         
+        UserDefault().notificationModelUserDefault(title: title, status: "생성", content: "프로젝트가 생성되었습니다.", date: self.koreanDate())
+
         DispatchQueue.main.async {
             self.projectCollectionView.reloadData()
         }
     }
 }
-
-
-

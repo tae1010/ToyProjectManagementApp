@@ -325,84 +325,13 @@
                     </tabBar>
                     <connections>
                         <segue destination="UAM-km-w7Y" kind="relationship" relationship="viewControllers" id="IL1-ie-yBj"/>
-                        <segue destination="xoM-bX-Wbp" kind="relationship" relationship="viewControllers" id="lZC-3p-V3r"/>
-                        <segue destination="4Al-Rr-QWp" kind="relationship" relationship="viewControllers" id="3QS-fK-Qdk"/>
-                        <segue destination="nbL-Mq-rke" kind="relationship" relationship="viewControllers" id="hLK-vQ-Vac"/>
+                        <segue destination="QUh-Vl-Thx" kind="relationship" relationship="viewControllers" id="nmU-jP-SRX"/>
+                        <segue destination="CbA-uX-ZhN" kind="relationship" relationship="viewControllers" id="bNh-AL-1bS"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yd5-oa-YD5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2886" y="135"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="xvx-vV-fW6">
-            <objects>
-                <viewController id="4Al-Rr-QWp" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="JJ4-f6-8vj">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="K28-zx-qBr"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="" image="notification" selectedImage="notificataionFill" id="Tbc-Z6-C9T">
-                        <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-10"/>
-                    </tabBarItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="JSB-rS-6FL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3349" y="881"/>
-        </scene>
-        <!--Third Tabbar View Controller-->
-        <scene sceneID="qFh-wn-izr">
-            <objects>
-                <viewController storyboardIdentifier="ThirdTabbarViewController" id="nbL-Mq-rke" customClass="ThirdTabbarViewController" customModule="ToyProjectManagementApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="mBh-wh-JFA">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YUW-RL-AV4">
-                                <rect key="frame" x="175.5" y="431" width="63" height="34"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="로그아웃">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="logoutButtonTapped:" destination="nbL-Mq-rke" eventType="touchUpInside" id="Klc-ck-xDm"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0S4-At-Z2J">
-                                <rect key="frame" x="148.5" y="485" width="117" height="34.5"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="비밀번호 변경">
-                                    <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="resetPasswordButtonTap:" destination="nbL-Mq-rke" eventType="touchUpInside" id="fdc-HP-OCC"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="Hcq-kl-fPa"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="0S4-At-Z2J" firstAttribute="centerX" secondItem="mBh-wh-JFA" secondAttribute="centerX" id="4kF-Su-UFl"/>
-                            <constraint firstItem="YUW-RL-AV4" firstAttribute="centerY" secondItem="mBh-wh-JFA" secondAttribute="centerY" id="9nh-u4-2lV"/>
-                            <constraint firstItem="YUW-RL-AV4" firstAttribute="centerX" secondItem="mBh-wh-JFA" secondAttribute="centerX" id="ZOv-oa-Rq6"/>
-                            <constraint firstItem="0S4-At-Z2J" firstAttribute="top" secondItem="YUW-RL-AV4" secondAttribute="bottom" constant="20" id="ySw-VI-RIp"/>
-                        </constraints>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="" image="Profile" selectedImage="profileFill" id="CrF-EA-S80">
-                        <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-10"/>
-                        <inset key="largeContentSizeImageInsets" minX="0.0" minY="1" maxX="0.0" maxY="0.0"/>
-                    </tabBarItem>
-                    <navigationItem key="navigationItem" id="x1l-TW-2yi"/>
-                    <connections>
-                        <outlet property="resetPasswordButton" destination="0S4-At-Z2J" id="NXe-r7-qZC"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="CfZ-LX-oHf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4258" y="840"/>
         </scene>
         <!--Main Tabbar View Controller-->
         <scene sceneID="ueE-Gr-mSl">
@@ -562,21 +491,37 @@
             </objects>
             <point key="canvasLocation" x="2785" y="660"/>
         </scene>
+        <!--ThirdTabbarViewController-->
+        <scene sceneID="TD9-WK-5ut">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="ThirdTabbarViewController" storyboardName="ThirdTabbar" referencedIdentifier="ThirdTabbarViewController" id="QUh-Vl-Thx" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="xFw-KP-uaD"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FRO-yj-ZPP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3316" y="651"/>
+        </scene>
+        <!--ForthTabbarViewController-->
+        <scene sceneID="APa-mN-K4N">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="ForthTabbarViewController" storyboardName="ForthTabbar" referencedIdentifier="ForthTabbarViewController" id="CbA-uX-ZhN" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="hfH-og-BeJ"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Gvd-vS-xtu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3847" y="648"/>
+        </scene>
     </scenes>
     <resources>
         <image name="CategoryBlack" width="23.333333969116211" height="23.333333969116211"/>
         <image name="CategoryFill" width="23.333333969116211" height="23.333333969116211"/>
-        <image name="Profile" width="23.333333969116211" height="23.333333969116211"/>
         <image name="apple" width="1024" height="1024"/>
         <image name="arrow.left" catalog="system" width="128" height="95"/>
         <image name="customStar" width="64" height="64"/>
         <image name="google" width="1024" height="1024"/>
         <image name="kakao 1" width="257" height="246"/>
         <image name="logo" width="1024" height="1024"/>
-        <image name="notificataionFill" width="23.333333969116211" height="23.333333969116211"/>
-        <image name="notification" width="23.333333969116211" height="23.333333969116211"/>
         <image name="plus" catalog="system" width="128" height="113"/>
-        <image name="profileFill" width="23.333333969116211" height="23.333333969116211"/>
         <namedColor name="primaryColor">
             <color red="0.72941176470588232" green="0.59999999999999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

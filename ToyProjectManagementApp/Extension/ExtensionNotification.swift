@@ -22,6 +22,7 @@ extension Notification.Name {
     // 카드 추가 notification
     static let addCardNotificaton = Notification.Name("addCardNotificaton")
     
+    // project 이름 변경 notificatioin
     static let changeProjectTitleNotification = Notification.Name("changeProjectTitleNotification")
-    
+
 }

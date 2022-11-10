@@ -9,18 +9,36 @@ import Foundation
 
 
 class UserDefault {
-    let popupUserDefaults = UserDefaults.standard
     
-//    // cardColor Content 저장하기
-//    func saveColorContentUserdefault(colorContent: [String]) {
-//        popupUserDefaults.set(colorContent, forKey: "colorContent")
-//    }
-//    
-//    // cardColor Content 불러오기
-//    func loadUserdefault() -> [String] {
-//        var emptyArray = [String](repeating: "", count: 16)
-//        guard let colorContent = popupUserDefaults.object(forKey: "colorContent") as? [String] else { return emptyArray }
-//        
-//        return colorContent
-//    }
+    let userDefault = UserDefaults.standard
+    let encoder = JSONEncoder()
+    let decoder = JSONDecoder()
+
+    func setNotificationModelUserDefault(notificationModel: [NotificationModel]) {
+        
+        var notificationModelEncoder = try? encoder.encode(notificationModel)
+        userDefault.set(notificationModelEncoder, forKey: "notificationModel")
+    }
+    
+    // Notification Model 불러오기
+    func loadNotificationModelUserDefault() -> [NotificationModel]? {
+        guard let notificationModel = userDefault.object(forKey: "notificationModel") else { return [NotificationModel]() }
+        guard let notificationModelDecoder = try? decoder.decode([NotificationModel].self, from: notificationModel as! Data) else { return [NotificationModel]() }
+
+        return notificationModelDecoder
+    }
+    
+    func notificationModelUserDefault(title: String, status: String, content: String, date: Int) {
+        var notificationModel: [NotificationModel] = UserDefault().loadNotificationModelUserDefault() ?? [NotificationModel]()
+
+        notificationModel.append(NotificationModel(projectTitle: title, status: status, content: content, date: date))
+
+        var sortNotificationModel = notificationModel.sorted(by: {$0.date > $1.date})
+
+        if sortNotificationModel.count > 10 {
+            sortNotificationModel.removeLast()
+        }
+
+        UserDefault().setNotificationModelUserDefault(notificationModel: notificationModel)
+    }
 }

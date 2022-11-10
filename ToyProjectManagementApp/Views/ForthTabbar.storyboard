@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Forth Tabbar View Controller-->
+        <scene sceneID="z4j-2P-zf3">
+            <objects>
+                <viewController storyboardIdentifier="ForthTabbarViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="iq6-qS-bLL" customClass="ForthTabbarViewController" customModule="ToyProjectManagementApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="QZv-Ny-qN9">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5hZ-kz-Smb">
+                                <rect key="frame" x="165" y="409" width="63" height="34"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="로그아웃">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="logoutButtonTapped:" destination="iq6-qS-bLL" eventType="touchUpInside" id="eWx-47-NqT"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4bi-7Y-ca7">
+                                <rect key="frame" x="138" y="463" width="117" height="34.666666666666686"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="비밀번호 변경">
+                                    <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="resetPasswordButtonTap:" destination="iq6-qS-bLL" eventType="touchUpInside" id="lvp-Mc-5bd"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="BeF-Tu-OMr"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="5hZ-kz-Smb" firstAttribute="centerY" secondItem="QZv-Ny-qN9" secondAttribute="centerY" id="LBg-Pm-xkD"/>
+                            <constraint firstItem="5hZ-kz-Smb" firstAttribute="centerX" secondItem="QZv-Ny-qN9" secondAttribute="centerX" id="NzE-fa-LQD"/>
+                            <constraint firstItem="4bi-7Y-ca7" firstAttribute="centerX" secondItem="QZv-Ny-qN9" secondAttribute="centerX" id="O2M-gd-8bW"/>
+                            <constraint firstItem="4bi-7Y-ca7" firstAttribute="top" secondItem="5hZ-kz-Smb" secondAttribute="bottom" constant="20" id="nWQ-Ni-Ea7"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" image="Profile" selectedImage="profileFill" id="o7Z-7h-Gcw">
+                        <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-10"/>
+                    </tabBarItem>
+                    <navigationItem key="navigationItem" id="lM8-A2-iRI"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="resetPasswordButton" destination="4bi-7Y-ca7" id="WfA-cE-o1G"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pV1-tv-aNl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-473" y="80"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Profile" width="23.333333969116211" height="23.333333969116211"/>
+        <image name="profileFill" width="23.333333969116211" height="23.333333969116211"/>
+    </resources>
+</document>
