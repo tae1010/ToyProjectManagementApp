@@ -28,6 +28,9 @@ class MainTabbarViewController: UIViewController {
     
     @IBOutlet weak var logoImageView: LogoImageView!
     @IBOutlet weak var logoLabel: LogoLabel!
+    
+    @IBOutlet weak var emptyView: UIView!
+    @IBOutlet weak var noProjectLabel: UILabel!
     @IBOutlet weak var projectCollectionView: UICollectionView!
     
     override func viewDidLoad() {
@@ -35,6 +38,7 @@ class MainTabbarViewController: UIViewController {
         hideKeyboardWhenTappedAround() // 화면 클릭시 키보드 내림
         self.email = self.emailToString(Auth.auth().currentUser?.email ?? "고객")
         self.configureView()
+        self.configureNoProjectLabel()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -97,6 +101,15 @@ class MainTabbarViewController: UIViewController {
 // MARK: - function
 extension MainTabbarViewController {
     
+    // collection view cell 없으면 emptyview 보여주기
+    private func hiddenEmptyView() {
+        if self.projectListPrograssTrue.isEmpty && self.projectListPrograssFalse.isEmpty {
+            self.emptyView.isHidden = false
+        } else {
+            self.emptyView.isHidden = true
+        }
+    }
+    
     //현재 시간을 int값으로 반환시켜주는 함수
     private func koreanDate() -> Int!{
         let current = Date()
@@ -144,6 +157,7 @@ extension MainTabbarViewController {
             self.sortSecondSection()
             
             DispatchQueue.main.async {
+                self.hiddenEmptyView()
                 self.projectCollectionView.reloadData()
             }
             
@@ -151,40 +165,6 @@ extension MainTabbarViewController {
           print(error.localizedDescription)
         }
     }
-    
-//    private func readNotificationDB() {
-//        self.notificationArray.removeAll()
-//
-//        ref.child("\(email)/notification").observeSingleEvent(of: .value, with: { snapshot in
-//          // Get user value
-//            print(snapshot)
-//            guard let value = snapshot.value as? [[String: Any]] else { return }
-//            print(#fileID, #function, #line, "- ㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇ")
-//            for list in value {
-//                var count = 0
-//                for (key, val) in list {
-//                    let id = key
-//                    guard let val = val as? Dictionary<String, Any> else { return }
-//                    guard let content = val["content"] else { return }
-//                    guard let date = val["date"] else { return }
-//                    guard let projectTitle = val["projectTitle"] else { return }
-//                    guard let status = val["status"] else { return }
-//
-//                    let notificationModel = NotificationModel(projectTitle: projectTitle as! String, status: status as! String, content: content as! String, date: date as! Int)
-//
-//                    self.notificationArray.append(notificationModel)
-//                    count += 1
-//                }
-//
-//            }
-//
-//            NotificationCenter.default.post(name: .postNotificationModelNotification, object: self.notificationArray, userInfo: nil)
-//
-//        }) { error in
-//          print(error.localizedDescription)
-//        }
-//    }
-    
     
     
     // 메인화면에 보이는 collectionview projectList 정렬
@@ -264,6 +244,7 @@ extension MainTabbarViewController {
         }
         
         self.projectCollectionView.deleteItems(at: [[section, index]])
+        self.hiddenEmptyView()
         self.projectCollectionView.reloadData()
 
     }
@@ -317,6 +298,11 @@ extension MainTabbarViewController {
         self.projectCollectionView.delegate = self
         self.projectCollectionView.dataSource = self
         self.projectCollectionView.register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "header")
+    }
+    
+    private func configureNoProjectLabel() {
+        self.noProjectLabel.textColor = UIColor(red: 0.412, green: 0.42, blue: 0.446, alpha: 1)
+        self.noProjectLabel.font = UIFont(name: "NanumGothicOTF", size: 14)
     }
 }
 
@@ -375,6 +361,7 @@ extension MainTabbarViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProjectCell", for: indexPath) as? ProjectCell else { return UICollectionViewCell() }
         
         // section0 prograss가 진행중(true)인것만 보여줌
@@ -598,6 +585,7 @@ extension MainTabbarViewController: CreateProjectDelegate {
         UserDefault().notificationModelUserDefault(title: title, status: "생성", content: "프로젝트가 생성되었습니다.", date: self.koreanDate())
 
         DispatchQueue.main.async {
+            self.hiddenEmptyView()
             self.projectCollectionView.reloadData()
         }
     }

@@ -390,9 +390,11 @@ extension ProjectContentViewController: UITableViewDataSource {
         // 배열에서 삭제
         
         if projectContent[self.currentPage].detailContent.count == 1 {
-            self.view.makeToast("카드가 1개 이상 있어야 합니다")
+            self.view.hideToast()
+            self.view.makeToast("리스트에는 카드가 1개 이상 있어야 합니다")
             return
         }
+        
         self.projectContent[self.currentPage].detailContent.remove(at: index)
         self.ref.child("\(email)/\(id)/content/\(currentPage)/\(self.currentTitle)").removeValue()
         //배열 중간값이 삭제될수 있기 떄문에 db배열을 갱신해줘야함
@@ -409,6 +411,9 @@ extension ProjectContentViewController: UITableViewDataSource {
             self.ref.child("\(email)/\(id)/content/\(currentPage)/\(self.currentTitle)/\(count)").setValue(detailContent)
             count += 1
         }
+        
+        self.view.hideToast()
+        self.view.makeToast("카드가 삭제되었습니다", duration: 0.5)
     }
 }
 

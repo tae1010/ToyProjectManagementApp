@@ -5,6 +5,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,23 +19,58 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="알림" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5FV-Ts-Kl9">
-                                <rect key="frame" x="14" y="73" width="30" height="21"/>
+                                <rect key="frame" x="14.000000000000002" y="73" width="29.666666666666671" height="20.333333333333329"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="KWT-iD-i6U">
-                                <rect key="frame" x="0.0" y="108" width="393" height="661"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Trc-aZ-S7y">
+                                <rect key="frame" x="14" y="114" width="364.66666666666669" height="33"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="알림 수" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pbW-TK-Hvd">
+                                        <rect key="frame" x="0.0" y="6.3333333333333268" width="48.666666666666664" height="20.333333333333329"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8uB-Cx-oAE">
+                                        <rect key="frame" x="56.666666666666686" y="0.0" width="308" height="33"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="알림 지우기">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="tapRemoveNotificationModel:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="JU8-fY-tFr"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="KWT-iD-i6U">
+                                <rect key="frame" x="0.0" y="167" width="393" height="602"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="P5V-uK-K3m">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="P5V-uK-K3m" id="Wuh-6p-VjR">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Trc-aZ-S7y" secondAttribute="trailing" constant="14.333333333333314" id="6nJ-Vl-4wL"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="KWT-iD-i6U" secondAttribute="trailing" id="7ok-Vs-tfc"/>
+                            <constraint firstItem="Trc-aZ-S7y" firstAttribute="leading" secondItem="5FV-Ts-Kl9" secondAttribute="leading" id="Hog-3K-pub"/>
                             <constraint firstItem="5FV-Ts-Kl9" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="14" id="L3c-fw-uwV"/>
-                            <constraint firstItem="KWT-iD-i6U" firstAttribute="top" secondItem="5FV-Ts-Kl9" secondAttribute="bottom" constant="14" id="YsK-3t-mxl"/>
+                            <constraint firstItem="Trc-aZ-S7y" firstAttribute="top" secondItem="5FV-Ts-Kl9" secondAttribute="bottom" constant="20.666666666666671" id="QpU-sE-DSY"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="KWT-iD-i6U" secondAttribute="bottom" id="eBq-dW-vPd"/>
+                            <constraint firstItem="KWT-iD-i6U" firstAttribute="top" secondItem="Trc-aZ-S7y" secondAttribute="bottom" constant="20" id="g8D-tW-PVk"/>
                             <constraint firstItem="KWT-iD-i6U" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="luC-IC-EMs"/>
                             <constraint firstItem="5FV-Ts-Kl9" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="14" id="qBA-Ie-amR"/>
                         </constraints>
@@ -44,8 +80,10 @@
                     </tabBarItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="notificationAlertLabel" destination="pbW-TK-Hvd" id="VGH-EZ-3HY"/>
                         <outlet property="notificationTableView" destination="KWT-iD-i6U" id="yUY-Ag-Nvp"/>
                         <outlet property="notificationTitleLabel" destination="5FV-Ts-Kl9" id="iow-ed-Lhu"/>
+                        <outlet property="removeNotificationModelButton" destination="8uB-Cx-oAE" id="A0S-BM-lA2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

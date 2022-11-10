@@ -376,6 +376,23 @@
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
+                                <view key="backgroundView" hidden="YES" contentMode="scaleToFill" id="1cq-l4-x7v">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="713"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="프로젝트가 없습니다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XyQ-tp-2me">
+                                            <rect key="frame" x="136.5" y="346.5" width="141.5" height="20.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstItem="XyQ-tp-2me" firstAttribute="centerX" secondItem="1cq-l4-x7v" secondAttribute="centerX" id="NAV-dg-piR"/>
+                                        <constraint firstItem="XyQ-tp-2me" firstAttribute="centerY" secondItem="1cq-l4-x7v" secondAttribute="centerY" id="Tk8-SH-Cic"/>
+                                    </constraints>
+                                </view>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ProjectCell" id="p7o-Mb-uWI" customClass="ProjectCell" customModule="ToyProjectManagementApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="180" height="100"/>
@@ -467,8 +484,10 @@
                         <inset key="largeContentSizeImageInsets" minX="0.0" minY="1" maxX="0.0" maxY="0.0"/>
                     </tabBarItem>
                     <connections>
+                        <outlet property="emptyView" destination="1cq-l4-x7v" id="5F5-Ge-Yrk"/>
                         <outlet property="logoImageView" destination="jEn-Ky-Ar7" id="xmY-z5-ZtI"/>
                         <outlet property="logoLabel" destination="hCk-kG-M0m" id="hK6-fq-PR4"/>
+                        <outlet property="noProjectLabel" destination="XyQ-tp-2me" id="KzC-EG-xbu"/>
                         <outlet property="projectCollectionView" destination="dyl-vv-GWe" id="cyB-B6-Kl6"/>
                     </connections>
                 </viewController>
@@ -479,7 +498,7 @@
                     </connections>
                 </pongPressGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2217" y="841"/>
+            <point key="canvasLocation" x="2215.9420289855075" y="840.40178571428567"/>
         </scene>
         <!--SecondTabbarViewController-->
         <scene sceneID="fKY-5l-FjF">

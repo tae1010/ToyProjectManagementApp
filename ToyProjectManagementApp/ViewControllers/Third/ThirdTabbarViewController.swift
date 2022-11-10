@@ -13,6 +13,8 @@ class ThirdTabbarViewController: UIViewController {
     
     @IBOutlet weak var notificationTitleLabel: UILabel!
     @IBOutlet weak var notificationTableView: UITableView!
+    @IBOutlet weak var notificationAlertLabel: UILabel!
+    @IBOutlet weak var removeNotificationModelButton: UIButton!
     
     var notificationModel = [NotificationModel]()
     
@@ -20,13 +22,33 @@ class ThirdTabbarViewController: UIViewController {
         super.viewDidLoad()
         self.configureNotificationTitleLabel()
         self.configureNotificationTableView()
+        self.configureNotificationAlertLabel()
+        self.configureRemoveNotificationModelButton()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
         self.notificationModel = UserDefault().loadNotificationModelUserDefault() ?? [NotificationModel]()
+        self.notificationAlertLabel.text = "\(self.notificationModel.count)개의 알림"
         self.notificationTableView.reloadData()
+    }
+    
+    @IBAction func tapRemoveNotificationModel(_ sender: UIButton) {
+        
+        if self.notificationModel.count == 0 {
+            self.view.hideToast()
+            self.view.makeToast("알림수가 0개입니다.", duration: 1)
+            return
+        }
+        
+        UserDefault().removeNotificationModelUserDefault()
+        notificationModel.removeAll()
+        self.notificationAlertLabel.text = "\(self.notificationModel.count)개의 알림"
+        self.notificationTableView.reloadData()
+        
+        self.view.hideToast()
+        self.view.makeToast("알림이 삭제되었습니다", duration: 1)
     }
 
 }
@@ -45,10 +67,22 @@ extension ThirdTabbarViewController {
         self.notificationTitleLabel.font = UIFont(name: "NanumGothicOTFBold", size: 20)
     }
     
+    private func configureNotificationAlertLabel() {
+        self.notificationAlertLabel.font = UIFont(name: "NanumGothicOTF", size: 14)
+        self.notificationAlertLabel.textColor = UIColor(red: 0.412, green: 0.42, blue: 0.446, alpha: 1)
+    }
+    
+    private func configureRemoveNotificationModelButton() {
+        self.removeNotificationModelButton.titleLabel?.font = UIFont(name: "NanumGothicOTF", size: 14)
+        self.removeNotificationModelButton.tintColor = UIColor(red: 0.412, green: 0.42, blue: 0.446, alpha: 1)
+    }
+    
+    
     private func emailToString(_ email: String) -> String {
         let emailToString = email.replacingOccurrences(of: ".", with: ",")
         return emailToString
     }
+
     
 }
 
@@ -63,10 +97,11 @@ extension ThirdTabbarViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NotificationCell", for: indexPath) as! NotificationCell
+        cell.selectionStyle = .none
 
         cell.notificaionImageView.image = {
             
-            var status = notificationModel[indexPath.row].status
+            let status = notificationModel[indexPath.row].status
             
             if status == "생성" {
                 return UIImage(named: "create")
