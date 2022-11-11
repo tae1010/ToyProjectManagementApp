@@ -11,12 +11,30 @@ import FirebaseAuth
 
 class ForthTabbarViewController: UIViewController {
 
+    @IBOutlet weak var myPageTitleLabel: UILabel!
+    @IBOutlet weak var emailLabel: UILabel!
+    
+    @IBOutlet weak var activityLabel: UILabel!
+    
+    @IBOutlet weak var totalProjectCountLabel: UILabel!
+    @IBOutlet weak var completeCountLabel: UILabel!
+    @IBOutlet weak var inPrograssCountLabel: UILabel!
+
+    @IBOutlet weak var totalProjectLabel: UILabel!
+    @IBOutlet weak var inPrograssLabel: UILabel!
+    @IBOutlet weak var completeLabel: UILabel!
+    
+    @IBOutlet weak var signOutButton: UIButton!
     @IBOutlet weak var resetPasswordButton: UIButton!
     
+    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         //pop제스처를 막아줌
         navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+        
+        self.configure()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -52,4 +70,44 @@ class ForthTabbarViewController: UIViewController {
     }
     
     
+}
+
+extension ForthTabbarViewController {
+    
+    private func configure() {
+        self.configureMyPageTitleLabel()
+        self.configureEmailLabel()
+        self.configureActivityLabel()
+        self.configureCountLabel()
+        self.configureUserButton()
+    }
+    
+    private func configureMyPageTitleLabel() {
+        self.myPageTitleLabel.font = UIFont(name: "NanumGothicOTFExtraBold", size: 20)
+    }
+    
+    private func configureEmailLabel() {
+        self.emailLabel.font = UIFont(name: "NanumGothicOTFBold", size: 16)
+    }
+    
+    private func configureActivityLabel() {
+        self.activityLabel.font = UIFont(name: "NanumGothicOTFExtraBold", size: 16)
+    }
+    
+    private func configureCountLabel() {
+        [totalProjectCountLabel, completeCountLabel, inPrograssCountLabel].forEach({
+            $0?.font = UIFont(name: "NanumGothicOTF", size: 16)
+        })
+        
+        [totalProjectLabel, inPrograssLabel, completeLabel].forEach({
+            $0?.font = UIFont(name: "NanumGothicOTF", size: 12)
+        })
+    }
+    
+    private func configureUserButton() {
+        [signOutButton, resetPasswordButton].forEach({
+            $0?.titleLabel?.font = UIFont(name: "NanumGothicOTF", size: 14)
+        })
+    }
+
 }
