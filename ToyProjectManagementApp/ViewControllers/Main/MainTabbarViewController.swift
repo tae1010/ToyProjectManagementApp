@@ -50,6 +50,8 @@ class MainTabbarViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
         self.removeNotification()
+        NotificationCenter.default.post(name: .projectCountNotification , object: [projectListPrograssTrue.count + projectListPrograssFalse.count, projectListPrograssTrue.count, projectListPrograssFalse.count], userInfo: nil)
+        print("전송됐나?")
     }
     
     //프로젝트 collection 추가
@@ -310,12 +312,11 @@ extension MainTabbarViewController {
 extension MainTabbarViewController: UICollectionViewDelegate {
     //셀 클릭시 작용
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let email = self.emailToString(Auth.auth().currentUser?.email ?? "고객")
         let projectContentStroyboard = UIStoryboard.init(name: "ProjectContent", bundle: nil)
         
         guard let projectContentViewController = projectContentStroyboard.instantiateViewController(withIdentifier: "ProjectContentViewController") as? ProjectContentViewController else { return }
         
-        projectContentViewController.email = email
+        projectContentViewController.email = self.email
         projectContentViewController.id = indexPath.section == 0 ? projectListPrograssTrue[indexPath.row].id : projectListPrograssFalse[indexPath.row].id
         projectContentViewController.projectTitle = indexPath.section == 0 ? projectListPrograssTrue[indexPath.row].projectTitle : projectListPrograssFalse[indexPath.row].projectTitle
         projectContentViewController.modalPresentationStyle = .fullScreen

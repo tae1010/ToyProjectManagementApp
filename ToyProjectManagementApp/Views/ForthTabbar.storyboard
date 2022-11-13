@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Forth Tabbar View Controller-->
+        <!--MY-->
         <scene sceneID="z4j-2P-zf3">
             <objects>
                 <viewController storyboardIdentifier="ForthTabbarViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="iq6-qS-bLL" customClass="ForthTabbarViewController" customModule="ToyProjectManagementApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -33,14 +33,14 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H1b-FO-8Ec">
-                                        <rect key="frame" x="0.0" y="101.66666666666666" width="393" height="11"/>
+                                        <rect key="frame" x="0.0" y="101.66666666666666" width="393" height="9"/>
                                         <color key="backgroundColor" red="0.96470588235294119" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="11" id="8ZG-RQ-pz2"/>
+                                            <constraint firstAttribute="height" constant="9" id="8ZG-RQ-pz2"/>
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="활동내역" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O4r-NQ-zFP">
-                                        <rect key="frame" x="14" y="136.66666666666666" width="365" height="20.333333333333343"/>
+                                        <rect key="frame" x="14" y="134.66666666666666" width="365" height="20.333333333333343"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -102,14 +102,14 @@
                                         </subviews>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pFV-UG-5oz">
-                                        <rect key="frame" x="0.0" y="256.66666666666669" width="393" height="11"/>
+                                        <rect key="frame" x="0.0" y="256.66666666666669" width="393" height="9"/>
                                         <color key="backgroundColor" red="0.96470588239999999" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="11" id="QRm-T7-E2l"/>
+                                            <constraint firstAttribute="height" constant="9" id="QRm-T7-E2l"/>
                                         </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="JPk-DW-mnT">
-                                        <rect key="frame" x="14" y="267.66666666666669" width="365" height="110"/>
+                                        <rect key="frame" x="14" y="265.66666666666669" width="365" height="110"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pBB-oj-pQf">
                                                 <rect key="frame" x="0.0" y="0.0" width="365" height="55"/>
@@ -206,7 +206,7 @@
                                     <constraint firstItem="JPk-DW-mnT" firstAttribute="leading" secondItem="YUk-Eq-2uX" secondAttribute="leading" id="Nj0-kL-UHp"/>
                                     <constraint firstItem="YUk-Eq-2uX" firstAttribute="trailing" secondItem="O4r-NQ-zFP" secondAttribute="trailing" id="Snc-be-uDZ"/>
                                     <constraint firstItem="JPk-DW-mnT" firstAttribute="top" secondItem="pFV-UG-5oz" secondAttribute="bottom" id="TY6-CS-cgm"/>
-                                    <constraint firstItem="YUk-Eq-2uX" firstAttribute="top" secondItem="O4r-NQ-zFP" secondAttribute="bottom" constant="18" id="XAp-JQ-ibn"/>
+                                    <constraint firstItem="YUk-Eq-2uX" firstAttribute="top" secondItem="O4r-NQ-zFP" secondAttribute="bottom" constant="20" id="XAp-JQ-ibn"/>
                                     <constraint firstItem="sbW-xC-Ns5" firstAttribute="trailing" secondItem="fO7-nE-phV" secondAttribute="trailing" id="YIh-wZ-HKH"/>
                                     <constraint firstItem="sbW-xC-Ns5" firstAttribute="leading" secondItem="fO7-nE-phV" secondAttribute="leading" id="cA9-XY-esJ"/>
                                     <constraint firstAttribute="trailing" secondItem="fO7-nE-phV" secondAttribute="trailing" constant="14" id="dtz-IU-kDN"/>
@@ -227,9 +227,7 @@
                             <constraint firstItem="5vH-tx-gsS" firstAttribute="top" secondItem="BeF-Tu-OMr" secondAttribute="top" id="h8Y-Vo-3dx"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="Profile" selectedImage="profileFill" id="o7Z-7h-Gcw">
-                        <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-10"/>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" title="MY" image="Profile" selectedImage="profileFill" id="o7Z-7h-Gcw"/>
                     <navigationItem key="navigationItem" id="lM8-A2-iRI"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>

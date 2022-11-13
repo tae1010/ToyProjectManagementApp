@@ -26,8 +26,6 @@ class ForthTabbarViewController: UIViewController {
     
     @IBOutlet weak var signOutButton: UIButton!
     @IBOutlet weak var resetPasswordButton: UIButton!
-    
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +47,12 @@ class ForthTabbarViewController: UIViewController {
         let isEmailSignin = Auth.auth().currentUser?.providerData[0].providerID == "password"
         resetPasswordButton.isHidden = !isEmailSignin
         
+        NotificationCenter.default.addObserver(self, selector: #selector(projectCountNotification), name: .projectCountNotification, object: nil)
+
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self, name: .projectCountNotification, object: nil)
     }
 
     @IBAction func logoutButtonTapped(_ sender: UIButton) {
@@ -68,8 +72,6 @@ class ForthTabbarViewController: UIViewController {
         let email = Auth.auth().currentUser?.email ?? ""
         Auth.auth().sendPasswordReset(withEmail: email, completion: nil)
     }
-    
-    
 }
 
 extension ForthTabbarViewController {
@@ -83,15 +85,18 @@ extension ForthTabbarViewController {
     }
     
     private func configureMyPageTitleLabel() {
-        self.myPageTitleLabel.font = UIFont(name: "NanumGothicOTFExtraBold", size: 20)
+        self.myPageTitleLabel.font = UIFont(name: "NanumGothicOTFBold", size: 20)
+
     }
     
     private func configureEmailLabel() {
+        let email = Auth.auth().currentUser?.email ?? ""
         self.emailLabel.font = UIFont(name: "NanumGothicOTFBold", size: 16)
+        self.emailLabel.text = email
     }
     
     private func configureActivityLabel() {
-        self.activityLabel.font = UIFont(name: "NanumGothicOTFExtraBold", size: 16)
+        self.activityLabel.font = UIFont(name: "NanumGothicOTFBold", size: 16)
     }
     
     private func configureCountLabel() {
@@ -110,4 +115,17 @@ extension ForthTabbarViewController {
         })
     }
 
+}
+
+// MARK: - notification
+extension ForthTabbarViewController {
+    
+    @objc func projectCountNotification(_ notification: Notification) {
+    
+        let getValue = notification.object as! [Int] // [총 프로젝트수, 진행중, 완료]
+        self.totalProjectCountLabel.text = String(getValue[0])
+        self.inPrograssCountLabel.text = String(getValue[1])
+        self.completeCountLabel.text = String(getValue[2])
+    }
+    
 }

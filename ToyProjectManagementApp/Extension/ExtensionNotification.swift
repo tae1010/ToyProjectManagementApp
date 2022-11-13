@@ -24,5 +24,8 @@ extension Notification.Name {
     
     // project 이름 변경 notificatioin
     static let changeProjectTitleNotification = Notification.Name("changeProjectTitleNotification")
+    
+    // 마이페이지 프로젝트 수, 진행중, 완료 count전달 notification
+    static let projectCountNotification = Notification.Name("projectCountNotification")
 
 }
