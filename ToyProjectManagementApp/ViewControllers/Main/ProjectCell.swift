@@ -7,9 +7,9 @@
 
 import UIKit
 
-protocol ImportantCheckDelegate: AnyObject {
-    func imporantButtonTap(cell: UICollectionViewCell)
-}
+//protocol ImportantCheckDelegate: AnyObject {
+//    func imporantButtonTap(cell: UICollectionViewCell)
+//}
 
 class ProjectCell: UICollectionViewCell {
     
@@ -60,15 +60,5 @@ class ProjectCell: UICollectionViewCell {
             imageView.image = UIImage(named: "customStar")
         }
     }
-    
-//    private func tapImageView() {
-//        let importImageView = UITapGestureRecognizer(target: self, action: #selector(tabImageViewSelector))
-//        self.importantImageView.addGestureRecognizer(importImageView)
-//
-//    }
-//
-//    @objc func tabImageViewSelector(sender: UITapGestureRecognizer) {
-//        self.cellDelegate?.imporantButtonTap(cell: self)
-//    }
 
 }

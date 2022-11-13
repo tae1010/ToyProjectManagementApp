@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Toast_Swift
 import FirebaseAuth
 
 class ForthTabbarViewController: UIViewController {
@@ -27,6 +28,8 @@ class ForthTabbarViewController: UIViewController {
     @IBOutlet weak var signOutButton: UIButton!
     @IBOutlet weak var resetPasswordButton: UIButton!
 
+    @IBOutlet weak var resetPasswordView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //pop제스처를 막아줌
@@ -45,7 +48,7 @@ class ForthTabbarViewController: UIViewController {
         let email = Auth.auth().currentUser?.email ?? "고객"
         
         let isEmailSignin = Auth.auth().currentUser?.providerData[0].providerID == "password"
-        resetPasswordButton.isHidden = !isEmailSignin
+        self.resetPasswordView.isHidden = !isEmailSignin
         
         NotificationCenter.default.addObserver(self, selector: #selector(projectCountNotification), name: .projectCountNotification, object: nil)
 
@@ -56,21 +59,31 @@ class ForthTabbarViewController: UIViewController {
     }
 
     @IBAction func logoutButtonTapped(_ sender: UIButton) {
-        //로그아웃후 처음 로그인 화면으로 돌아가기
-        let firebaseAuth = Auth.auth()
         
-        do {
-            try firebaseAuth.signOut()
-            self.navigationController?.popToRootViewController(animated: true)
-            
-        } catch let sighOutError as NSError {
-            print("Error signout \(sighOutError.localizedDescription)")
-        }
+//        let signOutPopup = SignOutPopupViewController(nibName: "SignOutPopup", bundle: nil)
+//
+//        signOutPopup.modalPresentationStyle = .overCurrentContext
+//        signOutPopup.modalTransitionStyle = .crossDissolve
+//        
+//        navigationController?.pushViewController(signOutPopup, animated: false)
+        
+        let signOutPopup = SignOutPopupViewController(nibName: "SignOutPopup", bundle: nil)
+        signOutPopup.logoutDelegate = self
+        
+        signOutPopup.modalPresentationStyle = .overCurrentContext
+        signOutPopup.modalTransitionStyle = .crossDissolve // 뷰가 투명해지면서 넘어가는 애니메이션
+        self.present(signOutPopup, animated: false, completion: nil)
+        
+
+        
     }
     
     @IBAction func resetPasswordButtonTap(_ sender: UIButton) {
         let email = Auth.auth().currentUser?.email ?? ""
         Auth.auth().sendPasswordReset(withEmail: email, completion: nil)
+        
+        self.view.hideToast()
+        self.view.makeToast("로그인한 메일에 비밀번호 재설정 링크를 보내드렸습니다")
     }
 }
 
@@ -127,5 +140,22 @@ extension ForthTabbarViewController {
         self.inPrograssCountLabel.text = String(getValue[1])
         self.completeCountLabel.text = String(getValue[2])
     }
+    
+}
+
+extension ForthTabbarViewController: LogoutDelegate {
+    
+    func logoutDelegate() {
+        let firebaseAuth = Auth.auth()
+        
+        do {
+            try firebaseAuth.signOut()
+            self.navigationController?.popToRootViewController(animated: true)
+            
+        } catch let sighOutError as NSError {
+            print("Error signout \(sighOutError.localizedDescription)")
+        }
+    }
+    
     
 }

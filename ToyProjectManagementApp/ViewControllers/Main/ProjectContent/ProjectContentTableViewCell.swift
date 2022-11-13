@@ -26,9 +26,9 @@ class ProjectContentTableViewCell: UITableViewCell {
     
     let dropDown = DropDown() // dropdown 객체
     
-    var moveContentDelegate: MoveContentDelegate?
+    weak var moveContentDelegate: MoveContentDelegate?
+    weak var makeToastMessage: MakeToastMessage?
     
-    var makeToastMessage: MakeToastMessage?
     var projectListArray = [ProjectContent]()
     
     // cell이 랜더링(그릴떄) 될때

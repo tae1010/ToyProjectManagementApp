@@ -17,6 +17,8 @@
 		93049209291A3F4B00DAAF85 /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93049208291A3F4B00DAAF85 /* NotificationModel.swift */; };
 		9304920B291A3FB600DAAF85 /* NotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9304920A291A3FB600DAAF85 /* NotificationCell.xib */; };
 		9304920D291A449C00DAAF85 /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9304920C291A449C00DAAF85 /* NotificationCell.swift */; };
+		930A5E572920EE9500290D05 /* SignOutPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930A5E562920EE9500290D05 /* SignOutPopupViewController.swift */; };
+		930A5E592920EECE00290D05 /* SignOutPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 930A5E582920EECE00290D05 /* SignOutPopup.xib */; };
 		9315079B290FC88C000DD700 /* DetailContentColorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9315079A290FC88C000DD700 /* DetailContentColorCell.swift */; };
 		9315079D290FC8D5000DD700 /* DetailContentColorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9315079C290FC8D5000DD700 /* DetailContentColorCell.xib */; };
 		931F9BB928A7D38B000AFA9E /* ScheduleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 931F9BB828A7D38B000AFA9E /* ScheduleCell.xib */; };
@@ -116,6 +118,8 @@
 		93049208291A3F4B00DAAF85 /* NotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
 		9304920A291A3FB600DAAF85 /* NotificationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationCell.xib; sourceTree = "<group>"; };
 		9304920C291A449C00DAAF85 /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
+		930A5E562920EE9500290D05 /* SignOutPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignOutPopupViewController.swift; sourceTree = "<group>"; };
+		930A5E582920EECE00290D05 /* SignOutPopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignOutPopup.xib; sourceTree = "<group>"; };
 		9315079A290FC88C000DD700 /* DetailContentColorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailContentColorCell.swift; sourceTree = "<group>"; };
 		9315079C290FC8D5000DD700 /* DetailContentColorCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailContentColorCell.xib; sourceTree = "<group>"; };
 		931F9BB828A7D38B000AFA9E /* ScheduleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScheduleCell.xib; sourceTree = "<group>"; };
@@ -280,6 +284,7 @@
 			isa = PBXGroup;
 			children = (
 				93049206291A32F600DAAF85 /* ForthTabbarViewController.swift */,
+				930A5E562920EE9500290D05 /* SignOutPopupViewController.swift */,
 			);
 			path = Forth;
 			sourceTree = "<group>";
@@ -348,6 +353,7 @@
 				9338C7652902EA2A005F6C3B /* ChangeListTitlePopup.xib */,
 				9338C76B2907F4D8005F6C3B /* DeleteListPopup.xib */,
 				930491F9291506B300DAAF85 /* ChangeProjectTitlePopup.xib */,
+				930A5E582920EECE00290D05 /* SignOutPopup.xib */,
 			);
 			path = Popup;
 			sourceTree = "<group>";
@@ -593,6 +599,7 @@
 				93AFDAA028B4D5FD009E815F /* ProjectIDCell.xib in Resources */,
 				9340E47C2852050700338790 /* NanumGothic.otf in Resources */,
 				93E18D2B28F4298E003AE3C5 /* ProjectContent.storyboard in Resources */,
+				930A5E592920EECE00290D05 /* SignOutPopup.xib in Resources */,
 				936F8E932897AF0700897316 /* ProjectContentSideMenu.storyboard in Resources */,
 				9338C770290817C7005F6C3B /* ProjectDetailContent.storyboard in Resources */,
 				937CC55928002F1400F18553 /* Main.storyboard in Resources */,
@@ -685,6 +692,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				930A5E572920EE9500290D05 /* SignOutPopupViewController.swift in Sources */,
 				9340DE8D28DB80B300B1CEB2 /* StartViewController.swift in Sources */,
 				93E18D2728F42852003AE3C5 /* ProjectHeaderView.swift in Sources */,
 				937CC55B2800304400F18553 /* LoginViewController.swift in Sources */,

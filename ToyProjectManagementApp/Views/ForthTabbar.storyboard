@@ -239,6 +239,7 @@
                         <outlet property="inPrograssLabel" destination="7KP-7U-HaA" id="mrl-7n-pvB"/>
                         <outlet property="myPageTitleLabel" destination="fO7-nE-phV" id="bzM-PU-a1g"/>
                         <outlet property="resetPasswordButton" destination="4bi-7Y-ca7" id="WfA-cE-o1G"/>
+                        <outlet property="resetPasswordView" destination="iTK-4Y-DGD" id="amI-K9-meE"/>
                         <outlet property="signOutButton" destination="5hZ-kz-Smb" id="zEK-er-S2x"/>
                         <outlet property="totalProjectCountLabel" destination="ftd-wx-BFj" id="kcT-9E-SSP"/>
                         <outlet property="totalProjectLabel" destination="WqS-XN-Bdr" id="Mhp-qJ-55G"/>

@@ -129,7 +129,7 @@
         <!--Navigation Controller-->
         <scene sceneID="qlP-gE-xRC">
             <objects>
-                <navigationController navigationBarHidden="YES" id="x84-ip-d3l" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="FirstView" useStoryboardIdentifierAsRestorationIdentifier="YES" navigationBarHidden="YES" id="x84-ip-d3l" sceneMemberID="viewController">
                     <nil key="simulatedTopBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="8Ep-bP-Zxy">
                         <autoresizingMask key="autoresizingMask"/>
