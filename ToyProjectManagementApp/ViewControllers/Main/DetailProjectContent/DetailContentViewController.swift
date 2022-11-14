@@ -443,3 +443,13 @@ extension DetailContentViewController {
 }
 
 
+// MARK: - scrollview
+
+extension DetailContentViewController: UIScrollViewDelegate {
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        scrollView.bounces = scrollView.contentOffset.y > 0
+    }
+    
+}
+
