@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -45,25 +45,27 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="a4H-7Y-CUe">
                                 <rect key="frame" x="14" y="458" width="362" height="105"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ydY-9U-U03">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ydY-9U-U03">
                                         <rect key="frame" x="0.0" y="0.0" width="362" height="50"/>
                                         <color key="backgroundColor" red="0.90196078431372551" green="0.90196078431372551" blue="0.90196078431372551" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="csQ-ao-xGT"/>
                                         </constraints>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="선택 취소하기"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="선택 취소하기">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
                                         <connections>
                                             <action selector="tabRemoveColorButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="5Ss-ZE-pdR"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iox-IN-f2d">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iox-IN-f2d">
                                         <rect key="frame" x="0.0" y="55" width="362" height="50"/>
                                         <color key="backgroundColor" name="primaryColor"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="변경하기"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="변경하기"/>
                                         <connections>
                                             <action selector="tabChangeColorContentbutton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Asf-72-cbg"/>
                                         </connections>
@@ -93,11 +95,15 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="SXL-Vf-V87">
+                                <rect key="frame" x="185" y="418.66666666666669" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="mPe-JW-pRF" firstAttribute="leading" secondItem="1Kt-rt-3hh" secondAttribute="leading" id="0ca-1a-1JM"/>
+                            <constraint firstItem="SXL-Vf-V87" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="0nm-PH-Q8j"/>
                             <constraint firstItem="M6D-2Q-G1N" firstAttribute="leading" secondItem="tyl-9m-sQw" secondAttribute="leading" id="CF1-xL-W45"/>
                             <constraint firstItem="a4H-7Y-CUe" firstAttribute="leading" secondItem="1Kt-rt-3hh" secondAttribute="leading" id="DCp-Pq-Pa6"/>
                             <constraint firstItem="1Kt-rt-3hh" firstAttribute="top" secondItem="mPe-JW-pRF" secondAttribute="bottom" constant="20" id="JaX-wq-Ss0"/>
@@ -106,6 +112,7 @@
                             <constraint firstItem="a4H-7Y-CUe" firstAttribute="top" secondItem="1Kt-rt-3hh" secondAttribute="bottom" constant="42.333333333333371" id="Tva-oX-8cF"/>
                             <constraint firstItem="mPe-JW-pRF" firstAttribute="trailing" secondItem="1Kt-rt-3hh" secondAttribute="trailing" id="Uis-VQ-CGf"/>
                             <constraint firstItem="1Kt-rt-3hh" firstAttribute="leading" secondItem="M6D-2Q-G1N" secondAttribute="leading" id="mJl-NB-h5u"/>
+                            <constraint firstItem="SXL-Vf-V87" firstAttribute="centerY" secondItem="vDu-zF-Fre" secondAttribute="centerY" id="orX-79-iBu"/>
                             <constraint firstItem="M6D-2Q-G1N" firstAttribute="top" secondItem="tyl-9m-sQw" secondAttribute="bottom" constant="20" id="qAC-4i-i5i"/>
                             <constraint firstItem="a4H-7Y-CUe" firstAttribute="trailing" secondItem="1Kt-rt-3hh" secondAttribute="trailing" id="sdQ-7V-jiE"/>
                             <constraint firstItem="tyl-9m-sQw" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="14" id="snB-Ap-B62"/>
@@ -114,6 +121,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="SXL-Vf-V87" id="rG0-Zn-Qej"/>
                         <outlet property="cardContentTextField" destination="mPe-JW-pRF" id="WAN-E1-XXz"/>
                         <outlet property="cardLabelContentCollectionView" destination="1Kt-rt-3hh" id="qOQ-gC-q1y"/>
                         <outlet property="changeColorContentbutton" destination="iox-IN-f2d" id="pOa-Cv-gJc"/>
@@ -129,7 +137,7 @@
     <resources>
         <image name="xmark" catalog="system" width="128" height="113"/>
         <namedColor name="primaryColor">
-            <color red="0.72941176470588232" green="0.59999999999999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.72899997234344482" green="0.60000002384185791" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

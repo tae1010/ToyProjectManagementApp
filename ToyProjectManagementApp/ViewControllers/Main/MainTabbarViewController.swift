@@ -28,10 +28,11 @@ class MainTabbarViewController: UIViewController {
     
     @IBOutlet weak var logoImageView: LogoImageView!
     @IBOutlet weak var logoLabel: LogoLabel!
-    
+    @IBOutlet weak var createProjectButton: UIButton!
     @IBOutlet weak var emptyView: UIView!
     @IBOutlet weak var noProjectLabel: UILabel!
     @IBOutlet weak var projectCollectionView: UICollectionView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +44,10 @@ class MainTabbarViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        
+        // readDB에서도 해주지만 db에 아무것도 없을때(아이디도) 실행되어야 하기떄문에 viewwillAppear에서도 실행
+        
+        
         self.readDB()
         self.setNotification()
     }
@@ -129,12 +134,21 @@ extension MainTabbarViewController {
     //db값을 읽어서 projectList에 db값을 넣어준 뒤 collectionview 업데이트 해주는 함수
     private func readDB() {
         
+        self.hideViews()
+        
         self.projectListPrograssFalse.removeAll()
         self.projectListPrograssTrue.removeAll()
 
         ref.child(email).observeSingleEvent(of: .value, with: { snapshot in
           // Get user value
-            guard let value = snapshot.value as? Dictionary<String, Any> else { return }
+            guard let value = snapshot.value as? Dictionary<String, Any> else {
+                DispatchQueue.main.async {
+                    self.hiddenEmptyView()
+                    self.showViews()
+                }
+                return
+            }
+            
             print(#fileID, #function, #line, "- readDB실행")
             for (key,val) in value {
                 let id = key 
@@ -160,11 +174,14 @@ extension MainTabbarViewController {
             
             DispatchQueue.main.async {
                 self.hiddenEmptyView()
+                self.showViews()
                 self.projectCollectionView.reloadData()
             }
             
         }) { error in
-          print(error.localizedDescription)
+            print(error.localizedDescription)
+            self.showViews()
+            
         }
     }
     
@@ -559,6 +576,7 @@ extension MainTabbarViewController {
     
 }
 
+// MARK: - createProjectDelegate
 extension MainTabbarViewController: CreateProjectDelegate {
     
     func createProject(title: String?) {
@@ -589,5 +607,42 @@ extension MainTabbarViewController: CreateProjectDelegate {
             self.hiddenEmptyView()
             self.projectCollectionView.reloadData()
         }
+    }
+}
+
+
+// MARK: - indicator
+extension MainTabbarViewController {
+    private func hideViews() {
+        self.createProjectButton.alpha = 0
+        self.projectCollectionView.alpha = 0
+        
+        activityIndicator.alpha = 1
+        activityIndicator.startAnimating()
+    }
+    
+    private func showViews() {
+        UIView.animate(
+            withDuration: 0.7,
+            delay: 0,
+            usingSpringWithDamping: 1,
+            initialSpringVelocity: 1,
+            options: .curveEaseOut,
+            animations: {
+                self.activityIndicator.alpha = 0
+                self.createProjectButton.alpha = 1
+        }, completion: { _ in
+            self.activityIndicator.stopAnimating()
+        })
+        
+        UIView.animate(
+            withDuration: 0.5,
+            delay: 0.2,
+            usingSpringWithDamping: 1.1,
+            initialSpringVelocity: 1,
+            options: .curveEaseOut,
+            animations: {
+                self.projectCollectionView.alpha = 1
+        })
     }
 }

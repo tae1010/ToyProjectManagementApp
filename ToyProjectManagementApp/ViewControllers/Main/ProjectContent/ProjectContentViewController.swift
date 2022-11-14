@@ -46,6 +46,9 @@ class ProjectContentViewController: UIViewController {
     @IBOutlet weak var moveLeftButton: UIButton!
     @IBOutlet weak var moveRightButton: UIButton!
     
+    @IBOutlet weak var projectManagementButton: UIButton!
+    @IBOutlet weak var projectColorButton: UIButton!
+    
     @IBOutlet weak var titleStackView: UIStackView! // projectTitle, listTitle
     @IBOutlet weak var headerViewHeightAnchor: NSLayoutConstraint!
     @IBOutlet weak var stickyHeaderViewHeightAnchor: NSLayoutConstraint!
@@ -171,6 +174,10 @@ class ProjectContentViewController: UIViewController {
                     self.ref.child("\(email)/\(id)/content/\(currentPage)/\(self.currentTitle)/\(count)").setValue(detailContent)
                     count += 1
                 }
+                
+                UserDefault().notificationModelUserDefault(title: beforeDetailContent.cardName ?? "위아래이동", status: "위아래이동", content: "카드가 이동되었습니다", date: self.koreanDate())
+                
+                
             }
         default:
             // TODO animation
@@ -226,17 +233,34 @@ class ProjectContentViewController: UIViewController {
 // db값중 content부분을 읽어오는 메소드
 extension ProjectContentViewController {
     
+    internal func koreanDate() -> Int!{
+        let current = Date()
+        
+        let formatter = DateFormatter()
+        //한국 시간으로 표시
+        formatter.locale = Locale(identifier: "ko_kr")
+        formatter.timeZone = TimeZone(abbreviation: "KST")
+        //형태 변환
+        formatter.dateFormat = "yyyyMMddHHmmss"
+        
+        return Int(formatter.string(from: current))
+    }
+    
     private func emailToString(_ email: String) -> String {
         let emailToString = email.replacingOccurrences(of: ".", with: ",")
         return emailToString
     }
     
     private func readDB() {
-        print("readDB접속")
+        self.hideViews()
         
         self.ref.child("\(email)/\(id)/content").observeSingleEvent(of: .value, with: { [weak self] snapshot in
-            guard let value = snapshot.value as? [[String: Any]] else { return }
             guard let self = self else { return }
+            guard let value = snapshot.value as? [[String: Any]] else {
+                self.showViews()
+                return
+            }
+            
             for list in value {
                 var count = 0
                 for (key, val) in list {
@@ -254,12 +278,14 @@ extension ProjectContentViewController {
             
             print(self.projectContent, "db잘 읽었나")
             DispatchQueue.main.async {
+                self.showViews()
                 self.cardTableView.reloadData()
                 self.changeListName()
             }
 
         }) { error in
             print(error.localizedDescription)
+            self.showViews()
         }
     }
 
@@ -274,19 +300,6 @@ extension ProjectContentViewController {
     
     func changeCurrentPage(currentpPage: Int) {
         self.currentPage = currentpPage
-    }
-    
-    private func koreanDate() -> Int!{
-        let current = Date()
-        
-        let formatter = DateFormatter()
-        //한국 시간으로 표시
-        formatter.locale = Locale(identifier: "ko_kr")
-        formatter.timeZone = TimeZone(abbreviation: "KST")
-        //형태 변환
-        formatter.dateFormat = "yyyyMMdd"
-        
-        return Int(formatter.string(from: current))
     }
 }
 
@@ -394,6 +407,7 @@ extension ProjectContentViewController: UITableViewDataSource {
             self.view.makeToast("리스트에는 카드가 1개 이상 있어야 합니다")
             return
         }
+        let deleteCardTitle = self.projectContent[self.currentPage].detailContent[index].cardName
         
         self.projectContent[self.currentPage].detailContent.remove(at: index)
         self.ref.child("\(email)/\(id)/content/\(currentPage)/\(self.currentTitle)").removeValue()
@@ -411,6 +425,8 @@ extension ProjectContentViewController: UITableViewDataSource {
             self.ref.child("\(email)/\(id)/content/\(currentPage)/\(self.currentTitle)/\(count)").setValue(detailContent)
             count += 1
         }
+        
+        UserDefault().notificationModelUserDefault(title: deleteCardTitle ?? "카드삭제", status: "삭제", content: "카드가 삭제되었습니다", date: self.koreanDate())
         
         self.view.hideToast()
         self.view.makeToast("카드가 삭제되었습니다", duration: 0.5)
@@ -450,6 +466,8 @@ extension ProjectContentViewController {
         
         self.projectContent[self.currentPage].detailContent.append(updateProjectDetailContent)
         
+        UserDefault().notificationModelUserDefault(title: cardTitle, status: "생성", content: "카드가 생성되었습니다", date: self.koreanDate())
+        
         DispatchQueue.main.async {
             self.cardTableView.reloadData()
             self.cardTableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
@@ -475,6 +493,8 @@ extension ProjectContentViewController {
         
         self.projectContent.append(pc)
         
+        UserDefault().notificationModelUserDefault(title: listTitle, status: "생성", content: "리스트가  생성되었습니다", date: self.koreanDate())
+        
         DispatchQueue.main.async {
             self.currentPage = self.projectContent.count - 1
             self.changeListName()
@@ -484,4 +504,30 @@ extension ProjectContentViewController {
             self.view.makeToast("리스트가 생성되었습니다", duration: 0.5)
         }
     }
+}
+
+
+// MARK: - indicator
+extension ProjectContentViewController {
+    
+    private func hideViews() {
+        self.addListButton.isUserInteractionEnabled = false
+        self.cardTableView.isUserInteractionEnabled = false
+        self.moveLeftButton.isUserInteractionEnabled = false
+        self.moveRightButton.isUserInteractionEnabled = false
+        self.projectManagementButton.isUserInteractionEnabled = false
+        self.projectColorButton.isUserInteractionEnabled = false
+    }
+    
+    private func showViews() {
+        
+        self.addListButton.isUserInteractionEnabled = true
+        self.cardTableView.isUserInteractionEnabled = true
+        self.moveLeftButton.isUserInteractionEnabled = true
+        self.moveRightButton.isUserInteractionEnabled = true
+        self.projectManagementButton.isUserInteractionEnabled = true
+        self.projectColorButton.isUserInteractionEnabled = true
+        
+    }
+
 }

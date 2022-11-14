@@ -58,24 +58,16 @@ class ForthTabbarViewController: UIViewController {
         NotificationCenter.default.removeObserver(self, name: .projectCountNotification, object: nil)
     }
 
+    // sign out popup 뷰로 이동
     @IBAction func logoutButtonTapped(_ sender: UIButton) {
-        
-//        let signOutPopup = SignOutPopupViewController(nibName: "SignOutPopup", bundle: nil)
-//
-//        signOutPopup.modalPresentationStyle = .overCurrentContext
-//        signOutPopup.modalTransitionStyle = .crossDissolve
-//        
-//        navigationController?.pushViewController(signOutPopup, animated: false)
-        
+
         let signOutPopup = SignOutPopupViewController(nibName: "SignOutPopup", bundle: nil)
         signOutPopup.logoutDelegate = self
         
         signOutPopup.modalPresentationStyle = .overCurrentContext
         signOutPopup.modalTransitionStyle = .crossDissolve // 뷰가 투명해지면서 넘어가는 애니메이션
         self.present(signOutPopup, animated: false, completion: nil)
-        
 
-        
     }
     
     @IBAction func resetPasswordButtonTap(_ sender: UIButton) {

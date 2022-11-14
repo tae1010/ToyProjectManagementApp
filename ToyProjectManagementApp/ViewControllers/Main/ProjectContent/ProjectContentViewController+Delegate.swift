@@ -79,6 +79,9 @@ extension ProjectContentViewController: MoveContentDelegate {
             self.ref.child("\(email)/\(id)/content/\(currentPage)/\(currentTitle)/\(count)").setValue(["cardName": cardName, "color": color, "startTime": startTime, "endTime": endTime])
             count += 1
         }
+        
+        UserDefault().notificationModelUserDefault(title: selectCell.cardName ?? "양옆이동", status: "양옆이동", content: "카드가 이동되었습니다", date: koreanDate())
+        
         self.view.hideAllToasts()
         self.view.makeToast("카드가 이동되었습니다", duration: 0.5)
             
@@ -98,6 +101,10 @@ extension ProjectContentViewController: SendContentDelegate {
         
         self.cardTableView.reloadRows(at: [[index,0]], with: .automatic) // 선택된 cell 갱신
         self.ref.child("\(email)/\(id)/content/\(currentPage)/\(currentTitle)/\(index)").updateChildValues(["cardName": name, "color": color, "startTime": startTime, "endTime": endTime])
+        
+        UserDefault().notificationModelUserDefault(title: name, status: "정보변경", content: "카드가 수정되었습니다", date: koreanDate())
+        
+        
     }
 }
 

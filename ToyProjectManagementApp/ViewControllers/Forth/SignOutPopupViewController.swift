@@ -17,6 +17,7 @@ class SignOutPopupViewController: UIViewController {
     
     @IBOutlet var backGroundView: UIView!
     @IBOutlet weak var popupTitleLabel: UILabel!
+    @IBOutlet weak var popupContentLabel: UILabel!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var signOutButton: UIButton!
     @IBOutlet weak var contentView: UIView!
@@ -34,9 +35,10 @@ class SignOutPopupViewController: UIViewController {
         self.dismiss(animated: true)
     }
     
-    
+    // 뒤로가서 delegate패턴으로 로그아웃
     @IBAction func tapSignOutButton(_ sender: UIButton) {
         self.logoutDelegate?.logoutDelegate()
+        UserDefault().removeNotificationModelUserDefault()
         self.dismiss(animated: true)
     }
     
@@ -68,6 +70,7 @@ extension SignOutPopupViewController {
     
     private func configurePopupTitleLabel() {
         self.popupTitleLabel.font = UIFont(name: "NanumGothicOTF", size: 14)
+        self.popupContentLabel.font = UIFont(name: "NanumGothicOTFLight", size: 12)
     }
     
     private func configureCancelButton() {

@@ -19,7 +19,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="428" height="1200"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BmG-8D-6Jm">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BmG-8D-6Jm">
                                 <rect key="frame" x="0.0" y="47" width="428" height="1119"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" restorationIdentifier="detailview" translatesAutoresizingMaskIntoConstraints="NO" id="QbQ-iG-q8o">
@@ -197,46 +197,40 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="sio-eO-OvS">
                                                 <rect key="frame" x="24" y="654.66666666666663" width="380" height="170"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="25z-cF-Edj">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="25z-cF-Edj">
                                                         <rect key="frame" x="0.0" y="0.0" width="380" height="50"/>
                                                         <color key="backgroundColor" name="primaryColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="QlA-IO-FKX"/>
                                                         </constraints>
+                                                        <fontDescription key="fontDescription" name="NanumGothicBold" family="Nanum Gothic" pointSize="15"/>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                        <state key="normal">
-                                                            <attributedString key="attributedTitle">
-                                                                <fragment content="수정하기">
-                                                                    <attributes>
-                                                                        <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        <font key="NSFont" size="15" name="NanumGothicBold"/>
-                                                                    </attributes>
-                                                                </fragment>
-                                                            </attributedString>
+                                                        <state key="normal" title="수정하기">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
                                                             <action selector="fixButton:" destination="H1C-0K-CKN" eventType="touchUpInside" id="5a2-gk-hJe"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M4s-SV-egt">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M4s-SV-egt">
                                                         <rect key="frame" x="0.0" y="60" width="380" height="50"/>
                                                         <color key="backgroundColor" systemColor="systemRedColor"/>
                                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" title="삭제하기">
-                                                            <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        </buttonConfiguration>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                        <state key="normal" title="삭제하기">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
                                                         <connections>
                                                             <action selector="deleteCell:" destination="H1C-0K-CKN" eventType="touchUpInside" id="0q3-tt-cLX"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4yc-ss-WSg">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4yc-ss-WSg">
                                                         <rect key="frame" x="0.0" y="120" width="380" height="50"/>
                                                         <color key="backgroundColor" name="primaryColor"/>
-                                                        <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" title="뒤로가기">
-                                                            <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        </buttonConfiguration>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                        <state key="normal" title="뒤로가기">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
                                                         <connections>
                                                             <action selector="cancelButton:" destination="H1C-0K-CKN" eventType="touchUpInside" id="7rW-JG-yj5"/>
                                                         </connections>
@@ -286,6 +280,9 @@
                                 <viewLayoutGuide key="contentLayoutGuide" id="FZX-M2-DKb"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="Npy-a8-Ecv"/>
                             </scrollView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="gkC-aa-28M">
+                                <rect key="frame" x="204" y="461.33333333333331" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="dJK-rc-w4V"/>
                         <color key="backgroundColor" red="0.97924558080000002" green="0.97924558080000002" blue="0.97924558080000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -293,11 +290,14 @@
                             <constraint firstItem="BmG-8D-6Jm" firstAttribute="trailing" secondItem="dJK-rc-w4V" secondAttribute="trailing" id="3Hq-q8-nu2"/>
                             <constraint firstItem="BmG-8D-6Jm" firstAttribute="bottom" secondItem="dJK-rc-w4V" secondAttribute="bottom" id="6bk-fi-uaU"/>
                             <constraint firstItem="BmG-8D-6Jm" firstAttribute="leading" secondItem="dJK-rc-w4V" secondAttribute="leading" id="RI3-Wc-I4j"/>
+                            <constraint firstItem="gkC-aa-28M" firstAttribute="centerX" secondItem="FZX-M2-DKb" secondAttribute="centerX" id="Yo3-zt-4ei"/>
+                            <constraint firstItem="gkC-aa-28M" firstAttribute="centerY" secondItem="FZX-M2-DKb" secondAttribute="centerY" id="Z0F-UU-gHp"/>
                             <constraint firstItem="BmG-8D-6Jm" firstAttribute="top" secondItem="dJK-rc-w4V" secondAttribute="top" id="iN8-Uk-cNW"/>
                         </constraints>
                     </view>
                     <size key="freeformSize" width="428" height="1200"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="gkC-aa-28M" id="Md4-ma-Fea"/>
                         <outlet property="cardBackgroundColorView" destination="TQQ-VV-s2w" id="MGG-0k-aRq"/>
                         <outlet property="cardCancelButton" destination="4yc-ss-WSg" id="pVm-qc-HS0"/>
                         <outlet property="cardColorContentLabel" destination="EBA-Je-6nt" id="a38-rb-PkJ"/>
@@ -308,6 +308,7 @@
                         <outlet property="cardTitleLabel" destination="AH7-aV-mlq" id="8BM-ZK-vhg"/>
                         <outlet property="chooseDateLabel" destination="amg-rg-Ekf" id="KHI-d9-WWV"/>
                         <outlet property="contentTextView" destination="Bhd-JP-pN3" id="LEW-xT-2VS"/>
+                        <outlet property="contentView" destination="QbQ-iG-q8o" id="ZHd-qZ-sqk"/>
                         <outlet property="dateStackView" destination="JDu-45-DXG" id="JWF-QT-atG"/>
                         <outlet property="dateStackViewTopAnchor" destination="PNU-5T-Wdz" id="avP-2Y-h8g"/>
                         <outlet property="deleteCardColorButton" destination="nse-pM-bzI" id="DV6-mQ-pI2"/>
@@ -330,7 +331,7 @@
         <image name="eraser" catalog="system" width="128" height="119"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <namedColor name="primaryColor">
-            <color red="0.72941176470588232" green="0.59999999999999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.72899997234344482" green="0.60000002384185791" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

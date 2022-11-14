@@ -19,6 +19,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <activityIndicatorView opaque="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="BYj-JB-mE7">
+                                <rect key="frame" x="197" y="445" width="20" height="20"/>
+                            </activityIndicatorView>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OaA-9G-Zak" customClass="CustomTextField" customModule="ToyProjectManagementApp" customModuleProvider="target">
                                 <rect key="frame" x="14" y="124" width="386" height="50"/>
                                 <constraints>
@@ -42,7 +45,8 @@
                                     <constraint firstAttribute="height" constant="50" id="Q6U-j2-jbv"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <buttonConfiguration key="configuration" style="plain" title="로그인"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="로그인"/>
                                 <connections>
                                     <action selector="loginButtonTapped:" destination="vzy-TO-xKb" eventType="touchUpInside" id="Uk3-5H-0Cw"/>
                                 </connections>
@@ -64,12 +68,11 @@
                                     <constraint firstAttribute="height" constant="40" id="amQ-i0-Z4W"/>
                                 </constraints>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AVH-go-d01">
-                                <rect key="frame" x="134" y="788" width="146" height="60"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AVH-go-d01">
+                                <rect key="frame" x="106.5" y="788" width="201" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="SJZ-cj-Por"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="13"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="비밀번호를 잊어버리셨나요?">
                                     <color key="titleColor" name="primaryColor"/>
@@ -81,8 +84,13 @@
                                     <constraint firstAttribute="width" constant="30" id="K1j-7g-Bes"/>
                                 </constraints>
                                 <color key="tintColor" name="primaryColor"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="arrow.left" catalog="system"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="arrow.left" catalog="system">
+                                    <color key="titleColor" name="primaryColor"/>
+                                </state>
+                                <buttonConfiguration key="configuration" style="plain" image="arrow.left" catalog="system">
+                                    <color key="baseForegroundColor" name="primaryColor"/>
+                                </buttonConfiguration>
                                 <connections>
                                     <action selector="tapBackButton:" destination="vzy-TO-xKb" eventType="touchUpInside" id="5F6-rd-hoZ"/>
                                 </connections>
@@ -96,9 +104,11 @@
                             <constraint firstItem="mhe-ak-8pz" firstAttribute="trailing" secondItem="OaA-9G-Zak" secondAttribute="trailing" id="Hi4-Kl-nFH"/>
                             <constraint firstItem="J1h-ek-O6P" firstAttribute="leading" secondItem="JEK-on-6Ci" secondAttribute="leading" constant="14" id="KD1-Y6-VTu"/>
                             <constraint firstItem="mhe-ak-8pz" firstAttribute="top" secondItem="OaA-9G-Zak" secondAttribute="bottom" constant="10" id="Kde-Dl-Bcg"/>
+                            <constraint firstItem="BYj-JB-mE7" firstAttribute="centerX" secondItem="JEK-on-6Ci" secondAttribute="centerX" id="LH6-L9-mTm"/>
                             <constraint firstItem="vWE-ia-oS5" firstAttribute="centerX" secondItem="sIi-fl-xxQ" secondAttribute="centerX" id="LbQ-MX-fok"/>
                             <constraint firstItem="FzF-Hb-qvc" firstAttribute="top" secondItem="mhe-ak-8pz" secondAttribute="bottom" constant="10" id="R1y-YY-8fo"/>
                             <constraint firstAttribute="trailing" secondItem="vWE-ia-oS5" secondAttribute="trailing" constant="70" id="TCO-sH-8VI"/>
+                            <constraint firstItem="BYj-JB-mE7" firstAttribute="centerY" secondItem="JEK-on-6Ci" secondAttribute="centerY" id="Vm5-Cc-GwU"/>
                             <constraint firstItem="OaA-9G-Zak" firstAttribute="leading" secondItem="JEK-on-6Ci" secondAttribute="leading" constant="14" id="X0s-Qf-FKK"/>
                             <constraint firstItem="OaA-9G-Zak" firstAttribute="top" secondItem="J1h-ek-O6P" secondAttribute="bottom" constant="28" id="cRf-eg-fmw"/>
                             <constraint firstItem="FzF-Hb-qvc" firstAttribute="trailing" secondItem="mhe-ak-8pz" secondAttribute="trailing" id="e0H-5m-qmu"/>
@@ -112,7 +122,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="1Ws-kB-doM"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="BYj-JB-mE7" id="3mu-xu-h2Z"/>
                         <outlet property="appleLoginImageView" destination="BJp-vK-eOl" id="Bbb-UQ-cTX"/>
+                        <outlet property="dismissButton" destination="J1h-ek-O6P" id="2xl-Dw-MEl"/>
                         <outlet property="emailTextField" destination="OaA-9G-Zak" id="rIQ-jI-hEl"/>
                         <outlet property="forgotPasswordButton" destination="AVH-go-d01" id="DpL-FJ-3Ts"/>
                         <outlet property="googleLoginImageView" destination="Zjt-Nh-KNt" id="mlZ-Sy-AgW"/>
@@ -271,22 +283,24 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Mv3-nA-jnv"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="가입하기"/>
-                                <buttonConfiguration key="configuration" style="plain" title="가입하기">
-                                    <fontDescription key="titleFontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
-                                </buttonConfiguration>
                                 <connections>
                                     <action selector="nextButtonTapped:" destination="Kg4-n1-feu" eventType="touchUpInside" id="syk-n7-TjO"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="cMt-2r-lUT">
+                                <rect key="frame" x="197" y="438" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="oxf-iH-ukq"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="MGo-b3-0vG" firstAttribute="leading" secondItem="hiC-Uh-ap7" secondAttribute="leading" id="0hS-9m-wE5"/>
+                            <constraint firstItem="cMt-2r-lUT" firstAttribute="centerY" secondItem="ldY-7v-cr0" secondAttribute="centerY" id="6b6-sZ-YRD"/>
+                            <constraint firstItem="cMt-2r-lUT" firstAttribute="centerX" secondItem="ldY-7v-cr0" secondAttribute="centerX" id="Cnk-n5-K8H"/>
                             <constraint firstItem="MGo-b3-0vG" firstAttribute="top" secondItem="hiC-Uh-ap7" secondAttribute="bottom" constant="14" id="EA2-9K-uRn"/>
                             <constraint firstItem="hiC-Uh-ap7" firstAttribute="leading" secondItem="oxf-iH-ukq" secondAttribute="leading" constant="14" id="Fr7-yW-y1A"/>
                             <constraint firstItem="VX5-LQ-t0I" firstAttribute="centerX" secondItem="ldY-7v-cr0" secondAttribute="centerX" id="GSD-uy-Y9z"/>
@@ -302,6 +316,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="7la-pf-Gna"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="cMt-2r-lUT" id="0Bj-8c-9Nj"/>
                         <outlet property="emailTextField" destination="hiC-Uh-ap7" id="kii-mg-Jru"/>
                         <outlet property="nextButton" destination="VX5-LQ-t0I" id="CQu-j9-1xi"/>
                         <outlet property="passwordTextField" destination="MGo-b3-0vG" id="Eh1-se-7z3"/>
@@ -465,17 +480,22 @@
                                     <outletCollection property="gestureRecognizers" destination="n1B-ub-unC" appends="YES" id="HIv-6N-LVX"/>
                                 </connections>
                             </collectionView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="mbD-Gg-2Uz">
+                                <rect key="frame" x="197" y="420.5" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="0rg-By-3Cb"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="0rg-By-3Cb" firstAttribute="trailing" secondItem="hLH-5K-JDZ" secondAttribute="trailing" constant="14" id="DoI-xE-Cxq"/>
                             <constraint firstItem="dyl-vv-GWe" firstAttribute="leading" secondItem="0rg-By-3Cb" secondAttribute="leading" id="IC9-Fs-CuS"/>
+                            <constraint firstItem="mbD-Gg-2Uz" firstAttribute="centerY" secondItem="0rg-By-3Cb" secondAttribute="centerY" id="KXd-sQ-OsD"/>
                             <constraint firstItem="dyl-vv-GWe" firstAttribute="bottom" secondItem="0rg-By-3Cb" secondAttribute="bottom" constant="10" id="QdL-bz-Kvg"/>
                             <constraint firstItem="dyl-vv-GWe" firstAttribute="trailing" secondItem="0rg-By-3Cb" secondAttribute="trailing" id="R7v-73-kgb"/>
                             <constraint firstItem="hLH-5K-JDZ" firstAttribute="top" secondItem="iJn-vt-GFO" secondAttribute="top" id="ULP-lA-UdU"/>
                             <constraint firstItem="iJn-vt-GFO" firstAttribute="top" secondItem="0rg-By-3Cb" secondAttribute="top" constant="7" id="Z0I-5s-kUL"/>
                             <constraint firstItem="iJn-vt-GFO" firstAttribute="leading" secondItem="0rg-By-3Cb" secondAttribute="leading" constant="14" id="bGC-3L-9Q0"/>
+                            <constraint firstItem="mbD-Gg-2Uz" firstAttribute="centerX" secondItem="0rg-By-3Cb" secondAttribute="centerX" id="dCh-jX-Jsr"/>
                             <constraint firstItem="dyl-vv-GWe" firstAttribute="top" secondItem="iJn-vt-GFO" secondAttribute="bottom" constant="5" id="j4j-iE-yKg"/>
                         </constraints>
                     </view>
@@ -483,6 +503,8 @@
                         <inset key="largeContentSizeImageInsets" minX="0.0" minY="1" maxX="0.0" maxY="0.0"/>
                     </tabBarItem>
                     <connections>
+                        <outlet property="activityIndicator" destination="mbD-Gg-2Uz" id="GmV-N5-RMc"/>
+                        <outlet property="createProjectButton" destination="hLH-5K-JDZ" id="LWf-XR-QI5"/>
                         <outlet property="emptyView" destination="1cq-l4-x7v" id="5F5-Ge-Yrk"/>
                         <outlet property="logoImageView" destination="jEn-Ky-Ar7" id="xmY-z5-ZtI"/>
                         <outlet property="logoLabel" destination="hCk-kG-M0m" id="hK6-fq-PR4"/>

@@ -111,7 +111,7 @@ extension AppDelegate {
             self.showMainViewController()
         }
     }
-    
+
     private func showMainViewController() {
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let mainViewController = storyboard.instantiateViewController(withIdentifier: "MainTabbar")

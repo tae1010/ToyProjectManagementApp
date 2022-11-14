@@ -132,8 +132,20 @@ extension ProjectListManagementViewController {
             $0?.titleLabel?.font = UIFont(name: "NanumGothicOTF", size: 15)
         })
     }
+    private func koreanDate() -> Int!{
+        let current = Date()
+        
+        let formatter = DateFormatter()
+        //한국 시간으로 표시
+        formatter.locale = Locale(identifier: "ko_kr")
+        formatter.timeZone = TimeZone(abbreviation: "KST")
+        //형태 변환
+        formatter.dateFormat = "yyyyMMddHHmmss"
+        
+        return Int(formatter.string(from: current))
+    }
+    
 }
-
 extension ProjectListManagementViewController: UITableViewDelegate {
     
 }
@@ -188,6 +200,8 @@ extension ProjectListManagementViewController: ChangeListTitleDelegate {
             count += 1
         }
         
+        UserDefault().notificationModelUserDefault(title: listTitle, status: "이름변경", content: "리스트 이름이 변경되었습니다.", date: self.koreanDate())
+        
         DispatchQueue.main.async {
             self.sideBarTableView.reloadData()
         }
@@ -204,9 +218,12 @@ extension ProjectListManagementViewController: DeleteListDelegate {
             self.view.makeToast("리스트가 1개 이상 있어야 합니다.")
             return
         }
+        
+        let beforeListTitle = self.projectContent[index.row].listTitle
+        
         // index.row = 선택된 리스트
         self.ref.child("\(email)/\(id)/content").removeValue()
-        
+
         self.projectContent.remove(at: index.row)
         self.listName.remove(at: index.row)
         var listCount = 0
@@ -232,6 +249,8 @@ extension ProjectListManagementViewController: DeleteListDelegate {
             
             listCount += 1
         }
+        
+        UserDefault().notificationModelUserDefault(title: beforeListTitle, status: "삭제", content: "리스트가 삭제되었습니다", date: self.koreanDate())
         
         DispatchQueue.main.async {
             self.sideBarTableView.reloadData()

@@ -19,6 +19,8 @@ class ProjectColorContentViewController: UIViewController {
     @IBOutlet weak var removeColorButton: UIButton!
     @IBOutlet weak var changeColorContentbutton: UIButton!
     
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     var ref: DatabaseReference! = Database.database().reference() // realtime DB
     
     var currentStringColor: Int? // 선택한 색(string)
@@ -175,13 +177,17 @@ extension ProjectColorContentViewController {
 extension ProjectColorContentViewController {
     
     private func readDB() {
+        self.hideViews()
         print(#fileID, #function, #line, "- ProjectColorContentViewController readDB실행")
         self.colorContent.removeAll()
         
         ref.child("\(email)/\(id)/colorContent").observeSingleEvent(of: .value, with: { snapshot in
           // Get user value
 
-            guard let value = snapshot.value as? [String?] else { return }
+            guard let value = snapshot.value as? [String?] else {
+                self.showViews()
+                return
+            }
             var colors = [String]()
             for i in value {
                 guard let color = i else { return }
@@ -189,11 +195,47 @@ extension ProjectColorContentViewController {
             }
             
             self.colorContent = colors
+            self.showViews()
             
         }) { error in
-          print(error.localizedDescription)
+            print(error.localizedDescription)
+            self.showViews()
         }
     }
     
+
+}
+
+
+// MARK: - indicator
+extension ProjectColorContentViewController {
+    
+    private func hideViews() {
+        self.cardLabelContentCollectionView.alpha = 0
+        self.cardContentTextField.alpha = 0
+        self.removeColorButton.alpha = 0
+        self.changeColorContentbutton.alpha = 0
+        
+        self.activityIndicator.alpha = 1
+        self.activityIndicator.startAnimating()
+    }
+    
+    private func showViews() {
+        UIView.animate(
+            withDuration: 0.7,
+            delay: 0,
+            usingSpringWithDamping: 1,
+            initialSpringVelocity: 1,
+            options: .curveEaseOut,
+            animations: {
+                self.activityIndicator.alpha = 0
+                self.cardLabelContentCollectionView.alpha = 1
+                self.cardContentTextField.alpha = 1
+                self.removeColorButton.alpha = 1
+                self.changeColorContentbutton.alpha = 1
+        }, completion: { _ in
+            self.activityIndicator.stopAnimating()
+        })
+    }
 
 }

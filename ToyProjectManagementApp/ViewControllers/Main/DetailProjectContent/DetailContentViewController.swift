@@ -56,6 +56,8 @@ class DetailContentViewController: UIViewController {
     weak var sendContentDelegate: SendContentDelegate?
     weak var sendCellIndexDelegate: DeleteCellDelegate?
     
+    @IBOutlet weak var contentView: UIView!
+    
     @IBOutlet weak var cardTitleLabel: UILabel!
     @IBOutlet weak var contentTextView: UITextView!
     
@@ -85,6 +87,7 @@ class DetailContentViewController: UIViewController {
     @IBOutlet weak var cardDeleteButton: UIButton!
     @IBOutlet weak var cardCancelButton: UIButton!
     
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -247,19 +250,15 @@ extension DetailContentViewController {
             self.cardBackgroundColorView.backgroundColor = self.cardColor
             
             if self.cardColor == UIColor.white {
-                print(self.cardColor, "z")
                 self.cardBackgroundColorView.layer.borderColor = UIColor.gray.cgColor
             } else {
-                print(self.cardColor, "x")
                 self.cardBackgroundColorView.layer.borderColor = self.cardColor.cgColor
             }
             
             self.cardColorLabel.font = UIFont(name: "NanumGothicOTFBold", size: 14)
             self.cardColorContentLabel.text = self.colorContent[currentColorIndex]
-
+            
         }
-
-        
     }
     
     private func configureChooseDate() {
@@ -277,9 +276,9 @@ extension DetailContentViewController {
     
     private func configureButton() {
         
-        self.cardFixButton.titleLabel?.font = UIFont(name: "NanumGothicOTFBold", size: 15)
-        self.cardDeleteButton.titleLabel?.font = UIFont(name: "NanumGothicOTFBold", size: 15)
-        self.cardCancelButton.titleLabel?.font = UIFont(name: "NanumGothicOTFBold", size: 15)
+        self.cardFixButton.titleLabel?.font = UIFont(name: "NanumGothicOTF", size: 14)
+        self.cardDeleteButton.titleLabel?.font = UIFont(name: "NanumGothicOTF", size: 14)
+        self.cardCancelButton.titleLabel?.font = UIFont(name: "NanumGothicOTF", size: 14)
         
         self.cardFixButton.layer.cornerRadius = 8
         self.cardDeleteButton.layer.cornerRadius = 8
@@ -379,12 +378,16 @@ extension DetailContentViewController: UICollectionViewDelegateFlowLayout {
 extension DetailContentViewController {
     
     private func readDB() {
+        hideViews()
         print(#fileID, #function, #line, "- ProjectColorContentViewController readDB실행")
         self.colorContent.removeAll()
         print(email, id)
         
         ref.child("\(email)/\(id)/colorContent").observeSingleEvent(of: .value, with: { snapshot in
-            guard let value = snapshot.value as? [String?] else { return }
+            guard let value = snapshot.value as? [String?] else {
+                self.showViews()
+                return
+            }
             
             var colors = [String]()
             for i in value {
@@ -400,19 +403,43 @@ extension DetailContentViewController {
                 self.startTimeLabel.text = self.projectDetailContent.startTime
                 self.endTimeLabel.text = self.projectDetailContent.endTime
                 self.configureCardColor()
+                self.showViews()
                 self.configureCardColorData()
             }
             
         }) { error in
-          print(error.localizedDescription)
+            print(error.localizedDescription)
+            self.showViews()
         }
     }
 }
 
-extension DetailContentViewController: UIScrollViewDelegate {
+
+// MARK: - indicator
+extension DetailContentViewController {
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    private func hideViews() {
+        self.contentView.alpha = 0
         
-        
+        self.activityIndicator.alpha = 1
+        self.activityIndicator.startAnimating()
     }
+    
+    private func showViews() {
+        UIView.animate(
+            withDuration: 0.7,
+            delay: 0,
+            usingSpringWithDamping: 1,
+            initialSpringVelocity: 1,
+            options: .curveEaseOut,
+            animations: {
+                self.activityIndicator.alpha = 0
+                self.contentView.alpha = 1
+        }, completion: { _ in
+            self.activityIndicator.stopAnimating()
+        })
+    }
+
 }
+
+

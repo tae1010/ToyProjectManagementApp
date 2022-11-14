@@ -15,6 +15,8 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var passwordTextField: CustomTextField!
     @IBOutlet weak var nextButton: UIButton!
     
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         hideKeyboardWhenTappedAround() // 화면 클릭시 키보드 내림
@@ -42,6 +44,7 @@ class SignUpViewController: UIViewController {
     }
     
     @IBAction func nextButtonTapped(_ sender: UIButton) {
+        self.hideViews()
         
         //Firebase 이메일/비밀번호 인증
         let email = self.emailTextField.text ?? ""
@@ -70,7 +73,10 @@ class SignUpViewController: UIViewController {
                 default:
                     self.view.makeToast("\(error.localizedDescription) 에러")
                 }
+                
+                self.showViews()
             } else {
+                self.showViews()
                 self.showMainViewController()
             }
         }
@@ -116,5 +122,41 @@ extension SignUpViewController {
     
     private func configurePasswordTextField() {
         self.passwordTextField.textFieldPlaceholder = "비밀번호를 입력해주세요."
+    }
+}
+
+
+// MARK: - indicator
+extension SignUpViewController {
+    
+    private func hideViews() {
+        
+        self.emailTextField.isUserInteractionEnabled = false
+        self.passwordTextField.isUserInteractionEnabled = false
+        self.nextButton.isUserInteractionEnabled = false
+        
+        activityIndicator.alpha = 1
+        activityIndicator.startAnimating()
+    }
+    
+    private func showViews() {
+        
+        UIView.animate(
+            withDuration: 0.7,
+            delay: 0,
+            usingSpringWithDamping: 1,
+            initialSpringVelocity: 1,
+            options: .curveEaseOut,
+            animations: {
+                self.activityIndicator.alpha = 0
+
+            }, completion: { _ in
+                self.activityIndicator.stopAnimating()
+                
+                self.emailTextField.isUserInteractionEnabled = true
+                self.passwordTextField.isUserInteractionEnabled = true
+                self.nextButton.isUserInteractionEnabled = true
+                
+            })
     }
 }
