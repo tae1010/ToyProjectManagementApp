@@ -25,9 +25,10 @@ enum TimeSelectMode {
     case endTime
 }
 
+// colorCollectionView hidden 유무
 enum ShowColorDetailViewMode {
-    case show
-    case notShow
+    case showDetailColorView
+    case notShowDetailColorView
 }
 
 class DetailContentViewController: UIViewController {
@@ -49,7 +50,8 @@ class DetailContentViewController: UIViewController {
     var email = ""
     
     var timeSelectMode: TimeSelectMode = .startTime // 처음에 시작시간을 입력할수 있게 하기
-    var showColorDetailViewMode: ShowColorDetailViewMode = .notShow // 처음에 color detail label 스택뷰는 안보이기
+
+    var showColorDetailViewMode: ShowColorDetailViewMode = .notShowDetailColorView // 처음에 color detail label 스택뷰는 안보이기
     var startTime: String = ""
     var endTime: String = ""
     
@@ -59,12 +61,8 @@ class DetailContentViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     
     @IBOutlet weak var contentView: UIView!
-    
-    @IBOutlet weak var cardTitleLabel: UILabel!
+
     @IBOutlet weak var contentTextView: UITextView!
-    
-    @IBOutlet weak var cardColorLabel: UILabel!
-    @IBOutlet weak var showDetailColorButton: UIButton!
     
     @IBOutlet weak var deleteCardColorButton: UIButton!
     @IBOutlet weak var cardBackgroundColorView: UIView!
@@ -73,21 +71,23 @@ class DetailContentViewController: UIViewController {
     
     @IBOutlet weak var detailColorCollectionView: UICollectionView!
     
-    @IBOutlet weak var chooseDateLabel: UILabel!
-    @IBOutlet weak var dateStackViewTopAnchor: NSLayoutConstraint!
-    @IBOutlet weak var dateStackView: UIStackView!
+    @IBOutlet weak var timeStackViewTopAnchor: NSLayoutConstraint!
     
-    @IBOutlet weak var startLabel: UILabel! // 달력에서 선택된 시작시간
-    @IBOutlet weak var endLabel: UILabel! // 달력에서 선택된 종료시간
-    @IBOutlet weak var startTimeLabel: UILabel! // 시작시간 Label
-    @IBOutlet weak var endTimeLabel: UILabel! // 종료시간 Label
+    @IBOutlet weak var startLabel: UILabel! // 시작시간 Label
+    @IBOutlet weak var endLabel: UILabel! // 종료시간 Label
+    @IBOutlet weak var startTimeLabel: UILabel! // 달력에서 선택된 시작시간
+    @IBOutlet weak var endTimeLabel: UILabel! // 달력에서 선택된 종료시간
+    
+    @IBOutlet weak var deleteStartTimeButton: UIButton! // 시작 시간 지우기
+    @IBOutlet weak var deleteEndTimeButton: UIButton! // 종료 시간 지우기
     
     @IBOutlet weak var startTimeStackView: UIStackView!
     @IBOutlet weak var endTimeStackView: UIStackView!
     
+    @IBOutlet weak var datePicker: UIDatePicker!
+    
     @IBOutlet weak var cardFixButton: UIButton!
     @IBOutlet weak var cardDeleteButton: UIButton!
-    @IBOutlet weak var cardCancelButton: UIButton!
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
@@ -98,9 +98,11 @@ class DetailContentViewController: UIViewController {
         self.scrollView.delegate = self
         self.configure()
         
+        let tapCardView = UITapGestureRecognizer(target: self, action: #selector(tapCardViewSelector))
         let tabStartTimeLabel = UITapGestureRecognizer(target: self, action: #selector(tabStartLabelSelector))
         let tabEndTimeLabel = UITapGestureRecognizer(target: self, action: #selector(tabEndLabelSelector))
         
+        self.cardBackgroundColorView.addGestureRecognizer(tapCardView)
         self.startTimeStackView.addGestureRecognizer(tabStartTimeLabel)
         self.endTimeStackView.addGestureRecognizer(tabEndTimeLabel)
     }
@@ -108,7 +110,6 @@ class DetailContentViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.readDB()
-        
     }
     
     
@@ -120,68 +121,46 @@ class DetailContentViewController: UIViewController {
         self.changeColor()
     }
     
-    @IBAction func showDetailColorStackView(_ sender: UIButton) {
-        print("버튼이 클릭되었습니다.")
-        
-        switch self.showColorDetailViewMode {
-        case .notShow:
-            
-            self.dateStackViewTopAnchor.constant = 236
-            
-            UIView.animate(withDuration: 0.5, animations: {
-                self.detailColorCollectionView.alpha = 1
-                self.deleteCardColorButton.alpha = 1
-//                self.deleteCardColorButton.isHidden = false
-                self.view.layoutIfNeeded()
-            })
-            
-            self.showDetailColorButton.setImage(UIImage(systemName: "minus"), for: .normal)
-            
-            self.showColorDetailViewMode = .show
-            
-        case .show:
-            self.dateStackViewTopAnchor.constant = 32
-            
-            UIView.animate(withDuration: 0.5, animations: {
-                self.detailColorCollectionView.alpha = 0
-                self.deleteCardColorButton.alpha = 0
-//                self.deleteCardColorButton.isHidden = true
-                self.view.layoutIfNeeded()
-            })
-            
-            self.showDetailColorButton.setImage(UIImage(systemName: "plus"), for: .normal)
-            
-            self.showColorDetailViewMode = .notShow
-        }
-        
-        self.detailColorCollectionView.reloadData()
-        
+    @IBAction func tapDeleteStartTimeButton(_ sender: UIButton) {
+        self.startTimeLabel.text = ""
+        self.startTimeLabel.isHidden = true
     }
     
+    @IBAction func tapDeleteEndTimeButton(_ sender: UIButton) {
+        self.endTimeLabel.text = ""
+        self.endTimeLabel.isHidden = true
+    }
+    
+
     //날짜 정하기 설정
     @IBAction func UIDatePicker(_ sender: UIDatePicker) {
         let datePickerView = sender
         let formatter = DateFormatter()
         formatter.dateFormat = "yy-MM-dd HH:mm"
-        
+
         switch self.timeSelectMode {
             
         case .startTime:
+            // 시간을 설정할 수 없는 경우
             if endTimeLabel.text != "" && endTimeLabel.text! < formatter.string(from: datePickerView.date) {
                 self.view.hideAllToasts()
                 self.view.makeToast("시작 시간이 종료 시간보다 작아야 합니다.")
                 return
             } else {
                 startTimeLabel.text = formatter.string(from: datePickerView.date)
+                self.startTimeLabel.isHidden = false
+                
             }
 
         default:
+            // 시간을 설정할 수 없는 경우
             if startTimeLabel.text != "" && startTimeLabel.text! > formatter.string(from: datePickerView.date) {
                 self.view.hideAllToasts()
                 self.view.makeToast("종료 시간이 시작 시간보다 커야 합니다.")
                 return
             } else {
                 endTimeLabel.text = formatter.string(from: datePickerView.date)
+                self.endTimeLabel.isHidden = false
             }
         }
     }
@@ -196,9 +175,8 @@ class DetailContentViewController: UIViewController {
         self.sendCellIndexDelegate?.sendCellIndex([self.index, 0])
         self.dismiss(animated: true)
     }
-    
-    
-    @IBAction func cancelButton(_ sender: UIButton) {
+
+    @IBAction func tapDismissButton(_ sender: UIButton) {
         self.dismiss(animated: true)
     }
     
@@ -209,21 +187,19 @@ extension DetailContentViewController {
 
     private func configure() {
         self.configureCardTitle()
-        self.configureChooseDate()
         self.configureButton()
         self.configureDetailColorCollectionView()
         self.configureDate()
         self.configureCardColor()
     }
-
+    
     private func configureCardTitle() {
-        self.cardTitleLabel.font = UIFont(name: "NanumGothicOTFBold", size: 14)
-        self.contentTextView.font = UIFont(name: "NanumGothicOTFBold", size: 15)
+        self.contentTextView.font = UIFont(name: "NanumGothicOTFBold", size: 20)
     }
+
     
     private func configureCardColor() {
         
-        self.cardColorLabel.font = UIFont(name: "NanumGothicOTFBold", size: 14)
         self.cardColorView.layer.cornerRadius = self.cardColorView.frame.width / 2
         
         self.cardColorView.layer.borderWidth = 1
@@ -235,9 +211,6 @@ extension DetailContentViewController {
         self.cardBackgroundColorView.layer.borderColor = UIColor.gray.cgColor
         
         self.cardColorContentLabel.font = UIFont(name: "NanumGothicOTFBold", size: 14)
-        
-        
-
     }
     
     private func configureCardColorData() {
@@ -247,7 +220,13 @@ extension DetailContentViewController {
             // db에 저장되어 있는 color(String)값을 UIColor로 변환후 몇번째 배열인지 찾음
             let color = Color(rawValue: cardColor)
             let colorSelected = color?.create // color UIColor로 변환
-            let currentColorIndex = detailUIColor.firstIndex(of: colorSelected) ?? 0
+            
+            // uicolor로 변환된 colorSelected 변수를 detailUIColor배열에서 찾아서 text값을 바꿔줌 c
+            if let currentColorIndex = detailUIColor.firstIndex(of: colorSelected) {
+                self.cardColorContentLabel.text = self.colorContent[currentColorIndex]
+            } else {
+                self.cardColorContentLabel.text = ""
+            }
             
             // cardColor에 맞게 text값과 배경색을 지정
             self.cardColor = colorSelected ?? .white // UIColor를 cardColor에 저장
@@ -259,19 +238,17 @@ extension DetailContentViewController {
             } else {
                 self.cardBackgroundColorView.layer.borderColor = self.cardColor.cgColor
             }
-            
-            self.cardColorLabel.font = UIFont(name: "NanumGothicOTFBold", size: 14)
-            self.cardColorContentLabel.text = self.colorContent[currentColorIndex]
+
             self.cardColorContentLabel.textColor = self.cardColor.isLight() ? .black : .white
             
         }
     }
     
-    private func configureChooseDate() {
-        self.chooseDateLabel.font = UIFont(name: "NanumGothicOTFBold", size: 14)
-    }
-    
     private func configureDate() {
+        
+        self.startTimeLabel.isHidden = startLabel.text == "" ? true : false
+        self.endTimeLabel.isHidden = startLabel.text == "" ? true : false
+        
         self.startLabel.font = UIFont(name: "NanumGothicOTFBold", size: 14)
         self.endLabel.font = UIFont(name: "NanumGothicOTFLight", size: 14)
         
@@ -284,11 +261,10 @@ extension DetailContentViewController {
         
         self.cardFixButton.titleLabel?.font = UIFont(name: "NanumGothicOTF", size: 14)
         self.cardDeleteButton.titleLabel?.font = UIFont(name: "NanumGothicOTF", size: 14)
-        self.cardCancelButton.titleLabel?.font = UIFont(name: "NanumGothicOTF", size: 14)
         
         self.cardFixButton.layer.cornerRadius = 8
         self.cardDeleteButton.layer.cornerRadius = 8
-        self.cardCancelButton.layer.cornerRadius = 8
+
 
     }
     
@@ -317,6 +293,13 @@ extension DetailContentViewController {
         })
         
     }
+    
+    // 시작시간 종료시간 hidden
+    private func hiddenTimeEraserButton() {
+        self.deleteStartTimeButton.alpha = self.timeSelectMode == .startTime ? 1 : 0
+        self.deleteEndTimeButton.alpha = self.timeSelectMode == .endTime ? 1 : 0
+    }
+
 }
 
 
@@ -327,20 +310,57 @@ extension DetailContentViewController {
     @objc func tabStartLabelSelector(sender: UITapGestureRecognizer) {
         
         self.timeSelectMode = .startTime
-        DispatchQueue.main.async {
+        
+        UIView.animate(withDuration: 0.2, animations: {
+            self.hiddenTimeEraserButton()
             self.startLabel.font = UIFont(name: "NanumGothicOTFBold", size: 14)
             self.endLabel.font = UIFont(name: "NanumGothicOTFLight", size: 14)
-        }
+        })
     }
     
     //종료시간 stackview클릭시 발생
     @objc func tabEndLabelSelector(sender: UITapGestureRecognizer) {
         
         self.timeSelectMode = .endTime
-        DispatchQueue.main.async {
+        
+        UIView.animate(withDuration: 0.2, animations: {
+            self.hiddenTimeEraserButton()
             self.endLabel.font = UIFont(name: "NanumGothicOTFBold", size: 14)
             self.startLabel.font = UIFont(name: "NanumGothicOTFLight", size: 14)
+        })
+    }
+    
+    @objc func tapCardViewSelector(sender: UITapGestureRecognizer) {
+        
+        print("card view가 클릭되었습니다.")
+        
+        switch self.showColorDetailViewMode {
+        case .notShowDetailColorView:
+            
+            self.timeStackViewTopAnchor.constant = 236
+            
+            UIView.animate(withDuration: 0.5, animations: {
+                self.detailColorCollectionView.alpha = 1
+                self.deleteCardColorButton.isHidden = false
+                self.view.layoutIfNeeded()
+            })
+            
+            self.showColorDetailViewMode = .showDetailColorView
+            
+        case .showDetailColorView:
+            self.timeStackViewTopAnchor.constant = 32
+            
+            UIView.animate(withDuration: 0.5, animations: {
+                self.detailColorCollectionView.alpha = 0
+                self.deleteCardColorButton.isHidden = true
+                self.view.layoutIfNeeded()
+            })
+            
+            self.showColorDetailViewMode = .notShowDetailColorView
         }
+        
+        self.detailColorCollectionView.reloadData()
+        
     }
 }
 
@@ -451,8 +471,8 @@ extension DetailContentViewController {
 
 extension DetailContentViewController: UIScrollViewDelegate {
     
+    // scrollview 위만 bounce안되게 하기
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        
         scrollView.bounces = scrollView.contentOffset.y > 0
     }
 }

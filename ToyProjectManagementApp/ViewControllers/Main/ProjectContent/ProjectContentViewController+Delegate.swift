@@ -92,7 +92,7 @@ extension ProjectContentViewController: MoveContentDelegate {
 // MARK: - detailContentView에서 보낸 값을 db에 저장하고 테이블 reload
 extension ProjectContentViewController: SendContentDelegate {
     func sendContent(_ name: String, _ index: Int, _ color: String, _ startTime: String, _ endTime: String) {
-        
+
         // DB작성
         self.projectContent[self.currentPage].detailContent[index].cardName = name
         self.projectContent[self.currentPage].detailContent[index].startTime = startTime

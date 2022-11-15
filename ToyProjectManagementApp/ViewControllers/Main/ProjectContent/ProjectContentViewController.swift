@@ -70,7 +70,7 @@ class ProjectContentViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        print("viewwillappear실행")
+        print(#fileID, #function, #line, "- viewwillappear실행")
         self.readDB()
         self.setNotification()
     }
@@ -260,7 +260,7 @@ extension ProjectContentViewController {
                 self.showViews()
                 return
             }
-            
+            print(#fileID, #function, #line, "- readDB실행앻앻애행ㅎ애")
             for list in value {
                 var count = 0
                 for (key, val) in list {
@@ -389,6 +389,7 @@ extension ProjectContentViewController: UITableViewDataSource {
         detailContentViewController.email = self.email
         detailContentViewController.id = self.id
         
+//        detailContentViewController.modalPresentationStyle = .fullScreen
         self.present(detailContentViewController, animated: true, completion: nil)
     }
 
