@@ -56,6 +56,8 @@ class DetailContentViewController: UIViewController {
     weak var sendContentDelegate: SendContentDelegate?
     weak var sendCellIndexDelegate: DeleteCellDelegate?
     
+    @IBOutlet weak var scrollView: UIScrollView!
+    
     @IBOutlet weak var contentView: UIView!
     
     @IBOutlet weak var cardTitleLabel: UILabel!
@@ -92,6 +94,8 @@ class DetailContentViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         hideKeyboardWhenTappedAround() // 화면 클릭시 키보드 내림
+        
+        self.scrollView.delegate = self
         self.configure()
         
         let tabStartTimeLabel = UITapGestureRecognizer(target: self, action: #selector(tabStartLabelSelector))
@@ -158,7 +162,7 @@ class DetailContentViewController: UIViewController {
     @IBAction func UIDatePicker(_ sender: UIDatePicker) {
         let datePickerView = sender
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
+        formatter.dateFormat = "yy-MM-dd HH:mm"
         
         switch self.timeSelectMode {
             
@@ -231,7 +235,8 @@ extension DetailContentViewController {
         self.cardBackgroundColorView.layer.borderColor = UIColor.gray.cgColor
         
         self.cardColorContentLabel.font = UIFont(name: "NanumGothicOTFBold", size: 14)
-        self.cardColorContentLabel.textColor = self.cardColor.isLight() ? .black : .white
+        
+        
 
     }
     
@@ -257,6 +262,7 @@ extension DetailContentViewController {
             
             self.cardColorLabel.font = UIFont(name: "NanumGothicOTFBold", size: 14)
             self.cardColorContentLabel.text = self.colorContent[currentColorIndex]
+            self.cardColorContentLabel.textColor = self.cardColor.isLight() ? .black : .white
             
         }
     }
@@ -344,7 +350,7 @@ extension DetailContentViewController: UICollectionViewDelegate {
         self.cardColorString = "color\(indexPath.row)"
         self.cardColor = detailUIColor[indexPath.row] ?? .white
         self.cardColorContentLabel.text = self.colorContent[indexPath.row]
-        
+        self.cardColorContentLabel.textColor = self.cardColor.isLight() ? .white : .black
         self.changeColor()
     }
 }
@@ -399,11 +405,12 @@ extension DetailContentViewController {
             print(self.colorContent, "가낟")
             
             DispatchQueue.main.async {
+                self.showViews()
                 self.contentTextView.text = self.projectDetailContent.cardName
                 self.startTimeLabel.text = self.projectDetailContent.startTime
                 self.endTimeLabel.text = self.projectDetailContent.endTime
                 self.configureCardColor()
-                self.showViews()
+                
                 self.configureCardColorData()
             }
             
@@ -442,14 +449,10 @@ extension DetailContentViewController {
 
 }
 
-
-// MARK: - scrollview
-
 extension DetailContentViewController: UIScrollViewDelegate {
-
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
         scrollView.bounces = scrollView.contentOffset.y > 0
     }
-    
 }
-

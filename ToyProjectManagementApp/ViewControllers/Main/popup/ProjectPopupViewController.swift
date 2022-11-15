@@ -44,7 +44,7 @@ class ProjectPopupViewController: UIViewController {
         guard let pvc = self.presentingViewController else { return } // maintabbarViewController
         
         let changeProjectTitlePopup = ChangeProjectTitlePopupViewController(nibName: "ChangeProjectTitlePopup", bundle: nil)
-        
+        changeProjectTitlePopup.view.layer.cornerRadius = 20
         changeProjectTitlePopup.modalPresentationStyle = .overCurrentContext
         changeProjectTitlePopup.modalTransitionStyle = .crossDissolve // 뷰가 투명해지면서 넘어가는 애니메이션
 
@@ -61,6 +61,7 @@ class ProjectPopupViewController: UIViewController {
 
         let changeProjectPrograssPopup = ChangeProjectPrograssViewController(nibName: "ChangeProjectPrograssPopup", bundle: nil)
         
+        changeProjectPrograssPopup.view.layer.cornerRadius = 20
         changeProjectPrograssPopup.modalPresentationStyle = .overCurrentContext
         changeProjectPrograssPopup.modalTransitionStyle = .crossDissolve // 뷰가 투명해지면서 넘어가는 애니메이션
         changeProjectPrograssPopup.projectPrograss = projectPrograss

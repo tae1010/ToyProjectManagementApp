@@ -20,10 +20,10 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BmG-8D-6Jm">
-                                <rect key="frame" x="0.0" y="47" width="428" height="1119"/>
+                                <rect key="frame" x="0.0" y="47" width="428" height="1153"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" restorationIdentifier="detailview" translatesAutoresizingMaskIntoConstraints="NO" id="QbQ-iG-q8o">
-                                        <rect key="frame" x="0.0" y="0.0" width="428" height="848.66666666666663"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="428" height="1022.3333333333334"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="카드 내용" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AH7-aV-mlq">
                                                 <rect key="frame" x="24" y="24" width="380" height="20.333333333333329"/>
@@ -137,7 +137,7 @@
                                                 </cells>
                                             </collectionView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="JDu-45-DXG">
-                                                <rect key="frame" x="24" y="240.66666666666669" width="380" height="243.33333333333331"/>
+                                                <rect key="frame" x="24" y="240.66666666666669" width="380" height="417.00000000000006"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="날짜" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="amg-rg-Ekf">
                                                         <rect key="frame" x="0.0" y="0.0" width="380" height="20.333333333333332"/>
@@ -145,8 +145,8 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="wheels" translatesAutoresizingMaskIntoConstraints="NO" id="IdY-if-Lhh">
-                                                        <rect key="frame" x="0.0" y="27.333333333333314" width="380" height="216"/>
+                                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" style="inline" translatesAutoresizingMaskIntoConstraints="NO" id="IdY-if-Lhh">
+                                                        <rect key="frame" x="0.0" y="27.333333333333314" width="380" height="389.66666666666669"/>
                                                         <date key="minimumDate" timeIntervalSinceReferenceDate="-978267600">
                                                             <!--1970-01-01 11:00:00 +0000-->
                                                         </date>
@@ -161,7 +161,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="JMB-lz-yS5">
-                                                <rect key="frame" x="24" y="492" width="380" height="50"/>
+                                                <rect key="frame" x="24" y="665.66666666666663" width="380" height="50"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="시작 시간" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PUt-aQ-MoC">
                                                         <rect key="frame" x="0.0" y="0.0" width="380" height="21.666666666666668"/>
@@ -170,7 +170,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="날짜를 정해주세요." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WrZ-s8-ftT">
-                                                        <rect key="frame" x="0.0" y="29.666666666666629" width="380" height="20.333333333333329"/>
+                                                        <rect key="frame" x="0.0" y="29.666666666666742" width="380" height="20.333333333333329"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -178,7 +178,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="AtT-8F-Q3r">
-                                                <rect key="frame" x="24" y="566" width="380" height="48.666666666666629"/>
+                                                <rect key="frame" x="24" y="739.66666666666663" width="380" height="48.666666666666629"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="종료 시간" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2tM-Wx-gho">
                                                         <rect key="frame" x="0.0" y="0.0" width="380" height="20.333333333333332"/>
@@ -195,7 +195,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="sio-eO-OvS">
-                                                <rect key="frame" x="24" y="654.66666666666663" width="380" height="170"/>
+                                                <rect key="frame" x="24" y="828.33333333333337" width="380" height="170"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="25z-cF-Edj">
                                                         <rect key="frame" x="0.0" y="0.0" width="380" height="50"/>
@@ -238,7 +238,7 @@
                                                 </subviews>
                                             </stackView>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="MC0-Xt-gCx" firstAttribute="trailing" secondItem="Bhd-JP-pN3" secondAttribute="trailing" id="2B1-Ad-Nes"/>
                                             <constraint firstItem="JDu-45-DXG" firstAttribute="leading" secondItem="MC0-Xt-gCx" secondAttribute="leading" id="4aO-St-60N"/>
@@ -281,14 +281,14 @@
                                 <viewLayoutGuide key="frameLayoutGuide" id="Npy-a8-Ecv"/>
                             </scrollView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="gkC-aa-28M">
-                                <rect key="frame" x="204" y="461.33333333333331" width="20" height="20"/>
+                                <rect key="frame" x="204" y="548.33333333333337" width="20" height="20"/>
                             </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="dJK-rc-w4V"/>
-                        <color key="backgroundColor" red="0.97924558080000002" green="0.97924558080000002" blue="0.97924558080000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="BmG-8D-6Jm" firstAttribute="trailing" secondItem="dJK-rc-w4V" secondAttribute="trailing" id="3Hq-q8-nu2"/>
-                            <constraint firstItem="BmG-8D-6Jm" firstAttribute="bottom" secondItem="dJK-rc-w4V" secondAttribute="bottom" id="6bk-fi-uaU"/>
+                            <constraint firstItem="BmG-8D-6Jm" firstAttribute="bottom" secondItem="0cU-r8-bEN" secondAttribute="bottom" id="6bk-fi-uaU"/>
                             <constraint firstItem="BmG-8D-6Jm" firstAttribute="leading" secondItem="dJK-rc-w4V" secondAttribute="leading" id="RI3-Wc-I4j"/>
                             <constraint firstItem="gkC-aa-28M" firstAttribute="centerX" secondItem="FZX-M2-DKb" secondAttribute="centerX" id="Yo3-zt-4ei"/>
                             <constraint firstItem="gkC-aa-28M" firstAttribute="centerY" secondItem="FZX-M2-DKb" secondAttribute="centerY" id="Z0F-UU-gHp"/>
@@ -316,6 +316,7 @@
                         <outlet property="endLabel" destination="2tM-Wx-gho" id="akh-5q-Lso"/>
                         <outlet property="endTimeLabel" destination="QKj-d2-nhq" id="d1V-ZV-RqD"/>
                         <outlet property="endTimeStackView" destination="AtT-8F-Q3r" id="wq8-nz-4Ka"/>
+                        <outlet property="scrollView" destination="BmG-8D-6Jm" id="edM-P5-Ekl"/>
                         <outlet property="showDetailColorButton" destination="QrA-S0-GKV" id="LcS-ad-7Xs"/>
                         <outlet property="startLabel" destination="PUt-aQ-MoC" id="ynA-E2-xVc"/>
                         <outlet property="startTimeLabel" destination="WrZ-s8-ftT" id="WZ9-Ci-APj"/>
@@ -324,7 +325,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aVX-rr-g5f" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-37" y="320"/>
+            <point key="canvasLocation" x="-38.46153846153846" y="319.90521327014216"/>
         </scene>
     </scenes>
     <resources>

@@ -369,7 +369,7 @@ extension ProjectContentViewController: UITableViewDataSource {
             cell.timeLabel.isHidden = true
         } else {
             cell.timeLabel.isHidden = false
-            cell.timeLabel.text = "\(startTime) ~ \(endTime)"
+            cell.timeLabel.text = "\(startTime)  ~  \(endTime)"
         }
 
         return cell

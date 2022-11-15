@@ -453,6 +453,8 @@ extension MainTabbarViewController {
         self.sortFirstSection()
         self.sortSecondSection()
         
+        UserDefault().notificationModelUserDefault(title: self.projectListPrograssTrue[index].projectTitle, status: "상태변경", content: "프로젝트 즐겨찾기가 변경되었습니다", date: self.koreanDate())
+        
         self.projectCollectionView.performBatchUpdates({
             self.projectCollectionView.reloadSections(NSIndexSet(index: 0) as IndexSet)
         }, completion: { (finished:Bool) -> Void in })
@@ -470,6 +472,8 @@ extension MainTabbarViewController {
         
         self.sortFirstSection()
         self.sortSecondSection()
+        
+        UserDefault().notificationModelUserDefault(title:  self.projectListPrograssFalse[index].projectTitle, status: "상태변경", content: "프로젝트 즐겨찾기가 변경되었습니다", date: self.koreanDate())
         
         self.projectCollectionView.performBatchUpdates({
             self.projectCollectionView.reloadSections(NSIndexSet(index: 1) as IndexSet)
