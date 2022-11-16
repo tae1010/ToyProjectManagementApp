@@ -175,7 +175,7 @@ class ProjectContentViewController: UIViewController {
                     count += 1
                 }
                 
-                UserDefault().notificationModelUserDefault(title: beforeDetailContent.cardName ?? "위아래이동", status: "위아래이동", content: "카드가 이동되었습니다", date: self.koreanDate())
+                UserDefault().notificationModelUserDefault(title: beforeDetailContent.cardName ?? "이동", status: "이동", content: "카드가 이동되었습니다", date: self.koreanDate())
                 
                 
             }

@@ -122,13 +122,17 @@ class DetailContentViewController: UIViewController {
     }
     
     @IBAction func tapDeleteStartTimeButton(_ sender: UIButton) {
-        self.startTimeLabel.text = ""
-        self.startTimeLabel.isHidden = true
+        UIView.animate(withDuration: 0.2, animations: {
+            self.startTimeLabel.text = ""
+            self.startTimeLabel.isHidden = true
+        })
     }
     
     @IBAction func tapDeleteEndTimeButton(_ sender: UIButton) {
-        self.endTimeLabel.text = ""
-        self.endTimeLabel.isHidden = true
+        UIView.animate(withDuration: 0.2, animations: {
+            self.endTimeLabel.text = ""
+            self.endTimeLabel.isHidden = true
+        })
     }
     
 

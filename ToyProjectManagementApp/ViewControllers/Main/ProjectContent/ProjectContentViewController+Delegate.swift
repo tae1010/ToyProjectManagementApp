@@ -80,7 +80,7 @@ extension ProjectContentViewController: MoveContentDelegate {
             count += 1
         }
         
-        UserDefault().notificationModelUserDefault(title: selectCell.cardName ?? "양옆이동", status: "양옆이동", content: "카드가 이동되었습니다", date: koreanDate())
+        UserDefault().notificationModelUserDefault(title: selectCell.cardName ?? "이동", status: "이동", content: "카드가 이동되었습니다", date: koreanDate())
         
         self.view.hideAllToasts()
         self.view.makeToast("카드가 이동되었습니다", duration: 0.5)

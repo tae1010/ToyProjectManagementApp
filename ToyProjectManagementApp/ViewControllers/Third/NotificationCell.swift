@@ -14,7 +14,6 @@ class NotificationCell: UITableViewCell {
     @IBOutlet weak var notificaionImageView: UIImageView!
     
     @IBOutlet weak var notificatioinProjectTitleLabel: UILabel!
-    @IBOutlet weak var notificationProjectContentTitleLabel: UILabel!
     @IBOutlet weak var notificationContentLabel: UILabel!
     @IBOutlet weak var notificationDateLabel: UILabel!
     
@@ -32,7 +31,6 @@ class NotificationCell: UITableViewCell {
 extension NotificationCell {
     private func configureLabel() {
         self.notificatioinProjectTitleLabel.font = UIFont(name: "NanumGothicOTFBold", size: 14)
-        self.notificationProjectContentTitleLabel.font = UIFont(name: "NanumGothicOTFLight", size: 13)
         self.notificationContentLabel.font = UIFont(name: "NanumGothicOTFLight", size: 13)
         self.notificationDateLabel.font = UIFont(name: "NanumGothicOTFLight", size: 13)
     }

@@ -104,21 +104,20 @@ extension ThirdTabbarViewController: UITableViewDataSource {
             let status = notificationModel[indexPath.row].status
             
             if status == "생성" {
-                return UIImage(named: "create")
+                return UIImage(named: "create_Black")
             } else if status == "삭제" {
-                return UIImage(named: "delete")
+                return UIImage(named: "delete_Black")
             } else if status == "위아래이동" {
-                return UIImage(named: "moveUpDown")
+                return UIImage(named: "move")
             } else if status == "양옆이동" {
-                return UIImage(named: "moveLeftRight")
+                return UIImage(named: "move")
             } else {
-                return UIImage(named: "changeStatus")
+                return UIImage(named: "changeStatus_Black")
             }
         }()
         
         cell.notificatioinProjectTitleLabel.text = notificationModel[indexPath.row].projectTitle
-        cell.notificationProjectContentTitleLabel.text = notificationModel[indexPath.row].projectTitle
-        cell.notificationContentLabel.text = notificationModel[indexPath.row].content
+        cell.notificationContentLabel.text = "\(notificationModel[indexPath.row].projectTitle) \(notificationModel[indexPath.row].content)"
         cell.notificationDateLabel.text = changeDateLabel(date: notificationModel[indexPath.row].date)
         
         return cell
