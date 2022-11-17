@@ -450,14 +450,18 @@ extension MainTabbarViewController {
         // 바뀐 important값을 db에 저장
         self.ref.child("\(email)/\(self.projectListPrograssTrue[index].id)").updateChildValues(["important": self.projectListPrograssTrue[index].important])
         
+        // true로 바뀌었을때
+        if self.projectListPrograssTrue[index].important {
+            UserDefault().notificationModelUserDefault(title: self.projectListPrograssTrue[index].projectTitle, status: "상태변경", content: "\"\(self.projectListPrograssTrue[index].projectTitle)\" 프로젝트 즐겨찾기가 등록되었습니다", date: self.koreanDate())
+            
+        // false로 바뀌었을때
+        } else {
+            UserDefault().notificationModelUserDefault(title: self.projectListPrograssTrue[index].projectTitle, status: "상태변경", content: "\"\(self.projectListPrograssTrue[index].projectTitle)\" 프로젝트 즐겨찾기가 취소되었습니다", date: self.koreanDate())
+        
         self.sortFirstSection()
         self.sortSecondSection()
         
-        // true로 바뀌었을때
-        if self.projectListPrograssTrue[index].important {
-            UserDefault().notificationModelUserDefault(title: self.projectListPrograssTrue[index].projectTitle, status: "상태변경", content: "프로젝트 즐겨찾기가 변경되었습니다", date: self.koreanDate())
-        } else {
-            UserDefault().notificationModelUserDefault(title: self.projectListPrograssTrue[index].projectTitle, status: "상태변경", content: "프로젝트 즐겨찾기가 변경되었습니다", date: self.koreanDate())
+        
         }
         
         
@@ -476,10 +480,19 @@ extension MainTabbarViewController {
         // 바뀐 important값을 db에 저장
         self.ref.child("\(email)/\(self.projectListPrograssFalse[index].id)").updateChildValues(["important": self.projectListPrograssFalse[index].important])
         
+        // true로 바뀌었을때
+        if self.projectListPrograssFalse[index].important {
+            UserDefault().notificationModelUserDefault(title: self.projectListPrograssFalse[index].projectTitle, status: "상태변경", content: "\"\(self.projectListPrograssFalse[index].projectTitle)\" 프로젝트 즐겨찾기가 등록되었습니다", date: self.koreanDate())
+            
+        // false로 바뀌었을때
+        } else {
+            UserDefault().notificationModelUserDefault(title: self.projectListPrograssFalse[index].projectTitle, status: "상태변경", content: "\"\(self.projectListPrograssFalse[index].projectTitle)\" 프로젝트 즐겨찾기가 취소되었습니다", date: self.koreanDate())
+        }
+        
         self.sortFirstSection()
         self.sortSecondSection()
         
-        UserDefault().notificationModelUserDefault(title:  self.projectListPrograssFalse[index].projectTitle, status: "상태변경", content: "프로젝트 즐겨찾기가 변경되었습니다", date: self.koreanDate())
+        
         
         self.projectCollectionView.performBatchUpdates({
             self.projectCollectionView.reloadSections(NSIndexSet(index: 1) as IndexSet)
@@ -497,14 +510,14 @@ extension MainTabbarViewController {
         case 0:
             let id = self.projectListPrograssTrue[index].id
             
-            UserDefault().notificationModelUserDefault(title: self.projectListPrograssTrue[index].projectTitle, status: "삭제", content: "프로젝트가 삭제되었습니다", date: self.koreanDate())
+            UserDefault().notificationModelUserDefault(title: self.projectListPrograssTrue[index].projectTitle, status: "삭제", content: "\"\(self.projectListPrograssTrue[index].projectTitle)\" 프로젝트가 삭제되었습니다", date: self.koreanDate())
             
             self.deleteProject(index: index, id: id, section: section)
             
         case 1:
             let id = self.projectListPrograssFalse[index].id
 
-            UserDefault().notificationModelUserDefault(title: self.projectListPrograssFalse[index].projectTitle, status: "삭제", content: "프로젝트가 삭제되었습니다", date: self.koreanDate())
+            UserDefault().notificationModelUserDefault(title: self.projectListPrograssFalse[index].projectTitle, status: "삭제", content: "\"\(self.projectListPrograssFalse[index].projectTitle)\" 프로젝트가 삭제되었습니다", date: self.koreanDate())
 
 
             self.deleteProject(index: index, id: id, section: section)
@@ -520,7 +533,6 @@ extension MainTabbarViewController {
         
         let getValue = notification.object as! Bool // 진행중 / 완료
 
-
         guard let index  = self.longPressCellIndex else { return }
         guard let section = self.longPressCellSection else { return }
         
@@ -531,9 +543,14 @@ extension MainTabbarViewController {
             // prograss가 바뀌었으면 chagnePrograssProject 실행
             if getValue != self.projectListPrograssTrue[index].prograss {
                 
-                UserDefault().notificationModelUserDefault(title: self.projectListPrograssTrue[index].projectTitle, status: "상태변경", content: "프로젝트 상태가 변경되었습니다.", date: self.koreanDate())
-
+                if getValue {
+                    UserDefault().notificationModelUserDefault(title: self.projectListPrograssTrue[index].projectTitle, status: "상태변경", content: "\(self.projectListPrograssTrue[index].projectTitle) 프로젝트 상태가 진행중으로 변경되었습니다.", date: self.koreanDate())
+                } else {
+                    UserDefault().notificationModelUserDefault(title: self.projectListPrograssTrue[index].projectTitle, status: "상태변경", content: "\"\(self.projectListPrograssTrue[index].projectTitle)\" 프로젝트 상태가 완료로 변경되었습니다.", date: self.koreanDate())
+                }
+                
                 self.changePrograssProject(index: index, id: id, section: section, prograss: getValue)
+                
             }
         case 1:
             let id = self.projectListPrograssFalse[index].id
@@ -541,7 +558,11 @@ extension MainTabbarViewController {
             // prograss가 바뀌었으면 chagnePrograssProject 실행
             if getValue != self.projectListPrograssFalse[index].prograss {
                 
-                UserDefault().notificationModelUserDefault(title: self.projectListPrograssFalse[index].projectTitle, status: "상태변경", content: "프로젝트 상태가 변경되었습니다.", date: self.koreanDate())
+                if getValue {
+                    UserDefault().notificationModelUserDefault(title: self.projectListPrograssFalse[index].projectTitle, status: "상태변경", content: "\"\(self.projectListPrograssFalse[index].projectTitle)\" 프로젝트 상태가 진행중으로 변경되었습니다.", date: self.koreanDate())
+                } else {
+                    UserDefault().notificationModelUserDefault(title: self.projectListPrograssFalse[index].projectTitle, status: "상태변경", content: "\"\(self.projectListPrograssFalse[index].projectTitle)\" 프로젝트 상태가 완료로 변경되었습니다.", date: self.koreanDate())
+                }
                 
                 self.changePrograssProject(index: index, id: id, section: section, prograss: getValue)
             }
@@ -563,7 +584,7 @@ extension MainTabbarViewController {
         case 0:
             let id = self.projectListPrograssTrue[index].id
             
-            UserDefault().notificationModelUserDefault(title: self.projectListPrograssTrue[index].projectTitle, status: "이름변경", content: "프로젝트 이름이 변경되었습니다.", date: self.koreanDate())
+            UserDefault().notificationModelUserDefault(title: self.projectListPrograssTrue[index].projectTitle, status: "이름변경", content: "\"\(self.projectListPrograssTrue[index].projectTitle)\"의 프로젝트 이름이 \"\(getValue)\"로 변경되었습니다.", date: self.koreanDate())
 
             
             self.changeProjectTitle(index: index, id: id, section: section, projectTitle: getValue)
@@ -571,7 +592,7 @@ extension MainTabbarViewController {
         case 1:
             let id = self.projectListPrograssFalse[index].id
             
-            UserDefault().notificationModelUserDefault(title: self.projectListPrograssFalse[index].projectTitle, status: "이름변경", content: "프로젝트 이름이 변경되었습니다.", date: self.koreanDate())
+            UserDefault().notificationModelUserDefault(title: self.projectListPrograssFalse[index].projectTitle, status: "이름변경", content: "\"\(self.projectListPrograssFalse[index].projectTitle)\"의 프로젝트 이름이 \"\(getValue)\"로 변경되었습니다.", date: self.koreanDate())
             
             self.changeProjectTitle(index: index, id: id, section: section, projectTitle: getValue)
             
@@ -611,7 +632,7 @@ extension MainTabbarViewController: CreateProjectDelegate {
         // label color content
         self.ref.child("\(email)/\(id)").updateChildValues(["colorContent": colorContent])
         
-        UserDefault().notificationModelUserDefault(title: title, status: "생성", content: "프로젝트가 생성되었습니다.", date: self.koreanDate())
+        UserDefault().notificationModelUserDefault(title: title, status: "생성", content: "\"\(title)\" 프로젝트가 생성되었습니다.", date: self.koreanDate())
 
         DispatchQueue.main.async {
             self.hiddenEmptyView()

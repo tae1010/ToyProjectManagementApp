@@ -177,6 +177,7 @@ extension ProjectListManagementViewController: UITableViewDataSource {
 extension ProjectListManagementViewController: ChangeListTitleDelegate {
     func changeListTitleDelegate(index: IndexPath, listTitle: String) {
         
+        let beforeListTitle = self.projectContent[index.row].listTitle
         self.listName[index.row] = listTitle
         self.projectContent[index.row].listTitle = listTitle
         
@@ -200,7 +201,7 @@ extension ProjectListManagementViewController: ChangeListTitleDelegate {
             count += 1
         }
         
-        UserDefault().notificationModelUserDefault(title: listTitle, status: "이름변경", content: "리스트 이름이 변경되었습니다.", date: self.koreanDate())
+        UserDefault().notificationModelUserDefault(title: listTitle, status: "이름변경", content: "\"\(beforeListTitle)\" 리스트 이름이 \"\(listTitle)\"로 변경되었습니다.", date: self.koreanDate())
         
         DispatchQueue.main.async {
             self.sideBarTableView.reloadData()
@@ -250,7 +251,7 @@ extension ProjectListManagementViewController: DeleteListDelegate {
             listCount += 1
         }
         
-        UserDefault().notificationModelUserDefault(title: beforeListTitle, status: "삭제", content: "리스트가 삭제되었습니다", date: self.koreanDate())
+        UserDefault().notificationModelUserDefault(title: beforeListTitle, status: "삭제", content: "\"\(beforeListTitle)\" 리스트가 삭제되었습니다", date: self.koreanDate())
         
         DispatchQueue.main.async {
             self.sideBarTableView.reloadData()

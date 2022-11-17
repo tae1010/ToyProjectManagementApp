@@ -59,6 +59,9 @@ extension ThirdTabbarViewController {
         self.notificationTableView.delegate = self
         self.notificationTableView.dataSource = self
         
+        self.notificationTableView.rowHeight = UITableView.automaticDimension
+        self.notificationTableView.estimatedRowHeight = 90
+        
         let tableViewNib = UINib(nibName: "NotificationCell", bundle: nil)
         self.notificationTableView.register(tableViewNib, forCellReuseIdentifier: "NotificationCell")
     }
@@ -116,8 +119,7 @@ extension ThirdTabbarViewController: UITableViewDataSource {
             }
         }()
         
-        cell.notificatioinProjectTitleLabel.text = notificationModel[indexPath.row].projectTitle
-        cell.notificationContentLabel.text = "\(notificationModel[indexPath.row].projectTitle) \(notificationModel[indexPath.row].content)"
+        cell.notificationContentLabel.text = "\(notificationModel[indexPath.row].content)"
         cell.notificationDateLabel.text = changeDateLabel(date: notificationModel[indexPath.row].date)
         
         return cell
