@@ -66,6 +66,7 @@ class ProjectListManagementViewController: UIViewController {
     @IBAction func tapMoveListButton(_ sender: Any) {
 
         guard let clickCellIndexPath = self.clickCellIndexPath else {
+            self.view.hideAllToasts()
             self.view.makeToast("리스트를 선택해주세요")
             return
         }
@@ -77,6 +78,7 @@ class ProjectListManagementViewController: UIViewController {
     @IBAction func tapChangeListTitleButton(_ sender: UIButton) {
         
         guard let clickCellIndexPath = self.clickCellIndexPath else {
+            self.view.hideAllToasts()
             self.view.makeToast("리스트를 선택해주세요")
             return
         }
@@ -98,6 +100,7 @@ class ProjectListManagementViewController: UIViewController {
     @IBAction func tapDeleteListButton(_ sender: UIButton) {
         
         guard let clickCellIndexPath = self.clickCellIndexPath else {
+            self.view.hideAllToasts()
             self.view.makeToast("리스트를 선택해주세요")
             return
         }
@@ -168,6 +171,7 @@ extension ProjectListManagementViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.clickCellIndexPath = indexPath
+        self.view.hideAllToasts()
         self.view.makeToast("\(listName[indexPath.row])", duration: 0.5)
     }
     
@@ -216,6 +220,7 @@ extension ProjectListManagementViewController: DeleteListDelegate {
     
     func deleteListDelegate(index: IndexPath) {
         if projectContent.count == 1 {
+            self.view.hideAllToasts()
             self.view.makeToast("리스트가 1개 이상 있어야 합니다.")
             return
         }

@@ -34,6 +34,7 @@ class ChangeListTitlePopupViewController: UIViewController {
     
     @IBAction func tapChangelistTitleButton(_ sender: Any) {
         if changeListTitleTextField.text == "" {
+            self.view.hideAllToasts()
             self.view.makeToast("리스트 내용을 입력해주세요")
         } else {
             guard let changeListTitleTextField = self.changeListTitleTextField.text else { return }

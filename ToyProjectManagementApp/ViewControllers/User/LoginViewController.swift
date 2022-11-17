@@ -116,7 +116,7 @@ extension LoginViewController {
             if let error = error {
                 let code = (error as NSError).code
                 print(error, "에러")
-                self.view.hideToast()
+                self.view.hideAllToasts()
                 
                 switch code {
                 case 17008:

@@ -74,7 +74,7 @@ class ForthTabbarViewController: UIViewController {
         let email = Auth.auth().currentUser?.email ?? ""
         Auth.auth().sendPasswordReset(withEmail: email, completion: nil)
         
-        self.view.hideToast()
+        self.view.hideAllToasts()
         self.view.makeToast("로그인한 메일에 비밀번호 재설정 링크를 보내드렸습니다")
     }
 }

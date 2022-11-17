@@ -37,7 +37,7 @@ class ThirdTabbarViewController: UIViewController {
     @IBAction func tapRemoveNotificationModel(_ sender: UIButton) {
         
         if self.notificationModel.count == 0 {
-            self.view.hideToast()
+            self.view.hideAllToasts()
             self.view.makeToast("알림수가 0개입니다.", duration: 1)
             return
         }
@@ -47,7 +47,7 @@ class ThirdTabbarViewController: UIViewController {
         self.notificationAlertLabel.text = "\(self.notificationModel.count)개의 알림"
         self.notificationTableView.reloadData()
         
-        self.view.hideToast()
+        self.view.hideAllToasts()
         self.view.makeToast("알림이 삭제되었습니다", duration: 1)
     }
 
@@ -124,6 +124,11 @@ extension ThirdTabbarViewController: UITableViewDataSource {
         
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        self.clickCellIndexPath = indexPath
+        //        self.view.makeToast("\(listName[indexPath.row])", duration: 0.5)
+    }
 
     // 20200101111111 -> 2020-01-01
     private func changeDateLabel(date: Int) -> String {
@@ -140,9 +145,21 @@ extension ThirdTabbarViewController: UITableViewDataSource {
         return result
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
-    }
     
+    
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "ProjectContentSideBar", for: indexPath) as! ProjectListManagementCell
+//        cell.selectionStyle = .none
+//        cell.listTitle.text = listName[indexPath.row]
+//        cell.currentPageCheckImageView.isHidden = currentPage == indexPath.row ? false : true
+//        cell.selectImageView.isHidden = true
+//
+//        return cell
+//    }
+//
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        self.clickCellIndexPath = indexPath
+//        self.view.makeToast("\(listName[indexPath.row])", duration: 0.5)
+//    }
     
 }

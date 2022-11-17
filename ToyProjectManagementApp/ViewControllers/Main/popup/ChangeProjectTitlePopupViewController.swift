@@ -29,7 +29,7 @@ class ChangeProjectTitlePopupViewController: UIViewController {
     @IBAction func tapChangeProjectTitleButton(_ sender: Any) {
         
         if self.changeProjectTitleTextField.text == ""  {
-            self.view.hideToast()
+            self.view.hideAllToasts()
             self.view.makeToast("프로젝트 이름을 적어주세요",duration: 0.5)
             return
         } else {

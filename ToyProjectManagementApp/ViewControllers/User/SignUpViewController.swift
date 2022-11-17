@@ -56,7 +56,8 @@ class SignUpViewController: UIViewController {
             
             if let error = error {
                 let code = (error as NSError).code
-                print(error, "에러")
+                
+                self.view.hideAllToasts()
                 switch code {
                 case 17007: //이미 가입한 계정일때
                     //로그인하기

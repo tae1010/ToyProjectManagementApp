@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -24,17 +25,25 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="249" text="content" textAlignment="natural" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WLd-Xq-Wkl">
-                        <rect key="frame" x="58" y="10.000000000000002" width="336" height="17.666666666666671"/>
+                        <rect key="frame" x="58" y="10.000000000000002" width="325" height="17.666666666666671"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="751" text="date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fyz-4c-3Mo">
-                        <rect key="frame" x="58" y="41.666666666666664" width="336" height="20.333333333333336"/>
+                        <rect key="frame" x="58" y="41.666666666666664" width="325" height="20.333333333333336"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5b1-lx-92x">
+                        <rect key="frame" x="388" y="10" width="10" height="10"/>
+                        <color key="backgroundColor" name="primaryColor"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="10" id="KBi-24-JG4"/>
+                            <constraint firstAttribute="height" constant="10" id="Yhp-zl-lMa"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="Zeq-xq-YDp" firstAttribute="leading" secondItem="fIB-O0-zIa" secondAttribute="leading" constant="14" id="0vB-xp-bNe"/>
@@ -42,13 +51,16 @@
                     <constraint firstItem="fyz-4c-3Mo" firstAttribute="leading" secondItem="WLd-Xq-Wkl" secondAttribute="leading" id="9DM-EP-2ex"/>
                     <constraint firstItem="Zeq-xq-YDp" firstAttribute="top" secondItem="fIB-O0-zIa" secondAttribute="top" constant="10" id="GNO-mr-v9i"/>
                     <constraint firstItem="WLd-Xq-Wkl" firstAttribute="top" secondItem="Zeq-xq-YDp" secondAttribute="top" id="IDk-Qa-ez0"/>
+                    <constraint firstAttribute="trailing" secondItem="5b1-lx-92x" secondAttribute="trailing" constant="10" id="SRL-H9-elW"/>
                     <constraint firstItem="WLd-Xq-Wkl" firstAttribute="leading" secondItem="Zeq-xq-YDp" secondAttribute="trailing" constant="14" id="T9a-HS-2dM"/>
-                    <constraint firstAttribute="trailing" secondItem="WLd-Xq-Wkl" secondAttribute="trailing" constant="14" id="oHj-2O-jac"/>
+                    <constraint firstAttribute="trailing" secondItem="WLd-Xq-Wkl" secondAttribute="trailing" constant="25" id="oHj-2O-jac"/>
+                    <constraint firstItem="5b1-lx-92x" firstAttribute="top" secondItem="fIB-O0-zIa" secondAttribute="top" constant="10" id="sKm-8y-aAY"/>
                     <constraint firstAttribute="bottom" secondItem="fyz-4c-3Mo" secondAttribute="bottom" constant="14" id="wdr-Es-Xue"/>
                     <constraint firstItem="fyz-4c-3Mo" firstAttribute="top" relation="greaterThanOrEqual" secondItem="WLd-Xq-Wkl" secondAttribute="bottom" constant="14" id="zeh-kV-LNH"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="cellBadge" destination="5b1-lx-92x" id="o78-Pn-yqB"/>
                 <outlet property="notificaionImageView" destination="Zeq-xq-YDp" id="Bh7-GP-3CW"/>
                 <outlet property="notificationContentLabel" destination="WLd-Xq-Wkl" id="rs7-Vu-Zxc"/>
                 <outlet property="notificationDateLabel" destination="fyz-4c-3Mo" id="9Tu-4Q-WEx"/>
@@ -58,5 +70,8 @@
     </objects>
     <resources>
         <image name="create" width="23.333333969116211" height="23.333333969116211"/>
+        <namedColor name="primaryColor">
+            <color red="0.72899997234344482" green="0.60000002384185791" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

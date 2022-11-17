@@ -27,7 +27,8 @@ class AddListPopupViewController: UIViewController {
     
     @IBAction func tapAddListButton(_ sender: Any) {
         
-        if addListTextField.text == ""{
+        if addListTextField.text == "" {
+            self.view.hideAllToasts()
             self.view.makeToast("리스트 내용을 입력해주세요")
         } else {
             NotificationCenter.default.post(name: .addListNotificaton, object: addListTextField.text, userInfo: nil)

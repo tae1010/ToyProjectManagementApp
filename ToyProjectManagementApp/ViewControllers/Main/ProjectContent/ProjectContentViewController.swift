@@ -116,7 +116,7 @@ class ProjectContentViewController: UIViewController {
                 self.cardTableView.reloadData()
             }
         } else {
-            self.view.hideToast()
+            self.view.hideAllToasts()
             self.view.makeToast("첫번째 리스트 입니다.")
         }
     }
@@ -130,7 +130,7 @@ class ProjectContentViewController: UIViewController {
                 self.cardTableView.reloadData()
             }
         } else {
-            self.view.hideToast()
+            self.view.hideAllToasts()
             self.view.makeToast("마지막 리스트 입니다.")
         }
     }
@@ -149,13 +149,12 @@ class ProjectContentViewController: UIViewController {
         case .began:
             BeforeIndexPath.value = indexPath
 
+            // cell이 이동될떄마다 projectContent변수 모델에 저장
         case .changed:
             if let beforeIndexPath = BeforeIndexPath.value, beforeIndexPath != indexPath {
 
                 let beforeDetailContent = projectContent[currentPage].detailContent[beforeIndexPath.section]
                 let afterDetailContent = projectContent[currentPage].detailContent[indexPath.section]
-                
-                var count = 0
 
                 self.projectContent[currentPage].detailContent[beforeIndexPath.section] = afterDetailContent
                 self.projectContent[currentPage].detailContent[indexPath.section] = beforeDetailContent
@@ -163,6 +162,17 @@ class ProjectContentViewController: UIViewController {
                 cardTableView.moveSection(beforeIndexPath.section, toSection: indexPath.section)
 
                 BeforeIndexPath.value = indexPath
+                
+                print("move")
+            }
+
+        default:
+            
+            // cell 이동이 끝나면 db저장, userdefault에 알림 content 저장
+            if let beforeIndexPath = BeforeIndexPath.value {
+                
+                let cardName = projectContent[currentPage].detailContent[beforeIndexPath.section].cardName ?? "이동"
+                var count = 0
                 
                 for i in self.projectContent[self.currentPage].detailContent {
                     let cardName = i.cardName
@@ -175,13 +185,12 @@ class ProjectContentViewController: UIViewController {
                     count += 1
                 }
                 
-                UserDefault().notificationModelUserDefault(title: beforeDetailContent.cardName ?? "이동", status: "이동", content: "\"\(String(describing: beforeDetailContent.cardName))\" 카드가 이동되었습니다", date: self.koreanDate())
+                UserDefault().notificationModelUserDefault(title: cardName, status: "이동", content: "\"\(cardName)\" 카드가 이동되었습니다", date: self.koreanDate())
                 
-                
+                print("default")
             }
-        default:
-            // TODO animation
-            break
+            
+            
         }
     }
     
@@ -404,11 +413,11 @@ extension ProjectContentViewController: UITableViewDataSource {
         // 배열에서 삭제
         
         if projectContent[self.currentPage].detailContent.count == 1 {
-            self.view.hideToast()
+            self.view.hideAllToasts()
             self.view.makeToast("리스트에는 카드가 1개 이상 있어야 합니다")
             return
         }
-        let deleteCardTitle = self.projectContent[self.currentPage].detailContent[index].cardName
+        let deleteCardTitle = self.projectContent[self.currentPage].detailContent[index].cardName ?? "카드삭제"
         
         self.projectContent[self.currentPage].detailContent.remove(at: index)
         self.ref.child("\(email)/\(id)/content/\(currentPage)/\(self.currentTitle)").removeValue()
@@ -427,9 +436,9 @@ extension ProjectContentViewController: UITableViewDataSource {
             count += 1
         }
         
-        UserDefault().notificationModelUserDefault(title: deleteCardTitle ?? "카드삭제", status: "삭제", content: "\"\(String(describing: deleteCardTitle))\" 카드가 삭제되었습니다", date: self.koreanDate())
+        UserDefault().notificationModelUserDefault(title: deleteCardTitle, status: "삭제", content: "\"\(deleteCardTitle)\" 카드가 삭제되었습니다", date: self.koreanDate())
         
-        self.view.hideToast()
+        self.view.hideAllToasts()
         self.view.makeToast("카드가 삭제되었습니다", duration: 0.5)
     }
 }
@@ -472,7 +481,7 @@ extension ProjectContentViewController {
         DispatchQueue.main.async {
             self.cardTableView.reloadData()
             self.cardTableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
-            self.view.hideToast()
+            self.view.hideAllToasts()
             self.view.makeToast("카드가 생성되었습니다", duration: 0.5)
         }
     }
@@ -501,7 +510,7 @@ extension ProjectContentViewController {
             self.changeListName()
             self.cardTableView.reloadData()
             
-            self.view.hideToast()
+            self.view.hideAllToasts()
             self.view.makeToast("리스트가 생성되었습니다", duration: 0.5)
         }
     }

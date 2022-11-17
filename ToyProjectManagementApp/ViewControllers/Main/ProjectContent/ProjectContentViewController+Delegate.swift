@@ -47,6 +47,8 @@ extension ProjectContentViewController: MoveContentDelegate {
         // 선택된 section card
         let selectCell = self.projectContent[self.currentPage].detailContent[cellIndexPath]
         
+        let selectCellCardName = self.projectContent[self.currentPage].detailContent[cellIndexPath].cardName ?? "이동"
+        
         // card 삭제
         self.projectContent[self.currentPage].detailContent.remove(at: cellIndexPath)
         
@@ -80,7 +82,7 @@ extension ProjectContentViewController: MoveContentDelegate {
             count += 1
         }
         
-        UserDefault().notificationModelUserDefault(title: selectCell.cardName ?? "이동", status: "이동", content: "\"\(String(describing: selectCell.cardName))\" 카드가 이동되었습니다", date: koreanDate())
+        UserDefault().notificationModelUserDefault(title: selectCellCardName, status: "이동", content: "\"\(selectCellCardName))\" 카드가 이동되었습니다", date: koreanDate())
         
         self.view.hideAllToasts()
         self.view.makeToast("카드가 이동되었습니다", duration: 0.5)

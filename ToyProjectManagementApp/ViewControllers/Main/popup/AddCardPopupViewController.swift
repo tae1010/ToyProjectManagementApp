@@ -27,7 +27,8 @@ class AddCardPopupViewController: UIViewController {
     
     @IBAction func tapAddCardButton(_ sender: UIButton) {
         
-        if addCardTextField.text == ""{
+        if addCardTextField.text == "" {
+            self.view.hideAllToasts()
             self.view.makeToast("카드 내용을 입력해주세요")
         } else {
             NotificationCenter.default.post(name: .addCardNotificaton, object: addCardTextField.text, userInfo: nil)
