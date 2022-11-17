@@ -243,8 +243,12 @@ extension MainTabbarViewController {
         
         dateText.insert("-", at: dateText.index(dateText.startIndex, offsetBy: 4))
         dateText.insert("-", at: dateText.index(dateText.startIndex, offsetBy: 7))
+        dateText.insert(" ", at: dateText.index(dateText.startIndex, offsetBy: 10))
+        dateText.insert(" ", at: dateText.index(dateText.startIndex, offsetBy: 11))
+        dateText.insert("시", at: dateText.index(dateText.startIndex, offsetBy: 14))
+        dateText.insert("분", at: dateText.index(dateText.startIndex, offsetBy: 17))
         
-        let result = String(dateText.dropLast(6))
+        let result = String(dateText.dropLast(2))
 
         return result
     }
@@ -445,6 +449,7 @@ extension MainTabbarViewController {
     @objc func tabFirstSectionImageViewSelector(sender: UITapGestureRecognizer) {
         let imgView = sender.view as! UIImageView
         let index = imgView.tag // 클릭한 cell의 indexPath
+        print(index)
         self.projectListPrograssTrue[index].important.toggle() // important 버튼을 클릭하면 true/ false가 바뀜
         
         // 바뀐 important값을 db에 저장
@@ -452,21 +457,19 @@ extension MainTabbarViewController {
         
         // true로 바뀌었을때
         if self.projectListPrograssTrue[index].important {
-            UserDefault().notificationModelUserDefault(title: self.projectListPrograssTrue[index].projectTitle, status: "상태변경", content: "\"\(self.projectListPrograssTrue[index].projectTitle)\" 프로젝트 즐겨찾기가 등록되었습니다", date: self.koreanDate())
+            UserDefault().notificationModelUserDefault(title: self.projectListPrograssTrue[index].projectTitle, status: "상태변경", content: "\"\(self.projectListPrograssTrue[index].projectTitle)\" 프로젝트 즐겨찾기가 등록되었습니다", date: self.koreanDate(), badge: true)
             
         // false로 바뀌었을때
         } else {
-            UserDefault().notificationModelUserDefault(title: self.projectListPrograssTrue[index].projectTitle, status: "상태변경", content: "\"\(self.projectListPrograssTrue[index].projectTitle)\" 프로젝트 즐겨찾기가 취소되었습니다", date: self.koreanDate())
+            UserDefault().notificationModelUserDefault(title: self.projectListPrograssTrue[index].projectTitle, status: "상태변경", content: "\"\(self.projectListPrograssTrue[index].projectTitle)\" 프로젝트 즐겨찾기가 취소되었습니다", date: self.koreanDate(), badge: true)
+
+        }
         
         self.sortFirstSection()
         self.sortSecondSection()
         
-        
-        }
-        
-        
         self.projectCollectionView.performBatchUpdates({
-            self.projectCollectionView.reloadSections(NSIndexSet(index: 0) as IndexSet)
+            self.projectCollectionView.reloadSections(IndexSet(integer: 0))
         }, completion: { (finished:Bool) -> Void in })
 
     }
@@ -475,6 +478,7 @@ extension MainTabbarViewController {
     @objc func tabSecondSectionImageViewSelector(sender: UITapGestureRecognizer) {
         let imgView = sender.view as! UIImageView
         let index = imgView.tag // 클릭한 cell의 indexPath
+        print(index)
         self.projectListPrograssFalse[index].important.toggle() // important 버튼을 클릭하면 true/ false가 바뀜
         
         // 바뀐 important값을 db에 저장
@@ -482,20 +486,19 @@ extension MainTabbarViewController {
         
         // true로 바뀌었을때
         if self.projectListPrograssFalse[index].important {
-            UserDefault().notificationModelUserDefault(title: self.projectListPrograssFalse[index].projectTitle, status: "상태변경", content: "\"\(self.projectListPrograssFalse[index].projectTitle)\" 프로젝트 즐겨찾기가 등록되었습니다", date: self.koreanDate())
+            UserDefault().notificationModelUserDefault(title: self.projectListPrograssFalse[index].projectTitle, status: "상태변경", content: "\"\(self.projectListPrograssFalse[index].projectTitle)\" 프로젝트 즐겨찾기가 등록되었습니다", date: self.koreanDate(), badge: true)
             
         // false로 바뀌었을때
         } else {
-            UserDefault().notificationModelUserDefault(title: self.projectListPrograssFalse[index].projectTitle, status: "상태변경", content: "\"\(self.projectListPrograssFalse[index].projectTitle)\" 프로젝트 즐겨찾기가 취소되었습니다", date: self.koreanDate())
+            UserDefault().notificationModelUserDefault(title: self.projectListPrograssFalse[index].projectTitle, status: "상태변경", content: "\"\(self.projectListPrograssFalse[index].projectTitle)\" 프로젝트 즐겨찾기가 취소되었습니다", date: self.koreanDate(), badge: true)
         }
         
         self.sortFirstSection()
         self.sortSecondSection()
         
         
-        
         self.projectCollectionView.performBatchUpdates({
-            self.projectCollectionView.reloadSections(NSIndexSet(index: 1) as IndexSet)
+            self.projectCollectionView.reloadSections(IndexSet(integer: 1))
         }, completion: { (finished:Bool) -> Void in })
 
     }
@@ -510,14 +513,14 @@ extension MainTabbarViewController {
         case 0:
             let id = self.projectListPrograssTrue[index].id
             
-            UserDefault().notificationModelUserDefault(title: self.projectListPrograssTrue[index].projectTitle, status: "삭제", content: "\"\(self.projectListPrograssTrue[index].projectTitle)\" 프로젝트가 삭제되었습니다", date: self.koreanDate())
+            UserDefault().notificationModelUserDefault(title: self.projectListPrograssTrue[index].projectTitle, status: "삭제", content: "\"\(self.projectListPrograssTrue[index].projectTitle)\" 프로젝트가 삭제되었습니다", date: self.koreanDate(), badge: true)
             
             self.deleteProject(index: index, id: id, section: section)
             
         case 1:
             let id = self.projectListPrograssFalse[index].id
 
-            UserDefault().notificationModelUserDefault(title: self.projectListPrograssFalse[index].projectTitle, status: "삭제", content: "\"\(self.projectListPrograssFalse[index].projectTitle)\" 프로젝트가 삭제되었습니다", date: self.koreanDate())
+            UserDefault().notificationModelUserDefault(title: self.projectListPrograssFalse[index].projectTitle, status: "삭제", content: "\"\(self.projectListPrograssFalse[index].projectTitle)\" 프로젝트가 삭제되었습니다", date: self.koreanDate(), badge: true)
 
 
             self.deleteProject(index: index, id: id, section: section)
@@ -544,9 +547,9 @@ extension MainTabbarViewController {
             if getValue != self.projectListPrograssTrue[index].prograss {
                 
                 if getValue {
-                    UserDefault().notificationModelUserDefault(title: self.projectListPrograssTrue[index].projectTitle, status: "상태변경", content: "\(self.projectListPrograssTrue[index].projectTitle) 프로젝트 상태가 진행중으로 변경되었습니다.", date: self.koreanDate())
+                    UserDefault().notificationModelUserDefault(title: self.projectListPrograssTrue[index].projectTitle, status: "상태변경", content: "\(self.projectListPrograssTrue[index].projectTitle) 프로젝트 상태가 진행중으로 변경되었습니다.", date: self.koreanDate(), badge: true)
                 } else {
-                    UserDefault().notificationModelUserDefault(title: self.projectListPrograssTrue[index].projectTitle, status: "상태변경", content: "\"\(self.projectListPrograssTrue[index].projectTitle)\" 프로젝트 상태가 완료로 변경되었습니다.", date: self.koreanDate())
+                    UserDefault().notificationModelUserDefault(title: self.projectListPrograssTrue[index].projectTitle, status: "상태변경", content: "\"\(self.projectListPrograssTrue[index].projectTitle)\" 프로젝트 상태가 완료로 변경되었습니다.", date: self.koreanDate(), badge: true)
                 }
                 
                 self.changePrograssProject(index: index, id: id, section: section, prograss: getValue)
@@ -559,9 +562,9 @@ extension MainTabbarViewController {
             if getValue != self.projectListPrograssFalse[index].prograss {
                 
                 if getValue {
-                    UserDefault().notificationModelUserDefault(title: self.projectListPrograssFalse[index].projectTitle, status: "상태변경", content: "\"\(self.projectListPrograssFalse[index].projectTitle)\" 프로젝트 상태가 진행중으로 변경되었습니다.", date: self.koreanDate())
+                    UserDefault().notificationModelUserDefault(title: self.projectListPrograssFalse[index].projectTitle, status: "상태변경", content: "\"\(self.projectListPrograssFalse[index].projectTitle)\" 프로젝트 상태가 진행중으로 변경되었습니다.", date: self.koreanDate(), badge: true)
                 } else {
-                    UserDefault().notificationModelUserDefault(title: self.projectListPrograssFalse[index].projectTitle, status: "상태변경", content: "\"\(self.projectListPrograssFalse[index].projectTitle)\" 프로젝트 상태가 완료로 변경되었습니다.", date: self.koreanDate())
+                    UserDefault().notificationModelUserDefault(title: self.projectListPrograssFalse[index].projectTitle, status: "상태변경", content: "\"\(self.projectListPrograssFalse[index].projectTitle)\" 프로젝트 상태가 완료로 변경되었습니다.", date: self.koreanDate(), badge: true)
                 }
                 
                 self.changePrograssProject(index: index, id: id, section: section, prograss: getValue)
@@ -584,7 +587,7 @@ extension MainTabbarViewController {
         case 0:
             let id = self.projectListPrograssTrue[index].id
             
-            UserDefault().notificationModelUserDefault(title: self.projectListPrograssTrue[index].projectTitle, status: "이름변경", content: "\"\(self.projectListPrograssTrue[index].projectTitle)\"의 프로젝트 이름이 \"\(getValue)\"로 변경되었습니다.", date: self.koreanDate())
+            UserDefault().notificationModelUserDefault(title: self.projectListPrograssTrue[index].projectTitle, status: "이름변경", content: "\"\(self.projectListPrograssTrue[index].projectTitle)\"의 프로젝트 이름이 \"\(getValue)\"로 변경되었습니다.", date: self.koreanDate(), badge: true)
 
             
             self.changeProjectTitle(index: index, id: id, section: section, projectTitle: getValue)
@@ -592,7 +595,7 @@ extension MainTabbarViewController {
         case 1:
             let id = self.projectListPrograssFalse[index].id
             
-            UserDefault().notificationModelUserDefault(title: self.projectListPrograssFalse[index].projectTitle, status: "이름변경", content: "\"\(self.projectListPrograssFalse[index].projectTitle)\"의 프로젝트 이름이 \"\(getValue)\"로 변경되었습니다.", date: self.koreanDate())
+            UserDefault().notificationModelUserDefault(title: self.projectListPrograssFalse[index].projectTitle, status: "이름변경", content: "\"\(self.projectListPrograssFalse[index].projectTitle)\"의 프로젝트 이름이 \"\(getValue)\"로 변경되었습니다.", date: self.koreanDate(), badge: true)
             
             self.changeProjectTitle(index: index, id: id, section: section, projectTitle: getValue)
             
@@ -632,7 +635,7 @@ extension MainTabbarViewController: CreateProjectDelegate {
         // label color content
         self.ref.child("\(email)/\(id)").updateChildValues(["colorContent": colorContent])
         
-        UserDefault().notificationModelUserDefault(title: title, status: "생성", content: "\"\(title)\" 프로젝트가 생성되었습니다.", date: self.koreanDate())
+        UserDefault().notificationModelUserDefault(title: title, status: "생성", content: "\"\(title)\" 프로젝트가 생성되었습니다.", date: self.koreanDate(), badge: true)
 
         DispatchQueue.main.async {
             self.hiddenEmptyView()

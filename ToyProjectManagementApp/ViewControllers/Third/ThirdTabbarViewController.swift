@@ -119,6 +119,7 @@ extension ThirdTabbarViewController: UITableViewDataSource {
             }
         }()
         
+        cell.cellBadge.isHidden = notificationModel[indexPath.row].badge
         cell.notificationContentLabel.text = "\(notificationModel[indexPath.row].content)"
         cell.notificationDateLabel.text = changeDateLabel(date: notificationModel[indexPath.row].date)
         
@@ -126,8 +127,8 @@ extension ThirdTabbarViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        self.clickCellIndexPath = indexPath
-        //        self.view.makeToast("\(listName[indexPath.row])", duration: 0.5)
+        notificationModel[indexPath.row].badge = false
+        self.notificationTableView.reloadRows(at: [indexPath], with: .automatic)
     }
 
     // 20200101111111 -> 2020-01-01

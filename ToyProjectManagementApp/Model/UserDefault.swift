@@ -33,10 +33,10 @@ class UserDefault {
         return notificationModelDecoder
     }
     
-    func notificationModelUserDefault(title: String, status: String, content: String, date: Int) {
+    func notificationModelUserDefault(title: String, status: String, content: String, date: Int, badge: Bool) {
         var notificationModel: [NotificationModel] = UserDefault().loadNotificationModelUserDefault() ?? [NotificationModel]()
 
-        notificationModel.append(NotificationModel(projectTitle: title, status: status, content: content, date: date))
+        notificationModel.append(NotificationModel(projectTitle: title, status: status, content: content, date: date, badge: badge))
 
         var sortNotificationModel = notificationModel.sorted(by: {$0.date > $1.date})
 

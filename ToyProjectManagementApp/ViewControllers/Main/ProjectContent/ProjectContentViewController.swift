@@ -185,7 +185,7 @@ class ProjectContentViewController: UIViewController {
                     count += 1
                 }
                 
-                UserDefault().notificationModelUserDefault(title: cardName, status: "이동", content: "\"\(cardName)\" 카드가 이동되었습니다", date: self.koreanDate())
+                UserDefault().notificationModelUserDefault(title: cardName, status: "이동", content: "\"\(cardName)\" 카드가 이동되었습니다", date: self.koreanDate(), badge: true)
                 
                 print("default")
             }
@@ -436,7 +436,7 @@ extension ProjectContentViewController: UITableViewDataSource {
             count += 1
         }
         
-        UserDefault().notificationModelUserDefault(title: deleteCardTitle, status: "삭제", content: "\"\(deleteCardTitle)\" 카드가 삭제되었습니다", date: self.koreanDate())
+        UserDefault().notificationModelUserDefault(title: deleteCardTitle, status: "삭제", content: "\"\(deleteCardTitle)\" 카드가 삭제되었습니다", date: self.koreanDate(), badge: true)
         
         self.view.hideAllToasts()
         self.view.makeToast("카드가 삭제되었습니다", duration: 0.5)
@@ -476,7 +476,7 @@ extension ProjectContentViewController {
         
         self.projectContent[self.currentPage].detailContent.append(updateProjectDetailContent)
         
-        UserDefault().notificationModelUserDefault(title: cardTitle, status: "생성", content: "\"\(cardTitle)\" 카드가 생성되었습니다", date: self.koreanDate())
+        UserDefault().notificationModelUserDefault(title: cardTitle, status: "생성", content: "\"\(cardTitle)\" 카드가 생성되었습니다", date: self.koreanDate(), badge: true)
         
         DispatchQueue.main.async {
             self.cardTableView.reloadData()
@@ -503,7 +503,7 @@ extension ProjectContentViewController {
         
         self.projectContent.append(pc)
         
-        UserDefault().notificationModelUserDefault(title: listTitle, status: "생성", content: "\"\(listTitle)\" 리스트가 생성되었습니다", date: self.koreanDate())
+        UserDefault().notificationModelUserDefault(title: listTitle, status: "생성", content: "\"\(listTitle)\" 리스트가 생성되었습니다", date: self.koreanDate(), badge: true)
         
         DispatchQueue.main.async {
             self.currentPage = self.projectContent.count - 1

@@ -37,7 +37,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5b1-lx-92x">
-                        <rect key="frame" x="388" y="10" width="10" height="10"/>
+                        <rect key="frame" x="388" y="7" width="10" height="10"/>
                         <color key="backgroundColor" name="primaryColor"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="10" id="KBi-24-JG4"/>
@@ -54,7 +54,7 @@
                     <constraint firstAttribute="trailing" secondItem="5b1-lx-92x" secondAttribute="trailing" constant="10" id="SRL-H9-elW"/>
                     <constraint firstItem="WLd-Xq-Wkl" firstAttribute="leading" secondItem="Zeq-xq-YDp" secondAttribute="trailing" constant="14" id="T9a-HS-2dM"/>
                     <constraint firstAttribute="trailing" secondItem="WLd-Xq-Wkl" secondAttribute="trailing" constant="25" id="oHj-2O-jac"/>
-                    <constraint firstItem="5b1-lx-92x" firstAttribute="top" secondItem="fIB-O0-zIa" secondAttribute="top" constant="10" id="sKm-8y-aAY"/>
+                    <constraint firstItem="5b1-lx-92x" firstAttribute="top" secondItem="fIB-O0-zIa" secondAttribute="top" constant="7" id="sKm-8y-aAY"/>
                     <constraint firstAttribute="bottom" secondItem="fyz-4c-3Mo" secondAttribute="bottom" constant="14" id="wdr-Es-Xue"/>
                     <constraint firstItem="fyz-4c-3Mo" firstAttribute="top" relation="greaterThanOrEqual" secondItem="WLd-Xq-Wkl" secondAttribute="bottom" constant="14" id="zeh-kV-LNH"/>
                 </constraints>

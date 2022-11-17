@@ -13,5 +13,6 @@ struct NotificationModel: Codable {
     var status: String
     var content: String
     var date: Int
+    var badge: Bool // badge가 떠있으면 true 안 떠있으면 false
 }
 
