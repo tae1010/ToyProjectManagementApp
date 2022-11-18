@@ -94,7 +94,7 @@ class MainTabbarViewController: UIViewController {
         switch sender.state {
         case .began:
             let projectPopup = ProjectPopupViewController(nibName: "projectCollectionViewPopup", bundle: nil)
-            
+            print(prograss, "여긴 뭐지")
             projectPopup.modalPresentationStyle = .overCurrentContext
             projectPopup.modalTransitionStyle = .crossDissolve // 뷰가 투명해지면서 넘어가는 애니메이션
             projectPopup.projectPrograss = prograss
@@ -470,6 +470,8 @@ extension MainTabbarViewController {
 
         }
         
+        self.tabBarController?.tabBar.items?[1].badgeValue = "\(UserDefault().setBadgeCount())"
+        
         self.sortFirstSection()
         self.sortSecondSection()
         
@@ -497,6 +499,8 @@ extension MainTabbarViewController {
         } else {
             UserDefault().notificationModelUserDefault(title: self.projectListPrograssFalse[index].projectTitle, status: "상태변경", content: "\"\(self.projectListPrograssFalse[index].projectTitle)\" 프로젝트 즐겨찾기가 취소되었습니다", date: self.koreanDate(), badge: true)
         }
+        
+        self.tabBarController?.tabBar.items?[1].badgeValue = "\(UserDefault().setBadgeCount())"
         
         self.sortFirstSection()
         self.sortSecondSection()
@@ -533,6 +537,8 @@ extension MainTabbarViewController {
         default:
             print("?")
         }
+        
+        self.tabBarController?.tabBar.items?[1].badgeValue = "\(UserDefault().setBadgeCount())"
 
 
     }
@@ -578,6 +584,8 @@ extension MainTabbarViewController {
         default:
             print("왜?")
         }
+        
+        self.tabBarController?.tabBar.items?[1].badgeValue = "\(UserDefault().setBadgeCount())"
 
     }
     
@@ -607,6 +615,7 @@ extension MainTabbarViewController {
         default:
             print("?")
         }
+        self.tabBarController?.tabBar.items?[1].badgeValue = "\(UserDefault().setBadgeCount())"
         
         self.view.hideAllToasts()
         self.view.makeToast("변경되었습니다")
@@ -642,6 +651,8 @@ extension MainTabbarViewController: CreateProjectDelegate {
         
         UserDefault().notificationModelUserDefault(title: title, status: "생성", content: "\"\(title)\" 프로젝트가 생성되었습니다.", date: self.koreanDate(), badge: true)
 
+        self.tabBarController?.tabBar.items?[1].badgeValue = "\(UserDefault().setBadgeCount())"
+        
         DispatchQueue.main.async {
             self.hiddenEmptyView()
             self.projectCollectionView.reloadData()

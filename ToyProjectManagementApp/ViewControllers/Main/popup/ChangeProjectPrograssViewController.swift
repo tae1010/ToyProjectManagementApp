@@ -22,10 +22,15 @@ class ChangeProjectPrograssViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.touchBackGround()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
         self.configure()
     }
     
     @IBAction func changePrograssSwitch(_ sender: UISwitch) {
+        
         if sender.isOn {
             self.statusPrograssLabel.text = "진행중"
             self.projectPrograss = true
@@ -61,6 +66,7 @@ class ChangeProjectPrograssViewController: UIViewController {
 extension ChangeProjectPrograssViewController {
     
     private func configure() {
+        print("configure실행")
         self.configurePopupView()
         self.configureStatusPrograssLabel()
         self.configureProjectPrograssLabel()
@@ -88,6 +94,7 @@ extension ChangeProjectPrograssViewController {
     
     private func configurePrograssSwitch() {
         guard let projectPrograss = self.projectPrograss else { return }
+        print(projectPrograss,"현재 상태는")
         prograssSwitch.isOn = projectPrograss
     }
 }

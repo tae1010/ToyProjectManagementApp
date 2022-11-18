@@ -66,7 +66,7 @@ class ProjectPopupViewController: UIViewController {
         changeProjectPrograssPopup.modalTransitionStyle = .crossDissolve // 뷰가 투명해지면서 넘어가는 애니메이션
         changeProjectPrograssPopup.projectPrograss = projectPrograss
         changeProjectPrograssPopup.projectTitle = projectTitle
-
+        print(projectPrograss, "이것도확인")
         // 기존팝업창은 지우고 reallyCheckPopup창을 띄움
         self.dismiss(animated: true) {
             pvc.present(changeProjectPrograssPopup, animated: true, completion: nil)

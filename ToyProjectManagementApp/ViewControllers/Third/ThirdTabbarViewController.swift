@@ -30,7 +30,7 @@ class ThirdTabbarViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-
+        
         self.notificationModel = UserDefault().loadNotificationModelUserDefault() ?? [NotificationModel]()
         self.notificationAlertLabel.text = "\(self.notificationModel.count)개의 알림"
         self.notificationTableView.reloadData()
@@ -38,12 +38,9 @@ class ThirdTabbarViewController: UIViewController {
         self.checkBadge()
     }
     
-    
-    
     // 화면을 종료하면 userDefault 업데이트 하기
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        print("백그라운드로 가도 실행되나")
         UserDefault().removeNotificationModelUserDefault()
         UserDefault().setNotificationModelUserDefault(notificationModel: self.notificationModel)
     }
@@ -64,6 +61,11 @@ class ThirdTabbarViewController: UIViewController {
         
         self.view.hideAllToasts()
         self.view.makeToast("알림이 삭제되었습니다", duration: 1)
+    }
+    
+    // badge수가 0이면 숨김
+    private func hiddenBadge() {
+        
     }
 
 }
@@ -146,7 +148,7 @@ extension ThirdTabbarViewController: UITableViewDataSource {
         
         // badge 업데이트
         self.checkBadge()
-        self.notificationTableView.reloadRows(at: [indexPath], with: .automatic)
+        self.notificationTableView.reloadRows(at: [indexPath], with: .none)
     }
 
     // 20200101111111 -> 2020-01-01
@@ -166,12 +168,12 @@ extension ThirdTabbarViewController: UITableViewDataSource {
     
     /// 2번째 텝바에 badge 띄우기
     private func checkBadge() {
-        var falseBadgeCount = self.notificationModel // 확인하지 않은 알림 cell(badge수) count 저장
+        var trueBadgeCount = self.notificationModel // 확인하지 않은 알림 cell(badge수) count 저장
         
-        falseBadgeCount = notificationModel.filter({
+        trueBadgeCount = notificationModel.filter({
             $0.badge == true
         })
         
-        tabBarController?.tabBar.items?[1].badgeValue = "\(falseBadgeCount.count)"
+        tabBarController?.tabBar.items?[1].badgeValue = trueBadgeCount.count == 0 ? nil : "\(trueBadgeCount.count)"
     }
 }

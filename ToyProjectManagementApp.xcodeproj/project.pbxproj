@@ -364,7 +364,6 @@
 				935CBC852806A1C300759A24 /* MainTabbarViewController.swift */,
 				9338C778290AA161005F6C3B /* ProjectCollectionReusableView.swift */,
 				935CBC872806AD7900759A24 /* ProjectCell.swift */,
-				9350DB1528F41A2700646C42 /* ProjectContentViewController.swift */,
 				93F8E4BF282BB8F400F888F0 /* ProjectContent */,
 				93B6FE3728F5566700181605 /* DetailProjectContent */,
 				9315079E291100F9000DD700 /* ProjectColorContent */,
@@ -503,6 +502,7 @@
 		93F8E4BF282BB8F400F888F0 /* ProjectContent */ = {
 			isa = PBXGroup;
 			children = (
+				9350DB1528F41A2700646C42 /* ProjectContentViewController.swift */,
 				9338C75F28FD418A005F6C3B /* ProjectContentViewController+ScrollAnimation.swift */,
 				9338C76329014929005F6C3B /* ProjectContentViewController+Delegate.swift */,
 				93DA8F85282FB16900217360 /* ProjectContentTableViewCell.swift */,

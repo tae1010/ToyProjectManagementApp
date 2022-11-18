@@ -58,7 +58,7 @@ class ForthTabbarViewController: UIViewController {
         super.viewDidAppear(animated)
         print(#fileID, #function, #line, "forth tabbar viewDidAppear")
         
-        SharedData.printCount()
+
         self.inPrograssCountLabel.text = "\(SharedData.inProgressProjectCount)"
         self.completeCountLabel.text = "\(SharedData.completeProjectCount)"
         self.totalProjectCountLabel.text = "\(SharedData.totalProjectCount)"
