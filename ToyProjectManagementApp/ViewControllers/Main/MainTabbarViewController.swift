@@ -46,17 +46,22 @@ class MainTabbarViewController: UIViewController {
         super.viewWillAppear(true)
         
         // readDB에서도 해주지만 db에 아무것도 없을때(아이디도) 실행되어야 하기떄문에 viewwillAppear에서도 실행
-        
-        
         self.readDB()
         self.setNotification()
+        
+        
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
+        print(#fileID, #function, #line, "- mainttabbar viewwillappear")
         self.removeNotification()
-        NotificationCenter.default.post(name: .projectCountNotification , object: [projectListPrograssTrue.count + projectListPrograssFalse.count, projectListPrograssTrue.count, projectListPrograssFalse.count], userInfo: nil)
-        print("전송됐나?")
+        
+        
+        print(self.projectListPrograssTrue.count + self.projectListPrograssFalse.count, self.projectListPrograssTrue.count, self.projectListPrograssFalse.count, "????")
+        //sharedData class에 객체 저장
+        SharedData(totalProjectCount: self.projectListPrograssTrue.count + self.projectListPrograssFalse.count, inProgressProjectCount: self.projectListPrograssTrue.count, completeProjectCount: self.projectListPrograssFalse.count)
     }
     
     //프로젝트 collection 추가
@@ -139,7 +144,7 @@ extension MainTabbarViewController {
         self.projectListPrograssFalse.removeAll()
         self.projectListPrograssTrue.removeAll()
 
-        ref.child(email).observeSingleEvent(of: .value, with: { snapshot in
+        ref.child(email).observeSingleEvent(of: .value, with: { [self] snapshot in
           // Get user value
             guard let value = snapshot.value as? Dictionary<String, Any> else {
                 DispatchQueue.main.async {

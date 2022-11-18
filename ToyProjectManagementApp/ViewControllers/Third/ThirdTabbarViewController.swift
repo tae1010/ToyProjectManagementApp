@@ -18,6 +18,7 @@ class ThirdTabbarViewController: UIViewController {
     
     var notificationModel = [NotificationModel]()
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configureNotificationTitleLabel()
@@ -28,12 +29,26 @@ class ThirdTabbarViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
 
         self.notificationModel = UserDefault().loadNotificationModelUserDefault() ?? [NotificationModel]()
         self.notificationAlertLabel.text = "\(self.notificationModel.count)개의 알림"
         self.notificationTableView.reloadData()
+        
+        self.checkBadge()
     }
     
+    
+    
+    // 화면을 종료하면 userDefault 업데이트 하기
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        print("백그라운드로 가도 실행되나")
+        UserDefault().removeNotificationModelUserDefault()
+        UserDefault().setNotificationModelUserDefault(notificationModel: self.notificationModel)
+    }
+    
+    /// 알림뷰 알림 전부 삭제
     @IBAction func tapRemoveNotificationModel(_ sender: UIButton) {
         
         if self.notificationModel.count == 0 {
@@ -119,7 +134,7 @@ extension ThirdTabbarViewController: UITableViewDataSource {
             }
         }()
         
-        cell.cellBadge.isHidden = notificationModel[indexPath.row].badge
+        cell.cellBadge.isHidden = !notificationModel[indexPath.row].badge
         cell.notificationContentLabel.text = "\(notificationModel[indexPath.row].content)"
         cell.notificationDateLabel.text = changeDateLabel(date: notificationModel[indexPath.row].date)
         
@@ -128,6 +143,9 @@ extension ThirdTabbarViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         notificationModel[indexPath.row].badge = false
+        
+        // badge 업데이트
+        self.checkBadge()
         self.notificationTableView.reloadRows(at: [indexPath], with: .automatic)
     }
 
@@ -146,21 +164,14 @@ extension ThirdTabbarViewController: UITableViewDataSource {
         return result
     }
     
-    
-    
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "ProjectContentSideBar", for: indexPath) as! ProjectListManagementCell
-//        cell.selectionStyle = .none
-//        cell.listTitle.text = listName[indexPath.row]
-//        cell.currentPageCheckImageView.isHidden = currentPage == indexPath.row ? false : true
-//        cell.selectImageView.isHidden = true
-//
-//        return cell
-//    }
-//
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        self.clickCellIndexPath = indexPath
-//        self.view.makeToast("\(listName[indexPath.row])", duration: 0.5)
-//    }
-    
+    /// 2번째 텝바에 badge 띄우기
+    private func checkBadge() {
+        var falseBadgeCount = self.notificationModel // 확인하지 않은 알림 cell(badge수) count 저장
+        
+        falseBadgeCount = notificationModel.filter({
+            $0.badge == true
+        })
+        
+        tabBarController?.tabBar.items?[1].badgeValue = "\(falseBadgeCount.count)"
+    }
 }

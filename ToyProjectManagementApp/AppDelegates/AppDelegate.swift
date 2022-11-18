@@ -13,7 +13,6 @@ import CoreData
 import FirebaseDatabase
 
 
-
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     
@@ -116,6 +115,7 @@ extension AppDelegate {
         Auth.auth().signIn(with: credential) { _, _ in
             self.showMainViewController()
         }
+
     }
 
     private func showMainViewController() {

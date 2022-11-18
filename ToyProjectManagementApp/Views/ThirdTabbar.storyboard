@@ -75,7 +75,7 @@
                             <constraint firstItem="5FV-Ts-Kl9" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="14" id="qBA-Ie-amR"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="알림" image="notification" badgeValue="10" selectedImage="notificataionFill" springLoaded="YES" id="6wf-1r-h1E">
+                    <tabBarItem key="tabBarItem" title="알림" image="notification" selectedImage="notificataionFill" springLoaded="YES" id="6wf-1r-h1E">
                         <color key="badgeColor" systemColor="systemRedColor"/>
                     </tabBarItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>

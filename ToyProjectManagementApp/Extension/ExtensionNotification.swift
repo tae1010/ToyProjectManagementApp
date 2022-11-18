@@ -27,5 +27,4 @@ extension Notification.Name {
     
     // 마이페이지 프로젝트 수, 진행중, 완료 count전달 notification
     static let projectCountNotification = Notification.Name("projectCountNotification")
-
 }

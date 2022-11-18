@@ -40,6 +40,7 @@ class ForthTabbarViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        print(#fileID, #function, #line, "forth tabbar viewwillappear")
         
         //네비게이션바를 숨김
         navigationController?.navigationBar.isHidden = true
@@ -50,12 +51,17 @@ class ForthTabbarViewController: UIViewController {
         let isEmailSignin = Auth.auth().currentUser?.providerData[0].providerID == "password"
         self.resetPasswordView.isHidden = !isEmailSignin
         
-        NotificationCenter.default.addObserver(self, selector: #selector(projectCountNotification), name: .projectCountNotification, object: nil)
 
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        NotificationCenter.default.removeObserver(self, name: .projectCountNotification, object: nil)
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        print(#fileID, #function, #line, "forth tabbar viewDidAppear")
+        
+        SharedData.printCount()
+        self.inPrograssCountLabel.text = "\(SharedData.inProgressProjectCount)"
+        self.completeCountLabel.text = "\(SharedData.completeProjectCount)"
+        self.totalProjectCountLabel.text = "\(SharedData.totalProjectCount)"
     }
 
     // sign out popup 뷰로 이동
@@ -120,19 +126,6 @@ extension ForthTabbarViewController {
         })
     }
 
-}
-
-// MARK: - notification
-extension ForthTabbarViewController {
-    
-    @objc func projectCountNotification(_ notification: Notification) {
-    
-        let getValue = notification.object as! [Int] // [총 프로젝트수, 진행중, 완료]
-        self.totalProjectCountLabel.text = String(getValue[0])
-        self.inPrograssCountLabel.text = String(getValue[1])
-        self.completeCountLabel.text = String(getValue[2])
-    }
-    
 }
 
 extension ForthTabbarViewController: LogoutDelegate {

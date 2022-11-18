@@ -14,14 +14,16 @@ class UserDefault {
     let encoder = JSONEncoder()
     let decoder = JSONDecoder()
 
+    // notification model 삭제
     func removeNotificationModelUserDefault() {
         UserDefaults.standard.removeObject(forKey: "notificationModel")
     }
     
-    
+    // notification model 저장
     func setNotificationModelUserDefault(notificationModel: [NotificationModel]) {
         
         let notificationModelEncoder = try? encoder.encode(notificationModel)
+
         userDefault.set(notificationModelEncoder, forKey: "notificationModel")
     }
     
@@ -46,4 +48,5 @@ class UserDefault {
 
         UserDefault().setNotificationModelUserDefault(notificationModel: sortNotificationModel)
     }
+
 }

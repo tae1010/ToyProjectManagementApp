@@ -26,6 +26,7 @@
 		93285BEE2801887C00396083 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 93285BED2801887C00396083 /* GoogleService-Info.plist */; };
 		932B5EF428D4B255004CD1E8 /* godoRoundedL.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 932B5EF228D4B252004CD1E8 /* godoRoundedL.ttf */; };
 		932B5EF528D4B255004CD1E8 /* godoRoundedR.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 932B5EF328D4B255004CD1E8 /* godoRoundedR.ttf */; };
+		9333268F2927892B00DE092F /* SharedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9333268E2927892B00DE092F /* SharedData.swift */; };
 		9333CC47285C6B6F005C0262 /* projectCollectionViewPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9333CC46285C6B6E005C0262 /* projectCollectionViewPopup.xib */; };
 		9333CC49285C7173005C0262 /* ProjectPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9333CC48285C7173005C0262 /* ProjectPopupViewController.swift */; };
 		9338C76028FD418A005F6C3B /* ProjectContentViewController+ScrollAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9338C75F28FD418A005F6C3B /* ProjectContentViewController+ScrollAnimation.swift */; };
@@ -126,6 +127,7 @@
 		93285BED2801887C00396083 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		932B5EF228D4B252004CD1E8 /* godoRoundedL.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = godoRoundedL.ttf; sourceTree = "<group>"; };
 		932B5EF328D4B255004CD1E8 /* godoRoundedR.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = godoRoundedR.ttf; sourceTree = "<group>"; };
+		9333268E2927892B00DE092F /* SharedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedData.swift; sourceTree = "<group>"; };
 		9333CC46285C6B6E005C0262 /* projectCollectionViewPopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = projectCollectionViewPopup.xib; sourceTree = "<group>"; };
 		9333CC48285C7173005C0262 /* ProjectPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectPopupViewController.swift; sourceTree = "<group>"; };
 		9338C75F28FD418A005F6C3B /* ProjectContentViewController+ScrollAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProjectContentViewController+ScrollAnimation.swift"; sourceTree = "<group>"; };
@@ -362,6 +364,7 @@
 				935CBC852806A1C300759A24 /* MainTabbarViewController.swift */,
 				9338C778290AA161005F6C3B /* ProjectCollectionReusableView.swift */,
 				935CBC872806AD7900759A24 /* ProjectCell.swift */,
+				9350DB1528F41A2700646C42 /* ProjectContentViewController.swift */,
 				93F8E4BF282BB8F400F888F0 /* ProjectContent */,
 				93B6FE3728F5566700181605 /* DetailProjectContent */,
 				9315079E291100F9000DD700 /* ProjectColorContent */,
@@ -401,6 +404,7 @@
 				935145EE289D2057009B1DEF /* projectDate.swift */,
 				9353E3C0287D809700C63681 /* DetailColorContent.swift */,
 				93049208291A3F4B00DAAF85 /* NotificationModel.swift */,
+				9333268E2927892B00DE092F /* SharedData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -499,7 +503,6 @@
 		93F8E4BF282BB8F400F888F0 /* ProjectContent */ = {
 			isa = PBXGroup;
 			children = (
-				9350DB1528F41A2700646C42 /* ProjectContentViewController.swift */,
 				9338C75F28FD418A005F6C3B /* ProjectContentViewController+ScrollAnimation.swift */,
 				9338C76329014929005F6C3B /* ProjectContentViewController+Delegate.swift */,
 				93DA8F85282FB16900217360 /* ProjectContentTableViewCell.swift */,
@@ -742,6 +745,7 @@
 				93049200291909CA00DAAF85 /* CustomTabbarViewController.swift in Sources */,
 				930491FC2915075600DAAF85 /* ChangeProjectTitlePopupViewController.swift in Sources */,
 				93B6FE3628F54E2E00181605 /* ProjectContentCollectionViewCell.swift in Sources */,
+				9333268F2927892B00DE092F /* SharedData.swift in Sources */,
 				9340DE8728D4DF0A00B1CEB2 /* LogoLabel.swift in Sources */,
 				93049209291A3F4B00DAAF85 /* NotificationModel.swift in Sources */,
 				93F9836728F7E76D00033A46 /* AddCardListPopupViewController.swift in Sources */,

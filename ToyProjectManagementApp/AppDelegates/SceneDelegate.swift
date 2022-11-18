@@ -19,7 +19,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
         
         guard let _ = (scene as? UIWindowScene) else { return }
-        
 //        for fontFamily in UIFont.familyNames {
 //            for fontName in UIFont.fontNames(forFamilyName: fontFamily) {
 //                print(fontFamily, fontName)
