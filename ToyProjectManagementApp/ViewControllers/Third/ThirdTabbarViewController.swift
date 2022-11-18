@@ -8,28 +8,30 @@
 import UIKit
 import FirebaseAuth
 import FirebaseDatabase
+import DropDown
+import Toast_Swift
 
 class ThirdTabbarViewController: UIViewController {
     
     @IBOutlet weak var notificationTitleLabel: UILabel!
     @IBOutlet weak var notificationTableView: UITableView!
     @IBOutlet weak var notificationAlertLabel: UILabel!
-    @IBOutlet weak var removeNotificationModelButton: UIButton!
+    @IBOutlet weak var notificationContentLabel: UILabel!
+    @IBOutlet weak var notificationMenuButton: UIButton!
     
     var notificationModel = [NotificationModel]()
-    
+    let dropDown = DropDown() // dropdown 객체
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configureNotificationTitleLabel()
         self.configureNotificationTableView()
         self.configureNotificationAlertLabel()
-        self.configureRemoveNotificationModelButton()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         
         self.notificationModel = UserDefault().loadNotificationModelUserDefault() ?? [NotificationModel]()
         self.notificationAlertLabel.text = "\(self.notificationModel.count)개의 알림"
@@ -46,8 +48,20 @@ class ThirdTabbarViewController: UIViewController {
     }
     
     /// 알림뷰 알림 전부 삭제
-    @IBAction func tapRemoveNotificationModel(_ sender: UIButton) {
+    @IBAction func tabNotificationMenu(_ sender: UIButton) {
+        self.configureDropDown()
         
+        dropDown.selectionAction = { [weak self] (index, item) in
+                //선택한 Item을 TextField에 넣어준다.
+            
+            index == 0 ? self?.checkNotificationModel() : self?.removeNotificationModel()
+            
+
+        }
+    }
+    
+    // 알림 내역 전부 삭제
+    private func removeNotificationModel() {
         if self.notificationModel.count == 0 {
             self.view.hideAllToasts()
             self.view.makeToast("알림수가 0개입니다.", duration: 1)
@@ -63,11 +77,23 @@ class ThirdTabbarViewController: UIViewController {
         self.view.makeToast("알림이 삭제되었습니다", duration: 1)
     }
     
-    // badge수가 0이면 숨김
-    private func hiddenBadge() {
+    // 알림내역 전부 확인 후 badge 0으로하기
+    private func checkNotificationModel() {
+        
+        for i in 0...notificationModel.count - 1 {
+            self.notificationModel[i].badge = false
+            print(self.notificationModel[i].badge)
+        }
+        self.checkBadge()
+        
+        self.view.hideAllToasts()
+        self.view.makeToast("알림을 전부 확인하였습니다", duration: 1)
+        
+        DispatchQueue.main.async {
+            self.notificationTableView.reloadData()
+        }
         
     }
-
 }
 
 extension ThirdTabbarViewController {
@@ -85,16 +111,34 @@ extension ThirdTabbarViewController {
     
     private func configureNotificationTitleLabel() {
         self.notificationTitleLabel.font = UIFont(name: "NanumGothicOTFBold", size: 20)
+        
     }
     
     private func configureNotificationAlertLabel() {
-        self.notificationAlertLabel.font = UIFont(name: "NanumGothicOTF", size: 14)
+        self.notificationAlertLabel.font = UIFont(name: "NanumGothicOTF", size: 13)
+        self.notificationContentLabel.font = UIFont(name: "NanumGothicOTF", size: 13)
         self.notificationAlertLabel.textColor = UIColor(red: 0.412, green: 0.42, blue: 0.446, alpha: 1)
+        self.notificationContentLabel.textColor = UIColor(red: 0.412, green: 0.42, blue: 0.446, alpha: 1)
     }
     
-    private func configureRemoveNotificationModelButton() {
-        self.removeNotificationModelButton.titleLabel?.font = UIFont(name: "NanumGothicOTF", size: 14)
-        self.removeNotificationModelButton.tintColor = UIColor(red: 0.412, green: 0.42, blue: 0.446, alpha: 1)
+    
+    private func configureDropDown() {
+        
+        let notificationMenu = ["알림모두확인","알림지우기"]
+        dropDown.dataSource = notificationMenu // dropdown data
+        
+        // dropdown 위치
+        dropDown.anchorView = self.notificationMenuButton
+        dropDown.bottomOffset = CGPoint(x: -40, y:(dropDown.anchorView?.plainView.bounds.height)!)
+        dropDown.textColor = UIColor(red: 0.412, green: 0.42, blue: 0.446, alpha: 1)
+        dropDown.selectedTextColor = UIColor.red
+        dropDown.textFont = UIFont(name: "NanumGothicOTF", size: 14) ?? UIFont.systemFont(ofSize: 14)
+        dropDown.backgroundColor = UIColor.white
+        dropDown.selectionBackgroundColor = UIColor.white
+        dropDown.cornerRadius = 5
+        
+        
+        dropDown.show()
     }
     
     
