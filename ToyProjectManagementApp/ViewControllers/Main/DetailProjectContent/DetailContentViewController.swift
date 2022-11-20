@@ -142,6 +142,9 @@ class DetailContentViewController: UIViewController {
         let formatter = DateFormatter()
         formatter.dateFormat = "yy-MM-dd HH:mm"
 
+        self.endTimeLabel.isHidden = false
+        self.startTimeLabel.isHidden = false
+        
         switch self.timeSelectMode {
             
         case .startTime:
@@ -193,8 +196,8 @@ extension DetailContentViewController {
         self.configureCardTitle()
         self.configureButton()
         self.configureDetailColorCollectionView()
-        self.configureDate()
         self.configureCardColor()
+        self.setDate()
     }
     
     private func configureCardTitle() {
@@ -248,11 +251,9 @@ extension DetailContentViewController {
         }
     }
     
-    private func configureDate() {
-        
-        self.startTimeLabel.isHidden = startLabel.text == "" ? true : false
-        self.endTimeLabel.isHidden = startLabel.text == "" ? true : false
-        
+    private func setDate() {
+
+        print(startTimeLabel.text, endTimeLabel.text,"sss")
         self.startLabel.font = UIFont(name: "NanumGothicOTFBold", size: 14)
         self.endLabel.font = UIFont(name: "NanumGothicOTFLight", size: 14)
         
@@ -431,8 +432,13 @@ extension DetailContentViewController {
             DispatchQueue.main.async {
                 self.showViews()
                 self.contentTextView.text = self.projectDetailContent.cardName
+                
                 self.startTimeLabel.text = self.projectDetailContent.startTime
                 self.endTimeLabel.text = self.projectDetailContent.endTime
+                
+                self.startTimeLabel.isHidden = self.startTimeLabel.text == "" ? true : false
+                self.endTimeLabel.isHidden = self.endTimeLabel.text == "" ? true : false
+                
                 self.configureCardColor()
                 
                 self.configureCardColorData()
