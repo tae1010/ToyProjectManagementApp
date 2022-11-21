@@ -14,6 +14,7 @@ class ForthTabbarViewController: UIViewController {
 
     @IBOutlet weak var myPageTitleLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
+    @IBOutlet weak var socialLabel: UILabel!
     
     @IBOutlet weak var activityLabel: UILabel!
     
@@ -46,12 +47,11 @@ class ForthTabbarViewController: UIViewController {
         navigationController?.navigationBar.isHidden = true
         
         //email에 유저 email값을 넣고 만약에 값이 없다면 고객이라는 값을 넣는다
-        let email = Auth.auth().currentUser?.email ?? "고객"
+        let email = Auth.auth().currentUser?.providerData[0].providerID == "apple.com" ? String(FirebaseAuth.Auth.auth().currentUser?.uid ?? "applelogin") : Auth.auth().currentUser?.email ?? "고객"
         
         let isEmailSignin = Auth.auth().currentUser?.providerData[0].providerID == "password"
+        print(Auth.auth().currentUser?.providerData[0].providerID,"????????")
         self.resetPasswordView.isHidden = !isEmailSignin
-        
-
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -77,7 +77,8 @@ class ForthTabbarViewController: UIViewController {
     }
     
     @IBAction func resetPasswordButtonTap(_ sender: UIButton) {
-        let email = Auth.auth().currentUser?.email ?? ""
+        let email = Auth.auth().currentUser?.providerData[0].providerID == "apple.com" ? String(FirebaseAuth.Auth.auth().currentUser?.uid ?? "applelogin") : Auth.auth().currentUser?.email ?? "고객"
+        
         Auth.auth().sendPasswordReset(withEmail: email, completion: nil)
         
         self.view.hideAllToasts()
@@ -90,6 +91,7 @@ extension ForthTabbarViewController {
     private func configure() {
         self.configureMyPageTitleLabel()
         self.configureEmailLabel()
+        self.configureSocialLabel()
         self.configureActivityLabel()
         self.configureCountLabel()
         self.configureUserButton()
@@ -101,9 +103,25 @@ extension ForthTabbarViewController {
     }
     
     private func configureEmailLabel() {
-        let email = Auth.auth().currentUser?.email ?? ""
+        let email = Auth.auth().currentUser?.providerData[0].providerID == "apple.com" ? String(FirebaseAuth.Auth.auth().currentUser?.uid ?? "applelogin") : Auth.auth().currentUser?.email ?? "고객"
+        
         self.emailLabel.font = UIFont(name: "NanumGothicOTFBold", size: 16)
         self.emailLabel.text = email
+    }
+    
+    private func configureSocialLabel() {
+        self.socialLabel.font = UIFont(name: "NanumGothicOTFLight", size: 13)
+        
+        if Auth.auth().currentUser?.providerData[0].providerID == "google.com" {
+            self.socialLabel.text = "구글 로그인"
+        } else if Auth.auth().currentUser?.providerData[0].providerID == "apple.com" {
+            self.socialLabel.text = "애플 로그인"
+        } else if Auth.auth().currentUser?.providerData[0].providerID == "password" {
+            self.socialLabel.text = "토이 계정으로 로그인"
+        } else {
+            self.socialLabel.text = "카카오 로그인"
+        }
+ 
     }
     
     private func configureActivityLabel() {

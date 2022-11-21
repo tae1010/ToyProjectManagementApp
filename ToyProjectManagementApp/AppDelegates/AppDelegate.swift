@@ -11,19 +11,27 @@ import GoogleSignIn
 import FirebaseAuth
 import CoreData
 import FirebaseDatabase
+import AuthenticationServices
 
 
 @main
-class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate, ASAuthorizationControllerDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         //Firebase초기화
         FirebaseApp.configure()
         
+        if let user = FirebaseAuth.Auth.auth().currentUser {
+            print("로그인 되어 있음", user.uid, user.email ?? "-")
+        }
+        
+        
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
         GIDSignIn.sharedInstance().delegate = self
         
+        checkAppleSignIn()
+
         return true
     }
     
@@ -113,9 +121,38 @@ extension AppDelegate {
         let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
         
         Auth.auth().signIn(with: credential) { _, _ in
+            print("signin 성공")
             self.showMainViewController()
         }
 
+    }
+    
+    // 애플 로그인이 되어있는지 확인
+    func checkAppleSignIn() {
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+        appleIDProvider.getCredentialState(forUserID: "00000.abcabcabcabc.0000") { (credentialState, error) in
+            switch credentialState {
+                
+                // 이미 증명이 된경우
+            case .authorized:
+                print("authorized")
+                // The Apple ID credential is valid.
+                
+                // 증명을 취소 할경우
+            case .revoked:
+                print("revoked")
+                
+                // 증명이 존재하지 않을 경우
+            case .notFound:
+                // The Apple ID credential is either revoked or was not found, so show the sign-in UI.
+                print("notFound")
+                DispatchQueue.main.async {
+                    // self.window?.rootViewController?.showLoginViewController()
+                }
+            default:
+                break
+            }
+        }
     }
 
     private func showMainViewController() {
@@ -127,7 +164,6 @@ extension AppDelegate {
 }
 
 extension UIViewController {
-    
 
     // 뷰를 클릭하면 키보드가 내려감
     func hideKeyboardWhenTappedAround() {
@@ -139,19 +175,5 @@ extension UIViewController {
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
-    
-    func setDBNotificationModel(email: String, id: String, title: String, status: String, content: String, date: Int) {
-        
-        let ref: DatabaseReference! = Database.database().reference()
-        
-        // notification Model
-        ref.child("\(email)/notification").updateChildValues(["projectTitle": title])
-        ref.child("\(email)/notification").updateChildValues(["status": status])
-        ref.child("\(email)/notification").updateChildValues(["content": content])
-        ref.child("\(email)/notification").updateChildValues(["date": date])
 
-    }
-    
-    
-    
 }

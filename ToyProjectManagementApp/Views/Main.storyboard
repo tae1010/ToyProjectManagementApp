@@ -51,16 +51,44 @@
                                     <action selector="loginButtonTapped:" destination="vzy-TO-xKb" eventType="touchUpInside" id="Uk3-5H-0Cw"/>
                                 </connections>
                             </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="kcl-w3-xEA">
+                                <rect key="frame" x="14" y="699.5" width="386" height="20.5"/>
+                                <subviews>
+                                    <view userInteractionEnabled="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="h1Q-jf-LOD">
+                                        <rect key="frame" x="0.0" y="10" width="80" height="1"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="80" id="Ln3-DH-Jfi"/>
+                                            <constraint firstAttribute="height" constant="1" id="WfD-a9-tTU"/>
+                                        </constraints>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SNS 계정으로 로그인하기" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qWH-BW-6wy">
+                                        <rect key="frame" x="80" y="0.0" width="226" height="20.5"/>
+                                        <color key="tintColor" name="primaryColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.58431375029999999" green="0.58823531870000001" blue="0.59607845540000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="euH-Xk-LBW">
+                                        <rect key="frame" x="306" y="10" width="80" height="1"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="bGQ-Ez-sTG"/>
+                                            <constraint firstAttribute="width" constant="80" id="eDZ-Oa-o4a"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                            </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="vWE-ia-oS5" userLabel="소셜로그인버튼">
                                 <rect key="frame" x="70" y="734" width="274" height="40"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="apple" translatesAutoresizingMaskIntoConstraints="NO" id="BJp-vK-eOl">
+                                    <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="apple" translatesAutoresizingMaskIntoConstraints="NO" id="BJp-vK-eOl">
                                         <rect key="frame" x="0.0" y="0.0" width="79.5" height="40"/>
                                     </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="google" translatesAutoresizingMaskIntoConstraints="NO" id="Zjt-Nh-KNt">
+                                    <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="google" translatesAutoresizingMaskIntoConstraints="NO" id="Zjt-Nh-KNt">
                                         <rect key="frame" x="97.5" y="0.0" width="79" height="40"/>
                                     </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="kakao 1" translatesAutoresizingMaskIntoConstraints="NO" id="umZ-zh-A7Q">
+                                    <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="kakao 1" translatesAutoresizingMaskIntoConstraints="NO" id="umZ-zh-A7Q">
                                         <rect key="frame" x="194.5" y="0.0" width="79.5" height="40"/>
                                     </imageView>
                                 </subviews>
@@ -77,6 +105,9 @@
                                 <state key="normal" title="비밀번호를 잊어버리셨나요?">
                                     <color key="titleColor" name="primaryColor"/>
                                 </state>
+                                <connections>
+                                    <action selector="tabForgotPasswordButton:" destination="vzy-TO-xKb" eventType="touchUpInside" id="sg6-Uc-B5Z"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J1h-ek-O6P">
                                 <rect key="frame" x="14" y="62" width="30" height="34"/>
@@ -106,9 +137,11 @@
                             <constraint firstItem="mhe-ak-8pz" firstAttribute="top" secondItem="OaA-9G-Zak" secondAttribute="bottom" constant="10" id="Kde-Dl-Bcg"/>
                             <constraint firstItem="BYj-JB-mE7" firstAttribute="centerX" secondItem="JEK-on-6Ci" secondAttribute="centerX" id="LH6-L9-mTm"/>
                             <constraint firstItem="vWE-ia-oS5" firstAttribute="centerX" secondItem="sIi-fl-xxQ" secondAttribute="centerX" id="LbQ-MX-fok"/>
+                            <constraint firstItem="vWE-ia-oS5" firstAttribute="top" secondItem="kcl-w3-xEA" secondAttribute="bottom" constant="14" id="Mf8-gE-gY0"/>
                             <constraint firstItem="FzF-Hb-qvc" firstAttribute="top" secondItem="mhe-ak-8pz" secondAttribute="bottom" constant="10" id="R1y-YY-8fo"/>
                             <constraint firstAttribute="trailing" secondItem="vWE-ia-oS5" secondAttribute="trailing" constant="70" id="TCO-sH-8VI"/>
                             <constraint firstItem="BYj-JB-mE7" firstAttribute="centerY" secondItem="JEK-on-6Ci" secondAttribute="centerY" id="Vm5-Cc-GwU"/>
+                            <constraint firstItem="kcl-w3-xEA" firstAttribute="trailing" secondItem="JEK-on-6Ci" secondAttribute="trailing" constant="-14" id="WOV-rS-6AW"/>
                             <constraint firstItem="OaA-9G-Zak" firstAttribute="leading" secondItem="JEK-on-6Ci" secondAttribute="leading" constant="14" id="X0s-Qf-FKK"/>
                             <constraint firstItem="OaA-9G-Zak" firstAttribute="top" secondItem="J1h-ek-O6P" secondAttribute="bottom" constant="28" id="cRf-eg-fmw"/>
                             <constraint firstItem="FzF-Hb-qvc" firstAttribute="trailing" secondItem="mhe-ak-8pz" secondAttribute="trailing" id="e0H-5m-qmu"/>
@@ -116,6 +149,7 @@
                             <constraint firstItem="JEK-on-6Ci" firstAttribute="bottom" secondItem="AVH-go-d01" secondAttribute="bottom" constant="14" id="iTi-lx-PmV"/>
                             <constraint firstItem="AVH-go-d01" firstAttribute="top" secondItem="vWE-ia-oS5" secondAttribute="bottom" constant="14" id="iaW-r4-Kiq"/>
                             <constraint firstItem="JEK-on-6Ci" firstAttribute="trailing" secondItem="OaA-9G-Zak" secondAttribute="trailing" constant="14" id="joq-4m-Onx"/>
+                            <constraint firstItem="JEK-on-6Ci" firstAttribute="leading" secondItem="kcl-w3-xEA" secondAttribute="leading" constant="-14" id="qt0-fp-9DI"/>
                             <constraint firstItem="AVH-go-d01" firstAttribute="centerX" secondItem="sIi-fl-xxQ" secondAttribute="centerX" id="uXn-8d-ljM"/>
                             <constraint firstItem="J1h-ek-O6P" firstAttribute="top" secondItem="JEK-on-6Ci" secondAttribute="top" constant="14" id="zLd-IN-0rL"/>
                         </constraints>
@@ -131,6 +165,7 @@
                         <outlet property="kakaoLoginImageView" destination="umZ-zh-A7Q" id="c9u-0h-Bi6"/>
                         <outlet property="loginButton" destination="FzF-Hb-qvc" id="3eZ-me-cfG"/>
                         <outlet property="passwordTextField" destination="mhe-ak-8pz" id="HQb-Wx-alL"/>
+                        <outlet property="snsLoginLabel" destination="qWH-BW-6wy" id="fTV-I3-ETB"/>
                         <outlet property="socialLoginStackView" destination="vWE-ia-oS5" id="iou-az-Av7"/>
                     </connections>
                 </viewController>

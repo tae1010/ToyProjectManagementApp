@@ -321,7 +321,7 @@ extension SecondTabbarViewController {
     
     // second탭바에 들어오면 projectID만 따로 배열로 저장
     private func readProjectId() {
-        let email = self.emailToString(Auth.auth().currentUser?.email ?? "고객")
+        let email = Auth.auth().currentUser?.providerData[0].providerID == "apple.com" ? String(FirebaseAuth.Auth.auth().currentUser?.uid ?? "applelogin") : self.emailToString(Auth.auth().currentUser?.email ?? "고객")
         
         self.ref.child("\(email)/").observeSingleEvent(of: .value, with: { snapshot in
             guard let value = snapshot.value as? [String: Any] else { return }
@@ -350,7 +350,7 @@ extension SecondTabbarViewController {
         
         self.projectContent.removeAll()
         
-        let email = self.emailToString(Auth.auth().currentUser?.email ?? "고객")
+        let email = Auth.auth().currentUser?.providerData[0].providerID == "apple.com" ? String(FirebaseAuth.Auth.auth().currentUser?.uid ?? "applelogin") : self.emailToString(Auth.auth().currentUser?.email ?? "고객")
 
         self.ref.child("\(email)/\(id)/content").observeSingleEvent(of: .value, with: { snapshot in
             guard let value = snapshot.value as? [[String: Any]] else { return }

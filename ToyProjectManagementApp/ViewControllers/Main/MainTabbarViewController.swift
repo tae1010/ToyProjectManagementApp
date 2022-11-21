@@ -34,10 +34,16 @@ class MainTabbarViewController: UIViewController {
     @IBOutlet weak var projectCollectionView: UICollectionView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    //    FirebaseAuth.Auth.auth().currentUser?.uid // 로그인한 uuid - apple 로그인시
+    //    Auth.auth().currentUser?.providerData[0].providerID 로그인 확인
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         hideKeyboardWhenTappedAround() // 화면 클릭시 키보드 내림
-        self.email = self.emailToString(Auth.auth().currentUser?.email ?? "고객")
+        
+        self.email = Auth.auth().currentUser?.providerData[0].providerID == "apple.com" ? String(FirebaseAuth.Auth.auth().currentUser?.uid ?? "applelogin") : self.emailToString(Auth.auth().currentUser?.email ?? "고객")
+        
+        print(email, "ㅁㅁㅁ????")
         self.configureView()
         self.configureNoProjectLabel()
     }
@@ -48,9 +54,6 @@ class MainTabbarViewController: UIViewController {
         // readDB에서도 해주지만 db에 아무것도 없을때(아이디도) 실행되어야 하기떄문에 viewwillAppear에서도 실행
         self.readDB()
         self.setNotification()
-        
-        
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -630,7 +633,8 @@ extension MainTabbarViewController: CreateProjectDelegate {
     func createProject(title: String?) {
         let title = title ?? ""
         let id = UUID().uuidString
-        let email = self.emailToString(Auth.auth().currentUser?.email ?? "고객")
+        let email = Auth.auth().currentUser?.providerData[0].providerID == "apple.com" ? String(FirebaseAuth.Auth.auth().currentUser?.uid ?? "applelogin") : self.emailToString(Auth.auth().currentUser?.email ?? "고객")
+        
         let project = Project(id: id, projectTitle: title, important: false, currentTime: self.koreanDate(), prograss: false)
         
         self.projectListPrograssTrue.insert(project, at: 0)

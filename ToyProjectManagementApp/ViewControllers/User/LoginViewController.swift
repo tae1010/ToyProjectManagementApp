@@ -9,6 +9,8 @@ import UIKit
 import GoogleSignIn
 import Firebase
 import FirebaseAuth
+import AuthenticationServices // 사용자가 앱 및 서비스에 쉽게 로그인하게 하는 애플의 프레임워크
+import CryptoKit // 암호화 작업을 안전하고 효율적으로 수행하는 애플의 프레임워크
 
 /// loading 상태
 enum LoadingState {
@@ -25,6 +27,8 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var loginButton: UIButton!
     
+    @IBOutlet weak var snsLoginLabel: UILabel!
+    
     @IBOutlet weak var appleLoginImageView: UIImageView!
     @IBOutlet weak var googleLoginImageView: UIImageView!
     @IBOutlet weak var kakaoLoginImageView: UIImageView!
@@ -36,6 +40,8 @@ class LoginViewController: UIViewController {
     
     var iconClick = true
     var loadingState: LoadingState = .normal // 로딩 상태 (normal)
+    
+    fileprivate var currentNonce: String?
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -67,6 +73,9 @@ class LoginViewController: UIViewController {
     }
     
  
+    @IBAction func tabForgotPasswordButton(_ sender: UIButton) {
+        print("tabtabForgotPasswordButton")
+    }
 }
 
 // MARK: - view configure
@@ -76,6 +85,7 @@ extension LoginViewController {
         self.configureEmailTextField()
         self.configurePasswordTextField()
         self.configurelLoginButton()
+        self.configureSNSLoginButton()
         self.configureForgotPassword()
     }
 
@@ -93,6 +103,10 @@ extension LoginViewController {
         self.loginButton.titleLabel?.font = UIFont(name: "NanumGothicOTF", size: 15)
     }
     
+    private func configureSNSLoginButton() {
+        self.snsLoginLabel.font = UIFont(name: "NanumGothicOTF", size: 13)
+    }
+    
     private func configureForgotPassword() {
         self.forgotPasswordButton.titleLabel?.font = UIFont(name: "NanumGothicOTF", size: 13)
     }
@@ -102,6 +116,7 @@ extension LoginViewController {
 // MARK: - 기능 관련 함수
 extension LoginViewController {
     
+    // 기본 로그인
     private func login(){
 
         self.hideViews()
@@ -133,13 +148,15 @@ extension LoginViewController {
                 self.showViews()
             } else {
                 print("login success")
-                self.showViews()
+                
                 self.showMainViewController()
+                self.showViews()
 
             }
         }
     }
     
+    // mainViewController 이동
     private func showMainViewController() {
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let mainTabbarViewController = storyboard.instantiateViewController(withIdentifier: "MainTabbar")
@@ -149,6 +166,8 @@ extension LoginViewController {
         navigationController?.show(mainTabbarViewController, sender: nil)
     }
     
+    
+    // 소셜로그인 selector
     private func tabSocialLoginImageView() {
         
         let tapGoogleLogo = UITapGestureRecognizer(target: self, action: #selector(tapGoogleImageSelector))
@@ -164,15 +183,49 @@ extension LoginViewController {
     @objc func tapGoogleImageSelector(sender: UITapGestureRecognizer) {
         self.hideViews()
         GIDSignIn.sharedInstance().signIn()
-        self.showViews()
     }
     
     @objc func tapAppleImageSelector(sender: UITapGestureRecognizer) {
         print("tapAppleLogo")
+        self.hideViews()
+        // 로그인 프로세스를 시작하는 메소드
+        let request = createAppleIDRequest() // Apple ID를 기반으로 사용자를 인증하는 요청을 생성하는 메커니즘
+        let authorizationController = ASAuthorizationController(authorizationRequests: [request]) // 권한 부여 요청을 관리하는 컨트롤러
+        
+        authorizationController.delegate = self
+        authorizationController.presentationContextProvider = self
+        authorizationController.performRequests()
+        
     }
     
     @objc func tapKakaoImageSelector(sender: UITapGestureRecognizer) {
         print("tapKakaoLogo")
+    }
+    
+    @available(iOS 13, *)
+    func createAppleIDRequest() -> ASAuthorizationAppleIDRequest {
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+        let request = appleIDProvider.createRequest()
+        // 애플로그인은 사용자에게서 2가지 정보를 요구함
+        request.requestedScopes = [.fullName, .email]
+        
+        let nonce = randomNonceString()
+        request.nonce = sha256(nonce)
+        currentNonce = nonce
+        
+        return request
+    }
+    
+    // 해시 알고리즘
+    @available(iOS 13, *)
+    private func sha256(_ input: String) -> String {
+        let inputData = Data(input.utf8)
+        let hashedData = SHA256.hash(data: inputData)
+        let hashString = hashedData.compactMap {
+            return String(format: "%02x", $0)
+        }.joined()
+        
+        return hashString
     }
 }
 
@@ -220,4 +273,96 @@ extension LoginViewController {
                 self.kakaoLoginImageView.isUserInteractionEnabled = true
             })
     }
+}
+
+
+// MARK: - 인증 관련 콜백 프로토콜
+extension LoginViewController: ASAuthorizationControllerDelegate {
+    
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
+            // 몇 가지 표준 키 검사를 수행
+            
+            // 현재 nonce가 설정되어 있는지 확인
+            guard let nonce = currentNonce else {
+                fatalError("Invalid state: A login callback was received, but no login request was sent.")
+            }
+            
+            // ID 토큰을 검색
+            guard let appleIDtoken = appleIDCredential.identityToken else {
+                print("Unable to fetch identity token")
+                return
+            }
+            
+            // 검색한 ID 토큰을 문자열로 변환
+            guard let idTokenString = String(data: appleIDtoken, encoding: .utf8) else {
+                print("Unable to serialize token string from data: \(appleIDtoken.debugDescription)")
+                return
+            }
+            
+            // nonce와 ID 토큰을 사용해 OAuthProvider에게 방금 로그인한 사용자를 나타내는 credential을 생성하도록 요청
+            let credential = OAuthProvider.credential(withProviderID: "apple.com",
+                                                      idToken: idTokenString,
+                                                      rawNonce: nonce)
+            
+            // credential을 사용하여 Firebase에 로그인
+            FirebaseAuth.Auth.auth().signIn(with: credential) { (authDataResult, error) in
+                // 인증 결과에서 Firebase 사용자를 검색하고 사용자 정보를 표시할 수 있다.
+                if let user = authDataResult?.user {
+                    print("애플 로그인 성공!")
+                    print(user.uid, "//")
+                    print(user.email, "//")
+                    print(user.phoneNumber)
+                    self.showMainViewController()
+                }
+                
+                if error != nil {
+                    print("여기서 에러")
+                    print(error?.localizedDescription ?? "error" as Any)
+                    return
+                }
+            }
+        }
+        
+    }
+}
+
+// MARK: - 프레젠테이션 컨텍스트 프로토콜
+extension LoginViewController: ASAuthorizationControllerPresentationContextProviding {
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+        return self.view.window!
+    }
+}
+
+// Adapted from https://auth0.com/docs/api-auth/tutorials/nonce#generate-a-cryptographically-random-nonce
+private func randomNonceString(length: Int = 32) -> String {
+    precondition(length > 0)
+    let charset: Array<Character> =
+    Array("0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._")
+    var result = ""
+    var remainingLength = length
+    
+    while remainingLength > 0 {
+        let randoms: [UInt8] = (0 ..< 16).map { _ in
+            var random: UInt8 = 0
+            let errorCode = SecRandomCopyBytes(kSecRandomDefault, 1, &random)
+            if errorCode != errSecSuccess {
+                fatalError("Unable to generate nonce. SecRandomCopyBytes failed with OSStatus \(errorCode)")
+            }
+            return random
+        }
+        
+        randoms.forEach { random in
+            if remainingLength == 0 {
+                return
+            }
+            
+            if random < charset.count {
+                result.append(charset[Int(random)])
+                remainingLength -= 1
+            }
+        }
+    }
+    
+    return result
 }

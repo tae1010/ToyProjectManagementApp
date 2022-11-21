@@ -23,10 +23,11 @@
 		9315079D290FC8D5000DD700 /* DetailContentColorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9315079C290FC8D5000DD700 /* DetailContentColorCell.xib */; };
 		931F9BB928A7D38B000AFA9E /* ScheduleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 931F9BB828A7D38B000AFA9E /* ScheduleCell.xib */; };
 		931F9BBB28A7D468000AFA9E /* ScheduleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931F9BBA28A7D468000AFA9E /* ScheduleCollectionViewCell.swift */; };
-		93285BEE2801887C00396083 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 93285BED2801887C00396083 /* GoogleService-Info.plist */; };
 		932B5EF428D4B255004CD1E8 /* godoRoundedL.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 932B5EF228D4B252004CD1E8 /* godoRoundedL.ttf */; };
 		932B5EF528D4B255004CD1E8 /* godoRoundedR.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 932B5EF328D4B255004CD1E8 /* godoRoundedR.ttf */; };
 		9333268F2927892B00DE092F /* SharedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9333268E2927892B00DE092F /* SharedData.swift */; };
+		93332695292B703000DE092F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 93332694292B703000DE092F /* GoogleService-Info.plist */; };
+		93332698292B7FE000DE092F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 93332697292B7FE000DE092F /* GoogleService-Info.plist */; };
 		9333CC47285C6B6F005C0262 /* projectCollectionViewPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9333CC46285C6B6E005C0262 /* projectCollectionViewPopup.xib */; };
 		9333CC49285C7173005C0262 /* ProjectPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9333CC48285C7173005C0262 /* ProjectPopupViewController.swift */; };
 		9338C76028FD418A005F6C3B /* ProjectContentViewController+ScrollAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9338C75F28FD418A005F6C3B /* ProjectContentViewController+ScrollAnimation.swift */; };
@@ -124,10 +125,12 @@
 		9315079C290FC8D5000DD700 /* DetailContentColorCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailContentColorCell.xib; sourceTree = "<group>"; };
 		931F9BB828A7D38B000AFA9E /* ScheduleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScheduleCell.xib; sourceTree = "<group>"; };
 		931F9BBA28A7D468000AFA9E /* ScheduleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleCollectionViewCell.swift; sourceTree = "<group>"; };
-		93285BED2801887C00396083 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		932B5EF228D4B252004CD1E8 /* godoRoundedL.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = godoRoundedL.ttf; sourceTree = "<group>"; };
 		932B5EF328D4B255004CD1E8 /* godoRoundedR.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = godoRoundedR.ttf; sourceTree = "<group>"; };
 		9333268E2927892B00DE092F /* SharedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedData.swift; sourceTree = "<group>"; };
+		93332690292B490300DE092F /* ToyProjectManagementApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ToyProjectManagementApp.entitlements; sourceTree = "<group>"; };
+		93332694292B703000DE092F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
+		93332697292B7FE000DE092F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9333CC46285C6B6E005C0262 /* projectCollectionViewPopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = projectCollectionViewPopup.xib; sourceTree = "<group>"; };
 		9333CC48285C7173005C0262 /* ProjectPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectPopupViewController.swift; sourceTree = "<group>"; };
 		9338C75F28FD418A005F6C3B /* ProjectContentViewController+ScrollAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProjectContentViewController+ScrollAnimation.swift"; sourceTree = "<group>"; };
@@ -466,6 +469,7 @@
 		93DEFA7927FAFF1500827C79 = {
 			isa = PBXGroup;
 			children = (
+				93332694292B703000DE092F /* GoogleService-Info.plist */,
 				93DEFA8427FAFF1600827C79 /* ToyProjectManagementApp */,
 				93DEFA8327FAFF1600827C79 /* Products */,
 				68BFDA4782678AAFA159C129 /* Pods */,
@@ -484,6 +488,7 @@
 		93DEFA8427FAFF1600827C79 /* ToyProjectManagementApp */ = {
 			isa = PBXGroup;
 			children = (
+				93332690292B490300DE092F /* ToyProjectManagementApp.entitlements */,
 				9340E476285204E100338790 /* Fonts */,
 				9301D3082803513E0010191F /* Assets */,
 				9301D307280351200010191F /* AppDelegates */,
@@ -492,8 +497,8 @@
 				935CBC8C2806AE3B00759A24 /* Model */,
 				9301D306280350C60010191F /* ViewControllers */,
 				9301D3052803504A0010191F /* Views */,
-				93285BED2801887C00396083 /* GoogleService-Info.plist */,
 				93DEFA9627FAFF1700827C79 /* Info.plist */,
+				93332697292B7FE000DE092F /* GoogleService-Info.plist */,
 				93DEFA8E27FAFF1600827C79 /* CooperationApp.xcdatamodeld */,
 			);
 			path = ToyProjectManagementApp;
@@ -591,10 +596,12 @@
 				933BAEEA28E896BD003DDFCF /* ChangeProjectPrograssPopup.xib in Resources */,
 				93AFDA9C28B4CE1B009E815F /* ProjectIdPopup.xib in Resources */,
 				9338C76C2907F4D8005F6C3B /* DeleteListPopup.xib in Resources */,
+				93332695292B703000DE092F /* GoogleService-Info.plist in Resources */,
 				93B6FE3928F56AC200181605 /* ProjectCardCell.xib in Resources */,
 				9340DE7E28D4D8EC00B1CEB2 /* GodoB.otf in Resources */,
 				93F9836128F7E50100033A46 /* AddListPopup.xib in Resources */,
 				93049204291A328000DAAF85 /* ForthTabbar.storyboard in Resources */,
+				93332698292B7FE000DE092F /* GoogleService-Info.plist in Resources */,
 				936F8E992897BB8D00897316 /* ProjectContentSideBar.xib in Resources */,
 				93AFDAA028B4D5FD009E815F /* ProjectIDCell.xib in Resources */,
 				9340E47C2852050700338790 /* NanumGothic.otf in Resources */,
@@ -605,7 +612,6 @@
 				937CC55928002F1400F18553 /* Main.storyboard in Resources */,
 				93F9836528F7E69400033A46 /* AddCardListPopup.xib in Resources */,
 				932B5EF428D4B255004CD1E8 /* godoRoundedL.ttf in Resources */,
-				93285BEE2801887C00396083 /* GoogleService-Info.plist in Resources */,
 				93DEFA9527FAFF1700827C79 /* LaunchScreen.storyboard in Resources */,
 				93DEFA9227FAFF1700827C79 /* Assets.xcassets in Resources */,
 				93F9835F28F7E28400033A46 /* AddCardPopup.xib in Resources */,
@@ -890,6 +896,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ToyProjectManagementApp/ToyProjectManagementApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4J3RK7L42Z;
@@ -921,6 +928,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ToyProjectManagementApp/ToyProjectManagementApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4J3RK7L42Z;
