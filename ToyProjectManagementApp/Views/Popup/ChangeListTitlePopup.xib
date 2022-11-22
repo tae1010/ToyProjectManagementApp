@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -16,6 +16,7 @@
                 <outlet property="changeListTitleButton" destination="T3z-4k-SbQ" id="O5f-nF-A3i"/>
                 <outlet property="changeListTitleTextField" destination="YRt-lz-MBA" id="tr9-e7-BRS"/>
                 <outlet property="popupTitleLabel" destination="zKR-ly-qpK" id="zFX-a2-xv5"/>
+                <outlet property="specialSymbolLabel" destination="Hzs-Sc-1LB" id="F4I-Rc-pZR"/>
                 <outlet property="view" destination="g9T-yt-ViY" id="tH5-BG-9wR"/>
             </connections>
         </placeholder>
@@ -32,8 +33,20 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="리스트 이름 변경" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zKR-ly-qpK">
+                    <rect key="frame" x="14.000000000000007" y="61.000000000000007" width="111.66666666666669" height="20.333333333333336"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=". # % [ ] 기호는 사용할 수 없습니다" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hzs-Sc-1LB">
+                    <rect key="frame" x="14" y="152.33333333333334" width="362" height="20.333333333333343"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.85257214307785034" green="0.015961610037740909" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="JM5-uJ-k40">
-                    <rect key="frame" x="14" y="159.33333333333334" width="362" height="45"/>
+                    <rect key="frame" x="14" y="186.66666666666666" width="362" height="45"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G9r-k4-Q1T">
                             <rect key="frame" x="0.0" y="0.0" width="176" height="45"/>
@@ -60,31 +73,28 @@
                         </button>
                     </subviews>
                 </stackView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="리스트 이름 변경" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zKR-ly-qpK">
-                    <rect key="frame" x="14.000000000000007" y="61.000000000000007" width="111.66666666666669" height="20.333333333333336"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="ed2-rg-r46"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="zKR-ly-qpK" firstAttribute="top" secondItem="ed2-rg-r46" secondAttribute="top" constant="14" id="1fM-RW-FgJ"/>
                 <constraint firstItem="YRt-lz-MBA" firstAttribute="top" secondItem="zKR-ly-qpK" secondAttribute="bottom" constant="14" id="2Wj-3o-kai"/>
+                <constraint firstItem="Hzs-Sc-1LB" firstAttribute="leading" secondItem="YRt-lz-MBA" secondAttribute="leading" id="2bS-Xg-kBx"/>
                 <constraint firstItem="JM5-uJ-k40" firstAttribute="trailing" secondItem="YRt-lz-MBA" secondAttribute="trailing" id="LvQ-nu-Sn3"/>
                 <constraint firstItem="YRt-lz-MBA" firstAttribute="leading" secondItem="zKR-ly-qpK" secondAttribute="leading" id="Nwj-uk-d2w"/>
                 <constraint firstItem="ed2-rg-r46" firstAttribute="trailing" secondItem="YRt-lz-MBA" secondAttribute="trailing" constant="14" id="REH-U7-E6A"/>
+                <constraint firstItem="Hzs-Sc-1LB" firstAttribute="top" secondItem="YRt-lz-MBA" secondAttribute="bottom" constant="7" id="V1o-MQ-ZG0"/>
                 <constraint firstItem="JM5-uJ-k40" firstAttribute="leading" secondItem="YRt-lz-MBA" secondAttribute="leading" id="cjT-bS-iBM"/>
                 <constraint firstItem="zKR-ly-qpK" firstAttribute="leading" secondItem="ed2-rg-r46" secondAttribute="leading" constant="14" id="n13-EM-yhV"/>
-                <constraint firstItem="JM5-uJ-k40" firstAttribute="top" secondItem="YRt-lz-MBA" secondAttribute="bottom" constant="14" id="w4s-KB-DaY"/>
+                <constraint firstItem="JM5-uJ-k40" firstAttribute="top" secondItem="Hzs-Sc-1LB" secondAttribute="bottom" constant="14" id="sf6-gl-ZeV"/>
+                <constraint firstItem="Hzs-Sc-1LB" firstAttribute="trailing" secondItem="YRt-lz-MBA" secondAttribute="trailing" id="vZx-xq-1in"/>
             </constraints>
             <point key="canvasLocation" x="-103.07692307692308" y="49.763033175355446"/>
         </view>
     </objects>
     <resources>
         <namedColor name="primaryColor">
-            <color red="0.72941176470588232" green="0.59999999999999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.72899997234344482" green="0.60000002384185791" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

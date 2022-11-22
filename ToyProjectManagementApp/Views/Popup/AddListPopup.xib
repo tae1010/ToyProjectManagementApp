@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -32,8 +32,14 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="리스트 생성" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Svy-OA-XPx">
+                    <rect key="frame" x="14" y="61.000000000000007" width="78" height="20.333333333333336"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="XXp-ge-eCn">
-                    <rect key="frame" x="14" y="159.33333333333334" width="362" height="45"/>
+                    <rect key="frame" x="14" y="186.66666666666666" width="362" height="45"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aRz-YJ-BFE">
                             <rect key="frame" x="0.0" y="0.0" width="176" height="45"/>
@@ -60,10 +66,10 @@
                         </button>
                     </subviews>
                 </stackView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="리스트 생성" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Svy-OA-XPx">
-                    <rect key="frame" x="14" y="61.000000000000007" width="78" height="20.333333333333336"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text=". # % [ ] 기호는 사용할 수 없습니다" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CKu-kQ-dm4">
+                    <rect key="frame" x="16" y="152.33333333333334" width="362" height="20.333333333333343"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
+                    <color key="textColor" red="0.85257214309999996" green="0.015961610040000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
@@ -72,9 +78,10 @@
             <constraints>
                 <constraint firstItem="XXp-ge-eCn" firstAttribute="trailing" secondItem="HNH-yF-rr4" secondAttribute="trailing" id="5SS-nv-hpk"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="HNH-yF-rr4" secondAttribute="trailing" constant="14" id="7mL-nh-Kpm"/>
-                <constraint firstItem="XXp-ge-eCn" firstAttribute="top" secondItem="HNH-yF-rr4" secondAttribute="bottom" constant="14" id="Aes-E8-fKr"/>
                 <constraint firstItem="HNH-yF-rr4" firstAttribute="top" secondItem="Svy-OA-XPx" secondAttribute="bottom" constant="14" id="QRE-Ud-To7"/>
+                <constraint firstItem="XXp-ge-eCn" firstAttribute="top" secondItem="CKu-kQ-dm4" secondAttribute="bottom" constant="14" id="WWf-Jy-HyV"/>
                 <constraint firstItem="Svy-OA-XPx" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="14" id="XhA-Rw-TI0"/>
+                <constraint firstItem="CKu-kQ-dm4" firstAttribute="top" secondItem="HNH-yF-rr4" secondAttribute="bottom" constant="7" id="Zeh-9t-Kde"/>
                 <constraint firstItem="HNH-yF-rr4" firstAttribute="leading" secondItem="Svy-OA-XPx" secondAttribute="leading" id="a1o-HM-NaW"/>
                 <constraint firstItem="Svy-OA-XPx" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="14" id="mL8-dE-1tY"/>
                 <constraint firstItem="XXp-ge-eCn" firstAttribute="leading" secondItem="HNH-yF-rr4" secondAttribute="leading" id="tqn-Nl-z11"/>
@@ -84,7 +91,7 @@
     </objects>
     <resources>
         <namedColor name="primaryColor">
-            <color red="0.72941176470588232" green="0.59999999999999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.72899997234344482" green="0.60000002384185791" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

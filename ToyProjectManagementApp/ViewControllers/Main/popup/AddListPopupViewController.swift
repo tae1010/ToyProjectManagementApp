@@ -26,15 +26,32 @@ class AddListPopupViewController: UIViewController {
     }
     
     @IBAction func tapAddListButton(_ sender: Any) {
+        let addListText = addListTextField.text ?? ""
         
-        if addListTextField.text == "" {
+        
+        if addListText == "" {
             self.view.hideAllToasts()
             self.view.makeToast("리스트 내용을 입력해주세요")
+            
+        } else if findSpecialSymbol(changeListTitleText: addListText){
+            self.view.hideAllToasts()
+            self.view.makeToast(". # $ [ ] 기호를 사용할 수 없습니다")
+            
         } else {
             NotificationCenter.default.post(name: .addListNotificaton, object: addListTextField.text, userInfo: nil)
             self.dismiss(animated: true)
         }
 
+    }
+    
+    // 특수기호 판별
+    private func findSpecialSymbol(changeListTitleText: String) -> Bool{
+        for i in changeListTitleText {
+            if i == "." || i == "#" || i == "$" || i == "[" || i == "]" {
+                return true
+            }
+        }
+        return false
     }
 
 }
