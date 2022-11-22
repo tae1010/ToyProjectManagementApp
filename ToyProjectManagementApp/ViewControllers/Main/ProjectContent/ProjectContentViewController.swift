@@ -147,7 +147,15 @@ class ProjectContentViewController: UIViewController {
         
         switch sender.state {
         case .began:
+            self.view.hideAllToasts()
+            self.view.makeToast("카드를 위아래로 움직이세요", duration: 1)
             BeforeIndexPath.value = indexPath
+            let cell = cardTableView.cellForRow(at: indexPath)
+            cell?.layer.masksToBounds = false
+            cell?.layer.cornerRadius = 0.0
+            cell?.layer.shadowOffset = CGSize(width: -5.0, height: 0.0)
+            cell?.layer.shadowRadius = 5.0
+            cell?.layer.shadowOpacity = 0.4
 
             // cell이 이동될떄마다 projectContent변수 모델에 저장
         case .changed:
@@ -163,14 +171,7 @@ class ProjectContentViewController: UIViewController {
 
                 BeforeIndexPath.value = indexPath
                 
-                print("move")
-            }
-
-        default:
-            
-            // cell 이동이 끝나면 db저장, userdefault에 알림 content 저장
-            if let beforeIndexPath = BeforeIndexPath.value {
-                
+                // db저장
                 let cardName = projectContent[currentPage].detailContent[beforeIndexPath.section].cardName ?? "이동"
                 var count = 0
                 
@@ -187,10 +188,13 @@ class ProjectContentViewController: UIViewController {
                 
                 UserDefault().notificationModelUserDefault(title: cardName, status: "이동", content: "\"\(cardName)\" 카드가 이동되었습니다", date: self.koreanDate(), badge: true)
                 
-                print("default")
+                print("move")
             }
             
             
+        default:
+            // 오류로 default가 실행이 안되는 경우가 있어서 db작성을 move에서 실행
+            print("이동끝")
         }
     }
     
@@ -497,7 +501,7 @@ extension ProjectContentViewController {
         let updateProjectDetailContent = ProjectDetailContent(cardName: "카드를 추가해주세요", color: "", startTime: "", endTime: "")
         
         //list 추가
-        self.ref.child("\(self.emailUid)/project/\(self.id)/content/\(self.projectContent.count)/\(listTitle)/\(0)").updateChildValues(updateContent)
+        self.ref.child("\(emailUid)/project/\(self.id)/content/\(self.projectContent.count)/\(listTitle)/\(0)").updateChildValues(updateContent)
         
         let pc = ProjectContent(listTitle: listTitle, index: self.projectContent.count, detailContent: [updateProjectDetailContent])
         
