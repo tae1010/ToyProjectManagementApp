@@ -28,6 +28,10 @@
 		9333268F2927892B00DE092F /* SharedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9333268E2927892B00DE092F /* SharedData.swift */; };
 		93332695292B703000DE092F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 93332694292B703000DE092F /* GoogleService-Info.plist */; };
 		93332698292B7FE000DE092F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 93332697292B7FE000DE092F /* GoogleService-Info.plist */; };
+		9333269A292CB18800DE092F /* UserInformation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93332699292CB18800DE092F /* UserInformation.storyboard */; };
+		9333269E292CB7CB00DE092F /* UserInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9333269D292CB7CB00DE092F /* UserInformationViewController.swift */; };
+		933326A0292CBECD00DE092F /* UnderLineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9333269F292CBECC00DE092F /* UnderLineTextField.swift */; };
+		933326A2292CC5AA00DE092F /* ExtensionCALayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933326A1292CC5AA00DE092F /* ExtensionCALayer.swift */; };
 		9333CC47285C6B6F005C0262 /* projectCollectionViewPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9333CC46285C6B6E005C0262 /* projectCollectionViewPopup.xib */; };
 		9333CC49285C7173005C0262 /* ProjectPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9333CC48285C7173005C0262 /* ProjectPopupViewController.swift */; };
 		9338C76028FD418A005F6C3B /* ProjectContentViewController+ScrollAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9338C75F28FD418A005F6C3B /* ProjectContentViewController+ScrollAnimation.swift */; };
@@ -131,6 +135,10 @@
 		93332690292B490300DE092F /* ToyProjectManagementApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ToyProjectManagementApp.entitlements; sourceTree = "<group>"; };
 		93332694292B703000DE092F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		93332697292B7FE000DE092F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
+		93332699292CB18800DE092F /* UserInformation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UserInformation.storyboard; sourceTree = "<group>"; };
+		9333269D292CB7CB00DE092F /* UserInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInformationViewController.swift; sourceTree = "<group>"; };
+		9333269F292CBECC00DE092F /* UnderLineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderLineTextField.swift; sourceTree = "<group>"; };
+		933326A1292CC5AA00DE092F /* ExtensionCALayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionCALayer.swift; sourceTree = "<group>"; };
 		9333CC46285C6B6E005C0262 /* projectCollectionViewPopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = projectCollectionViewPopup.xib; sourceTree = "<group>"; };
 		9333CC48285C7173005C0262 /* ProjectPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectPopupViewController.swift; sourceTree = "<group>"; };
 		9338C75F28FD418A005F6C3B /* ProjectContentViewController+ScrollAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProjectContentViewController+ScrollAnimation.swift"; sourceTree = "<group>"; };
@@ -247,6 +255,7 @@
 				93C1C5DB289A8F1B00B4D5EE /* SecondTabbar.storyboard */,
 				930492012919760100DAAF85 /* ThirdTabbar.storyboard */,
 				93049203291A328000DAAF85 /* ForthTabbar.storyboard */,
+				93332699292CB18800DE092F /* UserInformation.storyboard */,
 				9349948D2850905800AAD69B /* Popup */,
 				93DA8F84282FB0FB00217360 /* Cell */,
 			);
@@ -287,6 +296,7 @@
 			children = (
 				93049206291A32F600DAAF85 /* ForthTabbarViewController.swift */,
 				930A5E562920EE9500290D05 /* SignOutPopupViewController.swift */,
+				9333269D292CB7CB00DE092F /* UserInformationViewController.swift */,
 			);
 			path = Forth;
 			sourceTree = "<group>";
@@ -428,6 +438,7 @@
 				93722CEC28D31880007E1132 /* ExtensionUIColor.swift */,
 				933BAEE528E81110003DDFCF /* ExtensionNotification.swift */,
 				9338C76128FD52D0005F6C3B /* ExtensionUIView.swift */,
+				933326A1292CC5AA00DE092F /* ExtensionCALayer.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -440,6 +451,7 @@
 				9340DE8628D4DF0A00B1CEB2 /* LogoLabel.swift */,
 				9340DE8828D6E8C700B1CEB2 /* LogoStackView.swift */,
 				9340DE8A28D6FB4A00B1CEB2 /* CustomTextField.swift */,
+				9333269F292CBECC00DE092F /* UnderLineTextField.swift */,
 			);
 			path = CustomUI;
 			sourceTree = "<group>";
@@ -610,6 +622,7 @@
 				936F8E932897AF0700897316 /* ProjectContentSideMenu.storyboard in Resources */,
 				9338C770290817C7005F6C3B /* ProjectDetailContent.storyboard in Resources */,
 				937CC55928002F1400F18553 /* Main.storyboard in Resources */,
+				9333269A292CB18800DE092F /* UserInformation.storyboard in Resources */,
 				93F9836528F7E69400033A46 /* AddCardListPopup.xib in Resources */,
 				932B5EF428D4B255004CD1E8 /* godoRoundedL.ttf in Resources */,
 				93DEFA9527FAFF1700827C79 /* LaunchScreen.storyboard in Resources */,
@@ -728,8 +741,10 @@
 				933BAEE828E8965A003DDFCF /* ChangeProjectPrograssViewController.swift in Sources */,
 				93DEFA8827FAFF1600827C79 /* SceneDelegate.swift in Sources */,
 				935145F328A1222F009B1DEF /* DateCollectionViewCell.swift in Sources */,
+				933326A0292CBECD00DE092F /* UnderLineTextField.swift in Sources */,
 				933CD6D52911312900B5065B /* UserDefault.swift in Sources */,
 				9380D24C27FF13D9000DC92E /* ThirdTabbarViewController.swift in Sources */,
+				9333269E292CB7CB00DE092F /* UserInformationViewController.swift in Sources */,
 				9340DE8B28D6FB4A00B1CEB2 /* CustomTextField.swift in Sources */,
 				93F9836328F7E59B00033A46 /* AddListPopupViewController.swift in Sources */,
 				935CBC8E2806AE5100759A24 /* Project.swift in Sources */,
@@ -743,6 +758,7 @@
 				93DEFA9027FAFF1600827C79 /* CooperationApp.xcdatamodeld in Sources */,
 				9340E46B2851D29E00338790 /* DetailContentViewController.swift in Sources */,
 				933CD6D12911099200B5065B /* ProjectColorContentViewController.swift in Sources */,
+				933326A2292CC5AA00DE092F /* ExtensionCALayer.swift in Sources */,
 				9340DE8F28DC666A00B1CEB2 /* ExtensionViewControllerToastMessage.swift in Sources */,
 				9315079B290FC88C000DD700 /* DetailContentColorCell.swift in Sources */,
 				9338C7682902EA92005F6C3B /* ChangeListTitlePopupViewController.swift in Sources */,

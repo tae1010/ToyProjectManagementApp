@@ -55,10 +55,10 @@ class ThirdTabbarViewController: UIViewController {
                 //선택한 Item을 TextField에 넣어준다.
             
             index == 0 ? self?.checkNotificationModel() : self?.removeNotificationModel()
-            
-
         }
     }
+    
+    
     
     // 알림 내역 전부 삭제
     private func removeNotificationModel() {
