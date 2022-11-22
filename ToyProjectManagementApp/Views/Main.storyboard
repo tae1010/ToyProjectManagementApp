@@ -82,13 +82,13 @@
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="vWE-ia-oS5" userLabel="소셜로그인버튼">
                                 <rect key="frame" x="70" y="734" width="274" height="40"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="apple" translatesAutoresizingMaskIntoConstraints="NO" id="BJp-vK-eOl">
+                                    <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AppleCircle" translatesAutoresizingMaskIntoConstraints="NO" id="BJp-vK-eOl">
                                         <rect key="frame" x="0.0" y="0.0" width="79.5" height="40"/>
                                     </imageView>
-                                    <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="google" translatesAutoresizingMaskIntoConstraints="NO" id="Zjt-Nh-KNt">
+                                    <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GoogleCircle" translatesAutoresizingMaskIntoConstraints="NO" id="Zjt-Nh-KNt">
                                         <rect key="frame" x="97.5" y="0.0" width="79" height="40"/>
                                     </imageView>
-                                    <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="kakao 1" translatesAutoresizingMaskIntoConstraints="NO" id="umZ-zh-A7Q">
+                                    <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="KakaoCircle" translatesAutoresizingMaskIntoConstraints="NO" id="umZ-zh-A7Q">
                                         <rect key="frame" x="194.5" y="0.0" width="79.5" height="40"/>
                                     </imageView>
                                 </subviews>
@@ -419,7 +419,7 @@
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="dyl-vv-GWe">
                                 <rect key="frame" x="0.0" y="110" width="414" height="713"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="jhv-Qh-fW1">
                                     <size key="itemSize" width="180" height="200"/>
                                     <size key="headerReferenceSize" width="50" height="50"/>
@@ -437,7 +437,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
-                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstItem="XyQ-tp-2me" firstAttribute="centerX" secondItem="1cq-l4-x7v" secondAttribute="centerX" id="NAV-dg-piR"/>
                                         <constraint firstItem="XyQ-tp-2me" firstAttribute="centerY" secondItem="1cq-l4-x7v" secondAttribute="centerY" id="Tk8-SH-Cic"/>
@@ -503,6 +503,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstItem="iOe-7N-i6H" firstAttribute="centerY" secondItem="LR6-JP-wfw" secondAttribute="centerY" id="6UJ-aq-Cmc"/>
                                         <constraint firstItem="iOe-7N-i6H" firstAttribute="leading" secondItem="LR6-JP-wfw" secondAttribute="leadingMargin" id="ngt-4D-gDa"/>
@@ -588,13 +589,13 @@
         </scene>
     </scenes>
     <resources>
+        <image name="AppleCircle" width="70" height="70"/>
         <image name="CategoryBlack" width="23.333333969116211" height="23.333333969116211"/>
         <image name="CategoryFill" width="23.333333969116211" height="23.333333969116211"/>
-        <image name="apple" width="1024" height="1024"/>
+        <image name="GoogleCircle" width="70" height="70"/>
+        <image name="KakaoCircle" width="70" height="70"/>
         <image name="arrow.left" catalog="system" width="128" height="95"/>
         <image name="customStar" width="64" height="64"/>
-        <image name="google" width="1024" height="1024"/>
-        <image name="kakao 1" width="257" height="246"/>
         <image name="logo" width="1024" height="1024"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <namedColor name="primaryColor">

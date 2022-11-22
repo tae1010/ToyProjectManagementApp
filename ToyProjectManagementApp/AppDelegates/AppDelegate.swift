@@ -26,7 +26,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate, ASAuth
             print("로그인 되어 있음", user.uid, user.email ?? "-")
         }
         
-        
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
         GIDSignIn.sharedInstance().delegate = self
         

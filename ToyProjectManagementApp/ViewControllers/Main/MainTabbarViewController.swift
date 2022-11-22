@@ -24,7 +24,7 @@ class MainTabbarViewController: UIViewController {
     var longPressCellIndex: Int? // longpress한 cell의 index
     var longPressCellSection: Int? // longpress한 cell의 section
     
-    var email = " " // 사용자 id
+    var emailUid = " " // 사용자 email uid
     
     @IBOutlet weak var logoImageView: LogoImageView!
     @IBOutlet weak var logoLabel: LogoLabel!
@@ -41,9 +41,9 @@ class MainTabbarViewController: UIViewController {
         super.viewDidLoad()
         hideKeyboardWhenTappedAround() // 화면 클릭시 키보드 내림
         
-        self.email = Auth.auth().currentUser?.providerData[0].providerID == "apple.com" ? String(FirebaseAuth.Auth.auth().currentUser?.uid ?? "applelogin") : self.emailToString(Auth.auth().currentUser?.email ?? "고객")
+        self.emailUid = String(FirebaseAuth.Auth.auth().currentUser?.uid ?? "applelogin")
         
-        print(email, "ㅁㅁㅁ????")
+        print(emailUid, "ㅁㅁㅁ????")
         self.configureView()
         self.configureNoProjectLabel()
     }
@@ -60,12 +60,11 @@ class MainTabbarViewController: UIViewController {
         super.viewWillDisappear(true)
         print(#fileID, #function, #line, "- mainttabbar viewwillappear")
         self.removeNotification()
-        
-        
-        print(self.projectListPrograssTrue.count + self.projectListPrograssFalse.count, self.projectListPrograssTrue.count, self.projectListPrograssFalse.count, "????")
+
         //sharedData class에 객체 저장
         SharedData(totalProjectCount: self.projectListPrograssTrue.count + self.projectListPrograssFalse.count, inProgressProjectCount: self.projectListPrograssTrue.count, completeProjectCount: self.projectListPrograssFalse.count)
     }
+    
     
     //프로젝트 collection 추가
     @IBAction func addProjectButtonTap(_ sender: UIButton) {
@@ -147,7 +146,7 @@ extension MainTabbarViewController {
         self.projectListPrograssFalse.removeAll()
         self.projectListPrograssTrue.removeAll()
 
-        ref.child(email).observeSingleEvent(of: .value, with: { [self] snapshot in
+        ref.child("\(emailUid)/project").observeSingleEvent(of: .value, with: { [self] snapshot in
           // Get user value
             guard let value = snapshot.value as? Dictionary<String, Any> else {
                 DispatchQueue.main.async {
@@ -266,7 +265,7 @@ extension MainTabbarViewController {
         
         print(#fileID, #function, #line, "- 삭제하기 클릭")
         
-        self.ref.child("\(email)/\(id)/").removeValue()
+        self.ref.child("\(emailUid)/project/\(id)/").removeValue()
         
         if section == 0 {
             self.projectListPrograssTrue.remove(at: index)
@@ -282,7 +281,7 @@ extension MainTabbarViewController {
     
     private func changeProjectTitle(index: Int, id: String, section: Int, projectTitle: String) {
         
-        self.ref.child("\(email)/\(id)").updateChildValues(["projectTitle": projectTitle])
+        self.ref.child("\(emailUid)/project/\(id)").updateChildValues(["projectTitle": projectTitle])
         
         if section == 0 {
             self.projectListPrograssTrue[index].projectTitle = projectTitle
@@ -300,7 +299,7 @@ extension MainTabbarViewController {
         print(#fileID, #function, #line, "- 변경하기 클릭")
         if section == 0 {
             self.projectListPrograssTrue[index].prograss = prograss
-            self.ref.child("\(email)/\(id)").updateChildValues(["prograss": prograss])
+            self.ref.child("\(emailUid)/project/\(id)").updateChildValues(["prograss": prograss])
             
             // projectListPrograssFalse에 projectListPrograssTrue에 있던 배열을 넣어주고 projectListPrograssTrue 인덱스 삭제
             self.projectListPrograssFalse.append(self.projectListPrograssTrue[index])
@@ -308,7 +307,7 @@ extension MainTabbarViewController {
         } else {
             
             self.projectListPrograssFalse[index].prograss = prograss
-            self.ref.child("\(email)/\(id)").updateChildValues(["prograss": prograss])
+            self.ref.child("\(emailUid)/project/\(id)").updateChildValues(["prograss": prograss])
             
             self.projectListPrograssTrue.append(self.projectListPrograssFalse[index])
             self.projectListPrograssFalse.remove(at: index)
@@ -345,7 +344,7 @@ extension MainTabbarViewController: UICollectionViewDelegate {
         
         guard let projectContentViewController = projectContentStroyboard.instantiateViewController(withIdentifier: "ProjectContentViewController") as? ProjectContentViewController else { return }
         
-        projectContentViewController.email = self.email
+        projectContentViewController.emailUid = self.emailUid
         projectContentViewController.id = indexPath.section == 0 ? projectListPrograssTrue[indexPath.row].id : projectListPrograssFalse[indexPath.row].id
         projectContentViewController.projectTitle = indexPath.section == 0 ? projectListPrograssTrue[indexPath.row].projectTitle : projectListPrograssFalse[indexPath.row].projectTitle
         projectContentViewController.modalPresentationStyle = .fullScreen
@@ -461,7 +460,7 @@ extension MainTabbarViewController {
         self.projectListPrograssTrue[index].important.toggle() // important 버튼을 클릭하면 true/ false가 바뀜
         
         // 바뀐 important값을 db에 저장
-        self.ref.child("\(email)/\(self.projectListPrograssTrue[index].id)").updateChildValues(["important": self.projectListPrograssTrue[index].important])
+        self.ref.child("\(emailUid)/project/\(self.projectListPrograssTrue[index].id)").updateChildValues(["important": self.projectListPrograssTrue[index].important])
         
         // true로 바뀌었을때
         if self.projectListPrograssTrue[index].important {
@@ -492,7 +491,7 @@ extension MainTabbarViewController {
         self.projectListPrograssFalse[index].important.toggle() // important 버튼을 클릭하면 true/ false가 바뀜
         
         // 바뀐 important값을 db에 저장
-        self.ref.child("\(email)/\(self.projectListPrograssFalse[index].id)").updateChildValues(["important": self.projectListPrograssFalse[index].important])
+        self.ref.child("\(emailUid)/project/\(self.projectListPrograssFalse[index].id)").updateChildValues(["important": self.projectListPrograssFalse[index].important])
         
         // true로 바뀌었을때
         if self.projectListPrograssFalse[index].important {
@@ -633,7 +632,7 @@ extension MainTabbarViewController: CreateProjectDelegate {
     func createProject(title: String?) {
         let title = title ?? ""
         let id = UUID().uuidString
-        let email = Auth.auth().currentUser?.providerData[0].providerID == "apple.com" ? String(FirebaseAuth.Auth.auth().currentUser?.uid ?? "applelogin") : self.emailToString(Auth.auth().currentUser?.email ?? "고객")
+        let emailUid = String(FirebaseAuth.Auth.auth().currentUser?.uid ?? "applelogin")
         
         let project = Project(id: id, projectTitle: title, important: false, currentTime: self.koreanDate(), prograss: false)
         
@@ -644,14 +643,14 @@ extension MainTabbarViewController: CreateProjectDelegate {
         self.sortFirstSection()
         
         //firebase에 데이터 입력
-        self.ref.child("\(email)/\(id)").updateChildValues(["important": false])
-        self.ref.child("\(email)/\(id)").updateChildValues(["projectTitle": title])
-        self.ref.child("\(email)/\(id)").updateChildValues(["currentTime": self.koreanDate() ?? "0"])
-        self.ref.child("\(email)/\(id)").updateChildValues(["prograss": true])
-        self.ref.child("\(email)/\(id)/content/0/리스트 이름을 정해주세요/0").updateChildValues(["cardName": "카드를 추가해주세요", "color": "", "startTime": "", "endTime": ""])
+        self.ref.child("\(emailUid)/project/\(id)").updateChildValues(["important": false])
+        self.ref.child("\(emailUid)/project/\(id)").updateChildValues(["projectTitle": title])
+        self.ref.child("\(emailUid)/project/\(id)").updateChildValues(["currentTime": self.koreanDate() ?? "0"])
+        self.ref.child("\(emailUid)/project/\(id)").updateChildValues(["prograss": true])
+        self.ref.child("\(emailUid)/project/\(id)/content/0/리스트 이름을 정해주세요/0").updateChildValues(["cardName": "카드를 추가해주세요", "color": "", "startTime": "", "endTime": ""])
         
         // label color content
-        self.ref.child("\(email)/\(id)").updateChildValues(["colorContent": colorContent])
+        self.ref.child("\(emailUid)/project/\(id)").updateChildValues(["colorContent": colorContent])
         
         UserDefault().notificationModelUserDefault(title: title, status: "생성", content: "\"\(title)\" 프로젝트가 생성되었습니다.", date: self.koreanDate(), badge: true)
 

@@ -28,7 +28,7 @@ class ProjectContentViewController: UIViewController {
     
     var ref: DatabaseReference! = Database.database().reference() // realtime DB
 
-    var email = "" //사용자 email을 저장할 변수
+    var emailUid = "" //사용자 email을 저장할 변수
     var id: String = "" // 프로젝트의 uuid값을 받을 변수
     var currentPage: Int = 0 // 현재 페이지
     var currentTitle: String = "이름없음" // 현제 페이지의 title
@@ -181,7 +181,7 @@ class ProjectContentViewController: UIViewController {
                     let endTime = i.endTime
 
                     let detailContent = ["cardName": cardName, "color": color, "startTime": startTime, "endTime": endTime]
-                    self.ref.child("\(email)/\(id)/content/\(currentPage)/\(self.currentTitle)/\(count)").setValue(detailContent)
+                    self.ref.child("\(emailUid)/project/\(id)/content/\(currentPage)/\(self.currentTitle)/\(count)").setValue(detailContent)
                     count += 1
                 }
                 
@@ -208,7 +208,7 @@ class ProjectContentViewController: UIViewController {
         projectSideBarViewController.projectTitle = self.projectTitle
         projectSideBarViewController.currentPage = self.currentPage
         projectSideBarViewController.projectContent = self.projectContent
-        projectSideBarViewController.email = self.email
+        projectSideBarViewController.emailUid = self.emailUid
         projectSideBarViewController.id = self.id
         
         projectSideBarViewController.moveListDelegate = self
@@ -230,7 +230,7 @@ class ProjectContentViewController: UIViewController {
         
         projectColorContentViewController.modalPresentationStyle = .fullScreen
         projectColorContentViewController.id = self.id
-        projectColorContentViewController.email = self.email
+        projectColorContentViewController.emailUid = self.emailUid
         
         present(projectColorContentViewController, animated: true, completion: nil)
     }
@@ -263,7 +263,7 @@ extension ProjectContentViewController {
     private func readDB() {
         self.hideViews()
         
-        self.ref.child("\(email)/\(id)/content").observeSingleEvent(of: .value, with: { [weak self] snapshot in
+        self.ref.child("\(emailUid)/project/\(id)/content").observeSingleEvent(of: .value, with: { [weak self] snapshot in
             guard let self = self else { return }
             guard let value = snapshot.value as? [[String: Any]] else {
                 self.showViews()
@@ -395,7 +395,7 @@ extension ProjectContentViewController: UITableViewDataSource {
         // currentpage에 있는 projectDetailContent 값을 전달
         detailContentViewController.projectDetailContent = self.projectContent[currentPage].detailContent[indexPath.section]
         detailContentViewController.index = indexPath.section
-        detailContentViewController.email = self.email
+        detailContentViewController.emailUid = self.emailUid
         detailContentViewController.id = self.id
         
 //        detailContentViewController.modalPresentationStyle = .fullScreen
@@ -420,7 +420,7 @@ extension ProjectContentViewController: UITableViewDataSource {
         let deleteCardTitle = self.projectContent[self.currentPage].detailContent[index].cardName ?? "카드삭제"
         
         self.projectContent[self.currentPage].detailContent.remove(at: index)
-        self.ref.child("\(email)/\(id)/content/\(currentPage)/\(self.currentTitle)").removeValue()
+        self.ref.child("\(emailUid)/project/\(id)/content/\(currentPage)/\(self.currentTitle)").removeValue()
         //배열 중간값이 삭제될수 있기 떄문에 db배열을 갱신해줘야함
         var count = 0
         
@@ -432,7 +432,7 @@ extension ProjectContentViewController: UITableViewDataSource {
             
             let detailContent = ["cardName": cardName, "color": color, "startTime": startTime, "endTime": endTime]
             
-            self.ref.child("\(email)/\(id)/content/\(currentPage)/\(self.currentTitle)/\(count)").setValue(detailContent)
+            self.ref.child("\(emailUid)/project/\(id)/content/\(currentPage)/\(self.currentTitle)/\(count)").setValue(detailContent)
             count += 1
         }
         
@@ -472,7 +472,7 @@ extension ProjectContentViewController {
         
         let indexPath = IndexPath(row: row, section: section)
         
-        self.ref.child("\(self.email)/\(self.id)/content/\(self.currentPage)/\(self.currentTitle)").updateChildValues(["\(self.projectContent[self.currentPage].detailContent.count)": updateContent])
+        self.ref.child("\(self.emailUid)/project/\(self.id)/content/\(self.currentPage)/\(self.currentTitle)").updateChildValues(["\(self.projectContent[self.currentPage].detailContent.count)": updateContent])
         
         self.projectContent[self.currentPage].detailContent.append(updateProjectDetailContent)
         
@@ -497,7 +497,7 @@ extension ProjectContentViewController {
         let updateProjectDetailContent = ProjectDetailContent(cardName: "카드를 추가해주세요", color: "", startTime: "", endTime: "")
         
         //list 추가
-        self.ref.child("\(self.email)/\(self.id)/content/\(self.projectContent.count)/\(listTitle)/\(0)").updateChildValues(updateContent)
+        self.ref.child("\(self.emailUid)/project/\(self.id)/content/\(self.projectContent.count)/\(listTitle)/\(0)").updateChildValues(updateContent)
         
         let pc = ProjectContent(listTitle: listTitle, index: self.projectContent.count, detailContent: [updateProjectDetailContent])
         

@@ -22,7 +22,7 @@ protocol MoveListDelegate: AnyObject {
 class ProjectListManagementViewController: UIViewController {
     
     var projectContent = [ProjectContent]()
-    var email = ""
+    var emailUid = ""
     var id = ""
     
     var listName = [String]()
@@ -188,7 +188,7 @@ extension ProjectListManagementViewController: ChangeListTitleDelegate {
         var count = 0
 
         // 변경된 db내용 삭제
-        self.ref.child("\(email)/\(id)/content/\(index.row)").removeValue()
+        self.ref.child("\(emailUid)/project/\(id)/content/\(index.row)").removeValue()
 
         // 변경된 내용 db저장
         for i in self.projectContent[index.row].detailContent {
@@ -200,7 +200,7 @@ extension ProjectListManagementViewController: ChangeListTitleDelegate {
 
             let detailContent = ["cardName": cardName, "color": color, "startTime": startTime, "endTime": endTime]
 
-            self.ref.child("\(email)/\(id)/content/\(index.row)/\(listTitle)/\(count)").setValue(detailContent)
+            self.ref.child("\(emailUid)/project/\(id)/content/\(index.row)/\(listTitle)/\(count)").setValue(detailContent)
 
             count += 1
         }
@@ -228,7 +228,7 @@ extension ProjectListManagementViewController: DeleteListDelegate {
         let beforeListTitle = self.projectContent[index.row].listTitle
         
         // index.row = 선택된 리스트
-        self.ref.child("\(email)/\(id)/content").removeValue()
+        self.ref.child("\(emailUid)/project/\(id)/content").removeValue()
 
         self.projectContent.remove(at: index.row)
         self.listName.remove(at: index.row)
@@ -248,7 +248,7 @@ extension ProjectListManagementViewController: DeleteListDelegate {
                 
                 let detailContent = ["cardName": cardName, "color": color, "startTime": startTime, "endTime": endTime]
                 
-                self.ref.child("\(email)/\(id)/content/\(listCount)/\(listTitle)/\(cardCount)").setValue(detailContent)
+                self.ref.child("\(emailUid)/project/\(id)/content/\(listCount)/\(listTitle)/\(cardCount)").setValue(detailContent)
                 
                 cardCount += 1
             }

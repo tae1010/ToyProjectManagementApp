@@ -27,7 +27,7 @@ class ThirdTabbarViewController: UIViewController {
         self.configureNotificationTitleLabel()
         self.configureNotificationTableView()
         self.configureNotificationAlertLabel()
-        
+
     }
     
     override func viewWillAppear(_ animated: Bool) {

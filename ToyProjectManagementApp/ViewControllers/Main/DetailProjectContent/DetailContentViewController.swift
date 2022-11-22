@@ -47,7 +47,7 @@ class DetailContentViewController: UIViewController {
     var cardColor: UIColor = .white
     var cardColorString = "" // "color\(index)"
     var colorContent = [String](repeating: "", count: 16) // color content값들이 들어있는 16칸 배열
-    var email = ""
+    var emailUid = ""
     
     var timeSelectMode: TimeSelectMode = .startTime // 처음에 시작시간을 입력할수 있게 하기
 
@@ -412,9 +412,9 @@ extension DetailContentViewController {
         hideViews()
         print(#fileID, #function, #line, "- ProjectColorContentViewController readDB실행")
         self.colorContent.removeAll()
-        print(email, id)
+        print(emailUid, id)
         
-        ref.child("\(email)/\(id)/colorContent").observeSingleEvent(of: .value, with: { snapshot in
+        ref.child("\(emailUid)/project/\(id)/colorContent").observeSingleEvent(of: .value, with: { snapshot in
             guard let value = snapshot.value as? [String?] else {
                 self.showViews()
                 return

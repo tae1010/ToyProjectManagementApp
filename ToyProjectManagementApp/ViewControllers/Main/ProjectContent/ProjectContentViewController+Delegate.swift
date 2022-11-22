@@ -53,14 +53,14 @@ extension ProjectContentViewController: MoveContentDelegate {
         self.projectContent[self.currentPage].detailContent.remove(at: cellIndexPath)
         
         // 배열 순서를 위해 db에 detailContent 다시저장
-        self.ref.child("\(email)/\(id)/content/\(currentPage)/\(self.currentTitle)").removeValue()
+        self.ref.child("\(emailUid)/project/\(id)/content/\(currentPage)/\(self.currentTitle)").removeValue()
         for i in self.projectContent[self.currentPage].detailContent {
             let cardName = i.cardName ?? ""
             let color = i.color ?? ""
             let startTime = i.startTime ?? ""
             let endTime = i.endTime ?? ""
             
-            self.ref.child("\(email)/\(id)/content/\(currentPage)/\(currentTitle)/\(count)").setValue(["cardName": cardName, "color": color, "startTime": startTime, "endTime": endTime])
+            self.ref.child("\(emailUid)/project/\(id)/content/\(currentPage)/\(currentTitle)/\(count)").setValue(["cardName": cardName, "color": color, "startTime": startTime, "endTime": endTime])
             count += 1
         }
         
@@ -70,7 +70,7 @@ extension ProjectContentViewController: MoveContentDelegate {
         self.cardTableView.reloadData()
         
         count = 0
-        self.ref.child("\(email)/\(id)/content/\(currentPage)/\(self.currentTitle)").removeValue()
+        self.ref.child("\(emailUid)/project/\(id)/content/\(currentPage)/\(self.currentTitle)").removeValue()
         for i in self.projectContent[self.currentPage].detailContent {
             
             let cardName = i.cardName ?? ""
@@ -78,7 +78,7 @@ extension ProjectContentViewController: MoveContentDelegate {
             let startTime = i.startTime ?? ""
             let endTime = i.endTime ?? ""
             
-            self.ref.child("\(email)/\(id)/content/\(currentPage)/\(currentTitle)/\(count)").setValue(["cardName": cardName, "color": color, "startTime": startTime, "endTime": endTime])
+            self.ref.child("\(emailUid)/project/\(id)/content/\(currentPage)/\(currentTitle)/\(count)").setValue(["cardName": cardName, "color": color, "startTime": startTime, "endTime": endTime])
             count += 1
         }
         
@@ -102,7 +102,7 @@ extension ProjectContentViewController: SendContentDelegate {
         self.projectContent[self.currentPage].detailContent[index].color = color
         
         self.cardTableView.reloadRows(at: [[index,0]], with: .automatic) // 선택된 cell 갱신
-        self.ref.child("\(email)/\(id)/content/\(currentPage)/\(currentTitle)/\(index)").updateChildValues(["cardName": name, "color": color, "startTime": startTime, "endTime": endTime])
+        self.ref.child("\(emailUid)/project/\(id)/content/\(currentPage)/\(currentTitle)/\(index)").updateChildValues(["cardName": name, "color": color, "startTime": startTime, "endTime": endTime])
         
         UserDefault().notificationModelUserDefault(title: name, status: "정보변경", content: "\"\(name)\" 카드정보가 수정되었습니다", date: koreanDate(), badge: true)
         

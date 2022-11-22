@@ -25,7 +25,7 @@ class ProjectColorContentViewController: UIViewController {
     
     var currentStringColor: Int? // 선택한 색(string)
     var colorContent = [String](repeating: "", count: 16) // color content값들이 들어있는 16칸 배열
-    var email = ""
+    var emailUid = ""
     var id = ""
     
     let detailCGColor: [CGColor] = [UIColor.color0CGColor, UIColor.color1CGColor, UIColor.color2CGColor, UIColor.color3CGColor, UIColor.color4CGColor, UIColor.color5CGColor, UIColor.color6CGColor, UIColor.color7CGColor, UIColor.color8CGColor, UIColor.color9CGColor, UIColor.color10CGColor, UIColor.color11CGColor, UIColor.color12CGColor, UIColor.color13CGColor, UIColor.color14CGColor, UIColor.color15CGColor]
@@ -67,7 +67,7 @@ class ProjectColorContentViewController: UIViewController {
         
         self.colorContent[currentColor] = cardContentText
         
-        self.ref.child("\(email)/\(id)/colorContent/\(currentColor)").setValue(cardContentText)
+        self.ref.child("\(emailUid)/project/\(id)/colorContent/\(currentColor)").setValue(cardContentText)
         self.view.hideAllToasts()
         self.view.makeToast("변경되었습니다", duration: 0.5)
     }
@@ -181,7 +181,7 @@ extension ProjectColorContentViewController {
         print(#fileID, #function, #line, "- ProjectColorContentViewController readDB실행")
         self.colorContent.removeAll()
         
-        ref.child("\(email)/\(id)/colorContent").observeSingleEvent(of: .value, with: { snapshot in
+        ref.child("\(emailUid)/project/\(id)/colorContent").observeSingleEvent(of: .value, with: { snapshot in
           // Get user value
 
             guard let value = snapshot.value as? [String?] else {

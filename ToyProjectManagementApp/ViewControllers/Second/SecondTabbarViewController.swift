@@ -321,9 +321,9 @@ extension SecondTabbarViewController {
     
     // second탭바에 들어오면 projectID만 따로 배열로 저장
     private func readProjectId() {
-        let email = Auth.auth().currentUser?.providerData[0].providerID == "apple.com" ? String(FirebaseAuth.Auth.auth().currentUser?.uid ?? "applelogin") : self.emailToString(Auth.auth().currentUser?.email ?? "고객")
+        let emailUid = String(FirebaseAuth.Auth.auth().currentUser?.uid ?? "applelogin")
         
-        self.ref.child("\(email)/").observeSingleEvent(of: .value, with: { snapshot in
+        self.ref.child("\(emailUid)/project/").observeSingleEvent(of: .value, with: { snapshot in
             guard let value = snapshot.value as? [String: Any] else { return }
             
             for (key,val) in value {
@@ -350,9 +350,9 @@ extension SecondTabbarViewController {
         
         self.projectContent.removeAll()
         
-        let email = Auth.auth().currentUser?.providerData[0].providerID == "apple.com" ? String(FirebaseAuth.Auth.auth().currentUser?.uid ?? "applelogin") : self.emailToString(Auth.auth().currentUser?.email ?? "고객")
+        let emailUid = String(FirebaseAuth.Auth.auth().currentUser?.uid ?? "applelogin")
 
-        self.ref.child("\(email)/\(id)/content").observeSingleEvent(of: .value, with: { snapshot in
+        self.ref.child("\(emailUid)/project//\(id)/content").observeSingleEvent(of: .value, with: { snapshot in
             guard let value = snapshot.value as? [[String: Any]] else { return }
             
             for list in value {

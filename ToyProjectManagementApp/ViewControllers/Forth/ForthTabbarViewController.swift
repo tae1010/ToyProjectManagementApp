@@ -31,6 +31,8 @@ class ForthTabbarViewController: UIViewController {
 
     @IBOutlet weak var resetPasswordView: UIView!
     
+    var email = " "
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //pop제스처를 막아줌
@@ -47,7 +49,8 @@ class ForthTabbarViewController: UIViewController {
         navigationController?.navigationBar.isHidden = true
         
         //email에 유저 email값을 넣고 만약에 값이 없다면 고객이라는 값을 넣는다
-        let email = Auth.auth().currentUser?.providerData[0].providerID == "apple.com" ? String(FirebaseAuth.Auth.auth().currentUser?.uid ?? "applelogin") : Auth.auth().currentUser?.email ?? "고객"
+        let email = String(FirebaseAuth.Auth.auth().currentUser?.uid ?? "applelogin")
+        
         
         let isEmailSignin = Auth.auth().currentUser?.providerData[0].providerID == "password"
         print(Auth.auth().currentUser?.providerData[0].providerID,"????????")
@@ -77,7 +80,7 @@ class ForthTabbarViewController: UIViewController {
     }
     
     @IBAction func resetPasswordButtonTap(_ sender: UIButton) {
-        let email = Auth.auth().currentUser?.providerData[0].providerID == "apple.com" ? String(FirebaseAuth.Auth.auth().currentUser?.uid ?? "applelogin") : Auth.auth().currentUser?.email ?? "고객"
+        let email = String(FirebaseAuth.Auth.auth().currentUser?.uid ?? "applelogin")
         
         Auth.auth().sendPasswordReset(withEmail: email, completion: nil)
         
@@ -86,6 +89,7 @@ class ForthTabbarViewController: UIViewController {
     }
 }
 
+// MARK: - configure
 extension ForthTabbarViewController {
     
     private func configure() {
@@ -103,10 +107,10 @@ extension ForthTabbarViewController {
     }
     
     private func configureEmailLabel() {
-        let email = Auth.auth().currentUser?.providerData[0].providerID == "apple.com" ? String(FirebaseAuth.Auth.auth().currentUser?.uid ?? "applelogin") : Auth.auth().currentUser?.email ?? "고객"
+        let emailUid = String(FirebaseAuth.Auth.auth().currentUser?.uid ?? "applelogin")
         
         self.emailLabel.font = UIFont(name: "NanumGothicOTFBold", size: 16)
-        self.emailLabel.text = email
+        self.emailLabel.text = emailUid
     }
     
     private func configureSocialLabel() {
@@ -159,6 +163,5 @@ extension ForthTabbarViewController: LogoutDelegate {
             print("Error signout \(sighOutError.localizedDescription)")
         }
     }
-    
-    
+
 }

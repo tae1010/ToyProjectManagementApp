@@ -118,14 +118,14 @@ extension LoginViewController {
     
     // 기본 로그인
     private func login(){
-
+        
         self.hideViews()
         
         guard let email = self.emailTextField.text else { return }
         guard let password = self.passwordTextField.text else { return }
-
+        
         UserDefaults.standard.set(email, forKey: "email")
-
+        
         Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
             
             if let error = error {
@@ -150,19 +150,19 @@ extension LoginViewController {
                 print("login success")
                 
                 self.showMainViewController()
-                self.showViews()
-
+                
             }
         }
     }
     
     // mainViewController 이동
     private func showMainViewController() {
+        
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let mainTabbarViewController = storyboard.instantiateViewController(withIdentifier: "MainTabbar")
         mainTabbarViewController.modalPresentationStyle = .fullScreen
         mainTabbarViewController.modalTransitionStyle = .crossDissolve
-        
+        self.showViews()
         navigationController?.show(mainTabbarViewController, sender: nil)
     }
     
@@ -181,13 +181,11 @@ extension LoginViewController {
     }
     
     @objc func tapGoogleImageSelector(sender: UITapGestureRecognizer) {
-        self.hideViews()
         GIDSignIn.sharedInstance().signIn()
     }
     
     @objc func tapAppleImageSelector(sender: UITapGestureRecognizer) {
         print("tapAppleLogo")
-        self.hideViews()
         // 로그인 프로세스를 시작하는 메소드
         let request = createAppleIDRequest() // Apple ID를 기반으로 사용자를 인증하는 요청을 생성하는 메커니즘
         let authorizationController = ASAuthorizationController(authorizationRequests: [request]) // 권한 부여 요청을 관리하는 컨트롤러
@@ -195,7 +193,6 @@ extension LoginViewController {
         authorizationController.delegate = self
         authorizationController.presentationContextProvider = self
         authorizationController.performRequests()
-        
     }
     
     @objc func tapKakaoImageSelector(sender: UITapGestureRecognizer) {
@@ -208,7 +205,7 @@ extension LoginViewController {
         let request = appleIDProvider.createRequest()
         // 애플로그인은 사용자에게서 2가지 정보를 요구함
         request.requestedScopes = [.fullName, .email]
-        
+        print(request.requestedScopes = [.fullName, .email])
         let nonce = randomNonceString()
         request.nonce = sha256(nonce)
         currentNonce = nonce
@@ -276,7 +273,7 @@ extension LoginViewController {
 }
 
 
-// MARK: - 인증 관련 콜백 프로토콜
+// MARK: - 애플 인증 관련 콜백 프로토콜
 extension LoginViewController: ASAuthorizationControllerDelegate {
     
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
@@ -294,11 +291,14 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
                 return
             }
             
+            
+            
             // 검색한 ID 토큰을 문자열로 변환
             guard let idTokenString = String(data: appleIDtoken, encoding: .utf8) else {
                 print("Unable to serialize token string from data: \(appleIDtoken.debugDescription)")
                 return
             }
+            
             
             // nonce와 ID 토큰을 사용해 OAuthProvider에게 방금 로그인한 사용자를 나타내는 credential을 생성하도록 요청
             let credential = OAuthProvider.credential(withProviderID: "apple.com",
@@ -308,24 +308,64 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
             // credential을 사용하여 Firebase에 로그인
             FirebaseAuth.Auth.auth().signIn(with: credential) { (authDataResult, error) in
                 // 인증 결과에서 Firebase 사용자를 검색하고 사용자 정보를 표시할 수 있다.
+                
+                /// 2번째 애플 로그인부터는 email이 identityToken에 들어있음.
+                if authDataResult?.user.email == nil {
+                    print(self.decode(jwtToken: idTokenString)["email"] as? String ?? "","이게 변환이 잘됨?")
+                }
+                print(idTokenString)
                 if let user = authDataResult?.user {
                     print("애플 로그인 성공!")
                     print(user.uid, "//")
                     print(user.email, "//")
                     print(user.phoneNumber)
+                    self.showViews()
                     self.showMainViewController()
                 }
                 
                 if error != nil {
                     print("여기서 에러")
                     print(error?.localizedDescription ?? "error" as Any)
+                    self.showViews()
                     return
                 }
             }
         }
         
     }
+
+    
+    /// JWTToken -> dictionary
+    func decode(jwtToken jwt: String) -> [String: Any] {
+        let segments = jwt.components(separatedBy: ".")
+        return decodeJWTPart(segments[1]) ?? [:]
+    }
+    
+    func base64UrlDecode(_ value: String) -> Data? {
+        var base64 = value
+            .replacingOccurrences(of: "-", with: "+")
+            .replacingOccurrences(of: "_", with: "/")
+        
+        let length = Double(base64.lengthOfBytes(using: String.Encoding.utf8))
+        let requiredLength = 4 * ceil(length / 4.0)
+        let paddingLength = requiredLength - length
+        if paddingLength > 0 {
+            let padding = "".padding(toLength: Int(paddingLength), withPad: "=", startingAt: 0)
+            base64 = base64 + padding
+        }
+        return Data(base64Encoded: base64, options: .ignoreUnknownCharacters)
+    }
+    
+    func decodeJWTPart(_ value: String) -> [String: Any]? {
+        guard let bodyData = base64UrlDecode(value),
+              let json = try? JSONSerialization.jsonObject(with: bodyData, options: []), let payload = json as? [String: Any] else {
+            return nil
+        }
+        
+        return payload
+    }
 }
+
 
 // MARK: - 프레젠테이션 컨텍스트 프로토콜
 extension LoginViewController: ASAuthorizationControllerPresentationContextProviding {
@@ -366,3 +406,4 @@ private func randomNonceString(length: Int = 32) -> String {
     
     return result
 }
+
