@@ -39,6 +39,9 @@ class UserInformationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.nameTextField.delegate = self
+        self.emailTextField.delegate = self
+        self.phoneNumberTextField.delegate = self
         self.configure()
         print("viewdidload 실행")
     }
@@ -113,5 +116,18 @@ extension UserInformationViewController {
         self.nameTextField.text = name
         self.emailTextField.text = email
         self.phoneNumberTextField.text = phoneNumber
+    }
+}
+
+extension UserInformationViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let text = textField.text else { return false }
+        
+        // 최대 글자수 이상을 입력한 이후에는 중간에 다른 글자를 추가할 수 없게끔 작동
+        if text.count >= 100 {
+            return false
+        }
+        print(text.count)
+        return true
     }
 }

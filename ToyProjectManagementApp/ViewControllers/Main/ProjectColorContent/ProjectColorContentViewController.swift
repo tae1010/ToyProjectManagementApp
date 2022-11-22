@@ -34,6 +34,7 @@ class ProjectColorContentViewController: UIViewController {
         super.viewDidLoad()
         hideKeyboardWhenTappedAround() // 화면 클릭시 키보드 내림
         self.configure()
+        self.cardContentTextField.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -238,4 +239,17 @@ extension ProjectColorContentViewController {
         })
     }
 
+}
+
+extension ProjectColorContentViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let text = textField.text else { return false }
+        
+        // 최대 글자수 이상을 입력한 이후에는 중간에 다른 글자를 추가할 수 없게끔 작동
+        if text.count >= 100 {
+            return false
+        }
+        print(text.count)
+        return true
+    }
 }

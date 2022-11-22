@@ -95,8 +95,10 @@ class DetailContentViewController: UIViewController {
         super.viewDidLoad()
         hideKeyboardWhenTappedAround() // 화면 클릭시 키보드 내림
         
+        
         self.scrollView.delegate = self
         self.configure()
+        self.contentTextView.delegate = self
         
         let tapCardView = UITapGestureRecognizer(target: self, action: #selector(tapCardViewSelector))
         let tabStartTimeLabel = UITapGestureRecognizer(target: self, action: #selector(tabStartLabelSelector))
@@ -485,4 +487,20 @@ extension DetailContentViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         scrollView.bounces = scrollView.contentOffset.y > 0
     }
+}
+
+extension DetailContentViewController: UITextViewDelegate {
+
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        guard let text = textView.text else { return false }
+        
+        // 최대 글자수 이상을 입력한 이후에는 중간에 다른 글자를 추가할 수 없게끔 작동
+        if text.count >= 100 {
+            return false
+        }
+        print(text.count)
+        return true
+    }
+
 }

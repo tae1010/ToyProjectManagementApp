@@ -65,4 +65,17 @@ extension CustomTextField: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         self.layer.borderColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1).cgColor
     }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let text = textField.text else { return false }
+        
+        // 최대 글자수 이상을 입력한 이후에는 중간에 다른 글자를 추가할 수 없게끔 작동
+        if text.count >= 100 {
+            return false
+        }
+        print(text.count)
+        return true
+    }
+    
+    
 }
