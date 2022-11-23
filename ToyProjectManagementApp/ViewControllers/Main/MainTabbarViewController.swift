@@ -9,6 +9,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 import MaterialComponents.MaterialBottomSheet
+import KakaoSDKUser
 
 class MainTabbarViewController: UIViewController {
 
@@ -24,7 +25,8 @@ class MainTabbarViewController: UIViewController {
     var longPressCellIndex: Int? // longpress한 cell의 index
     var longPressCellSection: Int? // longpress한 cell의 section
     
-    var emailUid = " " // 사용자 email uid
+    var emailUid = "" // 사용자 email uid
+    var kakaoUserId = ""
     
     @IBOutlet weak var logoImageView: LogoImageView!
     @IBOutlet weak var logoLabel: LogoLabel!
@@ -40,19 +42,19 @@ class MainTabbarViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         hideKeyboardWhenTappedAround() // 화면 클릭시 키보드 내림
-        
-        self.emailUid = String(FirebaseAuth.Auth.auth().currentUser?.uid ?? "applelogin")
-        
-        print(emailUid, "ㅁㅁㅁ????")
+        print(#fileID, #function, #line, "- 아 왜 안돼냐")
+        self.setData()
         self.configureView()
         self.configureNoProjectLabel()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        
+        self.hideViews()
+        print(#fileID, #function, #line, "- 아 왜 안돼냨ㅋㅋㅋ")
         // readDB에서도 해주지만 db에 아무것도 없을때(아이디도) 실행되어야 하기떄문에 viewwillAppear에서도 실행
-        self.readDB()
+        if self.emailUid != "" { self.readDB() }
+        
         self.setNotification()
     }
     
@@ -115,6 +117,26 @@ class MainTabbarViewController: UIViewController {
 // MARK: - function
 extension MainTabbarViewController {
     
+    private func setData(){
+        UserApi.shared.me() {(user, error) in
+            if let error = error {
+                print(error)
+            }
+            else {
+                print("me() success.")
+                if let userId = user?.id {
+                    self.kakaoUserId = "kakao\(userId)"
+                }
+                
+                print(self.kakaoUserId)
+                self.emailUid = String(FirebaseAuth.Auth.auth().currentUser?.uid ?? self.kakaoUserId)
+                
+                self.readDB()
+            }
+        }
+        
+    }
+    
     // collection view cell 없으면 emptyview 보여주기
     private func hiddenEmptyView() {
         if self.projectListPrograssTrue.isEmpty && self.projectListPrograssFalse.isEmpty {
@@ -140,9 +162,7 @@ extension MainTabbarViewController {
     
     //db값을 읽어서 projectList에 db값을 넣어준 뒤 collectionview 업데이트 해주는 함수
     private func readDB() {
-        
-        self.hideViews()
-        
+
         self.projectListPrograssFalse.removeAll()
         self.projectListPrograssTrue.removeAll()
 
@@ -150,13 +170,13 @@ extension MainTabbarViewController {
           // Get user value
             guard let value = snapshot.value as? Dictionary<String, Any> else {
                 DispatchQueue.main.async {
+                    print("이거실행된거?")
                     self.hiddenEmptyView()
                     self.showViews()
                 }
                 return
             }
-            
-            print(#fileID, #function, #line, "- readDB실행")
+
             for (key,val) in value {
                 let id = key 
                 guard let val = val as? Dictionary<String, Any> else { return }
@@ -180,9 +200,10 @@ extension MainTabbarViewController {
             self.sortSecondSection()
             
             DispatchQueue.main.async {
-                self.hiddenEmptyView()
                 self.showViews()
                 self.projectCollectionView.reloadData()
+                self.hiddenEmptyView()
+                print("readDB끝")
             }
             
         }) { error in
@@ -632,7 +653,6 @@ extension MainTabbarViewController: CreateProjectDelegate {
     func createProject(title: String?) {
         let title = title ?? ""
         let id = UUID().uuidString
-        let emailUid = String(FirebaseAuth.Auth.auth().currentUser?.uid ?? "applelogin")
         
         let project = Project(id: id, projectTitle: title, important: false, currentTime: self.koreanDate(), prograss: false)
         
@@ -641,16 +661,16 @@ extension MainTabbarViewController: CreateProjectDelegate {
         let colorContent = [String](repeating: "", count: 16) // color content
 
         self.sortFirstSection()
-        
+        print(emailUid,"아이거머약")
         //firebase에 데이터 입력
-        self.ref.child("\(emailUid)/project/\(id)").updateChildValues(["important": false])
-        self.ref.child("\(emailUid)/project/\(id)").updateChildValues(["projectTitle": title])
-        self.ref.child("\(emailUid)/project/\(id)").updateChildValues(["currentTime": self.koreanDate() ?? "0"])
-        self.ref.child("\(emailUid)/project/\(id)").updateChildValues(["prograss": true])
-        self.ref.child("\(emailUid)/project/\(id)/content/0/리스트 이름을 정해주세요/0").updateChildValues(["cardName": "카드를 추가해주세요", "color": "", "startTime": "", "endTime": ""])
+        self.ref.child("\(self.emailUid)/project/\(id)").updateChildValues(["important": false])
+        self.ref.child("\(self.emailUid)/project/\(id)").updateChildValues(["projectTitle": title])
+        self.ref.child("\(self.emailUid)/project/\(id)").updateChildValues(["currentTime": self.koreanDate() ?? "0"])
+        self.ref.child("\(self.emailUid)/project/\(id)").updateChildValues(["prograss": true])
+        self.ref.child("\(self.emailUid)/project/\(id)/content/0/리스트 이름을 정해주세요/0").updateChildValues(["cardName": "카드를 추가해주세요", "color": "", "startTime": "", "endTime": ""])
         
         // label color content
-        self.ref.child("\(emailUid)/project/\(id)").updateChildValues(["colorContent": colorContent])
+        self.ref.child("\(self.emailUid)/project/\(id)").updateChildValues(["colorContent": colorContent])
         
         UserDefault().notificationModelUserDefault(title: title, status: "생성", content: "\"\(title)\" 프로젝트가 생성되었습니다.", date: self.koreanDate(), badge: true)
 

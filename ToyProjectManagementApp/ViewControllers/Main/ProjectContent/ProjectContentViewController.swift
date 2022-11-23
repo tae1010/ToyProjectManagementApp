@@ -267,7 +267,7 @@ extension ProjectContentViewController {
     private func readDB() {
         self.hideViews()
         
-        self.ref.child("\(emailUid)/project/\(id)/content").observeSingleEvent(of: .value, with: { [weak self] snapshot in
+        self.ref.child("\(self.emailUid)/project/\(id)/content").observeSingleEvent(of: .value, with: { [weak self] snapshot in
             guard let self = self else { return }
             guard let value = snapshot.value as? [[String: Any]] else {
                 self.showViews()
@@ -424,7 +424,7 @@ extension ProjectContentViewController: UITableViewDataSource {
         let deleteCardTitle = self.projectContent[self.currentPage].detailContent[index].cardName ?? "카드삭제"
         
         self.projectContent[self.currentPage].detailContent.remove(at: index)
-        self.ref.child("\(emailUid)/project/\(id)/content/\(currentPage)/\(self.currentTitle)").removeValue()
+        self.ref.child("\(self.emailUid)/project/\(id)/content/\(currentPage)/\(self.currentTitle)").removeValue()
         //배열 중간값이 삭제될수 있기 떄문에 db배열을 갱신해줘야함
         var count = 0
         
@@ -436,7 +436,7 @@ extension ProjectContentViewController: UITableViewDataSource {
             
             let detailContent = ["cardName": cardName, "color": color, "startTime": startTime, "endTime": endTime]
             
-            self.ref.child("\(emailUid)/project/\(id)/content/\(currentPage)/\(self.currentTitle)/\(count)").setValue(detailContent)
+            self.ref.child("\(self.emailUid)/project/\(id)/content/\(currentPage)/\(self.currentTitle)/\(count)").setValue(detailContent)
             count += 1
         }
         
@@ -501,7 +501,7 @@ extension ProjectContentViewController {
         let updateProjectDetailContent = ProjectDetailContent(cardName: "카드를 추가해주세요", color: "", startTime: "", endTime: "")
         
         //list 추가
-        self.ref.child("\(emailUid)/project/\(self.id)/content/\(self.projectContent.count)/\(listTitle)/\(0)").updateChildValues(updateContent)
+        self.ref.child("\(self.emailUid)/project/\(self.id)/content/\(self.projectContent.count)/\(listTitle)/\(0)").updateChildValues(updateContent)
         
         let pc = ProjectContent(listTitle: listTitle, index: self.projectContent.count, detailContent: [updateProjectDetailContent])
         

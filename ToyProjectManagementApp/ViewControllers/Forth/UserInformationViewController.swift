@@ -11,6 +11,7 @@ import FirebaseDatabase
 import Firebase
 import FirebaseAuth
 import Toast_Swift
+import KakaoSDKUser
 
 protocol MessageDelegate: AnyObject {
     func messageDelegate()
@@ -30,6 +31,8 @@ class UserInformationViewController: UIViewController {
     
     @IBOutlet weak var writeInformationButton: UIButton!
     
+    var emailUid = ""
+
     var email = ""
     var name = ""
     var phoneNumber = ""
@@ -43,13 +46,12 @@ class UserInformationViewController: UIViewController {
         self.emailTextField.delegate = self
         self.phoneNumberTextField.delegate = self
         self.configure()
+        self.setData()
         print("viewdidload 실행")
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        print("와우")
-        self.setData()
-        
+
     }
     
     
@@ -59,17 +61,13 @@ class UserInformationViewController: UIViewController {
     
     @IBAction func tabWriteInformationButton(_ sender: UIButton) {
         
-        let emailUid = FirebaseAuth.Auth.auth().currentUser?.uid ?? " "
-        
-        var name = nameTextField.text ?? " "
-        var email = emailTextField.text ?? " "
-        var phoneNumber = phoneNumberTextField.text ?? " "
+        let name = nameTextField.text ?? " "
+        let email = emailTextField.text ?? " "
+        let phoneNumber = phoneNumberTextField.text ?? " "
         
         self.ref.child("\(emailUid)/userInformation/").updateChildValues(["name": name])
         self.ref.child("\(emailUid)/userInformation/").updateChildValues(["email": email])
         self.ref.child("\(emailUid)/userInformation/").updateChildValues(["phoneNumber": phoneNumber])
-        
-        
         
         self.messageDelegate?.messageDelegate()
         

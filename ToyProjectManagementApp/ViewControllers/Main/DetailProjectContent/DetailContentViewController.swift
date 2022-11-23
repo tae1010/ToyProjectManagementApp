@@ -254,8 +254,6 @@ extension DetailContentViewController {
     }
     
     private func setDate() {
-
-        print(startTimeLabel.text, endTimeLabel.text,"sss")
         self.startLabel.font = UIFont(name: "NanumGothicOTFBold", size: 14)
         self.endLabel.font = UIFont(name: "NanumGothicOTFLight", size: 14)
         

@@ -8,6 +8,7 @@
 import UIKit
 import FirebaseDatabase
 import FirebaseAuth
+import KakaoSDKUser
 
 enum CalendarMode {
     case week // 주 단위 일때
@@ -42,7 +43,8 @@ class SecondTabbarViewController: UIViewController {
     var project = [Project]() // projectID를 저장할 배열, second tabbar가 열리면 db에서 데이터를 읽어와 저장
     var projectContent = [ProjectContent]()
     var scheduleProjectContent = [Schedule]() // scheduleView에 띄우기 위한 모델(projecetContent모델에서 정제)
-    var id: String?
+    var emailUid: String?
+    var kakaoUserId = ""
     var calendarMode: CalendarMode = .halfMonth // 기본으로 halfMonth모드
     var showIndex: Int = 0
     var dayDate: String = "" //현재 날짜(일) ex. 10
@@ -53,6 +55,7 @@ class SecondTabbarViewController: UIViewController {
         self.configure() // 뷰 구성
         self.configureWeekLabel() // weekStackView에 월~일 label 넣기
         self.swipeView()
+        self.setData()
         
     }
     
@@ -314,6 +317,24 @@ extension SecondTabbarViewController {
 
 extension SecondTabbarViewController {
     
+    private func setData(){
+        UserApi.shared.me() {(user, error) in
+            if let error = error {
+                print(error)
+            }
+            else {
+                print("me() success.")
+                if let userId = user?.id {
+                    self.kakaoUserId = "kakao\(userId)"
+                }
+                
+                print(self.kakaoUserId)
+                self.emailUid = String(FirebaseAuth.Auth.auth().currentUser?.uid ?? self.kakaoUserId)
+            }
+        }
+        
+    }
+    
     private func emailToString(_ email: String) -> String {
         let emailToString = email.replacingOccurrences(of: ".", with: ",")
         return emailToString
@@ -321,7 +342,6 @@ extension SecondTabbarViewController {
     
     // second탭바에 들어오면 projectID만 따로 배열로 저장
     private func readProjectId() {
-        let emailUid = String(FirebaseAuth.Auth.auth().currentUser?.uid ?? "applelogin")
         
         self.ref.child("\(emailUid)/project/").observeSingleEvent(of: .value, with: { snapshot in
             guard let value = snapshot.value as? [String: Any] else { return }
@@ -349,8 +369,6 @@ extension SecondTabbarViewController {
     private func readProjectContent(_ id: String) {
         
         self.projectContent.removeAll()
-        
-        let emailUid = String(FirebaseAuth.Auth.auth().currentUser?.uid ?? "applelogin")
 
         self.ref.child("\(emailUid)/project//\(id)/content").observeSingleEvent(of: .value, with: { snapshot in
             guard let value = snapshot.value as? [[String: Any]] else { return }

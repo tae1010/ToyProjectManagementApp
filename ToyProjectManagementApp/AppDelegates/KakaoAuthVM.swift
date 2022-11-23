@@ -17,6 +17,9 @@ class KakaoAuthVM: ObservableObject {
     
     var subscriptions = Set<AnyCancellable>()
     
+    var emailUid = ""
+    var kakaoUserId = ""
+    
     init() {
         print("KakaoAuthVM - handleKakaoLogin() called ")
     }
@@ -29,20 +32,9 @@ class KakaoAuthVM: ObservableObject {
                 print("kakaotak login 애러")
                 print(error)
             }
+            
             else {
                 print("loginWithKakaoTalk() success.")
-                
-                UserApi.shared.accessTokenInfo {(accessTokenInfo, error) in
-                    if let error = error {
-                        print(error)
-                    }
-                    else {
-                        print("accessTokenInfo() success.")
-
-                        //do something
-                        _ = accessTokenInfo
-                    }
-                }
 
                 self.showMainViewController()
                 //do something
@@ -61,17 +53,6 @@ class KakaoAuthVM: ObservableObject {
             else {
                 print("loginWithKakaoAccount() success.")
                 
-                UserApi.shared.accessTokenInfo {(accessTokenInfo, error) in
-                    if let error = error {
-                        print(error)
-                    }
-                    else {
-                        print("accessTokenInfo() success.")
-  
-                        //do something
-                        _ = accessTokenInfo
-                    }
-                }
 
                 self.showMainViewController()
                 //do something
@@ -104,7 +85,6 @@ class KakaoAuthVM: ObservableObject {
     
     // 카카오 로그인 + 토큰 여부 확인
     func handleKakaoLogin() {
-        // 토큰이 있을때
         self.loginKakao()
     }
     
@@ -119,15 +99,16 @@ class KakaoAuthVM: ObservableObject {
             }
         }
     }
+
     
     private func showMainViewController() {
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let mainViewController = storyboard.instantiateViewController(withIdentifier: "MainTabbar")
+        
         mainViewController.modalPresentationStyle = .fullScreen
+
         UIApplication.shared.windows.first?.rootViewController?.show(mainViewController, sender: nil)
+ 
     }
 
 }
-// 로그인 성공 시
-
-

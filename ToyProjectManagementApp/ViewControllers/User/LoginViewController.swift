@@ -203,6 +203,7 @@ extension LoginViewController {
     @objc func tapKakaoImageSelector(sender: UITapGestureRecognizer) {
         print("tapKakaoLogo")
         kakaoAuthVM.handleKakaoLogin()
+        
     }
     
     

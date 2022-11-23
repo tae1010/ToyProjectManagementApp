@@ -12,6 +12,7 @@ import FirebaseDatabase
 import Firebase
 import FirebaseAuth
 import Toast_Swift
+import KakaoSDKUser
 
 class ForthTabbarViewController: UIViewController {
 
@@ -40,14 +41,18 @@ class ForthTabbarViewController: UIViewController {
     var name = ""
     var phoneNumber = ""
     
+    var emailUid = ""
+    var kakaoUserId = ""
+    
     var ref: DatabaseReference! = Database.database().reference()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(emailUid, "dlrjs?")
         //pop제스처를 막아줌
         navigationController?.interactivePopGestureRecognizer?.isEnabled = false
         self.configure()
-        
+        self.setData()
         // user information 창 이동
         let tapUserInformation = UITapGestureRecognizer(target: self, action: #selector(tabUserInformationImageView))
 
@@ -103,6 +108,8 @@ class ForthTabbarViewController: UIViewController {
         userInformationVC.email = self.email
         userInformationVC.phoneNumber = self.phoneNumber
         
+        userInformationVC.emailUid = self.emailUid
+        
         userInformationVC.messageDelegate = self
         
         navigationController?.pushViewController(userInformationVC, animated: true)
@@ -111,8 +118,6 @@ class ForthTabbarViewController: UIViewController {
     //db값을 읽어서 projectList에 db값을 넣어준 뒤 collectionview 업데이트 해주는 함수
     private func readDB() {
         
-        let emailUid = String(FirebaseAuth.Auth.auth().currentUser?.uid ?? "applelogin")
-        self.setDate()
         ref.child("\(emailUid)/userInformation").observeSingleEvent(of: .value, with: { [self] snapshot in
             // Get user value
             guard let value = snapshot.value as? Dictionary<String, String> else { return }
@@ -126,12 +131,18 @@ class ForthTabbarViewController: UIViewController {
             self.email = email
             self.phoneNumber = phoneNumber
             
-            self.setDate()
+            
+            DispatchQueue.main.async {
+                self.emailLabel.text = email
+                self.nameLabel.text = self.name == "" ? "" : "@\(name)"
+            }
             
         }) { error in
             print(error.localizedDescription)
         }
     }
+    
+    
     
     private func hiddenChangePasswordView() {
         let isEmailSignin = Auth.auth().currentUser?.providerData[0].providerID == "password"
@@ -155,12 +166,9 @@ extension ForthTabbarViewController {
     
     private func configureMyPageTitleLabel() {
         self.myPageTitleLabel.font = UIFont(name: "NanumGothicOTFBold", size: 20)
-
     }
     
     private func configureEmailLabel() {
-        let emailUid = String(FirebaseAuth.Auth.auth().currentUser?.uid ?? "applelogin")
-        
         self.emailLabel.font = UIFont(name: "NanumGothicOTFBold", size: 16)
     }
     
@@ -189,9 +197,24 @@ extension ForthTabbarViewController {
         })
     }
     
-    private func setDate() {
-        self.emailLabel.text = email
-        self.nameLabel.text = self.name == "" ? "" : "@\(name)"
+    private func setData() {
+        
+        UserApi.shared.me() {(user, error) in
+            if let error = error {
+                print(error)
+            }
+            else {
+                print("me() success.")
+                if let userId = user?.id {
+                    self.kakaoUserId = "kakao\(userId)"
+                }
+                
+                print(self.kakaoUserId)
+                self.emailUid = String(FirebaseAuth.Auth.auth().currentUser?.uid ?? self.kakaoUserId)
+                self.readDB()
+            }
+        }
+        
     }
 
 }
