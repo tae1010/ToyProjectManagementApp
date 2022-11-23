@@ -8,10 +8,15 @@ target 'ToyProjectManagementApp' do
   pod 'Firebase/Auth'
   pod 'GoogleSignIn', '~> 5.0.2'
   pod 'Firebase/Database', '~> 8.0.0'
+
   pod 'SideMenu'
   pod 'Toast-Swift', '~> 5.0.1'
   pod 'MaterialComponents/BottomSheet'
   pod 'DropDown'
+
+  pod 'KakaoSDKCommon'  # 필수 요소를 담은 공통 모듈
+  pod 'KakaoSDKAuth'  # 사용자 인증
+  pod 'KakaoSDKUser'  # 카카오 로그인, 사용자 관리
 
   # Pods for ToyProjectManagementApp
 

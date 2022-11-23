@@ -12,12 +12,16 @@ import FirebaseAuth
 import CoreData
 import FirebaseDatabase
 import AuthenticationServices
-
+import KakaoSDKCommon
+import KakaoSDKAuth
+import KakaoSDKUser
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate, ASAuthorizationControllerDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        let nativeAppKey = Bundle.main.infoDictionary?["KAKAO_NATIVE_APP_KEY"] ?? "" // config에 저장한 값
         
         //Firebase초기화
         FirebaseApp.configure()
@@ -30,13 +34,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate, ASAuth
         GIDSignIn.sharedInstance().delegate = self
         
         checkAppleSignIn()
+        
+        
+        
+        print(nativeAppKey,"이거 설마 빈값인가?")
+        KakaoSDK.initSDK(appKey: nativeAppKey as! String)
 
         return true
     }
     
-    //구글에 인증프로세스가 끝날때 앱이 수신하는 url을 처리하는 역할
+    
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
-        return GIDSignIn.sharedInstance().handle(url)
+        
+        // 카카오 url 수신
+        if (AuthApi.isKakaoTalkLoginUrl(url)) {
+            return AuthController.handleOpenUrl(url: url)
+        
+        // //구글에 인증프로세스가 끝날때 앱이 수신하는 url을 처리하는 역할
+        } else if GIDSignIn.sharedInstance().handle(url) {
+            return true
+        }
+        
+        return false
     }
     
 

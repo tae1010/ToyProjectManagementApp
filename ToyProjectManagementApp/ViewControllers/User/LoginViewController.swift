@@ -38,6 +38,8 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    lazy var kakaoAuthVM: KakaoAuthVM = { KakaoAuthVM() }()
+    
     var iconClick = true
     var loadingState: LoadingState = .normal // 로딩 상태 (normal)
     
@@ -180,10 +182,12 @@ extension LoginViewController {
         
     }
     
+    // tab google login
     @objc func tapGoogleImageSelector(sender: UITapGestureRecognizer) {
         GIDSignIn.sharedInstance().signIn()
     }
     
+    // tab apple login
     @objc func tapAppleImageSelector(sender: UITapGestureRecognizer) {
         print("tapAppleLogo")
         // 로그인 프로세스를 시작하는 메소드
@@ -195,38 +199,16 @@ extension LoginViewController {
         authorizationController.performRequests()
     }
     
+    // tab kakao login
     @objc func tapKakaoImageSelector(sender: UITapGestureRecognizer) {
         print("tapKakaoLogo")
+        kakaoAuthVM.handleKakaoLogin()
     }
     
-    @available(iOS 13, *)
-    func createAppleIDRequest() -> ASAuthorizationAppleIDRequest {
-        let appleIDProvider = ASAuthorizationAppleIDProvider()
-        let request = appleIDProvider.createRequest()
-        // 애플로그인은 사용자에게서 2가지 정보를 요구함
-        request.requestedScopes = [.fullName, .email]
-        print(request.requestedScopes = [.fullName, .email])
-        let nonce = randomNonceString()
-        request.nonce = sha256(nonce)
-        currentNonce = nonce
-        
-        return request
-    }
     
-    // 해시 알고리즘
-    @available(iOS 13, *)
-    private func sha256(_ input: String) -> String {
-        let inputData = Data(input.utf8)
-        let hashedData = SHA256.hash(data: inputData)
-        let hashString = hashedData.compactMap {
-            return String(format: "%02x", $0)
-        }.joined()
-        
-        return hashString
-    }
 }
 
-// MARK: - indicator
+// MARK: - configure indicator
 extension LoginViewController {
     
     private func hideViews() {
@@ -271,6 +253,51 @@ extension LoginViewController {
             })
     }
 }
+
+
+
+
+// MARK: - 프레젠테이션 컨텍스트 프로토콜
+extension LoginViewController: ASAuthorizationControllerPresentationContextProviding {
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+        return self.view.window!
+    }
+}
+
+// Adapted from https://auth0.com/docs/api-auth/tutorials/nonce#generate-a-cryptographically-random-nonce
+private func randomNonceString(length: Int = 32) -> String {
+    precondition(length > 0)
+    let charset: Array<Character> =
+    Array("0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._")
+    var result = ""
+    var remainingLength = length
+    
+    while remainingLength > 0 {
+        let randoms: [UInt8] = (0 ..< 16).map { _ in
+            var random: UInt8 = 0
+            let errorCode = SecRandomCopyBytes(kSecRandomDefault, 1, &random)
+            if errorCode != errSecSuccess {
+                fatalError("Unable to generate nonce. SecRandomCopyBytes failed with OSStatus \(errorCode)")
+            }
+            return random
+        }
+        
+        randoms.forEach { random in
+            if remainingLength == 0 {
+                return
+            }
+            
+            if random < charset.count {
+                result.append(charset[Int(random)])
+                remainingLength -= 1
+            }
+        }
+    }
+    
+    return result
+}
+
+
 
 
 // MARK: - 애플 인증 관련 콜백 프로토콜
@@ -333,7 +360,6 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
         }
         
     }
-
     
     /// JWTToken -> dictionary
     func decode(jwtToken jwt: String) -> [String: Any] {
@@ -364,46 +390,31 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
         
         return payload
     }
-}
 
-
-// MARK: - 프레젠테이션 컨텍스트 프로토콜
-extension LoginViewController: ASAuthorizationControllerPresentationContextProviding {
-    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
-        return self.view.window!
-    }
-}
-
-// Adapted from https://auth0.com/docs/api-auth/tutorials/nonce#generate-a-cryptographically-random-nonce
-private func randomNonceString(length: Int = 32) -> String {
-    precondition(length > 0)
-    let charset: Array<Character> =
-    Array("0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._")
-    var result = ""
-    var remainingLength = length
-    
-    while remainingLength > 0 {
-        let randoms: [UInt8] = (0 ..< 16).map { _ in
-            var random: UInt8 = 0
-            let errorCode = SecRandomCopyBytes(kSecRandomDefault, 1, &random)
-            if errorCode != errSecSuccess {
-                fatalError("Unable to generate nonce. SecRandomCopyBytes failed with OSStatus \(errorCode)")
-            }
-            return random
-        }
+    @available(iOS 13, *)
+    func createAppleIDRequest() -> ASAuthorizationAppleIDRequest {
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+        let request = appleIDProvider.createRequest()
+        // 애플로그인은 사용자에게서 2가지 정보를 요구함
+        request.requestedScopes = [.fullName, .email]
+        print(request.requestedScopes = [.fullName, .email])
+        let nonce = randomNonceString()
+        request.nonce = sha256(nonce)
+        currentNonce = nonce
         
-        randoms.forEach { random in
-            if remainingLength == 0 {
-                return
-            }
-            
-            if random < charset.count {
-                result.append(charset[Int(random)])
-                remainingLength -= 1
-            }
-        }
+        return request
     }
     
-    return result
-}
+    // 해시 알고리즘
+    @available(iOS 13, *)
+    private func sha256(_ input: String) -> String {
+        let inputData = Data(input.utf8)
+        let hashedData = SHA256.hash(data: inputData)
+        let hashString = hashedData.compactMap {
+            return String(format: "%02x", $0)
+        }.joined()
+        
+        return hashString
+    }
 
+}

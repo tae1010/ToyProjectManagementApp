@@ -23,10 +23,10 @@
 		9315079D290FC8D5000DD700 /* DetailContentColorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9315079C290FC8D5000DD700 /* DetailContentColorCell.xib */; };
 		931F9BB928A7D38B000AFA9E /* ScheduleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 931F9BB828A7D38B000AFA9E /* ScheduleCell.xib */; };
 		931F9BBB28A7D468000AFA9E /* ScheduleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931F9BBA28A7D468000AFA9E /* ScheduleCollectionViewCell.swift */; };
+		932AA48B292E21FF00BD248A /* KakaoAuthVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932AA48A292E21FF00BD248A /* KakaoAuthVM.swift */; };
 		932B5EF428D4B255004CD1E8 /* godoRoundedL.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 932B5EF228D4B252004CD1E8 /* godoRoundedL.ttf */; };
 		932B5EF528D4B255004CD1E8 /* godoRoundedR.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 932B5EF328D4B255004CD1E8 /* godoRoundedR.ttf */; };
 		9333268F2927892B00DE092F /* SharedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9333268E2927892B00DE092F /* SharedData.swift */; };
-		93332695292B703000DE092F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 93332694292B703000DE092F /* GoogleService-Info.plist */; };
 		93332698292B7FE000DE092F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 93332697292B7FE000DE092F /* GoogleService-Info.plist */; };
 		9333269A292CB18800DE092F /* UserInformation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93332699292CB18800DE092F /* UserInformation.storyboard */; };
 		9333269E292CB7CB00DE092F /* UserInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9333269D292CB7CB00DE092F /* UserInformationViewController.swift */; };
@@ -130,11 +130,12 @@
 		9315079C290FC8D5000DD700 /* DetailContentColorCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailContentColorCell.xib; sourceTree = "<group>"; };
 		931F9BB828A7D38B000AFA9E /* ScheduleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScheduleCell.xib; sourceTree = "<group>"; };
 		931F9BBA28A7D468000AFA9E /* ScheduleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleCollectionViewCell.swift; sourceTree = "<group>"; };
+		932AA486292E1B9A00BD248A /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		932AA48A292E21FF00BD248A /* KakaoAuthVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoAuthVM.swift; sourceTree = "<group>"; };
 		932B5EF228D4B252004CD1E8 /* godoRoundedL.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = godoRoundedL.ttf; sourceTree = "<group>"; };
 		932B5EF328D4B255004CD1E8 /* godoRoundedR.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = godoRoundedR.ttf; sourceTree = "<group>"; };
 		9333268E2927892B00DE092F /* SharedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedData.swift; sourceTree = "<group>"; };
 		93332690292B490300DE092F /* ToyProjectManagementApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ToyProjectManagementApp.entitlements; sourceTree = "<group>"; };
-		93332694292B703000DE092F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		93332697292B7FE000DE092F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		93332699292CB18800DE092F /* UserInformation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UserInformation.storyboard; sourceTree = "<group>"; };
 		9333269D292CB7CB00DE092F /* UserInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInformationViewController.swift; sourceTree = "<group>"; };
@@ -281,6 +282,7 @@
 			children = (
 				93DEFA8527FAFF1600827C79 /* AppDelegate.swift */,
 				93DEFA8727FAFF1600827C79 /* SceneDelegate.swift */,
+				932AA48A292E21FF00BD248A /* KakaoAuthVM.swift */,
 			);
 			path = AppDelegates;
 			sourceTree = "<group>";
@@ -484,7 +486,6 @@
 		93DEFA7927FAFF1500827C79 = {
 			isa = PBXGroup;
 			children = (
-				93332694292B703000DE092F /* GoogleService-Info.plist */,
 				93DEFA8427FAFF1600827C79 /* ToyProjectManagementApp */,
 				93DEFA8327FAFF1600827C79 /* Products */,
 				68BFDA4782678AAFA159C129 /* Pods */,
@@ -515,6 +516,7 @@
 				93DEFA9627FAFF1700827C79 /* Info.plist */,
 				93332697292B7FE000DE092F /* GoogleService-Info.plist */,
 				93DEFA8E27FAFF1600827C79 /* CooperationApp.xcdatamodeld */,
+				932AA486292E1B9A00BD248A /* Config.xcconfig */,
 			);
 			path = ToyProjectManagementApp;
 			sourceTree = "<group>";
@@ -611,7 +613,6 @@
 				933BAEEA28E896BD003DDFCF /* ChangeProjectPrograssPopup.xib in Resources */,
 				93AFDA9C28B4CE1B009E815F /* ProjectIdPopup.xib in Resources */,
 				9338C76C2907F4D8005F6C3B /* DeleteListPopup.xib in Resources */,
-				93332695292B703000DE092F /* GoogleService-Info.plist in Resources */,
 				93B6FE3928F56AC200181605 /* ProjectCardCell.xib in Resources */,
 				9340DE7E28D4D8EC00B1CEB2 /* GodoB.otf in Resources */,
 				93F9836128F7E50100033A46 /* AddListPopup.xib in Resources */,
@@ -732,6 +733,7 @@
 				933BAEDA28E5A49A003DDFCF /* ReallyCheckPopupViewController.swift in Sources */,
 				9350DB1628F41A2700646C42 /* ProjectContentViewController.swift in Sources */,
 				933BAEE228E6F025003DDFCF /* CreateProjectPopupViewController.swift in Sources */,
+				932AA48B292E21FF00BD248A /* KakaoAuthVM.swift in Sources */,
 				9340DE8928D6E8C700B1CEB2 /* LogoStackView.swift in Sources */,
 				9353E3C1287D809700C63681 /* DetailColorContent.swift in Sources */,
 				936F8E952897B54C00897316 /* ProjectListManagementViewController.swift in Sources */,
@@ -794,6 +796,7 @@
 /* Begin XCBuildConfiguration section */
 		93DEFA9727FAFF1700827C79 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9040AAC533458F82FCF3EC0A /* Pods-ToyProjectManagementApp.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -856,6 +859,7 @@
 		};
 		93DEFA9827FAFF1700827C79 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EF4E6BEC848B616B6A4E3389 /* Pods-ToyProjectManagementApp.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -927,6 +931,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -959,6 +964,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
