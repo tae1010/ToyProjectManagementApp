@@ -11,6 +11,8 @@ import Firebase
 import FirebaseAuth
 import AuthenticationServices // 사용자가 앱 및 서비스에 쉽게 로그인하게 하는 애플의 프레임워크
 import CryptoKit // 암호화 작업을 안전하고 효율적으로 수행하는 애플의 프레임워크
+import MaterialComponents.MaterialBottomSheet
+import Toast_Swift
 
 /// loading 상태
 enum LoadingState {
@@ -76,7 +78,17 @@ class LoginViewController: UIViewController {
     
  
     @IBAction func tabForgotPasswordButton(_ sender: UIButton) {
-        print("tabtabForgotPasswordButton")
+        
+        let forgotPasswordPopup = ForgotPasswordPopupViewController(nibName: "ForgotPasswordPopup", bundle: nil)
+        forgotPasswordPopup.view.clipsToBounds = false
+        forgotPasswordPopup.view.layer.cornerRadius = 20
+        
+        forgotPasswordPopup.sendMessageDelegate = self
+        
+        let bottomSheet: MDCBottomSheetController = MDCBottomSheetController(contentViewController: forgotPasswordPopup)
+        bottomSheet.mdc_bottomSheetPresentationController?.preferredSheetHeight = self.view.bounds.size.height * 0.3
+        
+        self.present(bottomSheet, animated: true)
     }
 }
 
@@ -418,4 +430,12 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
         return hashString
     }
 
+}
+
+extension LoginViewController: SendMessageDelegate {
+    
+    func sendMessageDelegate() {
+        self.view.hideAllToasts()
+        self.view.makeToast("입력한 이메일로 비밀번호 재설정 메일을 보냈습니다", duration: 2)
+    }
 }

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>717941381274-c8ror4km51ljipbcauqcoqkh670ofkvm.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.717941381274-c8ror4km51ljipbcauqcoqkh670ofkvm</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDBcudxKU3-1FjCavVSNdLxaGSW6vlhfMU</string>
+	<key>GCM_SENDER_ID</key>
+	<string>717941381274</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>Acho.ToyProjectManagementApp</string>
+	<key>PROJECT_ID</key>
+	<string>toyprojectmanagementapp</string>
+	<key>STORAGE_BUCKET</key>
+	<string>toyprojectmanagementapp.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:717941381274:ios:795e07929be5b594d66723</string>
+	<key>DATABASE_URL</key>
+	<string>https://toyprojectmanagementapp-default-rtdb.firebaseio.com</string>
+</dict>
+</plist>

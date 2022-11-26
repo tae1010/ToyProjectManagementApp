@@ -17,9 +17,7 @@ class ChangeListTitlePopupViewController: UIViewController {
     @IBOutlet weak var popupTitleLabel: UILabel!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var changeListTitleButton: UIButton!
-    
     @IBOutlet weak var specialSymbolLabel: UILabel!
-    
     @IBOutlet weak var changeListTitleTextField: CustomTextField!
     
     var clickListTitle: IndexPath?

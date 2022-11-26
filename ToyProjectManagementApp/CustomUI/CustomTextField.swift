@@ -73,7 +73,6 @@ extension CustomTextField: UITextFieldDelegate {
         if text.count >= 100 {
             return false
         }
-        print(text.count)
         return true
     }
     

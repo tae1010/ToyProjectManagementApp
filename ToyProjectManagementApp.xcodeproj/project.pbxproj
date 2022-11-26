@@ -24,10 +24,13 @@
 		931F9BB928A7D38B000AFA9E /* ScheduleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 931F9BB828A7D38B000AFA9E /* ScheduleCell.xib */; };
 		931F9BBB28A7D468000AFA9E /* ScheduleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931F9BBA28A7D468000AFA9E /* ScheduleCollectionViewCell.swift */; };
 		932AA48B292E21FF00BD248A /* KakaoAuthVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932AA48A292E21FF00BD248A /* KakaoAuthVM.swift */; };
+		932AA491292F524200BD248A /* ForgotPasswordPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 932AA490292F524200BD248A /* ForgotPasswordPopup.xib */; };
+		932AA493292F534F00BD248A /* ForgotPasswordPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932AA492292F534F00BD248A /* ForgotPasswordPopupViewController.swift */; };
+		932AA495292F6E9D00BD248A /* DeleteUserPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 932AA494292F6E9D00BD248A /* DeleteUserPopup.xib */; };
+		932AA497292F6F8200BD248A /* DeleteUserPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932AA496292F6F8200BD248A /* DeleteUserPopupViewController.swift */; };
 		932B5EF428D4B255004CD1E8 /* godoRoundedL.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 932B5EF228D4B252004CD1E8 /* godoRoundedL.ttf */; };
 		932B5EF528D4B255004CD1E8 /* godoRoundedR.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 932B5EF328D4B255004CD1E8 /* godoRoundedR.ttf */; };
 		9333268F2927892B00DE092F /* SharedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9333268E2927892B00DE092F /* SharedData.swift */; };
-		93332698292B7FE000DE092F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 93332697292B7FE000DE092F /* GoogleService-Info.plist */; };
 		9333269A292CB18800DE092F /* UserInformation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93332699292CB18800DE092F /* UserInformation.storyboard */; };
 		9333269E292CB7CB00DE092F /* UserInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9333269D292CB7CB00DE092F /* UserInformationViewController.swift */; };
 		933326A0292CBECD00DE092F /* UnderLineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9333269F292CBECC00DE092F /* UnderLineTextField.swift */; };
@@ -35,6 +38,7 @@
 		933326A4292CF10400DE092F /* ExtensionUITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933326A3292CF10400DE092F /* ExtensionUITextField.swift */; };
 		9333CC47285C6B6F005C0262 /* projectCollectionViewPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9333CC46285C6B6E005C0262 /* projectCollectionViewPopup.xib */; };
 		9333CC49285C7173005C0262 /* ProjectPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9333CC48285C7173005C0262 /* ProjectPopupViewController.swift */; };
+		9334565229321DDA003C6CC7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9334565129321DD9003C6CC7 /* GoogleService-Info.plist */; };
 		9338C76028FD418A005F6C3B /* ProjectContentViewController+ScrollAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9338C75F28FD418A005F6C3B /* ProjectContentViewController+ScrollAnimation.swift */; };
 		9338C76228FD52D0005F6C3B /* ExtensionUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9338C76128FD52D0005F6C3B /* ExtensionUIView.swift */; };
 		9338C76429014929005F6C3B /* ProjectContentViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9338C76329014929005F6C3B /* ProjectContentViewController+Delegate.swift */; };
@@ -132,11 +136,14 @@
 		931F9BBA28A7D468000AFA9E /* ScheduleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleCollectionViewCell.swift; sourceTree = "<group>"; };
 		932AA486292E1B9A00BD248A /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		932AA48A292E21FF00BD248A /* KakaoAuthVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoAuthVM.swift; sourceTree = "<group>"; };
+		932AA490292F524200BD248A /* ForgotPasswordPopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForgotPasswordPopup.xib; sourceTree = "<group>"; };
+		932AA492292F534F00BD248A /* ForgotPasswordPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordPopupViewController.swift; sourceTree = "<group>"; };
+		932AA494292F6E9D00BD248A /* DeleteUserPopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeleteUserPopup.xib; sourceTree = "<group>"; };
+		932AA496292F6F8200BD248A /* DeleteUserPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteUserPopupViewController.swift; sourceTree = "<group>"; };
 		932B5EF228D4B252004CD1E8 /* godoRoundedL.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = godoRoundedL.ttf; sourceTree = "<group>"; };
 		932B5EF328D4B255004CD1E8 /* godoRoundedR.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = godoRoundedR.ttf; sourceTree = "<group>"; };
 		9333268E2927892B00DE092F /* SharedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedData.swift; sourceTree = "<group>"; };
 		93332690292B490300DE092F /* ToyProjectManagementApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ToyProjectManagementApp.entitlements; sourceTree = "<group>"; };
-		93332697292B7FE000DE092F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		93332699292CB18800DE092F /* UserInformation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UserInformation.storyboard; sourceTree = "<group>"; };
 		9333269D292CB7CB00DE092F /* UserInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInformationViewController.swift; sourceTree = "<group>"; };
 		9333269F292CBECC00DE092F /* UnderLineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderLineTextField.swift; sourceTree = "<group>"; };
@@ -144,6 +151,7 @@
 		933326A3292CF10400DE092F /* ExtensionUITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionUITextField.swift; sourceTree = "<group>"; };
 		9333CC46285C6B6E005C0262 /* projectCollectionViewPopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = projectCollectionViewPopup.xib; sourceTree = "<group>"; };
 		9333CC48285C7173005C0262 /* ProjectPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectPopupViewController.swift; sourceTree = "<group>"; };
+		9334565129321DD9003C6CC7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9338C75F28FD418A005F6C3B /* ProjectContentViewController+ScrollAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProjectContentViewController+ScrollAnimation.swift"; sourceTree = "<group>"; };
 		9338C76128FD52D0005F6C3B /* ExtensionUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionUIView.swift; sourceTree = "<group>"; };
 		9338C76329014929005F6C3B /* ProjectContentViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProjectContentViewController+Delegate.swift"; sourceTree = "<group>"; };
@@ -299,8 +307,9 @@
 			isa = PBXGroup;
 			children = (
 				93049206291A32F600DAAF85 /* ForthTabbarViewController.swift */,
-				930A5E562920EE9500290D05 /* SignOutPopupViewController.swift */,
 				9333269D292CB7CB00DE092F /* UserInformationViewController.swift */,
+				930A5E562920EE9500290D05 /* SignOutPopupViewController.swift */,
+				932AA496292F6F8200BD248A /* DeleteUserPopupViewController.swift */,
 			);
 			path = Forth;
 			sourceTree = "<group>";
@@ -370,6 +379,8 @@
 				9338C76B2907F4D8005F6C3B /* DeleteListPopup.xib */,
 				930491F9291506B300DAAF85 /* ChangeProjectTitlePopup.xib */,
 				930A5E582920EECE00290D05 /* SignOutPopup.xib */,
+				932AA490292F524200BD248A /* ForgotPasswordPopup.xib */,
+				932AA494292F6E9D00BD248A /* DeleteUserPopup.xib */,
 			);
 			path = Popup;
 			sourceTree = "<group>";
@@ -431,6 +442,7 @@
 				9340DE8C28DB80B300B1CEB2 /* StartViewController.swift */,
 				937CC55A2800304400F18553 /* LoginViewController.swift */,
 				937CC55C2800377600F18553 /* SignUpViewController.swift */,
+				932AA492292F534F00BD248A /* ForgotPasswordPopupViewController.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -514,7 +526,7 @@
 				9301D306280350C60010191F /* ViewControllers */,
 				9301D3052803504A0010191F /* Views */,
 				93DEFA9627FAFF1700827C79 /* Info.plist */,
-				93332697292B7FE000DE092F /* GoogleService-Info.plist */,
+				9334565129321DD9003C6CC7 /* GoogleService-Info.plist */,
 				93DEFA8E27FAFF1600827C79 /* CooperationApp.xcdatamodeld */,
 				932AA486292E1B9A00BD248A /* Config.xcconfig */,
 			);
@@ -609,15 +621,16 @@
 			files = (
 				9304920B291A3FB600DAAF85 /* NotificationCell.xib in Resources */,
 				930492022919760100DAAF85 /* ThirdTabbar.storyboard in Resources */,
+				932AA495292F6E9D00BD248A /* DeleteUserPopup.xib in Resources */,
 				9340E47D2852050700338790 /* NanumGothicBold.otf in Resources */,
 				933BAEEA28E896BD003DDFCF /* ChangeProjectPrograssPopup.xib in Resources */,
 				93AFDA9C28B4CE1B009E815F /* ProjectIdPopup.xib in Resources */,
 				9338C76C2907F4D8005F6C3B /* DeleteListPopup.xib in Resources */,
 				93B6FE3928F56AC200181605 /* ProjectCardCell.xib in Resources */,
+				932AA491292F524200BD248A /* ForgotPasswordPopup.xib in Resources */,
 				9340DE7E28D4D8EC00B1CEB2 /* GodoB.otf in Resources */,
 				93F9836128F7E50100033A46 /* AddListPopup.xib in Resources */,
 				93049204291A328000DAAF85 /* ForthTabbar.storyboard in Resources */,
-				93332698292B7FE000DE092F /* GoogleService-Info.plist in Resources */,
 				936F8E992897BB8D00897316 /* ProjectContentSideBar.xib in Resources */,
 				93AFDAA028B4D5FD009E815F /* ProjectIDCell.xib in Resources */,
 				9340E47C2852050700338790 /* NanumGothic.otf in Resources */,
@@ -644,6 +657,7 @@
 				9315079D290FC8D5000DD700 /* DetailContentColorCell.xib in Resources */,
 				9340DE7F28D4D8EC00B1CEB2 /* GodoM.otf in Resources */,
 				933BAEE028E6EFFE003DDFCF /* CreateProjectPopup.xib in Resources */,
+				9334565229321DDA003C6CC7 /* GoogleService-Info.plist in Resources */,
 				9340E47E2852050700338790 /* NanumGothicLight.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -729,6 +743,7 @@
 				9338C76228FD52D0005F6C3B /* ExtensionUIView.swift in Sources */,
 				935CBC862806A1C300759A24 /* MainTabbarViewController.swift in Sources */,
 				9338C76429014929005F6C3B /* ProjectContentViewController+Delegate.swift in Sources */,
+				932AA497292F6F8200BD248A /* DeleteUserPopupViewController.swift in Sources */,
 				93AFDA9E28B4CFCE009E815F /* ProjectIDPopupViewController.swift in Sources */,
 				933BAEDA28E5A49A003DDFCF /* ReallyCheckPopupViewController.swift in Sources */,
 				9350DB1628F41A2700646C42 /* ProjectContentViewController.swift in Sources */,
@@ -739,6 +754,7 @@
 				936F8E952897B54C00897316 /* ProjectListManagementViewController.swift in Sources */,
 				9338C76E2907F506005F6C3B /* DeleteListPopupViewController.swift in Sources */,
 				9333CC49285C7173005C0262 /* ProjectPopupViewController.swift in Sources */,
+				932AA493292F534F00BD248A /* ForgotPasswordPopupViewController.swift in Sources */,
 				9338C779290AA161005F6C3B /* ProjectCollectionReusableView.swift in Sources */,
 				936F8E972897B5E800897316 /* ProjectListManagementCell.swift in Sources */,
 				93B6FE3B28F5ACB500181605 /* ProjectStickyHeaderView.swift in Sources */,
@@ -847,6 +863,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "토이";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -904,6 +921,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "토이";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -921,11 +939,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = ToyProjectManagementApp/ToyProjectManagementApp.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4J3RK7L42Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ToyProjectManagementApp/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "토이";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -941,6 +961,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = Acho.ToyProjectManagementApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -954,11 +975,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = ToyProjectManagementApp/ToyProjectManagementApp.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4J3RK7L42Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ToyProjectManagementApp/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "토이";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -974,6 +997,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = Acho.ToyProjectManagementApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

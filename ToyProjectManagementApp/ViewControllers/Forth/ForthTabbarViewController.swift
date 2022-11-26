@@ -34,7 +34,8 @@ class ForthTabbarViewController: UIViewController {
     
     @IBOutlet weak var signOutButton: UIButton!
     @IBOutlet weak var resetPasswordButton: UIButton!
-
+    @IBOutlet weak var deleteUserButton: UIButton!
+    
     @IBOutlet weak var resetPasswordView: UIView!
     
     var email = ""
@@ -100,6 +101,16 @@ class ForthTabbarViewController: UIViewController {
         self.view.makeToast("로그인한 메일에 비밀번호 재설정 메일을 보내드렸습니다")
     }
     
+    @IBAction func deleteUserButtonTap(_ sender: UIButton) {
+        let deleteUserPopup = DeleteUserPopupViewController(nibName: "DeleteUserPopup", bundle: nil)
+        deleteUserPopup.deleteUserDelegate = self
+        
+        deleteUserPopup.modalPresentationStyle = .overCurrentContext
+        deleteUserPopup.modalTransitionStyle = .crossDissolve // 뷰가 투명해지면서 넘어가는 애니메이션
+        self.present(deleteUserPopup, animated: false, completion: nil)
+    }
+    
+    
     @objc func tabUserInformationImageView() {
         let userInformationStoryBoard = UIStoryboard(name: "UserInformation", bundle: nil)
         guard let userInformationVC = userInformationStoryBoard.instantiateViewController(identifier: "UserInformation") as? UserInformationViewController else { return }
@@ -114,6 +125,9 @@ class ForthTabbarViewController: UIViewController {
         
         navigationController?.pushViewController(userInformationVC, animated: true)
     }
+    
+    
+    
     
     //db값을 읽어서 projectList에 db값을 넣어준 뒤 collectionview 업데이트 해주는 함수
     private func readDB() {
@@ -176,7 +190,6 @@ extension ForthTabbarViewController {
         self.nameLabel.font = UIFont(name: "NanumGothicOTFLight", size: 13)
     }
 
-    
     private func configureActivityLabel() {
         self.activityLabel.font = UIFont(name: "NanumGothicOTFBold", size: 16)
     }
@@ -192,7 +205,7 @@ extension ForthTabbarViewController {
     }
     
     private func configureUserButton() {
-        [signOutButton, resetPasswordButton].forEach({
+        [signOutButton, resetPasswordButton, deleteUserButton].forEach({
             $0?.titleLabel?.font = UIFont(name: "NanumGothicOTF", size: 14)
         })
     }
@@ -235,6 +248,31 @@ extension ForthTabbarViewController: LogoutDelegate {
 
 }
 
+extension ForthTabbarViewController: DeleteUserDelegate {
+    
+    func deleteUserDelegate() {
+        
+        if let user = Auth.auth().currentUser {
+            user.delete { error in
+              if let error = error {
+                // An error happened.
+                  print("회원 탈퇴 오류 - ", error)
+              } else {
+                // Account deleted.
+                  self.ref.child("\(self.emailUid)").removeValue()
+                  self.navigationController?.popToRootViewController(animated: true)
+              }
+            }
+        } else {
+            self.ref.child("\(self.emailUid)").removeValue()
+            self.navigationController?.popToRootViewController(animated: true)
+        }
+        
+    }
+    
+    
+}
+
 extension ForthTabbarViewController: MessageDelegate {
     
     func messageDelegate() {
@@ -243,3 +281,5 @@ extension ForthTabbarViewController: MessageDelegate {
     }
   
 }
+
+

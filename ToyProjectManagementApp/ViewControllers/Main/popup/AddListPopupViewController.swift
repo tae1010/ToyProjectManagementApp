@@ -13,6 +13,7 @@ class AddListPopupViewController: UIViewController {
     
     @IBOutlet weak var popupTitleLabel: UILabel!
     @IBOutlet weak var addListTextField: CustomTextField!
+    @IBOutlet weak var specialSymbolLabel: UILabel!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var addListButton: UIButton!
     
@@ -61,6 +62,7 @@ extension AddListPopupViewController {
     private func configure() {
         self.configureCancelButton()
         self.configureCreateButton()
+        self.configureSpecialSymbolLabel()
         self.configurePopupTitleLabel()
         self.configureAddListTextField()
     }
@@ -72,6 +74,10 @@ extension AddListPopupViewController {
     
     private func configureAddListTextField() {
         self.addListTextField.textFieldPlaceholder = "리스트 이름을 입력해주세요"
+    }
+    
+    private func configureSpecialSymbolLabel() {
+        self.specialSymbolLabel.font = UIFont(name: "NanumGothicOTFLight", size: 13)
     }
     
     private func configureCancelButton() {

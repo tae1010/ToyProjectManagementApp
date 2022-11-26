@@ -16,6 +16,7 @@
                 <outlet property="addListTextField" destination="HNH-yF-rr4" id="GJY-HZ-rsw"/>
                 <outlet property="cancelButton" destination="aRz-YJ-BFE" id="uB8-Lt-5lu"/>
                 <outlet property="popupTitleLabel" destination="Svy-OA-XPx" id="9ml-hn-r8o"/>
+                <outlet property="specialSymbolLabel" destination="CKu-kQ-dm4" id="0T4-ER-o1H"/>
                 <outlet property="view" destination="iN0-l3-epB" id="8l9-m8-tm3"/>
             </connections>
         </placeholder>
@@ -66,8 +67,8 @@
                         </button>
                     </subviews>
                 </stackView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text=". # % [ ] 기호는 사용할 수 없습니다" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CKu-kQ-dm4">
-                    <rect key="frame" x="16" y="152.33333333333334" width="362" height="20.333333333333343"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=". # % [ ] 기호는 사용할 수 없습니다" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CKu-kQ-dm4">
+                    <rect key="frame" x="14" y="152.33333333333334" width="362" height="20.333333333333343"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" red="0.85257214309999996" green="0.015961610040000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <nil key="highlightedColor"/>
@@ -81,8 +82,10 @@
                 <constraint firstItem="HNH-yF-rr4" firstAttribute="top" secondItem="Svy-OA-XPx" secondAttribute="bottom" constant="14" id="QRE-Ud-To7"/>
                 <constraint firstItem="XXp-ge-eCn" firstAttribute="top" secondItem="CKu-kQ-dm4" secondAttribute="bottom" constant="14" id="WWf-Jy-HyV"/>
                 <constraint firstItem="Svy-OA-XPx" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="14" id="XhA-Rw-TI0"/>
+                <constraint firstItem="CKu-kQ-dm4" firstAttribute="trailing" secondItem="HNH-yF-rr4" secondAttribute="trailing" id="ZLH-fC-Pqu"/>
                 <constraint firstItem="CKu-kQ-dm4" firstAttribute="top" secondItem="HNH-yF-rr4" secondAttribute="bottom" constant="7" id="Zeh-9t-Kde"/>
                 <constraint firstItem="HNH-yF-rr4" firstAttribute="leading" secondItem="Svy-OA-XPx" secondAttribute="leading" id="a1o-HM-NaW"/>
+                <constraint firstItem="CKu-kQ-dm4" firstAttribute="leading" secondItem="HNH-yF-rr4" secondAttribute="leading" id="dfH-xA-hzM"/>
                 <constraint firstItem="Svy-OA-XPx" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="14" id="mL8-dE-1tY"/>
                 <constraint firstItem="XXp-ge-eCn" firstAttribute="leading" secondItem="HNH-yF-rr4" secondAttribute="leading" id="tqn-Nl-z11"/>
             </constraints>

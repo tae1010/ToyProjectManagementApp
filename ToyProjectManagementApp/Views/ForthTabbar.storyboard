@@ -129,7 +129,7 @@
                                         </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="JPk-DW-mnT">
-                                        <rect key="frame" x="14" y="274.33333333333331" width="365" height="110"/>
+                                        <rect key="frame" x="14" y="274.33333333333331" width="365" height="165"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pBB-oj-pQf">
                                                 <rect key="frame" x="0.0" y="0.0" width="365" height="55"/>
@@ -211,6 +211,46 @@
                                                     <constraint firstItem="thz-Cj-dND" firstAttribute="leading" secondItem="iTK-4Y-DGD" secondAttribute="leading" id="uwJ-xy-3GT"/>
                                                 </constraints>
                                             </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NeP-D6-trV">
+                                                <rect key="frame" x="0.0" y="110" width="365" height="55"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="NVF-Hd-G7e">
+                                                        <rect key="frame" x="0.0" y="0.0" width="365" height="55"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ekl-Ye-1IG">
+                                                                <rect key="frame" x="0.0" y="0.0" width="345" height="55"/>
+                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="55" id="ejr-Sn-6dg"/>
+                                                                </constraints>
+                                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                                <state key="normal" title="회원 탈퇴">
+                                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                </state>
+                                                                <connections>
+                                                                    <action selector="deleteUserButtonTap:" destination="iq6-qS-bLL" eventType="touchUpInside" id="CaG-Th-3Cd"/>
+                                                                </connections>
+                                                            </button>
+                                                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.right" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="iuN-nQ-vEr">
+                                                                <rect key="frame" x="345" y="19.666666666666686" width="20" height="16.333333333333329"/>
+                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <color key="tintColor" red="0.82352941180000006" green="0.82352941180000006" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="20" id="MwU-w8-gc1"/>
+                                                                    <constraint firstAttribute="width" constant="20" id="u0W-TF-eVb"/>
+                                                                </constraints>
+                                                            </imageView>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstItem="NVF-Hd-G7e" firstAttribute="leading" secondItem="NeP-D6-trV" secondAttribute="leading" id="Aw6-7O-qBg"/>
+                                                    <constraint firstItem="NVF-Hd-G7e" firstAttribute="top" secondItem="NeP-D6-trV" secondAttribute="top" id="HzD-W1-zFr"/>
+                                                    <constraint firstAttribute="bottom" secondItem="NVF-Hd-G7e" secondAttribute="bottom" id="a9e-Ba-Kjf"/>
+                                                    <constraint firstAttribute="trailing" secondItem="NVF-Hd-G7e" secondAttribute="trailing" id="ntY-eI-pZr"/>
+                                                </constraints>
+                                            </view>
                                         </subviews>
                                     </stackView>
                                 </subviews>
@@ -259,6 +299,7 @@
                         <outlet property="activityLabel" destination="O4r-NQ-zFP" id="8Hj-Ls-0MQ"/>
                         <outlet property="completeCountLabel" destination="ec0-nL-VZn" id="hsz-lQ-v9T"/>
                         <outlet property="completeLabel" destination="q97-LH-8jK" id="jdP-W0-pSm"/>
+                        <outlet property="deleteUserButton" destination="ekl-Ye-1IG" id="S88-6O-CZF"/>
                         <outlet property="emailLabel" destination="sbW-xC-Ns5" id="xHz-Ve-Z7V"/>
                         <outlet property="inPrograssCountLabel" destination="ouL-fy-Wdb" id="4fO-im-lqZ"/>
                         <outlet property="inPrograssLabel" destination="7KP-7U-HaA" id="mrl-7n-pvB"/>
