@@ -53,6 +53,7 @@ class MainTabbarViewController: UIViewController {
         self.hideViews()
         print(#fileID, #function, #line, "- 아 왜 안돼냨ㅋㅋㅋ")
         // readDB에서도 해주지만 db에 아무것도 없을때(아이디도) 실행되어야 하기떄문에 viewwillAppear에서도 실행
+        print(emailUid, "설마")
         if self.emailUid != "" { self.readDB() }
         
         self.setNotification()
@@ -165,7 +166,7 @@ extension MainTabbarViewController {
 
         self.projectListPrograssFalse.removeAll()
         self.projectListPrograssTrue.removeAll()
-
+        print(emailUid)
         ref.child("\(emailUid)/project").observeSingleEvent(of: .value, with: { [self] snapshot in
           // Get user value
             guard let value = snapshot.value as? Dictionary<String, Any> else {

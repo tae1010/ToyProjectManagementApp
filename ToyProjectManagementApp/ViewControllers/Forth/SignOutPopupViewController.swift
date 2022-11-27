@@ -7,7 +7,6 @@
 
 import Foundation
 import UIKit
-import FirebaseAuth
 
 protocol LogoutDelegate: AnyObject {
     func logoutDelegate()

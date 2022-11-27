@@ -259,7 +259,7 @@ extension LoginViewController {
                 self.emailTextField.isUserInteractionEnabled = true
                 self.passwordTextField.isUserInteractionEnabled = true
                 self.loginButton.isUserInteractionEnabled = true
-                self.forgotPasswordButton.isSelected = true
+                self.forgotPasswordButton.isUserInteractionEnabled = true
                 self.googleLoginImageView.isUserInteractionEnabled = true
                 self.appleLoginImageView.isUserInteractionEnabled = true
                 self.kakaoLoginImageView.isUserInteractionEnabled = true

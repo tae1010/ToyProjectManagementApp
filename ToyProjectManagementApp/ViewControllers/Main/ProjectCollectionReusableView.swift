@@ -14,3 +14,4 @@ class ProjectCollectionReusableView: UICollectionReusableView {
     @IBOutlet weak var sectionHeaderLabel: UILabel!
 
 }
+

@@ -21,10 +21,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate, ASAuth
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        let nativeAppKey = Bundle.main.infoDictionary?["KAKAO_NATIVE_APP_KEY"] ?? "" // config에 저장한 값
-        
         //Firebase초기화
         FirebaseApp.configure()
+        
+        let nativeAppKey = Bundle.main.infoDictionary?["KAKAO_NATIVE_APP_KEY"] ?? "" // config에 저장한 값
         
         if let user = FirebaseAuth.Auth.auth().currentUser {
             print("로그인 되어 있음", user.uid, user.email ?? "-")

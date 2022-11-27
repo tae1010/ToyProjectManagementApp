@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7FDCAE61608D1978DB5621EE /* Pods_ToyProjectManagementApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D7C2F69DF86D86139AB458C /* Pods_ToyProjectManagementApp.framework */; };
+		16DF21425ABE7E5DE5D131DC /* Pods_ToyProjectManagementApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C2B1E0BA031FDE9A6EEAC2B /* Pods_ToyProjectManagementApp.framework */; };
 		930491FA291506B300DAAF85 /* ChangeProjectTitlePopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 930491F9291506B300DAAF85 /* ChangeProjectTitlePopup.xib */; };
 		930491FC2915075600DAAF85 /* ChangeProjectTitlePopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930491FB2915075600DAAF85 /* ChangeProjectTitlePopupViewController.swift */; };
 		93049200291909CA00DAAF85 /* CustomTabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930491FF291909CA00DAAF85 /* CustomTabbarViewController.swift */; };
@@ -116,8 +116,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2D7C2F69DF86D86139AB458C /* Pods_ToyProjectManagementApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ToyProjectManagementApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9040AAC533458F82FCF3EC0A /* Pods-ToyProjectManagementApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToyProjectManagementApp.debug.xcconfig"; path = "Target Support Files/Pods-ToyProjectManagementApp/Pods-ToyProjectManagementApp.debug.xcconfig"; sourceTree = "<group>"; };
+		2C05E4FDFF8E4EA13D241E48 /* Pods-ToyProjectManagementApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToyProjectManagementApp.release.xcconfig"; path = "Target Support Files/Pods-ToyProjectManagementApp/Pods-ToyProjectManagementApp.release.xcconfig"; sourceTree = "<group>"; };
+		3C2B1E0BA031FDE9A6EEAC2B /* Pods_ToyProjectManagementApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ToyProjectManagementApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		437BAFD36E73CD466C355B4B /* Pods-ToyProjectManagementApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToyProjectManagementApp.debug.xcconfig"; path = "Target Support Files/Pods-ToyProjectManagementApp/Pods-ToyProjectManagementApp.debug.xcconfig"; sourceTree = "<group>"; };
 		9303413228D47EE900722FF8 /* FirebaseFacebookAuthUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseFacebookAuthUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		930491F9291506B300DAAF85 /* ChangeProjectTitlePopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChangeProjectTitlePopup.xib; sourceTree = "<group>"; };
 		930491FB2915075600DAAF85 /* ChangeProjectTitlePopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeProjectTitlePopupViewController.swift; sourceTree = "<group>"; };
@@ -134,7 +135,6 @@
 		9315079C290FC8D5000DD700 /* DetailContentColorCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailContentColorCell.xib; sourceTree = "<group>"; };
 		931F9BB828A7D38B000AFA9E /* ScheduleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScheduleCell.xib; sourceTree = "<group>"; };
 		931F9BBA28A7D468000AFA9E /* ScheduleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleCollectionViewCell.swift; sourceTree = "<group>"; };
-		932AA486292E1B9A00BD248A /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		932AA48A292E21FF00BD248A /* KakaoAuthVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoAuthVM.swift; sourceTree = "<group>"; };
 		932AA490292F524200BD248A /* ForgotPasswordPopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForgotPasswordPopup.xib; sourceTree = "<group>"; };
 		932AA492292F534F00BD248A /* ForgotPasswordPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordPopupViewController.swift; sourceTree = "<group>"; };
@@ -230,7 +230,6 @@
 		93F9836228F7E59B00033A46 /* AddListPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddListPopupViewController.swift; sourceTree = "<group>"; };
 		93F9836428F7E69400033A46 /* AddCardListPopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddCardListPopup.xib; sourceTree = "<group>"; };
 		93F9836628F7E76D00033A46 /* AddCardListPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardListPopupViewController.swift; sourceTree = "<group>"; };
-		EF4E6BEC848B616B6A4E3389 /* Pods-ToyProjectManagementApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToyProjectManagementApp.release.xcconfig"; path = "Target Support Files/Pods-ToyProjectManagementApp/Pods-ToyProjectManagementApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -238,7 +237,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7FDCAE61608D1978DB5621EE /* Pods_ToyProjectManagementApp.framework in Frameworks */,
+				16DF21425ABE7E5DE5D131DC /* Pods_ToyProjectManagementApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,8 +247,8 @@
 		68BFDA4782678AAFA159C129 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				9040AAC533458F82FCF3EC0A /* Pods-ToyProjectManagementApp.debug.xcconfig */,
-				EF4E6BEC848B616B6A4E3389 /* Pods-ToyProjectManagementApp.release.xcconfig */,
+				437BAFD36E73CD466C355B4B /* Pods-ToyProjectManagementApp.debug.xcconfig */,
+				2C05E4FDFF8E4EA13D241E48 /* Pods-ToyProjectManagementApp.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -528,7 +527,6 @@
 				93DEFA9627FAFF1700827C79 /* Info.plist */,
 				9334565129321DD9003C6CC7 /* GoogleService-Info.plist */,
 				93DEFA8E27FAFF1600827C79 /* CooperationApp.xcdatamodeld */,
-				932AA486292E1B9A00BD248A /* Config.xcconfig */,
 			);
 			path = ToyProjectManagementApp;
 			sourceTree = "<group>";
@@ -553,7 +551,7 @@
 				93E18D2328F4232F003AE3C5 /* FirebaseFacebookAuthUI.framework */,
 				93E18D2128F42296003AE3C5 /* XCTest.framework */,
 				9303413228D47EE900722FF8 /* FirebaseFacebookAuthUI.framework */,
-				2D7C2F69DF86D86139AB458C /* Pods_ToyProjectManagementApp.framework */,
+				3C2B1E0BA031FDE9A6EEAC2B /* Pods_ToyProjectManagementApp.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -565,12 +563,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 93DEFA9927FAFF1700827C79 /* Build configuration list for PBXNativeTarget "ToyProjectManagementApp" */;
 			buildPhases = (
-				5368219C207F4A025DF30B8B /* [CP] Check Pods Manifest.lock */,
+				0A0D394F87AD37A10E332E13 /* [CP] Check Pods Manifest.lock */,
 				93DEFA7E27FAFF1600827C79 /* Sources */,
 				93DEFA7F27FAFF1600827C79 /* Frameworks */,
 				93DEFA8027FAFF1600827C79 /* Resources */,
-				14DA0256ACF2DB08BA44E688 /* [CP] Embed Pods Frameworks */,
-				C0FAEA6FDDF878F02D424873 /* [CP] Copy Pods Resources */,
+				0D7CF2CFBCE8EBEE333A4521 /* [CP] Embed Pods Frameworks */,
+				3828CA0950BEF34760D6CD03 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -587,7 +585,7 @@
 		93DEFA7A27FAFF1500827C79 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				BuildIndependentTargetsInParallel = 1;
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1330;
 				LastUpgradeCheck = 1330;
 				TargetAttributes = {
@@ -665,24 +663,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		14DA0256ACF2DB08BA44E688 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ToyProjectManagementApp/Pods-ToyProjectManagementApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ToyProjectManagementApp/Pods-ToyProjectManagementApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ToyProjectManagementApp/Pods-ToyProjectManagementApp-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5368219C207F4A025DF30B8B /* [CP] Check Pods Manifest.lock */ = {
+		0A0D394F87AD37A10E332E13 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -704,7 +685,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C0FAEA6FDDF878F02D424873 /* [CP] Copy Pods Resources */ = {
+		0D7CF2CFBCE8EBEE333A4521 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ToyProjectManagementApp/Pods-ToyProjectManagementApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ToyProjectManagementApp/Pods-ToyProjectManagementApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ToyProjectManagementApp/Pods-ToyProjectManagementApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3828CA0950BEF34760D6CD03 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -812,7 +810,6 @@
 /* Begin XCBuildConfiguration section */
 		93DEFA9727FAFF1700827C79 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9040AAC533458F82FCF3EC0A /* Pods-ToyProjectManagementApp.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -847,8 +844,8 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				EXCLUDED_ARCHS = arm64;
-				"EXCLUDED_ARCHS[sdk=*]" = arm64;
+				EXCLUDED_ARCHS = "$(ARCHS_STANDARD)";
+				"EXCLUDED_ARCHS[sdk=*]" = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -865,8 +862,9 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "토이";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
+				MTL_ENABLE_DEBUG_INFO = "$(ARCHS_STANDARD)";
+				"MTL_ENABLE_DEBUG_INFO[arch=*]" = "$(ARCHS_STANDARD)";
+				MTL_FAST_MATH = "$(ARCHS_STANDARD)";
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -876,7 +874,6 @@
 		};
 		93DEFA9827FAFF1700827C79 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EF4E6BEC848B616B6A4E3389 /* Pods-ToyProjectManagementApp.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -911,8 +908,8 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				EXCLUDED_ARCHS = arm64;
-				"EXCLUDED_ARCHS[sdk=*]" = arm64;
+				EXCLUDED_ARCHS = "$(ARCHS_STANDARD)";
+				"EXCLUDED_ARCHS[sdk=*]" = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -923,8 +920,10 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "토이";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				MTL_FAST_MATH = YES;
+				MTL_ENABLE_DEBUG_INFO = "$(ARCHS_STANDARD)";
+				"MTL_ENABLE_DEBUG_INFO[arch=*]" = "$(ARCHS_STANDARD)";
+				MTL_FAST_MATH = "$(ARCHS_STANDARD)";
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -934,7 +933,7 @@
 		};
 		93DEFA9A27FAFF1700827C79 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9040AAC533458F82FCF3EC0A /* Pods-ToyProjectManagementApp.debug.xcconfig */;
+			baseConfigurationReference = 437BAFD36E73CD466C355B4B /* Pods-ToyProjectManagementApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -970,7 +969,7 @@
 		};
 		93DEFA9B27FAFF1700827C79 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EF4E6BEC848B616B6A4E3389 /* Pods-ToyProjectManagementApp.release.xcconfig */;
+			baseConfigurationReference = 2C05E4FDFF8E4EA13D241E48 /* Pods-ToyProjectManagementApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
