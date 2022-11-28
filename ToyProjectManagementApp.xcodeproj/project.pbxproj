@@ -23,7 +23,6 @@
 		9315079D290FC8D5000DD700 /* DetailContentColorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9315079C290FC8D5000DD700 /* DetailContentColorCell.xib */; };
 		931F9BB928A7D38B000AFA9E /* ScheduleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 931F9BB828A7D38B000AFA9E /* ScheduleCell.xib */; };
 		931F9BBB28A7D468000AFA9E /* ScheduleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931F9BBA28A7D468000AFA9E /* ScheduleCollectionViewCell.swift */; };
-		932AA48B292E21FF00BD248A /* KakaoAuthVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932AA48A292E21FF00BD248A /* KakaoAuthVM.swift */; };
 		932AA491292F524200BD248A /* ForgotPasswordPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 932AA490292F524200BD248A /* ForgotPasswordPopup.xib */; };
 		932AA493292F534F00BD248A /* ForgotPasswordPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932AA492292F534F00BD248A /* ForgotPasswordPopupViewController.swift */; };
 		932AA495292F6E9D00BD248A /* DeleteUserPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 932AA494292F6E9D00BD248A /* DeleteUserPopup.xib */; };
@@ -138,7 +137,6 @@
 		9315079C290FC8D5000DD700 /* DetailContentColorCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailContentColorCell.xib; sourceTree = "<group>"; };
 		931F9BB828A7D38B000AFA9E /* ScheduleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScheduleCell.xib; sourceTree = "<group>"; };
 		931F9BBA28A7D468000AFA9E /* ScheduleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleCollectionViewCell.swift; sourceTree = "<group>"; };
-		932AA48A292E21FF00BD248A /* KakaoAuthVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoAuthVM.swift; sourceTree = "<group>"; };
 		932AA490292F524200BD248A /* ForgotPasswordPopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForgotPasswordPopup.xib; sourceTree = "<group>"; };
 		932AA492292F534F00BD248A /* ForgotPasswordPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordPopupViewController.swift; sourceTree = "<group>"; };
 		932AA494292F6E9D00BD248A /* DeleteUserPopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeleteUserPopup.xib; sourceTree = "<group>"; };
@@ -295,7 +293,6 @@
 			children = (
 				93DEFA8527FAFF1600827C79 /* AppDelegate.swift */,
 				93DEFA8727FAFF1600827C79 /* SceneDelegate.swift */,
-				932AA48A292E21FF00BD248A /* KakaoAuthVM.swift */,
 			);
 			path = AppDelegates;
 			sourceTree = "<group>";
@@ -756,7 +753,6 @@
 				933BAEDA28E5A49A003DDFCF /* ReallyCheckPopupViewController.swift in Sources */,
 				9350DB1628F41A2700646C42 /* ProjectContentViewController.swift in Sources */,
 				933BAEE228E6F025003DDFCF /* CreateProjectPopupViewController.swift in Sources */,
-				932AA48B292E21FF00BD248A /* KakaoAuthVM.swift in Sources */,
 				9340DE8928D6E8C700B1CEB2 /* LogoStackView.swift in Sources */,
 				9353E3C1287D809700C63681 /* DetailColorContent.swift in Sources */,
 				936F8E952897B54C00897316 /* ProjectListManagementViewController.swift in Sources */,

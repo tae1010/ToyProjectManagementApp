@@ -245,10 +245,25 @@ extension ForthTabbarViewController: LogoutDelegate {
         
         do {
             try firebaseAuth.signOut()
+            self.kakaoLogout()
+            print("로그아웃 잘됨")
             self.navigationController?.popToRootViewController(animated: true)
             
         } catch let sighOutError as NSError {
             print("Error signout \(sighOutError.localizedDescription)")
+        }
+    }
+    
+    // 카카오 로그아웃
+    func kakaoLogout() {
+        UserApi.shared.logout {(error) in
+            if let error = error {
+                print("kakao logout() failure.")
+                print(error)
+            }
+            else {
+                print("kakao logout() success.")
+            }
         }
     }
 
