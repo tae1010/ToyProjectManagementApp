@@ -55,7 +55,7 @@ class ForthTabbarViewController: UIViewController {
         //pop제스처를 막아줌
         navigationController?.interactivePopGestureRecognizer?.isEnabled = false
         self.configure()
-        self.setData()
+        
         // user information 창 이동
         let tapUserInformation = UITapGestureRecognizer(target: self, action: #selector(tabUserInformationImageView))
 
@@ -70,7 +70,7 @@ class ForthTabbarViewController: UIViewController {
         navigationController?.navigationBar.isHidden = true
         
         self.hiddenChangePasswordView()
-        self.readDB()
+        self.setData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -232,6 +232,7 @@ extension ForthTabbarViewController {
             
         } else {
             self.emailUid = FirebaseAuth.Auth.auth().currentUser?.uid ?? "아"
+            self.readDB()
         }
     }
 

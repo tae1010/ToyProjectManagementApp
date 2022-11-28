@@ -44,7 +44,7 @@ class MainTabbarViewController: UIViewController {
         super.viewDidLoad()
         hideKeyboardWhenTappedAround() // 화면 클릭시 키보드 내림
         print(#fileID, #function, #line, "- 아 왜 안돼냐")
-        self.setData()
+        
         self.configureView()
         self.configureNoProjectLabel()
     }
@@ -53,10 +53,8 @@ class MainTabbarViewController: UIViewController {
         super.viewWillAppear(true)
         self.hideViews()
         print(#fileID, #function, #line, "- 아 왜 안돼냨ㅋㅋㅋ")
-        // readDB에서도 해주지만 db에 아무것도 없을때(아이디도) 실행되어야 하기떄문에 viewwillAppear에서도 실행
-        print(emailUid, "설마")
-        if self.emailUid != "" { self.readDB() }
-        
+    
+        self.setData()
         self.setNotification()
     }
     

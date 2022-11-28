@@ -14,6 +14,11 @@ import CryptoKit // 암호화 작업을 안전하고 효율적으로 수행하�
 import MaterialComponents.MaterialBottomSheet
 import Toast_Swift
 
+import KakaoSDKCommon
+import KakaoSDKAuth
+import KakaoSDKUser
+import WebKit
+
 /// loading 상태
 enum LoadingState {
     case normal // normal
@@ -48,6 +53,7 @@ class LoginViewController: UIViewController {
     fileprivate var currentNonce: String?
     
     override func viewWillAppear(_ animated: Bool) {
+        print("viewWillappear 실행?")
         super.viewWillAppear(animated)
         
     }
@@ -171,12 +177,12 @@ extension LoginViewController {
     
     // mainViewController 이동
     private func showMainViewController() {
+        self.showViews()
         
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let mainTabbarViewController = storyboard.instantiateViewController(withIdentifier: "MainTabbar")
         mainTabbarViewController.modalPresentationStyle = .fullScreen
         mainTabbarViewController.modalTransitionStyle = .crossDissolve
-        self.showViews()
         navigationController?.show(mainTabbarViewController, sender: nil)
     }
     
@@ -202,10 +208,13 @@ extension LoginViewController {
     // tab apple login
     @objc func tapAppleImageSelector(sender: UITapGestureRecognizer) {
         print("tapAppleLogo")
+        hideViews()
         // 로그인 프로세스를 시작하는 메소드
         let request = createAppleIDRequest() // Apple ID를 기반으로 사용자를 인증하는 요청을 생성하는 메커니즘
-        let authorizationController = ASAuthorizationController(authorizationRequests: [request]) // 권한 부여 요청을 관리하는 컨트롤러
         
+        print("1111111")
+        
+        let authorizationController = ASAuthorizationController(authorizationRequests: [request]) // 권한 부여 요청을 관리하는 컨트롤러
         authorizationController.delegate = self
         authorizationController.presentationContextProvider = self
         authorizationController.performRequests()
@@ -214,7 +223,7 @@ extension LoginViewController {
     // tab kakao login
     @objc func tapKakaoImageSelector(sender: UITapGestureRecognizer) {
         print("tapKakaoLogo")
-        kakaoAuthVM.handleKakaoLogin()
+        self.loginKakao()
         
     }
     
@@ -225,6 +234,8 @@ extension LoginViewController {
 extension LoginViewController {
     
     private func hideViews() {
+        
+        print("hide View 실행")
         self.loadingState = .loading
         
         self.dismissButton.isUserInteractionEnabled = false
@@ -242,6 +253,7 @@ extension LoginViewController {
     
     private func showViews() {
         
+        print("show View 실행")
         UIView.animate(
             withDuration: 0.7,
             delay: 0,
@@ -273,53 +285,82 @@ extension LoginViewController {
 // MARK: - 프레젠테이션 컨텍스트 프로토콜
 extension LoginViewController: ASAuthorizationControllerPresentationContextProviding {
     func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+
         return self.view.window!
     }
 }
 
-// Adapted from https://auth0.com/docs/api-auth/tutorials/nonce#generate-a-cryptographically-random-nonce
-private func randomNonceString(length: Int = 32) -> String {
-    precondition(length > 0)
-    let charset: Array<Character> =
-    Array("0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._")
-    var result = ""
-    var remainingLength = length
+
+
+
+// MARK: - 카카오 인증 관련
+extension LoginViewController {
     
-    while remainingLength > 0 {
-        let randoms: [UInt8] = (0 ..< 16).map { _ in
-            var random: UInt8 = 0
-            let errorCode = SecRandomCopyBytes(kSecRandomDefault, 1, &random)
-            if errorCode != errSecSuccess {
-                fatalError("Unable to generate nonce. SecRandomCopyBytes failed with OSStatus \(errorCode)")
-            }
-            return random
-        }
+    // 카카오톡으로 로그인
+    func loginWithKakaotalk() {
         
-        randoms.forEach { random in
-            if remainingLength == 0 {
-                return
+        UserApi.shared.loginWithKakaoTalk {(oauthToken, error) in
+            if let error = error {
+                print("kakaotak login 애러")
+                print(error)
             }
             
-            if random < charset.count {
-                result.append(charset[Int(random)])
-                remainingLength -= 1
+            else {
+                print("loginWithKakaoTalk() success.")
+
+                self.showMainViewController()
+                //do something
+                _ = oauthToken
             }
         }
     }
     
-    return result
+    // 카카오계정으로 로그인
+    func loginWithKakaoAccount() {
+        UserApi.shared.loginWithKakaoAccount {(oauthToken, error) in
+            if let error = error {
+                print("kakaotak account 애러")
+                print(error)
+            }
+            else {
+                print("loginWithKakaoAccount() success.")
+                
+
+                self.showMainViewController()
+                //do something
+                _ = oauthToken
+            }
+        }
+    }
+    
+    // 카카오 로그인
+    func loginKakao() {
+        // 카카오톡 설치 여부 확인
+        if UserApi.isKakaoTalkLoginAvailable() {
+            self.loginWithKakaotalk()
+            
+            // 카카오톡 설치 x
+        } else {
+            self.loginWithKakaoAccount()
+        }
+    }
+    
 }
-
-
 
 
 // MARK: - 애플 인증 관련 콜백 프로토콜
 extension LoginViewController: ASAuthorizationControllerDelegate {
     
+    // 인증이 실패할때 (창닫을때)
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+        self.showViews()
+    }
+    
+    // 인증이 성공할떄
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
             // 몇 가지 표준 키 검사를 수행
-            
+
             // 현재 nonce가 설정되어 있는지 확인
             guard let nonce = currentNonce else {
                 fatalError("Invalid state: A login callback was received, but no login request was sent.")
@@ -346,63 +387,25 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
                                                       rawNonce: nonce)
             
             // credential을 사용하여 Firebase에 로그인
-            FirebaseAuth.Auth.auth().signIn(with: credential) { (authDataResult, error) in
+            Auth.auth().signIn(with: credential) { (authDataResult, error) in
                 // 인증 결과에서 Firebase 사용자를 검색하고 사용자 정보를 표시할 수 있다.
-                
-                /// 2번째 애플 로그인부터는 email이 identityToken에 들어있음.
-                if authDataResult?.user.email == nil {
-                    print(self.decode(jwtToken: idTokenString)["email"] as? String ?? "","이게 변환이 잘됨?")
-                }
-                print(idTokenString)
-                if let user = authDataResult?.user {
-                    print("애플 로그인 성공!")
-                    print(user.uid, "//")
-                    print(user.email, "//")
-                    print(user.phoneNumber)
-                    self.showViews()
-                    self.showMainViewController()
-                }
+
                 
                 if error != nil {
-                    print("여기서 에러")
                     print(error?.localizedDescription ?? "error" as Any)
                     self.showViews()
                     return
                 }
+                
+                self.showViews()
+                print("성공?")
+                self.showMainViewController()
             }
+            
         }
         
     }
     
-    /// JWTToken -> dictionary
-    func decode(jwtToken jwt: String) -> [String: Any] {
-        let segments = jwt.components(separatedBy: ".")
-        return decodeJWTPart(segments[1]) ?? [:]
-    }
-    
-    func base64UrlDecode(_ value: String) -> Data? {
-        var base64 = value
-            .replacingOccurrences(of: "-", with: "+")
-            .replacingOccurrences(of: "_", with: "/")
-        
-        let length = Double(base64.lengthOfBytes(using: String.Encoding.utf8))
-        let requiredLength = 4 * ceil(length / 4.0)
-        let paddingLength = requiredLength - length
-        if paddingLength > 0 {
-            let padding = "".padding(toLength: Int(paddingLength), withPad: "=", startingAt: 0)
-            base64 = base64 + padding
-        }
-        return Data(base64Encoded: base64, options: .ignoreUnknownCharacters)
-    }
-    
-    func decodeJWTPart(_ value: String) -> [String: Any]? {
-        guard let bodyData = base64UrlDecode(value),
-              let json = try? JSONSerialization.jsonObject(with: bodyData, options: []), let payload = json as? [String: Any] else {
-            return nil
-        }
-        
-        return payload
-    }
 
     @available(iOS 13, *)
     func createAppleIDRequest() -> ASAuthorizationAppleIDRequest {
@@ -430,6 +433,40 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
         return hashString
     }
 
+    // Adapted from https://auth0.com/docs/api-auth/tutorials/nonce#generate-a-cryptographically-random-nonce
+    private func randomNonceString(length: Int = 32) -> String {
+        precondition(length > 0)
+        let charset: Array<Character> =
+        Array("0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._")
+        var result = ""
+        var remainingLength = length
+        
+        while remainingLength > 0 {
+            let randoms: [UInt8] = (0 ..< 16).map { _ in
+                var random: UInt8 = 0
+                let errorCode = SecRandomCopyBytes(kSecRandomDefault, 1, &random)
+                if errorCode != errSecSuccess {
+                    fatalError("Unable to generate nonce. SecRandomCopyBytes failed with OSStatus \(errorCode)")
+                }
+                return random
+            }
+            
+            randoms.forEach { random in
+                if remainingLength == 0 {
+                    return
+                }
+                
+                if random < charset.count {
+                    result.append(charset[Int(random)])
+                    remainingLength -= 1
+                }
+            }
+        }
+        
+        return result
+    }
+    
+    
 }
 
 extension LoginViewController: SendMessageDelegate {
@@ -438,4 +475,12 @@ extension LoginViewController: SendMessageDelegate {
         self.view.hideAllToasts()
         self.view.makeToast("입력한 이메일로 비밀번호 재설정 메일을 보냈습니다", duration: 2)
     }
+}
+
+extension LoginViewController: WKNavigationDelegate {
+    
+    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+        print("실행됐나?")
+    }
+    
 }
