@@ -35,7 +35,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="70" translatesAutoresizingMaskIntoConstraints="NO" id="oRY-9V-xjF">
-                                <rect key="frame" x="14" y="219" width="400" height="245"/>
+                                <rect key="frame" x="14" y="229" width="400" height="245"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dYG-vh-fUx">
                                         <rect key="frame" x="0.0" y="0.0" width="400" height="35"/>
@@ -91,7 +91,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rB3-Dh-jKg">
-                                <rect key="frame" x="14" y="541" width="400" height="50"/>
+                                <rect key="frame" x="14" y="551" width="400" height="50"/>
                                 <color key="backgroundColor" name="primaryColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="HZ6-YU-FOP"/>
@@ -115,7 +115,7 @@
                             <constraint firstItem="jyB-gS-PyP" firstAttribute="top" secondItem="A0d-uB-n21" secondAttribute="bottom" constant="20" id="TQZ-kF-UOy"/>
                             <constraint firstItem="A0d-uB-n21" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="14" id="ZQR-4L-yzl"/>
                             <constraint firstItem="A0d-uB-n21" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="14" id="dpy-Ju-Uho"/>
-                            <constraint firstItem="oRY-9V-xjF" firstAttribute="top" secondItem="jyB-gS-PyP" secondAttribute="bottom" constant="70" id="ghG-uN-WGJ"/>
+                            <constraint firstItem="oRY-9V-xjF" firstAttribute="top" secondItem="jyB-gS-PyP" secondAttribute="bottom" constant="80" id="ghG-uN-WGJ"/>
                             <constraint firstItem="jyB-gS-PyP" firstAttribute="leading" secondItem="A0d-uB-n21" secondAttribute="leading" id="mlM-E5-xch"/>
                             <constraint firstItem="oRY-9V-xjF" firstAttribute="leading" secondItem="jyB-gS-PyP" secondAttribute="leading" id="qwm-BS-vSK"/>
                         </constraints>
