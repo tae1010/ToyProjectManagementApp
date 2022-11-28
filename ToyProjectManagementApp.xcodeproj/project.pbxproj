@@ -28,6 +28,9 @@
 		932AA493292F534F00BD248A /* ForgotPasswordPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932AA492292F534F00BD248A /* ForgotPasswordPopupViewController.swift */; };
 		932AA495292F6E9D00BD248A /* DeleteUserPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 932AA494292F6E9D00BD248A /* DeleteUserPopup.xib */; };
 		932AA497292F6F8200BD248A /* DeleteUserPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932AA496292F6F8200BD248A /* DeleteUserPopupViewController.swift */; };
+		932B319B2934B70200C84BF9 /* LoginViewController+AppleLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932B319A2934B70200C84BF9 /* LoginViewController+AppleLogin.swift */; };
+		932B319D2934BBDF00C84BF9 /* LoginViewController+GoogleLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932B319C2934BBDE00C84BF9 /* LoginViewController+GoogleLogin.swift */; };
+		932B319F2934BD5500C84BF9 /* LoginViewController+KakaoLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932B319E2934BD5400C84BF9 /* LoginViewController+KakaoLogin.swift */; };
 		932B5EF428D4B255004CD1E8 /* godoRoundedL.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 932B5EF228D4B252004CD1E8 /* godoRoundedL.ttf */; };
 		932B5EF528D4B255004CD1E8 /* godoRoundedR.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 932B5EF328D4B255004CD1E8 /* godoRoundedR.ttf */; };
 		9333268F2927892B00DE092F /* SharedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9333268E2927892B00DE092F /* SharedData.swift */; };
@@ -140,6 +143,9 @@
 		932AA492292F534F00BD248A /* ForgotPasswordPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordPopupViewController.swift; sourceTree = "<group>"; };
 		932AA494292F6E9D00BD248A /* DeleteUserPopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeleteUserPopup.xib; sourceTree = "<group>"; };
 		932AA496292F6F8200BD248A /* DeleteUserPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteUserPopupViewController.swift; sourceTree = "<group>"; };
+		932B319A2934B70200C84BF9 /* LoginViewController+AppleLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginViewController+AppleLogin.swift"; sourceTree = "<group>"; };
+		932B319C2934BBDE00C84BF9 /* LoginViewController+GoogleLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginViewController+GoogleLogin.swift"; sourceTree = "<group>"; };
+		932B319E2934BD5400C84BF9 /* LoginViewController+KakaoLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginViewController+KakaoLogin.swift"; sourceTree = "<group>"; };
 		932B5EF228D4B252004CD1E8 /* godoRoundedL.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = godoRoundedL.ttf; sourceTree = "<group>"; };
 		932B5EF328D4B255004CD1E8 /* godoRoundedR.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = godoRoundedR.ttf; sourceTree = "<group>"; };
 		9333268E2927892B00DE092F /* SharedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedData.swift; sourceTree = "<group>"; };
@@ -440,6 +446,9 @@
 			children = (
 				9340DE8C28DB80B300B1CEB2 /* StartViewController.swift */,
 				937CC55A2800304400F18553 /* LoginViewController.swift */,
+				932B319A2934B70200C84BF9 /* LoginViewController+AppleLogin.swift */,
+				932B319C2934BBDE00C84BF9 /* LoginViewController+GoogleLogin.swift */,
+				932B319E2934BD5400C84BF9 /* LoginViewController+KakaoLogin.swift */,
 				937CC55C2800377600F18553 /* SignUpViewController.swift */,
 				932AA492292F534F00BD248A /* ForgotPasswordPopupViewController.swift */,
 			);
@@ -732,6 +741,7 @@
 				933326A4292CF10400DE092F /* ExtensionUITextField.swift in Sources */,
 				937CC55B2800304400F18553 /* LoginViewController.swift in Sources */,
 				93DA8F86282FB16900217360 /* ProjectContentTableViewCell.swift in Sources */,
+				932B319F2934BD5500C84BF9 /* LoginViewController+KakaoLogin.swift in Sources */,
 				93049207291A32F600DAAF85 /* ForthTabbarViewController.swift in Sources */,
 				9338C76028FD418A005F6C3B /* ProjectContentViewController+ScrollAnimation.swift in Sources */,
 				93722CF028D4551D007E1132 /* CustomButton.swift in Sources */,
@@ -753,10 +763,12 @@
 				9338C76E2907F506005F6C3B /* DeleteListPopupViewController.swift in Sources */,
 				9333CC49285C7173005C0262 /* ProjectPopupViewController.swift in Sources */,
 				932AA493292F534F00BD248A /* ForgotPasswordPopupViewController.swift in Sources */,
+				932B319B2934B70200C84BF9 /* LoginViewController+AppleLogin.swift in Sources */,
 				9338C779290AA161005F6C3B /* ProjectCollectionReusableView.swift in Sources */,
 				936F8E972897B5E800897316 /* ProjectListManagementCell.swift in Sources */,
 				93B6FE3B28F5ACB500181605 /* ProjectStickyHeaderView.swift in Sources */,
 				935CBC882806AD7900759A24 /* ProjectCell.swift in Sources */,
+				932B319D2934BBDF00C84BF9 /* LoginViewController+GoogleLogin.swift in Sources */,
 				93DA8F88282FC1A200217360 /* ProjectContent.swift in Sources */,
 				933BAEE828E8965A003DDFCF /* ChangeProjectPrograssViewController.swift in Sources */,
 				93DEFA8827FAFF1600827C79 /* SceneDelegate.swift in Sources */,

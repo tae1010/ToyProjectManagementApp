@@ -17,7 +17,7 @@ import KakaoSDKAuth
 import KakaoSDKUser
 
 @main
-class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate, ASAuthorizationControllerDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, ASAuthorizationControllerDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
@@ -26,18 +26,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate, ASAuth
         
         let nativeAppKey = Bundle.main.infoDictionary?["KAKAO_NATIVE_APP_KEY"] ?? "" // config에 저장한 값
         
-        if let user = FirebaseAuth.Auth.auth().currentUser {
-            print("로그인 되어 있음", user.uid, user.email ?? "-")
-        }
-        
-        GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
-        GIDSignIn.sharedInstance().delegate = self
-        
         checkAppleSignIn()
-        
-        
-        
-        print(nativeAppKey,"이거 설마 빈값인가?")
+
         KakaoSDK.initSDK(appKey: nativeAppKey as! String)
 
         return true
@@ -46,12 +36,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate, ASAuth
     
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
         
-        // 카카오 url 수신
+        // 카카오톡 url 수신
         if (AuthApi.isKakaoTalkLoginUrl(url)) {
+            print("카카오 url 수신")
             return AuthController.handleOpenUrl(url: url)
         
         // //구글에 인증프로세스가 끝날때 앱이 수신하는 url을 처리하는 역할
         } else if GIDSignIn.sharedInstance().handle(url) {
+            print("구글 url 수신")
             return true
         }
         
@@ -128,23 +120,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate, ASAuth
 
 extension AppDelegate {
     
-    // Google 로그인 인증 후 전달된 값 처리하기
-    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-        if let error = error {
-            print("ERROR GOOGLE SIGN IN \(error.localizedDescription)")
-            return
-        }
-        // 사용자 인증값 가져오기
-        guard let authentication = user.authentication else { return }
-        let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
-        
-        Auth.auth().signIn(with: credential) { _, _ in
-            print("signin 성공")
-            self.showMainViewController()
-        }
 
-    }
-    
     // 애플 로그인이 되어있는지 확인
     func checkAppleSignIn() {
         let appleIDProvider = ASAuthorizationAppleIDProvider()
@@ -173,12 +149,12 @@ extension AppDelegate {
         }
     }
 
-    private func showMainViewController() {
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        let mainViewController = storyboard.instantiateViewController(withIdentifier: "MainTabbar")
-        mainViewController.modalPresentationStyle = .fullScreen
-        UIApplication.shared.windows.first?.rootViewController?.show(mainViewController, sender: nil)
-    }
+//    private func showMainViewController() {
+//        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+//        let mainViewController = storyboard.instantiateViewController(withIdentifier: "MainTabbar")
+//        mainViewController.modalPresentationStyle = .fullScreen
+//        UIApplication.shared.windows.first?.rootViewController?.show(mainViewController, sender: nil)
+//    }
 }
 
 extension UIViewController {
