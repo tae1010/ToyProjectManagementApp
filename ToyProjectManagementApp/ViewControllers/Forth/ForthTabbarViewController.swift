@@ -13,6 +13,7 @@ import Firebase
 import FirebaseAuth
 import Toast_Swift
 import KakaoSDKUser
+import KakaoSDKAuth
 
 class ForthTabbarViewController: UIViewController {
 
@@ -50,6 +51,7 @@ class ForthTabbarViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print(emailUid, "dlrjs?")
+        hideKeyboardWhenTappedAround() // 화면 클릭시 키보드 내림
         //pop제스처를 막아줌
         navigationController?.interactivePopGestureRecognizer?.isEnabled = false
         self.configure()
@@ -211,23 +213,26 @@ extension ForthTabbarViewController {
     }
     
     private func setData() {
-        
-        UserApi.shared.me() {(user, error) in
-            if let error = error {
-                print(error)
-            }
-            else {
-                print("me() success.")
-                if let userId = user?.id {
-                    self.kakaoUserId = "kakao\(userId)"
+        if (AuthApi.hasToken()) {
+            UserApi.shared.me() {(user, error) in
+                if let error = error {
+                    print(error)
                 }
-                
-                print(self.kakaoUserId)
-                self.emailUid = String(FirebaseAuth.Auth.auth().currentUser?.uid ?? self.kakaoUserId)
-                self.readDB()
+                else {
+                    print("me() success.")
+                    if let userId = user?.id {
+                        self.kakaoUserId = "kakao\(userId)"
+                    }
+                    
+                    print(self.kakaoUserId)
+                    self.emailUid = String(FirebaseAuth.Auth.auth().currentUser?.uid ?? self.kakaoUserId)
+                    self.readDB()
+                }
             }
+            
+        } else {
+            self.emailUid = FirebaseAuth.Auth.auth().currentUser?.uid ?? "아"
         }
-        
     }
 
 }

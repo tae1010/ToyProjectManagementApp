@@ -10,6 +10,7 @@ import FirebaseAuth
 import FirebaseDatabase
 import MaterialComponents.MaterialBottomSheet
 import KakaoSDKUser
+import KakaoSDKAuth
 
 class MainTabbarViewController: UIViewController {
 
@@ -119,23 +120,28 @@ class MainTabbarViewController: UIViewController {
 extension MainTabbarViewController {
     
     private func setData(){
-        UserApi.shared.me() {(user, error) in
-            if let error = error {
-                print(error)
-            }
-            else {
-                print("me() success.")
-                if let userId = user?.id {
-                    self.kakaoUserId = "kakao\(userId)"
+        if (AuthApi.hasToken()) {
+            
+            UserApi.shared.me() {(user, error) in
+                if let error = error {
+                    print(error)
                 }
-                
-                print(self.kakaoUserId)
-                self.emailUid = String(FirebaseAuth.Auth.auth().currentUser?.uid ?? self.kakaoUserId)
-                
-                self.readDB()
+                else {
+                    print("me() success.")
+                    if let userId = user?.id {
+                        self.kakaoUserId = "kakao\(userId)"
+                    }
+                    
+                    print(self.kakaoUserId)
+                    self.emailUid = String(FirebaseAuth.Auth.auth().currentUser?.uid ?? self.kakaoUserId)
+                    
+                    self.readDB()
+                }
             }
+        } else {
+            self.emailUid = FirebaseAuth.Auth.auth().currentUser?.uid ?? "아"
+            self.readDB()
         }
-        
     }
     
     // collection view cell 없으면 emptyview 보여주기

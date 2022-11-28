@@ -9,6 +9,7 @@ import UIKit
 import FirebaseDatabase
 import FirebaseAuth
 import KakaoSDKUser
+import KakaoSDKAuth
 
 enum CalendarMode {
     case week // 주 단위 일때
@@ -318,20 +319,27 @@ extension SecondTabbarViewController {
 extension SecondTabbarViewController {
     
     private func setData(){
-        UserApi.shared.me() {(user, error) in
-            if let error = error {
-                print(error)
-            }
-            else {
-                print("me() success.")
-                if let userId = user?.id {
-                    self.kakaoUserId = "kakao\(userId)"
+        
+        if (AuthApi.hasToken()) {
+            UserApi.shared.me() {(user, error) in
+                if let error = error {
+                    print(error)
                 }
-                
-                print(self.kakaoUserId)
-                self.emailUid = String(FirebaseAuth.Auth.auth().currentUser?.uid ?? self.kakaoUserId)
+                else {
+                    print("me() success.")
+                    if let userId = user?.id {
+                        self.kakaoUserId = "kakao\(userId)"
+                    }
+                    
+                    print(self.kakaoUserId)
+                    self.emailUid = String(FirebaseAuth.Auth.auth().currentUser?.uid ?? self.kakaoUserId)
+                }
             }
+        } else {
+            self.emailUid = FirebaseAuth.Auth.auth().currentUser?.uid ?? "아"
+            
         }
+
         
     }
     

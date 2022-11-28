@@ -63,25 +63,37 @@ class KakaoAuthVM: ObservableObject {
     
     // 카카오 로그인
     func loginKakao() {
+        
         UserApi.shared.accessTokenInfo { _, error in
             if let error = error {
-                print("_________login error_________")
-                print(error)
+                if let sdkError = error as? SdkError, sdkError.isInvalidTokenError() == true  {
+                    //로그인 필요
+                    print("로그인이 필요하데")
+                }
+                else {
+                    //기타 에러
+                    print("기타 에러래")
+                }
+                
             } else {
                 print("access Token")
-            }
-            
-            // 카카오톡 설치 여부 확인
-            if UserApi.isKakaoTalkLoginAvailable() {
-                self.loginWithKakaotalk()
                 
-                // 카카오톡 설치 x
-            } else {
-                self.loginWithKakaoAccount()
+                // 카카오톡 설치 여부 확인
+                if UserApi.isKakaoTalkLoginAvailable() {
+                    self.loginWithKakaotalk()
+                    
+                    // 카카오톡 설치 x
+                } else {
+                    self.loginWithKakaoAccount()
+                }
             }
-            
         }
+        
+        
     }
+    
+    
+    
     
     // 카카오 로그인 + 토큰 여부 확인
     func handleKakaoLogin() {
