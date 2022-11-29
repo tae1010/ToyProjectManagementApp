@@ -5,8 +5,8 @@ target 'ToyProjectManagementApp' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
-  pod 'Firebase/Auth'
-  pod 'GoogleSignIn'
+  pod 'Firebase/Auth', '~> 8.0.0'
+  pod 'GoogleSignIn', '~> 5.0.2'
   pod 'Firebase/Database'
 
   pod 'SideMenu'
