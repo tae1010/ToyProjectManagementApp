@@ -45,8 +45,6 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    lazy var kakaoAuthVM: KakaoAuthVM = { KakaoAuthVM() }()
-    
     var iconClick = true
     var loadingState: LoadingState = .normal // 로딩 상태 (normal)
     

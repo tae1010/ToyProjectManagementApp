@@ -15,11 +15,15 @@ import AuthenticationServices
 import KakaoSDKCommon
 import KakaoSDKAuth
 import KakaoSDKUser
+import Network
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate, ASAuthorizationControllerDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        // 네트워크 감지
+        startMonitoring()
         
         //Firebase초기화
         FirebaseApp.configure()
@@ -49,6 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ASAuthorizationController
         
         return false
     }
+
     
 
     // MARK: UISceneSession Lifecycle
@@ -120,6 +125,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ASAuthorizationController
 
 extension AppDelegate {
     
+    // 네트워크 실시간 감지
+    func startMonitoring() {
+        
+        let monitor = NWPathMonitor()
+        
+        let alert = UIAlertController(title: "인터넷 연결이 원활하지 않습니다.", message: "와이파이나 데이터 연결을 확인해주세요", preferredStyle: .alert)
+        // 확인 버튼 누르면 앱 재실행
+        let okAction = UIAlertAction(title: "Yes", style: UIAlertAction.Style.default) {
+                            UIAlertAction in
+                            exit(0)
+                        }
+        alert.addAction(okAction)
+
+
+        monitor.start(queue: .global())
+        
+        monitor.pathUpdateHandler = { path in
+            if path.status == .satisfied {
+                print("연결되있음")
+                
+            } else {
+                print("연결끊겨있음")
+                
+                DispatchQueue.main.async {
+
+                    UIApplication.shared.windows.first?.rootViewController?.present(alert, animated: true)
+                }
+            }
+            
+        }
+        
+    }
 
     // 애플 로그인이 되어있는지 확인
     func checkAppleSignIn() {
@@ -167,6 +204,7 @@ extension UIViewController {
     }
 
     @objc func dismissKeyboard() {
+        print("tab")
         view.endEditing(true)
     }
 

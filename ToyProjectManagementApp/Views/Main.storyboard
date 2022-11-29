@@ -516,6 +516,16 @@
                                     <outletCollection property="gestureRecognizers" destination="n1B-ub-unC" appends="YES" id="HIv-6N-LVX"/>
                                 </connections>
                             </collectionView>
+                            <view contentMode="scaleToFill" restorationIdentifier="completeProject" translatesAutoresizingMaskIntoConstraints="NO" id="ac1-yZ-XaN" customClass="LottieAnimationView" customModule="Lottie">
+                                <rect key="frame" x="0.0" y="413" width="414" height="400"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="400" id="LNx-32-HeY"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="animationName" value="completeProject"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="mbD-Gg-2Uz">
                                 <rect key="frame" x="197" y="420.5" width="20" height="20"/>
                             </activityIndicatorView>
@@ -526,9 +536,13 @@
                             <constraint firstItem="0rg-By-3Cb" firstAttribute="trailing" secondItem="hLH-5K-JDZ" secondAttribute="trailing" constant="14" id="DoI-xE-Cxq"/>
                             <constraint firstItem="dyl-vv-GWe" firstAttribute="leading" secondItem="0rg-By-3Cb" secondAttribute="leading" id="IC9-Fs-CuS"/>
                             <constraint firstItem="mbD-Gg-2Uz" firstAttribute="centerY" secondItem="0rg-By-3Cb" secondAttribute="centerY" id="KXd-sQ-OsD"/>
+                            <constraint firstItem="ac1-yZ-XaN" firstAttribute="width" secondItem="0rg-By-3Cb" secondAttribute="width" id="N5l-Ie-xqN"/>
                             <constraint firstItem="dyl-vv-GWe" firstAttribute="bottom" secondItem="0rg-By-3Cb" secondAttribute="bottom" constant="10" id="QdL-bz-Kvg"/>
                             <constraint firstItem="dyl-vv-GWe" firstAttribute="trailing" secondItem="0rg-By-3Cb" secondAttribute="trailing" id="R7v-73-kgb"/>
+                            <constraint firstItem="0rg-By-3Cb" firstAttribute="trailing" secondItem="ac1-yZ-XaN" secondAttribute="trailing" id="Rum-4S-U8w"/>
                             <constraint firstItem="hLH-5K-JDZ" firstAttribute="top" secondItem="iJn-vt-GFO" secondAttribute="top" id="ULP-lA-UdU"/>
+                            <constraint firstItem="0rg-By-3Cb" firstAttribute="bottom" secondItem="ac1-yZ-XaN" secondAttribute="bottom" id="UMw-Vh-wXv"/>
+                            <constraint firstItem="ac1-yZ-XaN" firstAttribute="leading" secondItem="0rg-By-3Cb" secondAttribute="leading" id="YVC-zl-SEX"/>
                             <constraint firstItem="iJn-vt-GFO" firstAttribute="top" secondItem="0rg-By-3Cb" secondAttribute="top" constant="7" id="Z0I-5s-kUL"/>
                             <constraint firstItem="iJn-vt-GFO" firstAttribute="leading" secondItem="0rg-By-3Cb" secondAttribute="leading" constant="14" id="bGC-3L-9Q0"/>
                             <constraint firstItem="mbD-Gg-2Uz" firstAttribute="centerX" secondItem="0rg-By-3Cb" secondAttribute="centerX" id="dCh-jX-Jsr"/>
@@ -540,6 +554,7 @@
                     </tabBarItem>
                     <connections>
                         <outlet property="activityIndicator" destination="mbD-Gg-2Uz" id="GmV-N5-RMc"/>
+                        <outlet property="completeProjectLottieView" destination="ac1-yZ-XaN" id="gNx-Wc-12W"/>
                         <outlet property="createProjectButton" destination="hLH-5K-JDZ" id="LWf-XR-QI5"/>
                         <outlet property="emptyView" destination="1cq-l4-x7v" id="5F5-Ge-Yrk"/>
                         <outlet property="logoImageView" destination="jEn-Ky-Ar7" id="xmY-z5-ZtI"/>

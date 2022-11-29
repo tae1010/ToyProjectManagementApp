@@ -22,6 +22,7 @@ class ChangeProjectPrograssViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.touchBackGround()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		16DF21425ABE7E5DE5D131DC /* Pods_ToyProjectManagementApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C2B1E0BA031FDE9A6EEAC2B /* Pods_ToyProjectManagementApp.framework */; };
+		2CE3DD763FD344A4AB84EA55 /* Pods_ToyProjectManagementApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2E29FC8D9A0BFB377D8DE77 /* Pods_ToyProjectManagementApp.framework */; };
 		930491FA291506B300DAAF85 /* ChangeProjectTitlePopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 930491F9291506B300DAAF85 /* ChangeProjectTitlePopup.xib */; };
 		930491FC2915075600DAAF85 /* ChangeProjectTitlePopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930491FB2915075600DAAF85 /* ChangeProjectTitlePopupViewController.swift */; };
 		93049200291909CA00DAAF85 /* CustomTabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930491FF291909CA00DAAF85 /* CustomTabbarViewController.swift */; };
@@ -78,6 +78,7 @@
 		935145EF289D2057009B1DEF /* projectDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935145EE289D2057009B1DEF /* projectDate.swift */; };
 		935145F328A1222F009B1DEF /* DateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935145F228A1222F009B1DEF /* DateCollectionViewCell.swift */; };
 		9353E3C1287D809700C63681 /* DetailColorContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9353E3C0287D809700C63681 /* DetailColorContent.swift */; };
+		935C75D52935ECB900A2FFE4 /* completeProject.json in Resources */ = {isa = PBXBuildFile; fileRef = 935C75D42935ECB800A2FFE4 /* completeProject.json */; };
 		935CBC862806A1C300759A24 /* MainTabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935CBC852806A1C300759A24 /* MainTabbarViewController.swift */; };
 		935CBC882806AD7900759A24 /* ProjectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935CBC872806AD7900759A24 /* ProjectCell.swift */; };
 		935CBC8E2806AE5100759A24 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935CBC8D2806AE5100759A24 /* Project.swift */; };
@@ -118,9 +119,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2C05E4FDFF8E4EA13D241E48 /* Pods-ToyProjectManagementApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToyProjectManagementApp.release.xcconfig"; path = "Target Support Files/Pods-ToyProjectManagementApp/Pods-ToyProjectManagementApp.release.xcconfig"; sourceTree = "<group>"; };
-		3C2B1E0BA031FDE9A6EEAC2B /* Pods_ToyProjectManagementApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ToyProjectManagementApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		437BAFD36E73CD466C355B4B /* Pods-ToyProjectManagementApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToyProjectManagementApp.debug.xcconfig"; path = "Target Support Files/Pods-ToyProjectManagementApp/Pods-ToyProjectManagementApp.debug.xcconfig"; sourceTree = "<group>"; };
+		91FC99DA5FEC9C995FA80500 /* Pods-ToyProjectManagementApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToyProjectManagementApp.release.xcconfig"; path = "Target Support Files/Pods-ToyProjectManagementApp/Pods-ToyProjectManagementApp.release.xcconfig"; sourceTree = "<group>"; };
 		9303413228D47EE900722FF8 /* FirebaseFacebookAuthUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseFacebookAuthUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		930491F9291506B300DAAF85 /* ChangeProjectTitlePopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChangeProjectTitlePopup.xib; sourceTree = "<group>"; };
 		930491FB2915075600DAAF85 /* ChangeProjectTitlePopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeProjectTitlePopupViewController.swift; sourceTree = "<group>"; };
@@ -193,6 +192,7 @@
 		935145EE289D2057009B1DEF /* projectDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = projectDate.swift; sourceTree = "<group>"; };
 		935145F228A1222F009B1DEF /* DateCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCollectionViewCell.swift; sourceTree = "<group>"; };
 		9353E3C0287D809700C63681 /* DetailColorContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailColorContent.swift; sourceTree = "<group>"; };
+		935C75D42935ECB800A2FFE4 /* completeProject.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = completeProject.json; sourceTree = "<group>"; };
 		935CBC852806A1C300759A24 /* MainTabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabbarViewController.swift; sourceTree = "<group>"; };
 		935CBC872806AD7900759A24 /* ProjectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCell.swift; sourceTree = "<group>"; };
 		935CBC8D2806AE5100759A24 /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
@@ -234,6 +234,8 @@
 		93F9836228F7E59B00033A46 /* AddListPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddListPopupViewController.swift; sourceTree = "<group>"; };
 		93F9836428F7E69400033A46 /* AddCardListPopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddCardListPopup.xib; sourceTree = "<group>"; };
 		93F9836628F7E76D00033A46 /* AddCardListPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardListPopupViewController.swift; sourceTree = "<group>"; };
+		9D0237D243016D363BDB6D57 /* Pods-ToyProjectManagementApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToyProjectManagementApp.debug.xcconfig"; path = "Target Support Files/Pods-ToyProjectManagementApp/Pods-ToyProjectManagementApp.debug.xcconfig"; sourceTree = "<group>"; };
+		F2E29FC8D9A0BFB377D8DE77 /* Pods_ToyProjectManagementApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ToyProjectManagementApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -241,7 +243,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				16DF21425ABE7E5DE5D131DC /* Pods_ToyProjectManagementApp.framework in Frameworks */,
+				2CE3DD763FD344A4AB84EA55 /* Pods_ToyProjectManagementApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -251,8 +253,8 @@
 		68BFDA4782678AAFA159C129 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				437BAFD36E73CD466C355B4B /* Pods-ToyProjectManagementApp.debug.xcconfig */,
-				2C05E4FDFF8E4EA13D241E48 /* Pods-ToyProjectManagementApp.release.xcconfig */,
+				9D0237D243016D363BDB6D57 /* Pods-ToyProjectManagementApp.debug.xcconfig */,
+				91FC99DA5FEC9C995FA80500 /* Pods-ToyProjectManagementApp.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -300,6 +302,7 @@
 		9301D3082803513E0010191F /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				9340E476285204E100338790 /* Fonts */,
 				93DEFA9127FAFF1700827C79 /* Assets.xcassets */,
 			);
 			path = Assets;
@@ -385,6 +388,14 @@
 				932AA494292F6E9D00BD248A /* DeleteUserPopup.xib */,
 			);
 			path = Popup;
+			sourceTree = "<group>";
+		};
+		935C75D62935ECD300A2FFE4 /* Json */ = {
+			isa = PBXGroup;
+			children = (
+				935C75D42935ECB800A2FFE4 /* completeProject.json */,
+			);
+			path = Json;
 			sourceTree = "<group>";
 		};
 		935CBC892806AD8D00759A24 /* Main */ = {
@@ -521,8 +532,8 @@
 		93DEFA8427FAFF1600827C79 /* ToyProjectManagementApp */ = {
 			isa = PBXGroup;
 			children = (
+				935C75D62935ECD300A2FFE4 /* Json */,
 				93332690292B490300DE092F /* ToyProjectManagementApp.entitlements */,
-				9340E476285204E100338790 /* Fonts */,
 				9301D3082803513E0010191F /* Assets */,
 				9301D307280351200010191F /* AppDelegates */,
 				93722CEE28D453E0007E1132 /* CustomUI */,
@@ -557,7 +568,7 @@
 				93E18D2328F4232F003AE3C5 /* FirebaseFacebookAuthUI.framework */,
 				93E18D2128F42296003AE3C5 /* XCTest.framework */,
 				9303413228D47EE900722FF8 /* FirebaseFacebookAuthUI.framework */,
-				3C2B1E0BA031FDE9A6EEAC2B /* Pods_ToyProjectManagementApp.framework */,
+				F2E29FC8D9A0BFB377D8DE77 /* Pods_ToyProjectManagementApp.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -569,12 +580,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 93DEFA9927FAFF1700827C79 /* Build configuration list for PBXNativeTarget "ToyProjectManagementApp" */;
 			buildPhases = (
-				0A0D394F87AD37A10E332E13 /* [CP] Check Pods Manifest.lock */,
+				BA80DBBEC15500C277E0A822 /* [CP] Check Pods Manifest.lock */,
 				93DEFA7E27FAFF1600827C79 /* Sources */,
 				93DEFA7F27FAFF1600827C79 /* Frameworks */,
 				93DEFA8027FAFF1600827C79 /* Resources */,
-				43853C1272E135A6927C6860 /* [CP] Embed Pods Frameworks */,
-				E2080992F4527C130A836FB5 /* [CP] Copy Pods Resources */,
+				A0CCBF9950E9D40B062D81BB /* [CP] Embed Pods Frameworks */,
+				53E6597985AB78C78494F2F5 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -638,6 +649,7 @@
 				936F8E992897BB8D00897316 /* ProjectContentSideBar.xib in Resources */,
 				93AFDAA028B4D5FD009E815F /* ProjectIDCell.xib in Resources */,
 				9340E47C2852050700338790 /* NanumGothic.otf in Resources */,
+				935C75D52935ECB900A2FFE4 /* completeProject.json in Resources */,
 				93E18D2B28F4298E003AE3C5 /* ProjectContent.storyboard in Resources */,
 				930A5E592920EECE00290D05 /* SignOutPopup.xib in Resources */,
 				936F8E932897AF0700897316 /* ProjectContentSideMenu.storyboard in Resources */,
@@ -669,7 +681,41 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0A0D394F87AD37A10E332E13 /* [CP] Check Pods Manifest.lock */ = {
+		53E6597985AB78C78494F2F5 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ToyProjectManagementApp/Pods-ToyProjectManagementApp-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ToyProjectManagementApp/Pods-ToyProjectManagementApp-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ToyProjectManagementApp/Pods-ToyProjectManagementApp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A0CCBF9950E9D40B062D81BB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ToyProjectManagementApp/Pods-ToyProjectManagementApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ToyProjectManagementApp/Pods-ToyProjectManagementApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ToyProjectManagementApp/Pods-ToyProjectManagementApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BA80DBBEC15500C277E0A822 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -689,40 +735,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		43853C1272E135A6927C6860 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ToyProjectManagementApp/Pods-ToyProjectManagementApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ToyProjectManagementApp/Pods-ToyProjectManagementApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ToyProjectManagementApp/Pods-ToyProjectManagementApp-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E2080992F4527C130A836FB5 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ToyProjectManagementApp/Pods-ToyProjectManagementApp-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ToyProjectManagementApp/Pods-ToyProjectManagementApp-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ToyProjectManagementApp/Pods-ToyProjectManagementApp-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -852,8 +864,8 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				EXCLUDED_ARCHS = arm64;
-				"EXCLUDED_ARCHS[sdk=*]" = arm64;
+				EXCLUDED_ARCHS = "";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -870,7 +882,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "토이";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				MTL_ENABLE_DEBUG_INFO = "$(ARCHS_STANDARD)";
+				MTL_ENABLE_DEBUG_INFO = "";
 				"MTL_ENABLE_DEBUG_INFO[arch=*]" = "$(ARCHS_STANDARD)";
 				MTL_FAST_MATH = "$(ARCHS_STANDARD)";
 				ONLY_ACTIVE_ARCH = YES;
@@ -916,8 +928,8 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				EXCLUDED_ARCHS = arm64;
-				"EXCLUDED_ARCHS[sdk=*]" = arm64;
+				EXCLUDED_ARCHS = "";
+				"EXCLUDED_ARCHS[sdk=iphoneos*]" = arm64;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -928,7 +940,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "토이";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				MTL_ENABLE_DEBUG_INFO = "$(ARCHS_STANDARD)";
+				MTL_ENABLE_DEBUG_INFO = "";
 				"MTL_ENABLE_DEBUG_INFO[arch=*]" = "$(ARCHS_STANDARD)";
 				MTL_FAST_MATH = "$(ARCHS_STANDARD)";
 				ONLY_ACTIVE_ARCH = YES;
@@ -941,8 +953,9 @@
 		};
 		93DEFA9A27FAFF1700827C79 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 437BAFD36E73CD466C355B4B /* Pods-ToyProjectManagementApp.debug.xcconfig */;
+			baseConfigurationReference = 9D0237D243016D363BDB6D57 /* Pods-ToyProjectManagementApp.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = ToyProjectManagementApp/ToyProjectManagementApp.entitlements;
@@ -950,7 +963,8 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 20221127;
 				DEVELOPMENT_TEAM = 4J3RK7L42Z;
-				"EXCLUDED_ARCHS[sdk=*]" = arm64;
+				EXCLUDED_ARCHS = "$(ACHAE_STANDARD)";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "$(ARCHS_STANDARD)";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ToyProjectManagementApp/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "토이";
@@ -965,7 +979,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = Acho.ToyProjectManagementApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -978,8 +992,9 @@
 		};
 		93DEFA9B27FAFF1700827C79 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2C05E4FDFF8E4EA13D241E48 /* Pods-ToyProjectManagementApp.release.xcconfig */;
+			baseConfigurationReference = 91FC99DA5FEC9C995FA80500 /* Pods-ToyProjectManagementApp.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = ToyProjectManagementApp/ToyProjectManagementApp.entitlements;
@@ -987,7 +1002,8 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 20221127;
 				DEVELOPMENT_TEAM = 4J3RK7L42Z;
-				EXCLUDED_ARCHS = arm64;
+				EXCLUDED_ARCHS = "$(ACHAE_STANDARD)";
+				"EXCLUDED_ARCHS[sdk=iphoneos*]" = "$(ARCHS_STANDARD)";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ToyProjectManagementApp/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "토이";
@@ -1002,7 +1018,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = Acho.ToyProjectManagementApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";

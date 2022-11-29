@@ -42,6 +42,7 @@ class UserInformationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        hideKeyboardWhenTappedAround() // 화면 클릭시 키보드 내림
         self.nameTextField.delegate = self
         self.emailTextField.delegate = self
         self.phoneNumberTextField.delegate = self

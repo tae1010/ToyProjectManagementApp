@@ -11,11 +11,12 @@ import FirebaseDatabase
 import MaterialComponents.MaterialBottomSheet
 import KakaoSDKUser
 import KakaoSDKAuth
+import Lottie
+import Toast_Swift
 
 class MainTabbarViewController: UIViewController {
 
-    //var projectList = [Project]()
-    
+
     var projectListPrograssTrue = [Project]() // prograss가 true일때 section0에 저장
     var projectListPrograssFalse = [Project]() // prograss가 false일때 section1에 저장
     
@@ -29,6 +30,7 @@ class MainTabbarViewController: UIViewController {
     var emailUid = "" // 사용자 email uid
     var kakaoUserId = ""
     
+    @IBOutlet weak var completeProjectLottieView: LottieAnimationView!
     @IBOutlet weak var logoImageView: LogoImageView!
     @IBOutlet weak var logoLabel: LogoLabel!
     @IBOutlet weak var createProjectButton: UIButton!
@@ -354,6 +356,8 @@ extension MainTabbarViewController {
         self.projectCollectionView.delegate = self
         self.projectCollectionView.dataSource = self
         self.projectCollectionView.register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "header")
+        
+        self.completeProjectLottieView.isHidden = true
     }
     
     private func configureNoProjectLabel() {
@@ -586,8 +590,20 @@ extension MainTabbarViewController {
             if getValue != self.projectListPrograssTrue[index].prograss {
                 
                 if getValue {
+                    self.view.hideAllToasts()
+                    self.view.makeToast("프로젝트가 진행중으로 변경되었습니다.")
+                    
                     UserDefault().notificationModelUserDefault(title: self.projectListPrograssTrue[index].projectTitle, status: "상태변경", content: "\(self.projectListPrograssTrue[index].projectTitle) 프로젝트 상태가 진행중으로 변경되었습니다.", date: self.koreanDate(), badge: true)
                 } else {
+                    self.view.hideAllToasts()
+                    self.view.makeToast("프로젝트가 완료 되었습니다.")
+                    
+                    self.completeProjectLottieView.isHidden = false
+                    self.completeProjectLottieView.loopMode = .playOnce
+                    self.completeProjectLottieView.play(completion: {_ in
+                        self.completeProjectLottieView.isHidden = true
+                    })
+                    
                     UserDefault().notificationModelUserDefault(title: self.projectListPrograssTrue[index].projectTitle, status: "상태변경", content: "\"\(self.projectListPrograssTrue[index].projectTitle)\" 프로젝트 상태가 완료로 변경되었습니다.", date: self.koreanDate(), badge: true)
                 }
                 
@@ -601,8 +617,22 @@ extension MainTabbarViewController {
             if getValue != self.projectListPrograssFalse[index].prograss {
                 
                 if getValue {
+                    
+                    self.view.hideAllToasts()
+                    self.view.makeToast("프로젝트가 진행중으로 변경되었습니다.")
+                    
                     UserDefault().notificationModelUserDefault(title: self.projectListPrograssFalse[index].projectTitle, status: "상태변경", content: "\"\(self.projectListPrograssFalse[index].projectTitle)\" 프로젝트 상태가 진행중으로 변경되었습니다.", date: self.koreanDate(), badge: true)
                 } else {
+                    
+                    self.view.hideAllToasts()
+                    self.view.makeToast("프로젝트가 완료 되었습니다.")
+                    
+                    self.completeProjectLottieView.isHidden = false
+                    self.completeProjectLottieView.loopMode = .playOnce
+                    self.completeProjectLottieView.play(completion: {_ in
+                        self.completeProjectLottieView.isHidden = true
+                    })
+                    
                     UserDefault().notificationModelUserDefault(title: self.projectListPrograssFalse[index].projectTitle, status: "상태변경", content: "\"\(self.projectListPrograssFalse[index].projectTitle)\" 프로젝트 상태가 완료로 변경되었습니다.", date: self.koreanDate(), badge: true)
                 }
                 
@@ -659,7 +689,7 @@ extension MainTabbarViewController: CreateProjectDelegate {
         let title = title ?? ""
         let id = UUID().uuidString
         
-        let project = Project(id: id, projectTitle: title, important: false, currentTime: self.koreanDate(), prograss: false)
+        let project = Project(id: id, projectTitle: title, important: false, currentTime: self.koreanDate(), prograss: true)
         
         self.projectListPrograssTrue.insert(project, at: 0)
         

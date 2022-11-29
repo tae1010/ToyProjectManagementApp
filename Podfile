@@ -6,13 +6,14 @@ target 'ToyProjectManagementApp' do
   use_frameworks!
 
   pod 'Firebase/Auth'
-  pod 'GoogleSignIn', '~> 5.0.2'
-  pod 'Firebase/Database', '~> 8.0.0'
+  pod 'GoogleSignIn'
+  pod 'Firebase/Database'
 
   pod 'SideMenu'
   pod 'Toast-Swift', '~> 5.0.1'
   pod 'MaterialComponents/BottomSheet'
   pod 'DropDown'
+  pod 'lottie-ios'
 
   pod 'KakaoSDKCommon'  # 필수 요소를 담은 공통 모듈
   pod 'KakaoSDKAuth'  # 사용자 인증
@@ -23,7 +24,9 @@ target 'ToyProjectManagementApp' do
   post_install do |installer|
     installer.pods_project.targets.each do |target|
       target.build_configurations.each do |config|
+ 	config.build_settings['BUILD_LIBRARY_FOR_DISTRIBUTION'] = 'YES'
         config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '11.0'
+        config.build_settings["EXCLUDED_ARCHS[sdk=iphonesimulator*]"] = "arm64" 
       end
     end
   end

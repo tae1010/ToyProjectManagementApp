@@ -71,6 +71,7 @@ PODS:
   - KakaoSDKUser (2.11.3):
     - KakaoSDKAuth (= 2.11.3)
   - leveldb-library (1.22.1)
+  - lottie-ios (3.5.0)
   - MaterialComponents/Availability (124.2.0)
   - MaterialComponents/BottomSheet (124.2.0):
     - MaterialComponents/Elevation
@@ -112,11 +113,12 @@ PODS:
 DEPENDENCIES:
   - DropDown
   - Firebase/Auth
-  - Firebase/Database (~> 8.0.0)
-  - GoogleSignIn (~> 5.0.2)
+  - Firebase/Database
+  - GoogleSignIn
   - KakaoSDKAuth
   - KakaoSDKCommon
   - KakaoSDKUser
+  - lottie-ios
   - MaterialComponents/BottomSheet
   - SideMenu
   - Toast-Swift (~> 5.0.1)
@@ -140,6 +142,7 @@ SPEC REPOS:
     - KakaoSDKCommon
     - KakaoSDKUser
     - leveldb-library
+    - lottie-ios
     - MaterialComponents
     - nanopb
     - PromisesObjC
@@ -164,12 +167,13 @@ SPEC CHECKSUMS:
   KakaoSDKCommon: b4235203f67a5b6ee2df75eaf9bbc863c6d92e09
   KakaoSDKUser: 9a42e9b74855ce876b071c841418aa6726534010
   leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
+  lottie-ios: c55158d67d0629a260625cc2ded2052b829e3c3e
   MaterialComponents: 1a9b2d9d45b1601ae544de85089adc4c464306d4
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   PromisesObjC: ab77feca74fa2823e7af4249b8326368e61014cb
   SideMenu: f583187d21c5b1dd04c72002be544b555a2627a2
   Toast-Swift: 9b6a70f28b3bf0b96c40d46c0c4b9d6639846711
 
-PODFILE CHECKSUM: 8601a287f23c363459ee1f0a7d8c33937c325c6c
+PODFILE CHECKSUM: e183b65f939e92852b4953f75d252b7a8f8b74e2
 
 COCOAPODS: 1.11.3
