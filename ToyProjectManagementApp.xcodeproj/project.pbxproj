@@ -74,6 +74,7 @@
 		9340E47C2852050700338790 /* NanumGothic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9340E4782852050700338790 /* NanumGothic.otf */; };
 		9340E47D2852050700338790 /* NanumGothicBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9340E4792852050700338790 /* NanumGothicBold.otf */; };
 		9340E47E2852050700338790 /* NanumGothicLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9340E47A2852050700338790 /* NanumGothicLight.otf */; };
+		934A63DC293788170046CB63 /* CheckLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934A63DB293788170046CB63 /* CheckLogin.swift */; };
 		9350DB1628F41A2700646C42 /* ProjectContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9350DB1528F41A2700646C42 /* ProjectContentViewController.swift */; };
 		935145EF289D2057009B1DEF /* projectDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935145EE289D2057009B1DEF /* projectDate.swift */; };
 		935145F328A1222F009B1DEF /* DateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935145F228A1222F009B1DEF /* DateCollectionViewCell.swift */; };
@@ -188,6 +189,7 @@
 		9340E4782852050700338790 /* NanumGothic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumGothic.otf; sourceTree = "<group>"; };
 		9340E4792852050700338790 /* NanumGothicBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumGothicBold.otf; sourceTree = "<group>"; };
 		9340E47A2852050700338790 /* NanumGothicLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumGothicLight.otf; sourceTree = "<group>"; };
+		934A63DB293788170046CB63 /* CheckLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckLogin.swift; sourceTree = "<group>"; };
 		9350DB1528F41A2700646C42 /* ProjectContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectContentViewController.swift; sourceTree = "<group>"; };
 		935145EE289D2057009B1DEF /* projectDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = projectDate.swift; sourceTree = "<group>"; };
 		935145F228A1222F009B1DEF /* DateCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -439,6 +441,7 @@
 			isa = PBXGroup;
 			children = (
 				933CD6D42911312900B5065B /* UserDefault.swift */,
+				934A63DB293788170046CB63 /* CheckLogin.swift */,
 				935CBC8D2806AE5100759A24 /* Project.swift */,
 				93DA8F87282FC1A200217360 /* ProjectContent.swift */,
 				935145EE289D2057009B1DEF /* projectDate.swift */,
@@ -802,6 +805,7 @@
 				9340DE8F28DC666A00B1CEB2 /* ExtensionViewControllerToastMessage.swift in Sources */,
 				9315079B290FC88C000DD700 /* DetailContentColorCell.swift in Sources */,
 				9338C7682902EA92005F6C3B /* ChangeListTitlePopupViewController.swift in Sources */,
+				934A63DC293788170046CB63 /* CheckLogin.swift in Sources */,
 				9304920D291A449C00DAAF85 /* NotificationCell.swift in Sources */,
 				93722CED28D31880007E1132 /* ExtensionUIColor.swift in Sources */,
 				93049200291909CA00DAAF85 /* CustomTabbarViewController.swift in Sources */,

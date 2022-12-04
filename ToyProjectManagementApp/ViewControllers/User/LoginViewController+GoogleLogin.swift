@@ -23,9 +23,16 @@ extension LoginViewController: GIDSignInDelegate {
             self.showViews()
             return
         }
+
         // 사용자 인증값 가져오기
         guard let authentication = user.authentication else { return }
         let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
+        
+        print(type(of: credential))
+        print(credential,"카카")
+        print(FirebaseApp.app()?.options.clientID, "카카")
+        
+        UserDefault().setLoginDataUserDefault(checkLogin: CheckLogin(token: "\(String(describing: FirebaseApp.app()?.options.clientID))", lastLogin: .google))
         
         Auth.auth().signIn(with: credential) { _, _ in
             print("signin 성공")

@@ -5,6 +5,7 @@
 //  Created by 김정태 on 2022/04/04.
 //
 
+import Firebase
 import UIKit
 import FirebaseCore
 import GoogleSignIn
@@ -16,9 +17,12 @@ import KakaoSDKCommon
 import KakaoSDKAuth
 import KakaoSDKUser
 import Network
+import CryptoKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate, ASAuthorizationControllerDelegate {
+    
+    var currentNonce: String?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
@@ -29,11 +33,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ASAuthorizationController
         FirebaseApp.configure()
         
         let nativeAppKey = Bundle.main.infoDictionary?["KAKAO_NATIVE_APP_KEY"] ?? "" // config에 저장한 값
-        
-        checkAppleSignIn()
-
         KakaoSDK.initSDK(appKey: nativeAppKey as! String)
-
+        
+        checkLoginInfo()
+        
         return true
     }
     
@@ -138,7 +141,6 @@ extension AppDelegate {
                         }
         alert.addAction(okAction)
 
-
         monitor.start(queue: .global())
         
         monitor.pathUpdateHandler = { path in
@@ -149,49 +151,103 @@ extension AppDelegate {
                 print("연결끊겨있음")
                 
                 DispatchQueue.main.async {
-
                     UIApplication.shared.windows.first?.rootViewController?.present(alert, animated: true)
                 }
             }
+        }
+    }
+    
+    func checkLoginInfo() {
+        let checkLogin = UserDefault().loadCheckLoginUserDefault()
+        
+        let loginType = checkLogin.lastLogin
+        
+        switch loginType {
+        case .kakao:
+            print("kakao")
+            checkKakaoSignIn()
+            
+        case .google:
+            print("google")
+            checkGoogleAppleSignIn()
+            
+        case .apple:
+            print("apple")
+            checkGoogleAppleSignIn()
+            
+        case .normal:
+            print("normal")
+        case .nothing:
+            print("nothing")
             
         }
+
+    }
+    
+    // 카카오 로그인 체크
+    func checkKakaoSignIn() {
         
+        if (AuthApi.hasToken()) {
+            
+            print("일단 카카오 토큰은 있음")
+            UserApi.shared.accessTokenInfo {(accessTokenInfo, error) in
+                if let error = error {
+                    print("토큰 access 에러")
+                    print(error)
+                }
+                else {
+                    
+                    print("accessTokenInfo() success.")
+                    self.showMainViewController()
+                }
+            }
+        }
+        else {
+            print("카카오 토큰이 없음")
+            //로그인 필요
+        }
     }
 
+    
+    func checkGoogleAppleSignIn() {
+        if let user = Auth.auth().currentUser {
+            print(user)
+            self.showMainViewController()
+        } else {
+            return
+        }
+    }
+    
+    
+    
+
     // 애플 로그인이 되어있는지 확인
-    func checkAppleSignIn() {
+    func checkAppleSignIn(token: String) {
         let appleIDProvider = ASAuthorizationAppleIDProvider()
-        appleIDProvider.getCredentialState(forUserID: "00000.abcabcabcabc.0000") { (credentialState, error) in
+        appleIDProvider.getCredentialState(forUserID: token) { (credentialState, error) in
             switch credentialState {
                 
-                // 이미 증명이 된경우
+            // 이미 증명이 된경우
             case .authorized:
                 print("authorized")
-                // The Apple ID credential is valid.
                 
-                // 증명을 취소 할경우
-            case .revoked:
-                print("revoked")
-                
-                // 증명이 존재하지 않을 경우
-            case .notFound:
-                // The Apple ID credential is either revoked or was not found, so show the sign-in UI.
-                print("notFound")
-                DispatchQueue.main.async {
-                    // self.window?.rootViewController?.showLoginViewController()
-                }
+            // revoke, notfound
             default:
+                print("revoke or notfound")
                 break
             }
         }
     }
-
-//    private func showMainViewController() {
-//        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-//        let mainViewController = storyboard.instantiateViewController(withIdentifier: "MainTabbar")
-//        mainViewController.modalPresentationStyle = .fullScreen
-//        UIApplication.shared.windows.first?.rootViewController?.show(mainViewController, sender: nil)
-//    }
+    
+    // main tabbar 이동
+    private func showMainViewController() {
+        DispatchQueue.main.async {
+            let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+            let mainViewController = storyboard.instantiateViewController(withIdentifier: "MainTabbar")
+            mainViewController.modalPresentationStyle = .fullScreen
+            UIApplication.shared.windows.first?.rootViewController?.show(mainViewController, sender: nil)
+        }
+    }
 }
 
 extension UIViewController {

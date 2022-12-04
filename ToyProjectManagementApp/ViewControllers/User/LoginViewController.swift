@@ -53,7 +53,6 @@ class LoginViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         print("viewWillappear 실행?")
         super.viewWillAppear(animated)
-        
     }
     
     override func viewDidLoad() {

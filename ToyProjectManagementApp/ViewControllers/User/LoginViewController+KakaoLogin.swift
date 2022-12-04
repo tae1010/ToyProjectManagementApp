@@ -35,6 +35,7 @@ extension LoginViewController {
             
             else {
                 print("loginWithKakaoTalk() success.")
+                UserDefault().setLoginDataUserDefault(checkLogin: CheckLogin(token: "\(String(describing: oauthToken))", lastLogin: .kakao))
                 self.showViews()
                 self.showMainViewController()
                 //do something
@@ -53,6 +54,11 @@ extension LoginViewController {
             }
             else {
                 print("loginWithKakaoAccount() success.")
+                print(type(of: oauthToken))
+                print(oauthToken, "카카오로그인 credential")
+                UserDefault().setLoginDataUserDefault(checkLogin: CheckLogin(token: "\(String(describing: oauthToken))", lastLogin: .kakao))
+                
+                
                 self.showViews()
                 self.showMainViewController()
                 //do something
@@ -65,12 +71,41 @@ extension LoginViewController {
     func loginKakao() {
         // 카카오톡 설치 여부 확인
         if UserApi.isKakaoTalkLoginAvailable() {
+            self.checkKakaoToken()
             self.loginWithKakaotalk()
             
             // 카카오톡 설치 x
         } else {
+            self.checkKakaoToken()
             self.loginWithKakaoAccount()
         }
+    }
+    
+    func checkKakaoToken() {
+        
+        if (AuthApi.hasToken()) {
+            
+            print("일단 카카오 토큰은 있음")
+            UserApi.shared.accessTokenInfo {(accessTokenInfo, error) in
+                if let error = error {
+                    print("토큰 access 에러")
+                    print(error)
+                }
+                else {
+                    
+                    print("accessTokenInfo() success.")
+                    UserDefault().setLoginDataUserDefault(checkLogin: CheckLogin(token: "\(String(describing: accessTokenInfo?.id))", lastLogin: .kakao))
+                    //do something
+                    print(accessTokenInfo, "이거랑??")
+                }
+            }
+        }
+        else {
+            print("카카오 토큰이 없음")
+            //로그인 필요
+        }
+        
+        
     }
     
 }

@@ -54,11 +54,6 @@ class UserInformationViewController: UIViewController {
         print("viewdidload 실행")
     }
 
-
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        self.removeNotificationObserver()
-    }
     
     @IBAction func tapdismissbutton(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
@@ -135,42 +130,42 @@ extension UserInformationViewController: UITextFieldDelegate {
 
 }
 
-extension UserInformationViewController {
-    
-    // 키보드 생길때 뷰 스크롤 올림 notification
-    private func addNotificationObserver() {
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
-    
-    private func removeNotificationObserver() {
-        NotificationCenter.default.removeObserver(self, name: .changePrograssProjectNotification, object: nil)
-        NotificationCenter.default.removeObserver(self, name: .changeProjectTitleNotification, object: nil)
-    }
-    
-    @objc func keyboardWillShow(_ sender: Notification) {
-        if let keyboardFrame: NSValue = sender.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
-            print("keyboardWillShow")
-            let keyboardRectangle = keyboardFrame.cgRectValue
-            let keyboardHeight = keyboardRectangle.height
-            self.view.frame.origin.y -= 150
-        }
-        print("keyboard Will appear Execute")
-    }
-    
-    @objc func keyboardWillHide(_ sender: Notification) {
-        
-        if let keyboardFrame: NSValue = sender.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
-            print("keyboardWillHide")
-            let keyboardRectangle = keyboardFrame.cgRectValue
-            let keyboardHeight = keyboardRectangle.height
-            self.view.frame.origin.y = 0
-        }
-        print("keyboard Will Disappear Execute")
-        
-    }
-    
-    
-}
-
-
+//extension UserInformationViewController {
+//    
+//    // 키보드 생길때 뷰 스크롤 올림 notification
+//    private func addNotificationObserver() {
+//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+//    }
+//    
+//    private func removeNotificationObserver() {
+//        NotificationCenter.default.removeObserver(self, name: .changePrograssProjectNotification, object: nil)
+//        NotificationCenter.default.removeObserver(self, name: .changeProjectTitleNotification, object: nil)
+//    }
+//    
+//    @objc func keyboardWillShow(_ sender: Notification) {
+//        if let keyboardFrame: NSValue = sender.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+//            print("keyboardWillShow")
+//            let keyboardRectangle = keyboardFrame.cgRectValue
+//            let keyboardHeight = keyboardRectangle.height
+//            self.view.frame.origin.y -= 150
+//        }
+//        print("keyboard Will appear Execute")
+//    }
+//    
+//    @objc func keyboardWillHide(_ sender: Notification) {
+//        
+//        if let keyboardFrame: NSValue = sender.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+//            print("keyboardWillHide")
+//            let keyboardRectangle = keyboardFrame.cgRectValue
+//            let keyboardHeight = keyboardRectangle.height
+//            self.view.frame.origin.y = 0
+//        }
+//        print("keyboard Will Disappear Execute")
+//        
+//    }
+//    
+//    
+//}
+//
+//

@@ -45,6 +45,7 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
             
             
             
+            
             // 검색한 ID 토큰을 문자열로 변환
             guard let idTokenString = String(data: appleIDtoken, encoding: .utf8) else {
                 print("Unable to serialize token string from data: \(appleIDtoken.debugDescription)")
@@ -56,11 +57,14 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
             let credential = OAuthProvider.credential(withProviderID: "apple.com",
                                                       idToken: idTokenString,
                                                       rawNonce: nonce)
+
+            print(appleIDCredential.identityToken,"사사")
+            print(idTokenString, "사사")
+            print(nonce, "사사")
             
             // credential을 사용하여 Firebase에 로그인
             Auth.auth().signIn(with: credential) { (authDataResult, error) in
                 // 인증 결과에서 Firebase 사용자를 검색하고 사용자 정보를 표시할 수 있다.
-
                 
                 if error != nil {
                     print(error?.localizedDescription ?? "error" as Any)
@@ -68,6 +72,7 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
                     return
                 }
                 
+                UserDefault().setLoginDataUserDefault(checkLogin: CheckLogin(token: appleIDCredential.user, lastLogin: .apple))
                 self.showViews()
                 print("성공?")
                 self.showMainViewController()

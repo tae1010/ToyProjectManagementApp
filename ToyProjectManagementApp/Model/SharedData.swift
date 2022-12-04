@@ -8,7 +8,6 @@
 import Foundation
 import UIKit
 
-
 /// 마이페이지에 활동내역  + 애플이메일을 저장하기 위한 class
 // apple login은 보안때문에 email값을 null 로 반환하기 때문에 로그인할때 주는 token을 string으로 변환해서 저장시켜야함
 class SharedData {

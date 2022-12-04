@@ -15,6 +15,22 @@ class UserDefault {
     let decoder = JSONDecoder()
     
     var sortNotificationModel = [NotificationModel]()
+    
+    // 최초 로그인시 토큰, 로그인 방식 저장
+    func setLoginDataUserDefault(checkLogin: CheckLogin) {
+        let checkLoginEncoder = try? encoder.encode(checkLogin)
+        
+        print(checkLogin, "어떤 로그인인지 체크")
+        
+        userDefault.set(checkLoginEncoder, forKey: "checkLogin")
+    }
+    
+    func loadCheckLoginUserDefault() -> CheckLogin {
+        guard let checkLogin = userDefault.object(forKey: "checkLogin") else { return CheckLogin(token: "", lastLogin: .nothing) }
+        guard let checkLoginDecoder = try? decoder.decode(CheckLogin.self, from: checkLogin as! Data) else { return CheckLogin(token: "", lastLogin: .nothing) }
+        
+        return checkLoginDecoder
+    }
 
     // notification model 삭제
     func removeNotificationModelUserDefault() {
