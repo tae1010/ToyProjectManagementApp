@@ -72,7 +72,7 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
                     return
                 }
                 
-                UserDefault().setLoginDataUserDefault(checkLogin: CheckLogin(token: appleIDCredential.user, lastLogin: .apple))
+                UserDefault().setLoginDataUserDefault(checkLogin: CheckLogin(lastLogin: .apple))
                 self.showViews()
                 print("성공?")
                 self.showMainViewController()

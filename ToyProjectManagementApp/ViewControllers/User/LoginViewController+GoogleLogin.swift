@@ -32,7 +32,7 @@ extension LoginViewController: GIDSignInDelegate {
         print(credential,"카카")
         print(FirebaseApp.app()?.options.clientID, "카카")
         
-        UserDefault().setLoginDataUserDefault(checkLogin: CheckLogin(token: "\(String(describing: FirebaseApp.app()?.options.clientID))", lastLogin: .google))
+        UserDefault().setLoginDataUserDefault(checkLogin: CheckLogin(lastLogin: .google))
         
         Auth.auth().signIn(with: credential) { _, _ in
             print("signin 성공")

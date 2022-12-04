@@ -26,8 +26,8 @@ class UserDefault {
     }
     
     func loadCheckLoginUserDefault() -> CheckLogin {
-        guard let checkLogin = userDefault.object(forKey: "checkLogin") else { return CheckLogin(token: "", lastLogin: .nothing) }
-        guard let checkLoginDecoder = try? decoder.decode(CheckLogin.self, from: checkLogin as! Data) else { return CheckLogin(token: "", lastLogin: .nothing) }
+        guard let checkLogin = userDefault.object(forKey: "checkLogin") else { return CheckLogin(lastLogin: .nothing) }
+        guard let checkLoginDecoder = try? decoder.decode(CheckLogin.self, from: checkLogin as! Data) else { return CheckLogin(lastLogin: .nothing) }
         
         return checkLoginDecoder
     }

@@ -38,6 +38,7 @@ class SignOutPopupViewController: UIViewController {
     @IBAction func tapSignOutButton(_ sender: UIButton) {
         self.logoutDelegate?.logoutDelegate()
         UserDefault().removeNotificationModelUserDefault()
+        UserDefault().setLoginDataUserDefault(checkLogin: CheckLogin(lastLogin: .nothing))
         self.dismiss(animated: true)
     }
     

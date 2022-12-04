@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 struct CheckLogin: Codable {
-    var token: String
+//    var token: String
     var lastLogin: Login
     
     // login type
@@ -37,8 +37,8 @@ struct CheckLogin: Codable {
     }
 
     
-    init(token: String, lastLogin: Login) {
-        self.token = token
+    init(lastLogin: Login) {
+        //self.token = token
         self.lastLogin = lastLogin
     }
     
