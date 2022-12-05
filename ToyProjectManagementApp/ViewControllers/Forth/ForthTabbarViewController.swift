@@ -217,6 +217,8 @@ extension ForthTabbarViewController {
             UserApi.shared.me() {(user, error) in
                 if let error = error {
                     print(error)
+                    self.emailUid = FirebaseAuth.Auth.auth().currentUser?.uid ?? "아"
+                    self.readDB()
                 }
                 else {
                     print("me() success.")
