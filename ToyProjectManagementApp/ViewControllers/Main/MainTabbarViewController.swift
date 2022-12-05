@@ -124,7 +124,10 @@ extension MainTabbarViewController {
             
             UserApi.shared.me() {(user, error) in
                 if let error = error {
+                    print("에러인가?")
                     print(error)
+                    self.emailUid = FirebaseAuth.Auth.auth().currentUser?.uid ?? "아"
+                    self.readDB()
                 }
                 else {
                     print("me() success.")
@@ -132,13 +135,14 @@ extension MainTabbarViewController {
                         self.kakaoUserId = "kakao\(userId)"
                     }
                     
-                    print(self.kakaoUserId)
+                    print(self.kakaoUserId, "흐으음")
                     self.emailUid = String(FirebaseAuth.Auth.auth().currentUser?.uid ?? self.kakaoUserId)
                     
                     self.readDB()
                 }
             }
         } else {
+            print("흐으으으으음")
             self.emailUid = FirebaseAuth.Auth.auth().currentUser?.uid ?? "아"
             self.readDB()
         }

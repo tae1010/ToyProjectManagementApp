@@ -135,16 +135,19 @@ extension LoginViewController {
 // MARK: - 기능 관련 함수
 extension LoginViewController {
     
-    // 기본 로그인
+    // 로그인
     private func login(){
         
         self.hideViews()
         
         guard let email = self.emailTextField.text else { return }
         guard let password = self.passwordTextField.text else { return }
-        
-        UserDefaults.standard.set(email, forKey: "email")
-        
+
+        self.normalLogin(email: email, password: password)
+    }
+    
+    // 기본 로그인
+    private func normalLogin(email: String, password: String) {
         Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
             
             if let error = error {
@@ -168,6 +171,8 @@ extension LoginViewController {
             } else {
                 print("login success")
                 
+                UserDefault().setNormalLoginUserDefault(id: email, password: password)
+                UserDefault().setLoginDataUserDefault(checkLogin: CheckLogin(lastLogin: .normal))
                 self.showMainViewController()
                 
             }
@@ -276,10 +281,6 @@ extension LoginViewController {
             })
     }
 }
-
-
-
-
 
 extension LoginViewController: SendMessageDelegate {
     

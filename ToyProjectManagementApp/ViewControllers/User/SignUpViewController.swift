@@ -50,9 +50,13 @@ class SignUpViewController: UIViewController {
         let email = self.emailTextField.text ?? ""
         let password = self.passwordTextField.text ?? ""
         
+        
+        
         //신규 사용자 생성
         Auth.auth().createUser(withEmail: email, password: password) { [weak self] authResult, error in
             guard let self = self else { return }
+            
+            
             
             if let error = error {
                 let code = (error as NSError).code
@@ -78,6 +82,8 @@ class SignUpViewController: UIViewController {
                 self.showViews()
             } else {
                 self.showViews()
+                UserDefault().setNormalLoginUserDefault(id: email, password: password)
+                UserDefault().setLoginDataUserDefault(checkLogin: CheckLogin(lastLogin: .normal))
                 self.showMainViewController()
             }
         }

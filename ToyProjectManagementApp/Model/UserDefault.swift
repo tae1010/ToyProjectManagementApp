@@ -16,6 +16,24 @@ class UserDefault {
     
     var sortNotificationModel = [NotificationModel]()
     
+    // set 기본로그인 id password
+    func setNormalLoginUserDefault(id: String, password: String) {
+        userDefault.set(id, forKey: "normalLoginId")
+        userDefault.set(password, forKey: "normalLoginPassWord")
+    }
+    
+    // load 기본로그인 id
+    func loadNormalLoginIdUserDefault() -> String {
+        guard let loadNormalLoginId = userDefault.object(forKey: "normalLoginId") as? String else { return "" }
+        return loadNormalLoginId
+    }
+    
+    // load 기본로그인 password
+    func loadNormalLoginPassWordUserDefault() -> String {
+        guard let loadNormalLoginPassWord = userDefault.object(forKey: "normalLoginPassWord") as? String else { return "" }
+        return loadNormalLoginPassWord
+    }
+    
     // 최초 로그인시 토큰, 로그인 방식 저장
     func setLoginDataUserDefault(checkLogin: CheckLogin) {
         let checkLoginEncoder = try? encoder.encode(checkLogin)

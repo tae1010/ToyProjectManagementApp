@@ -18,6 +18,7 @@ import KakaoSDKAuth
 import KakaoSDKUser
 import Network
 import CryptoKit
+import Toast_Swift
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate, ASAuthorizationControllerDelegate {
@@ -177,11 +178,40 @@ extension AppDelegate {
             
         case .normal:
             print("normal")
+            checkNormalSignIn()
         case .nothing:
             print("nothing")
-            
+            return
         }
 
+    }
+    
+    // 기본 로그인 체크
+    func checkNormalSignIn() {
+        let id = UserDefault().loadNormalLoginIdUserDefault()
+        let password = UserDefault().loadNormalLoginPassWordUserDefault()
+        
+        if id == "" || password == "" {
+            print(id, password)
+            print("값어서 리턴됨")
+            return
+        } else {
+            Auth.auth().signIn(withEmail: id, password: password) { (user, error) in
+                
+                if let error = error {
+                    let code = (error as NSError).code
+                    print(error, "에러")
+                    
+                    return
+                    
+                } else {
+                    print("login success")
+                    self.showMainViewController()
+                    
+                }
+            }
+            
+        }
     }
     
     // 카카오 로그인 체크
