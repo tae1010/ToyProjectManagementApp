@@ -37,6 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ASAuthorizationController
         KakaoSDK.initSDK(appKey: nativeAppKey as! String)
         
         checkLoginInfo()
+        sleep(2)
         
         return true
     }
