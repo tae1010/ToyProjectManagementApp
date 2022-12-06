@@ -41,11 +41,13 @@
 2. 카드마다 나만의 라벨을 만들어 효율적으로 관리 가능
 3. 만든 리스트들은 리스트 관리창 에서 따로 관리 가능
 
+<p align="center">
 <img width="250" src="https://user-images.githubusercontent.com/53727139/205866183-ba242d69-60eb-4bd2-b747-843e6b085973.png"/>
 
 <img width="250" src="https://user-images.githubusercontent.com/53727139/205866098-d6a05241-95e5-4360-afc1-b74399b207a3.png"/>
 
 <img width="250" src="https://user-images.githubusercontent.com/53727139/205866137-4135e08c-918a-49f8-9f2b-25737e52dd14.png"/>
+  /p>
 
 카드 생성, 카드 이동
 
