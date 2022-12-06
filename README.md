@@ -32,8 +32,10 @@
 <img width="250" src="https://user-images.githubusercontent.com/53727139/205867839-cc2aa264-2a0f-4c93-b9dc-22292c572aa0.gif"/>
 
 
+
 - 로그인 화면
 <img width="250" src="https://user-images.githubusercontent.com/53727139/205867832-70d31adf-c65c-4eea-a04a-8aa68b4fa7af.gif"/>
+
 
 
 - 프로젝트 관리
@@ -47,19 +49,24 @@
 <img width="250" src="https://user-images.githubusercontent.com/53727139/205866098-d6a05241-95e5-4360-afc1-b74399b207a3.png"/>
 
 <img width="250" src="https://user-images.githubusercontent.com/53727139/205866137-4135e08c-918a-49f8-9f2b-25737e52dd14.png"/>
-/p>
+</p>
 
+  
 카드 생성, 카드 이동
 
+<p>
 <img width="250" src="https://user-images.githubusercontent.com/53727139/205867821-8cb37d1b-1bd9-40fb-bee2-82517c200732.gif"/>
 
 <img width="250" src="https://user-images.githubusercontent.com/53727139/205867834-fe916c0d-3b83-4d72-8a4f-734b0d08f023.gif"/>
-
+</p>
+  
 
 - 알림 창, 마이 페이지, 프로필 관리창
 
+<p>
 <img width="250" src="https://user-images.githubusercontent.com/53727139/205866097-03047b6e-71aa-4c95-ac41-b56c99f64f07.png"/>
 
 <img width="250" src="https://user-images.githubusercontent.com/53727139/205866207-d0b24361-39db-4c8f-9b0b-90c91695ccad.png"/>
 
 <img width="250" src="https://user-images.githubusercontent.com/53727139/205866166-06b758a1-8bba-4f1e-8672-0b7f9a75c6a4.png"/>
+</p>
