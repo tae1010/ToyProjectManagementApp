@@ -29,7 +29,7 @@
 ### 3. 앱 소개
 
 - Splash 화면
-<img width="80%" src="https://user-images.githubusercontent.com/53727139/205867839-cc2aa264-2a0f-4c93-b9dc-22292c572aa0.gif"/>
+<img width="200%" src="https://user-images.githubusercontent.com/53727139/205867839-cc2aa264-2a0f-4c93-b9dc-22292c572aa0.gif"/>
 
 [splash.mp4](%E1%84%90%E1%85%A9%E1%84%8B%E1%85%B5%20-%20%E1%84%80%E1%85%A2%E1%84%8B%E1%85%B5%E1%86%AB%20%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%8C%E1%85%A6%E1%86%A8%E1%84%90%E1%85%B3%20%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%B5%20%E1%84%8B%E1%85%A2%E1%86%B8%208a6f52a82d9a4383a108a8d58d80c1f9/splash.mp4)
 
