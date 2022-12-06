@@ -1,8 +1,13 @@
 # 토이 - 개인 프로젝트 관리 앱
 
-![Untitled](%E1%84%90%E1%85%A9%E1%84%8B%E1%85%B5%20-%20%E1%84%80%E1%85%A2%E1%84%8B%E1%85%B5%E1%86%AB%20%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%8C%E1%85%A6%E1%86%A8%E1%84%90%E1%85%B3%20%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%B5%20%E1%84%8B%E1%85%A2%E1%86%B8%208a6f52a82d9a4383a108a8d58d80c1f9/Untitled.png)
+<p align="center">
+  <img width="500" src="https://user-images.githubusercontent.com/53727139/205871335-01547f05-7676-4b43-b613-f9036791363e.png"/>
+  
+  <img width="500" src="https://user-images.githubusercontent.com/53727139/205871350-d8ae15ba-0826-40b1-b31b-9f7e81dd7b0f.png"/>
+<\p>
 
-![Untitled](%E1%84%90%E1%85%A9%E1%84%8B%E1%85%B5%20-%20%E1%84%80%E1%85%A2%E1%84%8B%E1%85%B5%E1%86%AB%20%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%8C%E1%85%A6%E1%86%A8%E1%84%90%E1%85%B3%20%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%B5%20%E1%84%8B%E1%85%A2%E1%86%B8%208a6f52a82d9a4383a108a8d58d80c1f9/Untitled%201.png)
+  
+  
 
 ### 토이 - 개인프로젝트 관리앱
 
