@@ -31,33 +31,33 @@
 - Splash 화면
 <img width="250" src="https://user-images.githubusercontent.com/53727139/205867839-cc2aa264-2a0f-4c93-b9dc-22292c572aa0.gif"/>
 
-[splash.mp4](%E1%84%90%E1%85%A9%E1%84%8B%E1%85%B5%20-%20%E1%84%80%E1%85%A2%E1%84%8B%E1%85%B5%E1%86%AB%20%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%8C%E1%85%A6%E1%86%A8%E1%84%90%E1%85%B3%20%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%B5%20%E1%84%8B%E1%85%A2%E1%86%B8%208a6f52a82d9a4383a108a8d58d80c1f9/splash.mp4)
 
-- 로그인
+- 로그인 화면
+<img width="250" src="https://user-images.githubusercontent.com/53727139/205867832-70d31adf-c65c-4eea-a04a-8aa68b4fa7af.gif"/>
 
-[login.mp4](%E1%84%90%E1%85%A9%E1%84%8B%E1%85%B5%20-%20%E1%84%80%E1%85%A2%E1%84%8B%E1%85%B5%E1%86%AB%20%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%8C%E1%85%A6%E1%86%A8%E1%84%90%E1%85%B3%20%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%B5%20%E1%84%8B%E1%85%A2%E1%86%B8%208a6f52a82d9a4383a108a8d58d80c1f9/login.mp4)
 
 - 프로젝트 관리
 1. 다양한 카드를 만들어 프로젝트를 관리할 수 있다.
 2. 카드마다 나만의 라벨을 만들어 효율적으로 관리 가능
 3. 만든 리스트들은 리스트 관리창 에서 따로 관리 가능
 
-![projectContent.png](%E1%84%90%E1%85%A9%E1%84%8B%E1%85%B5%20-%20%E1%84%80%E1%85%A2%E1%84%8B%E1%85%B5%E1%86%AB%20%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%8C%E1%85%A6%E1%86%A8%E1%84%90%E1%85%B3%20%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%B5%20%E1%84%8B%E1%85%A2%E1%86%B8%208a6f52a82d9a4383a108a8d58d80c1f9/projectContent.png)
+<img width="250" src="https://user-images.githubusercontent.com/53727139/205866183-ba242d69-60eb-4bd2-b747-843e6b085973.png"/>
 
-![colorLabel.png](%E1%84%90%E1%85%A9%E1%84%8B%E1%85%B5%20-%20%E1%84%80%E1%85%A2%E1%84%8B%E1%85%B5%E1%86%AB%20%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%8C%E1%85%A6%E1%86%A8%E1%84%90%E1%85%B3%20%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%B5%20%E1%84%8B%E1%85%A2%E1%86%B8%208a6f52a82d9a4383a108a8d58d80c1f9/colorLabel.png)
+<img width="250" src="https://user-images.githubusercontent.com/53727139/205866098-d6a05241-95e5-4360-afc1-b74399b207a3.png"/>
 
-![listManagement.png](%E1%84%90%E1%85%A9%E1%84%8B%E1%85%B5%20-%20%E1%84%80%E1%85%A2%E1%84%8B%E1%85%B5%E1%86%AB%20%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%8C%E1%85%A6%E1%86%A8%E1%84%90%E1%85%B3%20%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%B5%20%E1%84%8B%E1%85%A2%E1%86%B8%208a6f52a82d9a4383a108a8d58d80c1f9/listManagement.png)
+<img width="250" src="https://user-images.githubusercontent.com/53727139/205866137-4135e08c-918a-49f8-9f2b-25737e52dd14.png"/>
 
 카드 생성, 카드 이동
 
-[createCard.mp4](%E1%84%90%E1%85%A9%E1%84%8B%E1%85%B5%20-%20%E1%84%80%E1%85%A2%E1%84%8B%E1%85%B5%E1%86%AB%20%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%8C%E1%85%A6%E1%86%A8%E1%84%90%E1%85%B3%20%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%B5%20%E1%84%8B%E1%85%A2%E1%86%B8%208a6f52a82d9a4383a108a8d58d80c1f9/createCard.mp4)
+<img width="250" src="https://user-images.githubusercontent.com/53727139/205867821-8cb37d1b-1bd9-40fb-bee2-82517c200732.gif"/>
 
-[moveCard.mp4](%E1%84%90%E1%85%A9%E1%84%8B%E1%85%B5%20-%20%E1%84%80%E1%85%A2%E1%84%8B%E1%85%B5%E1%86%AB%20%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%8C%E1%85%A6%E1%86%A8%E1%84%90%E1%85%B3%20%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%B5%20%E1%84%8B%E1%85%A2%E1%86%B8%208a6f52a82d9a4383a108a8d58d80c1f9/moveCard.mp4)
+<img width="250" src="https://user-images.githubusercontent.com/53727139/205867834-fe916c0d-3b83-4d72-8a4f-734b0d08f023.gif"/>
+
 
 - 알림 창, 마이 페이지, 프로필 관리창
 
-![alert.png](%E1%84%90%E1%85%A9%E1%84%8B%E1%85%B5%20-%20%E1%84%80%E1%85%A2%E1%84%8B%E1%85%B5%E1%86%AB%20%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%8C%E1%85%A6%E1%86%A8%E1%84%90%E1%85%B3%20%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%B5%20%E1%84%8B%E1%85%A2%E1%86%B8%208a6f52a82d9a4383a108a8d58d80c1f9/alert.png)
+<img width="250" src="https://user-images.githubusercontent.com/53727139/205866097-03047b6e-71aa-4c95-ac41-b56c99f64f07.png"/>
 
-![userInformation.png](%E1%84%90%E1%85%A9%E1%84%8B%E1%85%B5%20-%20%E1%84%80%E1%85%A2%E1%84%8B%E1%85%B5%E1%86%AB%20%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%8C%E1%85%A6%E1%86%A8%E1%84%90%E1%85%B3%20%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%B5%20%E1%84%8B%E1%85%A2%E1%86%B8%208a6f52a82d9a4383a108a8d58d80c1f9/userInformation.png)
+<img width="250" src="https://user-images.githubusercontent.com/53727139/205866207-d0b24361-39db-4c8f-9b0b-90c91695ccad.png"/>
 
-![mypage.png](%E1%84%90%E1%85%A9%E1%84%8B%E1%85%B5%20-%20%E1%84%80%E1%85%A2%E1%84%8B%E1%85%B5%E1%86%AB%20%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%8C%E1%85%A6%E1%86%A8%E1%84%90%E1%85%B3%20%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%B5%20%E1%84%8B%E1%85%A2%E1%86%B8%208a6f52a82d9a4383a108a8d58d80c1f9/mypage.png)
+<img width="250" src="https://user-images.githubusercontent.com/53727139/205866166-06b758a1-8bba-4f1e-8672-0b7f9a75c6a4.png"/>
