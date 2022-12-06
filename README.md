@@ -1,10 +1,10 @@
 # 토이 - 개인 프로젝트 관리 앱
 
 <p align="center">
-  <img width="500" src="https://user-images.githubusercontent.com/53727139/205871335-01547f05-7676-4b43-b613-f9036791363e.png"/>
+  <img width="400" src="https://user-images.githubusercontent.com/53727139/205871335-01547f05-7676-4b43-b613-f9036791363e.png"/>
   
-  <img width="500" src="https://user-images.githubusercontent.com/53727139/205871350-d8ae15ba-0826-40b1-b31b-9f7e81dd7b0f.png"/>
-<\p>
+  <img width="400" src="https://user-images.githubusercontent.com/53727139/205871350-d8ae15ba-0826-40b1-b31b-9f7e81dd7b0f.png"/>
+</p>
 
   
   
